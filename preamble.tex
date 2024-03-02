@@ -1,0 +1,56 @@
+% Choose the language
+\usepackage[english]{babel} % Load characters and hyphenation
+\usepackage[english=british]{csquotes}	% English quotes
+
+% Load packages for testing
+\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+% Load the bibliography package
+\usepackage{styling/kaobiblio}
+\addbibresource{minimal.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage{math_styling/theorems}
+
+% Load the package for hyperreferences
+\usepackage{styling/kaorefs}
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+\makeindex[columns=3, title=Alphabetical Index, intoc]
+% Make LaTeX produce the files required to compile the index
+
+\newcommand*{\newpartpage}[1]{
+    \pagelayout{wide} % No margins
+    \addpart{#1}
+    \pagelayout{margin} % Restore margins
+}
+
+%Extra Packages
+\usepackage{svg} %Allows rendering of SVG files
+\usepackage{afterpage} %Allows for the creation of empty pages
+\usepackage{fontspec} %Allows for the use of custom fonts
+\usepackage{math_styling/mathmacros} %Allows for the use of custom math fonts
+
+\input{styling/title_page.tex} %Use custom title page
+
+%Set the font to Fira Math for math symbols
+\setmainfont[
+    Ligatures=TeX,
+    % UprightFont = ,
+    ItalicFont = Fira Sans Light Italic,
+    % SmallCapsFont = ,
+    BoldFont = Fira Sans,
+    BoldItalicFont = Fira Sans Italic
+]{Fira Sans Light}
+% \setsansfont[Ligatures=TeX]{Fira Sans}
+\setmonofont[Ligatures=TeX]{Fira Mono}
+
+%----------------------------------------------------------------------------------------
+%	BOOK INFORMATION
+%----------------------------------------------------------------------------------------
+\title{The Complexity of Finding Tarski Fixed Points}
+\author{Nils Jensen}
+\date{\today}
