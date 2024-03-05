@@ -1,3 +1,5 @@
+#Compile the thesis
+
 xelatex --shell-escape thesis
 makeindex thesis.nlo -s thesis.ist -o thesis.nls # Compile nomenclature
 makeindex thesis # Compile index
@@ -20,3 +22,4 @@ rm *.ilg
 rm *.ind
 rm *.idx
 rm *.mw
+

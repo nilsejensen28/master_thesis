@@ -1,0 +1,118 @@
+\documentclass[11pt]{scrreprt}
+\usepackage[utf8]{inputenc}
+
+%change margins here
+\usepackage{geometry}
+
+%% This changes default fonts for both text and math mode to use Herman Zapfs
+%% excellent Palatino font.  Do not change this.
+\usepackage[dvipsnames]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage[sfdefault]{FiraSans}
+
+%mathematical typesetting [do not remove]
+\usepackage{amssymb, amsmath, amsfonts, amsthm}
+
+%latex own graphics handling
+\usepackage{graphicx}
+
+%language package
+\usepackage[english]{babel}
+
+%package for header [page layout]
+\usepackage{fancyhdr}
+
+%package for hyperlinks (load last for safety)
+\usepackage[linkcolor=black,colorlinks=true,citecolor=black,filecolor=black]{hyperref}
+
+\usepackage{math_styling/mathmacros}
+
+\usepackage{enumitem}
+\usepackage{bibentry}
+\usepackage[style=nature,
+    maxnames=2,
+    backend=biber,
+    safeinputenc,
+    isbn=false,
+    doi=false,
+    maxcitenames=2,
+    date=iso8601,
+    url=false,
+    eprint=false,
+    backend=bibtex]{biblatex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Headers and Footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{FS 2024 \\Master Thesis}
+\fancyhead[R]{Nils Jensen \\ 18-943-514}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{nils.jensen@inf.ethz.ch}
+
+%Make line for headers and footers visible
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\addbibresource{bibliography.bib} % Bibliography file
+
+\renewcommand\labelitemi{$\triangleright$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{center}
+    {\scshape{\Huge {Summary 1 - \today}}} \\ \vspace{5pt}
+\end{center}
+
+\section*{Past Week}
+
+\begin{itemize}
+    \item Read the first three chapters of:
+          \textit{\citetitle{hollender_structural_2021} from
+              \citeauthor{hollender_structural_2021}}
+          This gave a good introduction into the definition of the different
+          complexity classes, in particular \TFNP, \PPAD, \PLS\ and \EOPL.
+    \item Also read the relevant parts of:
+          \textit{\citetitle{etessami_tarskis_2020} from
+              \citeauthor{etessami_tarskis_2020}}
+          This gave an introduction of the \Tarski\ problem and in particular
+          the proofs of the membership in \PLS\ and the idea of the membership
+          in $\P^{\PPAD} = \PPAD$. In particular I played around with the
+          reduction onto the \PLS\ class, and tried the naive approach of using
+          this
+          reduction to reduce the problem to the \EOPL\ class.
+          $\P^{\PPAD}$.
+    \item Skimmed over the paper \textit{\citetitle{buss_propositional_2012}
+              from
+              \citeauthor{buss_propositional_2012}}, seems rather difficult but
+          the proof of $\P^{\PPAD} = \PPAD$ might be general enough to be used
+          on the
+          \EOPL\ class.
+\end{itemize}
+
+\section*{Ideas for the next week}
+
+\begin{itemize}
+    \item Read \textit{\citetitle{buss_propositional_2012} from
+              \citeauthor{buss_propositional_2012}} in more detail, and in
+          particular try to understand the proof of $\P^{\PPAD} = \PPAD$, and
+          see if it
+          can be applied to the \EOPL\ class, i.e. does it hold that $P^{\EOPL}
+              = \EOPL$?
+    \item Try to find a reduction from \Tarski\ to $\P^{\EOPL} = \EOPL$, which
+          should be easier.
+\end{itemize}
+
+\section*{Administrative Points}
+
+\begin{itemize}
+    \item What are the expectations from your side?
+    \item How often should we meet? When will Prof.\ Gärtner be
+          available?
+    \item Will there be a final presentation?
+    \item How spontaneously are you available for questions?
+    \item Problems with my Legi.
+\end{itemize}
+\end{document}

@@ -12,7 +12,7 @@
 \addbibresource{bibliography.bib} % Bibliography file
 
 % Load mathematical packages for theorems and related environments
-\usepackage[framed=true]{math_styling/theorems}
+\usepackage{math_styling/theorems}
 
 % Load the package for hyperreferences
 \usepackage{styling/kaorefs}
@@ -33,7 +33,7 @@
 \usepackage{afterpage} %Allows for the creation of empty pages
 \usepackage{fontspec} %Allows for the use of custom fonts
 \usepackage{math_styling/mathmacros} %Allows for the use of custom math fonts
-
+\usepackage{hyperref}
 \input{styling/title_page.tex} %Use custom title page
 
 %Set the font to Fira Math for math symbols
@@ -47,6 +47,12 @@
 ]{Fira Sans Light}
 % \setsansfont[Ligatures=TeX]{Fira Sans}
 \setmonofont[Ligatures=TeX]{Fira Mono}
+
+\newcommand{\define}[1]{\textit{#1}\index{#1}}
+
+%Settings for the justification of the text
+\tolerance=500
+\hyphenpenalty=500
 
 %----------------------------------------------------------------------------------------
 %	BOOK INFORMATION

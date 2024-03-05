@@ -26,7 +26,7 @@
 \setchapterstyle{kao} % Choose the default chapter heading style
 
 \input{content/chapters/indroduction.tex} %Insert the first chapter
-\input{content/testing/math.tex} %Insert the second chapter
+\input{content/chapters/preliminaries.tex} %Insert the second chapter
 %\newpartpage{Part One}
 
 \appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
@@ -43,9 +43,8 @@
 
 % The bibliography needs to be compiled with biber using your LaTeX editor, or on the command line with 'biber main' from the template directory
 
-\defbibnote{bibnote}{Here are the references in citation order.\par\bigskip}
 % Prepend this text to the bibliography
-\printbibliography[heading=bibintoc, title=Bibliography, prenote=bibnote]
+\printbibliography[heading=bibintoc, title=Bibliography]
 % Add the bibliography heading to the ToC, set the title of the bibliography and output the bibliography note
 
 %----------------------------------------------------------------------------------------
