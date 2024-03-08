@@ -28,6 +28,7 @@
 % Black theorem number and optional black title with padding above and below
 \theoremstyle{blacknumbox}
 \newtheorem{definitionT}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
+\newtheorem{theoremT}{Theorem}[chapter]
 
 %----------------------------------------------------------------------------------------
 %	COLORED THEOREM BOXES
@@ -38,4 +39,21 @@
 % Definition box
 \newtcolorbox{dBox}{colback=gray!5!white,colframe=black,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base}
 
+%Problem box
+\newtcolorbox{pBox}{colback=gray!5!white,colframe=black,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base}
+
+
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+\newenvironment{theorem}{\begin{dBox}\begin{theoremT}}{\end{theoremT}\end{dBox}}
+
+%----------------------------------------------------------------------------------------
+%	Problem definitions
+%----------------------------------------------------------------------------------------
+
+\newcommand{\problem}[3]{
+	\begin{pBox}
+		{\scshape\bfseries #1} \par
+		{\bfseries Input: } #2 \par
+		{\bfseries Output: } #3
+	\end{pBox}
+}

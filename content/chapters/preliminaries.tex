@@ -40,10 +40,13 @@ The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_
 \marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP.}
 Similarly to decision problem we can also define reduction inside \TFNP.
 \begin{definition}[Reduction]
-    For two problem $R, S \in \TFNP$, we say that $R$ \define{reduces} to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow
+    For two problem $R, S \in \TFNP$, we say that $R$ \define{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr
+        \rightarrow
         \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$: if $(f(I), s) \in S$ then $(I, g(I, s)) \in R$.
     This means that if $s$ is a solution to an instance $f(I)$ in $S$, we can compute $g(I, s)$ a solution to an instance $I$ in $R$
 \end{definition}
+\marginnote[-15mm]{Saying \textit{one can reduce $R$ onto $S$} can be understood as saying \textit{if one can solve $S$ efficiently then I can solve $R$
+        efficiently}.}
 
 \section{An excursion into Binary Circuits}[Binary Circuits]
 
@@ -51,11 +54,29 @@ TODO
 
 \section{Subclasses of \TFNP}
 
-TODO
+Because the existence of complete \FNP-Problems in \TFNP\, would imply $\NP = \coNP$, as described in \sidecite{megiddo_total_1991}.
+Because this is a very unexpected outcome we cannot expect to find complete problems in \TFNP.
+This means that we should use other tools to study the structure of \TFNP. \par
+One of the proposed methods \sidecite{papadimitriou_complexity_1994} is to categorize total search problems with respect to the existence results which allow
+them to be \textit{total}. This is what leads to the complexity classes we will discuss next.
 
 \subsection{Polynomial Local Search (\PLS)}[\PLS]
 
-TODO
+The existence results which gives rise to \PLS\ is ``\textit{every directed acyclic graph has a sink}''.
+We can then construct the class \PLS\ by defining it as all problems which reduce to finding the sink of a directed acyclic graph (DAG). \par
+Formally we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
+
+\problem{Localopt}{Two binary circuits $P, S : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
+\marginnote[-20mm]{$S$ can be seen as a proposed successor, and $P$ as a potential. The goal is to find a local minima $v$ of the potential}
+
+One might ask why this is equivalent to finding the sink of a DAG?
+The circuit $S$ defines a directed graph, which might contain cycles.
+Only keeping the edge on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. Now we can
+define \PLS :
+
+\begin{definition}[Polynomial Local Search (\PLS)]
+    The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
+\end{definition}
 
 \subsection{Polynomial Parity Argument on Directed Graphs (\PPAD)}[\PPAD]
 
@@ -66,3 +87,35 @@ TODO
 TODO
 
 \section{The \Tarski\ Problem}[\Tarski\ Problem]
+
+Next we want to introduce the \Tarski\ Problem.
+Before we do this we recall that there is a partial order on the $d$ dimensional latice $[N]^d$, given by $x \leq y$ iff $x_i \leq y_i$ for all $i \in \{1,
+    \dots, d\}$.
+The name originates from \textsc{Tarski's} fixed point Theorem as introduced in \sidecite{tarski_lattice-theoretical_1955} which we remind the reader of below:
+
+\begin{theorem}[Tarski's fixed point Theorem]
+    Let $f : [N]^d \rightarrow [N]^d$ a function on the $d$-dimentional lattice.
+    If $f$ is monotonous (with respect to the previously discussed partial order), then $f$ has a fixed point, i.e. there is an $x \in [N]^d$ such that
+    $f(x)=x$.
+\end{theorem}
+\marginnote[-20mm]{This theorem is also known as the Knaster–Tarski theorem in the litterature.}
+A proof of this theorem can be found in the previously mentionned work~\cite{tarski_lattice-theoretical_1955}.
+Without surprise the \Tarski\ problem as defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed-point.
+Formally we define the problem as follows:
+\problem{Tarski}{A boolean circuit $S : [N]^d \rightarrow [N]^d$.}{Either:
+\begin{itemize}
+    \item An $x \in [N]^d$ such that $S(x)=x$ (fixed point) or
+    \item $x, y \in [N]^d$ such that $x \leq y$ and $f(x) \nleq f(y)$ (violation of monoticity).
+\end{itemize}
+}
+
+This is of course a total search problem, as there will always either be a fixed point, or a point violating monoticity.
+We now want to summarize where \Tarski\ lies inside of \TFNP.
+It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in both \PLS\ and $\P^{\PPAD}$.
+Previous work~\sidecite{buss_propositional_2012}, showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent.
+In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ also lies in \PPAD.
+
+\section{Structure of \texorpdfstring{$\PLS \cap \PPAD$}{\PLS\ and \PPAD}}[\texorpdfstring{$\PLS \cap \PPAD$}{\PLS\ and \PPAD}]
+
+Now that we have established that \Tarski\ lies inside $\PLS \cap \PPAD$, we want to discuss the structure of $\PLS \cap \PPAD$ and describe recent advances in
+the study of this class.
