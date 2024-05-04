@@ -1,0 +1,119 @@
+\setchapterpreamble[u]{\margintoc}
+\chapter{Reducing \Tarski\ onto \EOPL}
+
+In this chapter we will discuss how one can reduce \Tarski\ onto \EOPL. We will do this by introducing and using \textsc{Sperner's} Lemma, an indroducing a new problem: \Tarskistar. We will show also that an instance of the original \Tarski\ problem can be solved using a polynomial number of calls to \Tarskistar. Then we will give a proof that \Tarskistar\ is in \PPAD, an argue that the same construction also shows that \Tarskistar\ is \EOPL. We will conclude by arguing that $P^{\EOPL} = \EOPL$.
+
+\section{Introducing \Tarskistar}
+
+We want to start by introducing a new problem, \Tarskistar. This problem can be thought of, as a subproblem in order to solve \Tarski, as we will argue. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, as for instance in \sidecite{etessami_tarskis_2020}. We want to construct a problem, which allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution. We propose the following problem:
+
+For the sake of generality and for the proofs in the following we introduce the problem on a general latice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
+\problem{\Tarskistar}{
+A boolean circuit $f : L \rightarrow L$.
+}{
+Either:
+\begin{itemize}
+    \item[(T*1)] Two points $x, y \in L$ such that $\norminf{x-y} \leq 1$, $x \leq f(x)$ and $y \geq f(y)$, or
+    \item[(T*2)] A violation of mononicity: Two points $x, y \in L$ such that $x \leq y$ and $f(x) \not\leq f(y)$.
+\end{itemize}
+}
+
+We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
+\begin{claim}
+    An instance of \Tarski\ can be solved using $\BigO{d\cdot n}$ calls of \Tarskistar\ and up to $\BigO{d}$ additional steps.
+\end{claim}
+\begin{proof}
+    We will show that we can use a single call of \Tarskistar\ to either find a violation of monoticity, a fixpoint, or an instance of \Tarski\ which has at most half as many points, and must contain a solution. We proceed by case distingtion:
+
+    \textbf{Case 1:} If $x=y$, then $x$ is a fixpoint, and we are done.
+
+    \textbf{Case 2:} If either $f(x) = x$ or $f(y) = y$, then we are done, because we have found a fixpoint.
+
+    \textbf{Case 3.1:} If $x < y$ and $f(x) \not\leq f(y)$, we have a violation of monoticity, which solves the given \Tarski\ instance.
+
+    \textbf{Case 3.2:} If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that $x$ and $y$ can be thought of as being vertices on the same hypercube of length $1$, because $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 2), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monoticity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
+    \begin{align*}
+        \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \quad \text{and} \quad \normone{f(x) - f(y)} \leq \normone{x - y} - 2
+    \end{align*}
+    Hence we can now repeat the same argumentation with $f(x)$ and $f(y)$, and we can do this at most $\BigO{\normone{x - y}}$ times, until we find a violation of monoticity or a fixpoint. Because $\normone{x - y} \leq d$, this will take at most $\BigO{d}$ additional steps.
+
+    \textbf{Case 4:} If $x \not\leq y$, then we can partition the set of lattice points into two sets $S_x$ and $S_y$, as follows:
+    \begin{align*}
+        S_x = \set{z \in L : z \geq x} \quad \text{and} \quad S_y = \set{z \in L : z \leq y}.
+    \end{align*}
+    These two sets are disjoint: if there was a $z \in S_x \cap S_y$, then $x \leq z \leq y$, which would imply $x \leq y$, which is a contradiction. We will show that $S_x$ must contain a solution to the \Tarski\ instance.
+    \marginnote{We do not actually need to check these points, it suffice to have the algorithm stop if at any point it notices that $f$ leaves $S_x$.}
+    If for some $z \in S_x$ we have $f(z) \not\in S_x$, then we have $f(z) \not\leq f(x)$, because or else we have $f(z) \leq f(x) \leq x$, which contradicts the assumption, hence $x, z$ are two points withnessing a violation of monoticity of $f$. This means that $S_x$ froms a new valid instance of \Tarski. By the same argumentation $S_y$ also forms a valid instance of \Tarski\ and hence it suffices to solve the smaller of the two instances. In particular because they are disjoint, one of the instances $S_x$ or $S_y$ contains less than half of the lattice points of $L$, and hence we can solve the instance in $\BigO{\log{2^{dn}}} = \BigO{d \cdot n}$ calls of \Tarskistar.
+\end{proof}
+
+\section{\textsc{Sperner's} Lemma}
+
+Of course the previous discussions assume, that \Tarskistar\ is a total problem, that is, that every instance has a solution, which we will prove in this section, in order to conclude that that \Tarskistar\ is in \TFNP. In order to do this we introduce \textsc{Sperner's} Lemma, as introduced and proven in \sidecite{sperner_neuer_1928}. A more modern presentation and proof can be found in \sidecite{aigner_proofs_2018}.
+
+\begin{theorem}[Sperner's Lemma]
+    TODO.
+\end{theorem}
+
+For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances, we need to define a coloring of the vertices of $L$. We propose the following coloring $l : L \rightarrow \set{0, \dots, d}$:
+\marginnote{A vertex colored 0 indicates that the function points ``forwards'' in all dimensions, a vertex colored $i$ for $i \geq 1$ indicates that the function points ``backwards'' in at least the $i$-th dimension.}
+\begin{align*}
+    l(x) =
+    \begin{cases}
+        0 & \text{if $x \leq f(x)$}         \\
+        1 & \text{else if $x[1] > f(x)[1]$} \\
+          & \vdots                          \\
+        d & \text{else if $x[d] > f(x)[d]$}
+    \end{cases}
+\end{align*}
+
+We are now ready to use \textsc{Sperner's} Lemma to show that \Tarskistar\ is a total search problem.
+
+\begin{claim}
+    Finding a cell with all colors, yields a solution to \Tarskistar, in $\BigO{d}$ steps.
+\end{claim}
+\begin{proof}
+    Assume we have found a simplex, with vertices colored $0, \cdot, d$. Let us denote $x_i$ the vertex colored $i$, for $i \in \set{0, \dots, d}$. Notice that all of these vertices are by construction contained in some cell (hypercube of length $1$), let $\mathbf{0}$ be the smallest vertex of this hypercube and $\mathbf{1}$ the largest. In particular this means that for all $i$ we have:
+    \begin{align*}
+        \mathbf{0} \leq x_i \leq \mathbf{1} \quad \text{and} \quad f(x_i)[i] < x_i[i] \quad \text{for $i > 0$}
+    \end{align*}
+    We now proceed by case distinction:
+
+    \textbf{Case 1:} If $x_0$ is a fixed point, then $x = y = x_0$ is a solution to \Tarskistar.
+
+    \textbf{Case 2:} If $x_0 \neq f(x_0)$ and $x_0 = \mathbf{0}$. Then there is an $i$ such that $f(x_0)[i] > x_0[i]$, which means that $f(x_0[i]) - x_0[i] \geq 1$. At the same time we must have $f(x_i)[i] < x_i[i]$ and $x_0[i] - x_i[i]$ because $x_0 = \mathbf{0}$, and hence $x_i[i] - f(x_i)[i] \geq 1$. Now we get:
+    \begin{align*}
+        f(x_0)[i] - f(x_i)[i] & = \underbrace{f(x_0)[i] - x_0[i]}_{\geq 1} + \underbrace{x_0[i] - x_i[i]}_{\geq 0} + \underbrace{x_i[i] - f(x_i)[i]}_{\geq 1} \\
+        f(x_0)[i] - f(x_i)[i] & \geq 2
+    \end{align*}
+    This implies that $f(x_0) \not \leq f(x_i)$, and hence $x_0, x_i$ are two points witnessing a violation of monoticity of $f$, which form a solution to \Tarskistar.
+
+    \textbf{Case 3:} If $x_0 \neq f(x_0)$ and $x_0 \neq \mathbf{0}$. We claim that either $f(\mathbf{0}) \leq \mathbf{0}$, or we have a violation of monoticity. Assume for the sake of contradiction that there is an $i$ such that $f(\mathbf{0})[i] > \mathbf{0}[i]$. Then we must have $f(x_i)[i] < x_i[i]$ hence we get: $f(\mathbf{0})[i] \not\leq f(x_i)[i]$, which is a violation of monoticity. This means that either we can return $y = x_0$ and $x = \mathbf{0}$ as a solution to \Tarskistar, or $x_i$ and $\mathbf{0}$ as a violation of mononicity.
+\end{proof}
+
+Now to show that we have a total search problem we only need to show that such a cell colored $0, \dots, d$ always exists. In order to do this we need to use a variation of \textsc{Sperner's} Lemma, which was introduced by Papadimitriou in \sidecite{papadimitriou_complexity_1994-1}.
+\begin{theorem}[\textsc{Sperner's} Lemma on Hypercubes]
+    TODO.
+\end{theorem}
+
+This will allow us to show that \Tarskistar\ is a total search problem, and hence in \TFNP:
+\begin{theorem}
+    \Tarskistar\ is in \TFNP.
+\end{theorem}
+
+\section{Reducing \Tarskistar\ onto \PPAD}
+
+We now want to show that \Tarskistar\ is in \PPAD. In order to do this we will use the problem \Sperner, as introduced in \sidecite{papadimitriou_complexity_1994-1}.
+
+\problem{Sperner}{
+A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$.
+}{
+A cell $C \subset L$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$.
+}
+Papadimitriou showed that \Sperner\ is \PPAD-complete, in \cite{papadimitriou_complexity_1994-1}, which means that it suffices to reduce \Tarskistar\ onto \Sperner, in order to show that \Tarskistar\ is in \PPAD.
+
+\begin{theorem}
+    \Tarskistar\ is in \PPAD.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}

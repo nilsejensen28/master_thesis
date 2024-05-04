@@ -38,7 +38,14 @@ We call these problems where every instance admits a solution \define{total sear
         \binstr$ there is a solution $s \in \binstr$, that satisfies: $(I, s) \in R$.
 \end{definition}
 The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_1994} is simply the class of all total search problems that lie in \NP{}.
-\marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP.}
+\marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP, containing all search problems where a solution is guaranteed to
+    exist, and where one can efficiently check the feasibility of a candidate solution.}
+Examples of \TFNP\ problems are:
+\begin{itemize}
+    \item \textsc{Factoring}, the problem of finding the prime factors of a number,
+    \item \textsc{Nash}, the problem of finding a nash equilibrium in a bimatrix game,
+    \item \textsc{Minimize}, the problem of finding the global minimum of a convex function.
+\end{itemize}
 Similarly to decision problem we can also define reduction inside \TFNP{}.
 \begin{definition}[Reduction]
     For two problem $R, S \in \TFNP$, we say that $R$ \define{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr
@@ -58,6 +65,12 @@ TODO
 Because the existence of complete \FNP-Problems in \TFNP\, would imply $\NP = \coNP$, as described in \sidecite{megiddo_total_1991}.
 Because this is a very unexpected outcome we cannot expect to find complete problems in \TFNP{}.
 This means that we should use other tools to study the structure of \TFNP{}. \par
+One of the challenges is that \TFNP\ is a so-called \define{semantic} class.
+By semantic class we mean a class for which it is difficult to check if that Turing Machine defines a language in this class.
+\marginnote{Examples of syntactic classes include \P\ and \NP.}
+A \define{syntactic} class is a class for which it is easy to check that the accepted language of a Turing Machine indeed belongs to the class.
+These terms are defined in more detail in \sidecite{papadimitriou_computational_1994}.
+Hence we want to study syntactic subclasses of \TFNP.
 One of the proposed methods \sidecite{papadimitriou_complexity_1994} is to categorize total search problems with respect to the existence results which allow
 them to be \textit{total}. This is what leads to the complexity classes we will discuss next.
 
@@ -68,7 +81,7 @@ We can then construct the class \PLS\ by defining it as all problems which reduc
 Formally we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
 
 \problem{Localopt}{Two binary circuits $P, S : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
-\marginnote[-20mm]{$S$ can be seen as a proposed successor, and $P$ as a potential. The goal is to find a local minima $v$ of the potential.}
+\marginnote[-15mm]{$S$ can be seen as a proposed successor, and $P$ as a potential. The goal is to find a local minima $v$ of the potential.}
 
 One might ask why this is equivalent to finding the sink of a DAG\@?
 The circuit $S$ defines a directed graph, which might contain cycles.
@@ -79,9 +92,53 @@ define \PLS{}:
     The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
 \end{definition}
 
+One of the reasons we think that studying very ``easy'' problems such as \PLS\ is that we strongly believe that there is no clever way of solving these
+problems
+without actually walking through the graph.
+\marginnote[-15mm]{By ``easy'' we mean that the problem can be solved by simply walking through the graph, and checking whether every vertex is a local
+    minima.}
+Hence if we have a graph of exponentially large size it seems very unlikely that one can find an efficient way of solving the problem.
+Hence all problems in \PLS\ can be though of as including the fundamental difficulty of no beeing able to do better than to walk along some graph.
+
 \subsection{Polynomial Parity Argument on Directed Graphs (\PPAD)}[\PPAD]
 
-TODO
+Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou as one of the first syntatic subclasses of \TFNP\
+in~\sidecite{papadimitriou_complexity_1994}.
+The existence result giving rise to this class is that ``\textit{If a directed graph has an unbalanced vertex, then it has at least one other unbalanced
+    vertex}''.
+\PPAD\ can be defined using the problem \textsc{End-of-Line} as introduced in \sidecite{daskalakis_complexity_2009}.
+
+\problem{End-of-Line}{
+Boolean circuit $S, P : \bitstrn \rightarrow \bitstrn$ such that $P(0^n) = 0^n \neq S(0^n)$ ($0^n$ is a source.)
+}{
+An $x \in \bitstrn$ such that either:
+\begin{itemize}
+    \item $P(S(x)) \neq x$ ($x$ is a sink) or
+    \item $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
+\end{itemize}
+}
+\marginnote[-20mm]{Here $S$ can be thought of giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{PPAD_Example}
+    \caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=3$ (8 vertices).
+        The circuit $S$ is represented by solid lines and the circuit $P$ by dashed lines.
+        The solutions are the sinks $x=5$, $x=7$ and $x=1$, aswell as the sources $x=4$ and $x=6$.}
+    \label{fig:ppad_example}
+\end{figure}
+
+These boolean circuits represent a directed graph with maximal in and out degree 1, by having an edge from $x$ to $y$ if and only if $S(x) = y$  and $P(y) =
+    x$.
+The goal is to find a sink of the graph, or another source.
+\marginnote{Notice that \textsc{End-of-Line} allows cycles, and that these do not induce solutions.}
+It can be shown that the general case of finding a second imbalanced vertex in a directed graph (a problem called \textsc{Imbalance}) can be reduced to
+\textsc{End-of-Line} \sidecite{goldberg_hairy_2021}.
+Now we can define the complexity class \PPAD\ as follows:
+
+\begin{definition}[\PPAD]
+    The class \PPAD\ is the set of all \TFNP\ problems that reduce to \textsc{End-of-Line}.
+\end{definition}
 
 \subsection{End of Potential Line (\EOPL)}[\EOPL]
 
@@ -102,6 +159,15 @@ An $x \in \bitstrn$ such that either:
 }
 \marginnote[-50mm]{Here $S$ can be thought of giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.
     $V$ can be though of as a potential which is suppose to be monotonously increasing along the line.}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{EOPL_Solution_Example}
+    \caption[Example of an \EOPL\ Problem]{Example of an \EOPL\ Problem with $n=3$ (8 vertices).
+        The circuit $S$ is represented by solid lines and the circuit $P$ by dashed lines.
+        The solutions are the sink $x=7$, the violation of potential at $x=5$ and the non-standard source $x=4$.}
+    \label{fig:eopl_example}
+\end{figure}
 
 $S$ and $P$ can be though of as representing a directed line.
 Finding another source (a non-standard source), is a violation, as a directed line only has one source.
@@ -127,9 +193,9 @@ The name originates from \textsc{Tarski's} fixed point Theorem as introduced in 
 A proof of this theorem can be found in the previously mentionned work~\cite{tarski_lattice-theoretical_1955}.
 Without surprise the \Tarski\ problem as defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed-point.
 Formally we define the problem as follows:
-\problem{Tarski}{A boolean circuit $S : {[N]}^d \rightarrow {[N]}^d$.}{Either:
+\problem{Tarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$.}{Either:
 \begin{itemize}
-    \item An $x \in {[N]}^d$ such that $S(x)=x$ (fixed point) or
+    \item An $x \in {[N]}^d$ such that $f(x)=x$ (fixed point) or
     \item $x, y \in {[N]}^d$ such that $x \leq y$ and $f(x) \nleq f(y)$ (violation of monoticity).
 \end{itemize}
 }
