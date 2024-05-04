@@ -21,7 +21,7 @@
 	{} % Punctuation after theorem head
 	{0.25em} % Space after theorem head
 	{\sffamily\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
-	\thmnote{\sffamily\bfseries---~#3.\hspace{0.25em}}\newline} % Optional theorem note
+	\thmnote{\sffamily\bfseries---~#3.\hspace{0.25em}}\index{#3}\newline} % Optional theorem note
 
 %------------------------------------------------
 
@@ -29,6 +29,7 @@
 \theoremstyle{blacknumbox}
 \newtheorem{definitionT}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
 \newtheorem{theoremT}{Theorem}[chapter]
+\newtheorem{claim}{Claim}[chapter]
 
 %----------------------------------------------------------------------------------------
 %	COLORED THEOREM BOXES
@@ -52,7 +53,7 @@
 
 \newcommand{\problem}[3]{
 	\begin{pBox}
-		{\scshape\bfseries #1} \par
+		{\scshape\bfseries #1}\index{#1} \par
 		{\bfseries Input: } #2 \par
 		{\bfseries Output: } #3
 	\end{pBox}

@@ -6,12 +6,24 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\BarP}{\overline{P}}
+\newcommand{\BarS}{\overline{S}}
+\newcommand{\BarV}{\overline{V}}
+
 
 %Definition of BigO
 \newcommand{\BigO}[1]{\mathcal{O}\left(#1\right)}
 
 %Definition of the norm
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\normone}[1]{\left\lVert#1\right\rVert_{1}}
+\newcommand{\normtwo}[1]{\left\lVert#1\right\rVert_{2}}
+\newcommand{\norminf}[1]{\left\lVert#1\right\rVert_{\infty}}
+
+%Sets
+\newcommand{\set}[1]{\left\{#1\right\}}
 
 %Definition of complexity classes
 %Have the caracters be in Fira Sans Medium
@@ -25,12 +37,26 @@
 \newcommand{\CLS}{\textbf{CLS}}
 \newcommand{\EOPL}{\textbf{EOPL}}
 \newcommand{\PPAD}{\textbf{PPAD}}
+\newcommand{\SOL}{\textbf{SOL}}
 
 \newcommand{\Tarski}{\textsc{Tarski}}
+\newcommand{\Tarskistar}{\textsc{Tarski*}}
 \newcommand{\Localopt}{\textsc{Localopt}}
+\newcommand{\Sperner}{\textsc{Sperner}}
 
 \newcommand{\binstr}{\{0, 1\}^*}
 \newcommand{\bitstrn}{\{0, 1\}^n}
+\newcommand{\poly}{\text{poly}}
+\newcommand{\lev}{\text{lev}}
+\newcommand{\depth}{\text{depth}}
 
 %Medium size intersection
 \newcommand*{\medcap}{\mathbin{\scalebox{1.5}{\ensuremath{\cap}}}}%
+
+%Custom arrows
+\newcommand*{\larr}{\text{\reflectbox{\MVRightarrow}}}
+\newcommand*{\rarr}{\text{\MVRightarrow}}
+\newcommand*{\directions}{\{\larr, \rarr, \bullet \}}
+
+%Whole number interval
+\newcommand{\winterval}[2]{\left\lBrack#1, #2\right\rBrack}
