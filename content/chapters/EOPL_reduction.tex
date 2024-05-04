@@ -1,7 +1,31 @@
 \setchapterpreamble[u]{\margintoc}
-\chapter{Reducing \Tarski\ onto \EOPL}
+\chapter{Reducing \Tarski\ onto \PPAD}
 
-In this chapter we will discuss how one can reduce \Tarski\ onto \EOPL. We will do this by introducing and using \textsc{Sperner's} Lemma, an indroducing a new problem: \Tarskistar. We will show also that an instance of the original \Tarski\ problem can be solved using a polynomial number of calls to \Tarskistar. Then we will give a proof that \Tarskistar\ is in \PPAD, an argue that the same construction also shows that \Tarskistar\ is \EOPL. We will conclude by arguing that $P^{\EOPL} = \EOPL$.
+In this chapter we will discuss how one can reduce \Tarski\ onto \PPAD. We will do this by discussing the currently known proof of this reduction on high level, and then rephrasing the problem by introducing a new problem \Tarskistar. This will help us use a divide and conquer strategy to solve \Tarski\ by solving \Tarskistar\ and also allow to give a new proof of \PPAD\ membership of \Tarski\ by reducing \Tarskistar\ onto \PPAD\ using \textsc{Sperner's Lemma}, instead of the original proof using Brouwer's Fixed Point Theorem. This will give us insights for a further reduction of \Tarskistar\ onto \EOPL\ in the next chapter.
+
+\section{Presentation of the know reduction of \Tarski\ onto \PPAD}[Known reduction onto \PPAD]
+
+Previous work has established that \Tarski\ lies in \PPAD, as shown in \sidecite{etessami_tarskis_2020}. We want to give a high level presentation of this proof, which will help us motivate the introduction of \Tarskistar\ and the subsequent use of \textsc{Sperner's Lemma}. The proof given by Etassami et al.\@ relies on \textsc{Brouwer's fixed point theorem}, which we introduce below.
+
+\begin{theorem}[Brouwer's fixed point theorem]
+    Let $K \subset \R^d$ be a compact, convex set. Then every continuous function $f : K \rightarrow K$ has a fixed point $x^*	\in K$, i.e. $f(x^*) = x^*$.
+\end{theorem}
+
+The original proof can be found in \sidecite{brouwer_uber_1911}, a simpler proof relying on \textsc{Sperner's Lemma} can be found in \sidecite{aigner_proofs_2018}. This theorem gives rise to a total search problem which we call \Brouwer:
+
+\problem{Brouwer}{
+A continuous function $f : K \rightarrow K$.
+}{
+A fixed point $x^* \in K$ such that $f(x^*) = x^*$.
+}
+\marginnote[-18mm]{We leave out the technical detail of how this function is given using boolean circuits, and how precise the output needs to be, as it is not relevant for this high level presentation.}
+
+The problem \Brouwer\ was first introduced in \sidecite[5mm]{papadimitriou_complexity_1994-1}, and was shown to be \PPAD-complete. This means that it suffices to reduce \Tarski\ onto \Brouwer\ in order to show that \Tarski\ is in \PPAD. We will actually reduce \Tarski\ onto at most polynomially many instances of \Brouwer, which will allow us to show that \Tarski\ is in $\P^\PPAD$.
+
+The idea of the the proof is to extend the discrete function $f$, to a function $\Tilde{f} : [0, 2^n - 1]^d \rightarrow [0, 2^n - 1]^d$, such that $\Tilde{f}$ interpolates the latice function $f$, is continuous and piecewise linear between latice points, and hence continuous. This can be achieved using a simplicial decomposition of the each cell of the latice. Now we have an instance of \Brouwer, and hence we can find a fixed point $x^*$ of $\Tilde{f}$. Of course this fixed point does not need to be \define{integral}.
+\marginnote{We call a point \emph{integral} if it belongs to the original latice.}
+The key insight is that we can use this fixed point to reduce the search area for a integral fixed point by at least half, or find a violation of mononicity. In particular either there is a fixed point is $\{x \in [2^n-1]^d : x \geq x^*\}$ and $\{x \in [2^n-1]^d : x \leq x^*\}$. Or there is a violation of mononicity in the cell containing $x^*$.
+We can repeat this procedure always halfing the search area, which allows us to solve a \Tarski\ instance using at most $\BigO{d \cdot n}$ calls to \Brouwer. This concludes the proof that \Tarski\ is in $\P^\PPAD$. The result follows from the fact that \PPAD\ is closed under polynomial time reductions \sidecite{buss_propositional_2012}.
 
 \section{Introducing \Tarskistar}
 
