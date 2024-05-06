@@ -85,15 +85,24 @@ We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_ne
     Suppose that a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices (in 2 dimensions this is a tringulation). Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then there is a subsimplex, such that all colors are used.
 \end{theorem}
 
-We give an example of a 2-dimensional simplex, which is subdivided into smaller simplices, and colored according to \textsc{Sperner's} Lemma in TODO.
+We give an example of a 2-dimensional simplex, which is subdivided into smaller simplices, and colored according to \textsc{Sperner's Lemma} in \cref{fig:sperner_lemma_example}.
+
+\begin{figure}[ht]
+    \centering
+    \incfig{Sperners_Lemma_Example}
+    \caption[Example of \textsc{Sperners Lemma}]{Example of \textsc{Sperners Lemma} in the two dimensional case, with 3 colors. There must be a cell (colored in green), which contains all colors.}
+    \label{fig:sperner_lemma_example}
+\end{figure}
 
 Next we introduce the problem \Sperner, which is a total search problem, that was introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general latice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
-\marginnote{We define Sperner on a euclidian latice for convenience, but it can be defined on any simplicial decomposition of the space.}
+
 \problem{\Sperner}{
 A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that for every $i \in \set{0, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$.
 }{
 A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$.
 }
+\marginnote[-15mm]{We define Sperner on a euclidian latice for convenience, but it can be defined on any simplicial decomposition of the space.}
+
 A presentation of why construction can be seen as a simplicial decomposition of a $d$-dimensional simplex, and the coloring as a coloring of the vertices of the simplex can also be found in \cite{papadimitriou_complexity_1994-1}.
 
 \section{Reducing \Tarskistar\ onto \Sperner}
@@ -113,7 +122,7 @@ For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances
 We now need two results. First we need to show that a cell with all colors always exists, which will allow us to show that \Tarskistar\ is a total search problem. Second we need to show that finding a cell with all colors, yields a solution to \Tarskistar, in polynomial time.
 
 \begin{claim}
-    There is always a cell with all colors.
+    For any \Tarskistar\ instance, with vertices colored as above, there is always a cell with all colors.
 \end{claim}
 \begin{proof}
     This claim follows directly from \textsc{Sperner's} Lemma, and the coloring we have defined. There can never be a vertex colored $i$ with $x[i] = 0$, because this would imply that $f(x)[i] \leq x[i]$, which is a contradiction to the construction of the function. Hence by dividing each cell of the latice into simplices, we can apply \textsc{Sperner's} Lemma to show that a cell with all colors always exists. The vertices we use as the vertices of the large simplex are $\set{(0, \dots, 0), (2^n - 1, 0, \dots, 0), \dots, (0, \dots, 2^n - 1)}$.
@@ -139,4 +148,4 @@ We now need two results. First we need to show that a cell with all colors alway
 
     \textbf{Case 3:} If $x_0 \neq f(x_0)$ and $x_0 \neq \mathbf{0}$. We claim that either $f(\mathbf{0}) \leq \mathbf{0}$, or we have a violation of monoticity. Assume for the sake of contradiction that there is an $i$ such that $f(\mathbf{0})[i] > \mathbf{0}[i]$. Then we must have $f(x_i)[i] < x_i[i]$ hence we get: $f(\mathbf{0})[i] \not\leq f(x_i)[i]$, which is a violation of monoticity. This means that either we can return $y = x_0$ and $x = \mathbf{0}$ as a solution to \Tarskistar, or $x_i$ and $\mathbf{0}$ as a violation of mononicity.
 \end{proof}
-This shows that \Tarskistar is a total search problem, and can be reduced onto \Sperner. Hence \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$ we have shown that \Tarski\ lies in \PPAD.
+This shows that \Tarskistar\ is a total search problem, and can be reduced onto \Sperner. Hence \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$ we have shown that \Tarski\ lies in \PPAD, without relying on \Brouwer.
