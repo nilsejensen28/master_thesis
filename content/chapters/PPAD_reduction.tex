@@ -29,7 +29,7 @@ We can repeat this procedure always halfing the search area, which allows us to 
 
 \section{Introducing \Tarskistar}
 
-We want to start by introducing a new problem, \Tarskistar. This problem can be thought of, as a subproblem in order to solve \Tarski, as we will argue. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, as for instance in \sidecite{etessami_tarskis_2020}. We want to construct a problem, which allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution. We propose the following problem:
+In the previous section we have seen that \Tarski\ can be reduced onto a polynomial number of \Brouwer\ instances. We would like to study a single such reduction, in order to give an alternative proof that \Tarski\ is in \PPAD. In order to do this we introduce a new problem, \Tarskistar. This problem can be thought of, as a subproblem in order to solve \Tarski, as we will argue. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, as for instance in \sidecite{etessami_tarskis_2020}. We want to construct a problem, which allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution. We propose the following problem:
 
 For the sake of generality and for the proofs in the following we introduce the problem on a general latice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
 \problem{\Tarskistar}{
@@ -72,16 +72,32 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
 
 \section{\textsc{Sperner's} Lemma}
 
-Of course the previous discussions assume, that \Tarskistar\ is a total problem, that is, that every instance has a solution, which we will prove in this section, in order to conclude that that \Tarskistar\ is in \TFNP. In order to do this we introduce \textsc{Sperner's} Lemma, as introduced and proven in \sidecite{sperner_neuer_1928}. A more modern presentation and proof can be found in \sidecite{aigner_proofs_2018}.
+Of course the previous discussions assumes, that \Tarskistar\ is a total problem, that is, that every instance has a solution, which we will prove in this section, in order to conclude that that \Tarskistar\ is in \TFNP. Instead of using \textsc{Brouwer's theorem}, a tool from continuous topology, we want to use it's discrete counterpart, \textsc{Sperner's Lemma}, which is a combinatorial result. This seems natural for two reasons:
+\begin{itemize}
+    \item We are working on a discrete latice, and hence it seems more natural to use a discrete tool.
+    \item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ onto \Sperner\ in \sidecite{papadimitriou_complexity_1994-1}. Hence by reducing onto Brouwer, we introduce continuity into the problem, which is not necessary.
+\end{itemize}
 
+We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_neuer_1928}, a more modern proof can be found in \sidecite{aigner_proofs_2018}.
 \begin{theorem}[Sperner's Lemma]
-    TODO.
+    Suppose that a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices (in 2 dimensions this is a tringulation). Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then there is a subsimplex, such that all colors are used.
 \end{theorem}
 
+We give an example of a 2-dimensional simplex, which is subdivided into smaller simplices, and colored according to \textsc{Sperner's} Lemma in TODO.
+
+Next we introduce the problem \Sperner, which is a total search problem, that was introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}.
+\marginnote{We define Sperner on a euclidian latice for convenience, but it can be defined on any simplicial decomposition of the space.}
+\problem{\Sperner}{
+A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that for every $i \in \set{0, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$.
+}{
+A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$.
+}
+A presentation of why construction can be seen as a simplicial decomposition of a $d$-dimensional simplex, and the coloring as a coloring of the vertices of the simplex can also be found in \cite{papadimitriou_complexity_1994-1}.
+
 For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances, we need to define a coloring of the vertices of $L$. We propose the following coloring $l : L \rightarrow \set{0, \dots, d}$:
-\marginnote{A vertex colored 0 indicates that the function points ``forwards'' in all dimensions, a vertex colored $i$ for $i \geq 1$ indicates that the function points ``backwards'' in at least the $i$-th dimension.}
+\marginnote{A vertex colored 0 indicates that the function points \emph{forwards} in all dimensions, a vertex colored $i$ for $i \geq 1$ indicates that the function points \emph{backwards} in at least the $i$-th dimension.}
 \begin{align*}
-    l(x) =
+    c(x) =
     \begin{cases}
         0 & \text{if $x \leq f(x)$}         \\
         1 & \text{else if $x[1] > f(x)[1]$} \\
@@ -90,13 +106,15 @@ For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances
     \end{cases}
 \end{align*}
 
-We are now ready to use \textsc{Sperner's} Lemma to show that \Tarskistar\ is a total search problem.
+We now need two results. First we need to show that a cell with all colors always exists, which will allow us to show that \Tarskistar\ is a total search problem. Second we need to show that finding a cell with all colors, yields a solution to \Tarskistar, in polynomial time.
+
+The first result, follows directly from \textsc{Sperner's} Lemma, and the coloring we have defined. There can never be a vertex colored $i$ with $x[i] = 0$, because this would imply that $f(x)[i] \leq x[i]$, which is a contradiction to the construction of the function. Hence by dividing each cell of the latice into simplices, we can apply \textsc{Sperner's} Lemma to show that a cell with all colors always exists. The vertices we use as the vertices of the large simplex are $\set{(0, \dots, 0), (2^n - 1, 0, \dots, 0), \dots, (0, \dots, 2^n - 1)}$. Now we can advance to the second part:
 
 \begin{claim}
     Finding a cell with all colors, yields a solution to \Tarskistar, in $\BigO{d}$ steps.
 \end{claim}
 \begin{proof}
-    Assume we have found a simplex, with vertices colored $0, \cdot, d$. Let us denote $x_i$ the vertex colored $i$, for $i \in \set{0, \dots, d}$. Notice that all of these vertices are by construction contained in some cell (hypercube of length $1$), let $\mathbf{0}$ be the smallest vertex of this hypercube and $\mathbf{1}$ the largest. In particular this means that for all $i$ we have:
+    Assume we have found a simplex, with vertices colored $0, \dots, d$. Let us denote $x_i$ the vertex colored $i$, for $i \in \set{0, \dots, d}$. Notice that all of these vertices are by construction contained in some cell (hypercube of length $1$), let $\mathbf{0}$ be the smallest vertex of this hypercube and $\mathbf{1}$ the largest. In particular this means that for all $i$ we have:
     \begin{align*}
         \mathbf{0} \leq x_i \leq \mathbf{1} \quad \text{and} \quad f(x_i)[i] < x_i[i] \quad \text{for $i > 0$}
     \end{align*}
@@ -112,32 +130,4 @@ We are now ready to use \textsc{Sperner's} Lemma to show that \Tarskistar\ is a 
     This implies that $f(x_0) \not \leq f(x_i)$, and hence $x_0, x_i$ are two points witnessing a violation of monoticity of $f$, which form a solution to \Tarskistar.
 
     \textbf{Case 3:} If $x_0 \neq f(x_0)$ and $x_0 \neq \mathbf{0}$. We claim that either $f(\mathbf{0}) \leq \mathbf{0}$, or we have a violation of monoticity. Assume for the sake of contradiction that there is an $i$ such that $f(\mathbf{0})[i] > \mathbf{0}[i]$. Then we must have $f(x_i)[i] < x_i[i]$ hence we get: $f(\mathbf{0})[i] \not\leq f(x_i)[i]$, which is a violation of monoticity. This means that either we can return $y = x_0$ and $x = \mathbf{0}$ as a solution to \Tarskistar, or $x_i$ and $\mathbf{0}$ as a violation of mononicity.
-\end{proof}
-
-Now to show that we have a total search problem we only need to show that such a cell colored $0, \dots, d$ always exists. In order to do this we need to use a variation of \textsc{Sperner's} Lemma, which was introduced by Papadimitriou in \sidecite{papadimitriou_complexity_1994-1}.
-\begin{theorem}[\textsc{Sperner's} Lemma on Hypercubes]
-    TODO.
-\end{theorem}
-
-This will allow us to show that \Tarskistar\ is a total search problem, and hence in \TFNP:
-\begin{theorem}
-    \Tarskistar\ is in \TFNP.
-\end{theorem}
-
-\section{Reducing \Tarskistar\ onto \PPAD}
-
-We now want to show that \Tarskistar\ is in \PPAD. In order to do this we will use the problem \Sperner, as introduced in \sidecite{papadimitriou_complexity_1994-1}.
-
-\problem{Sperner}{
-A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$.
-}{
-A cell $C \subset L$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$.
-}
-Papadimitriou showed that \Sperner\ is \PPAD-complete, in \cite{papadimitriou_complexity_1994-1}, which means that it suffices to reduce \Tarskistar\ onto \Sperner, in order to show that \Tarskistar\ is in \PPAD.
-
-\begin{theorem}
-    \Tarskistar\ is in \PPAD.
-\end{theorem}
-\begin{proof}
-    TODO
 \end{proof}
