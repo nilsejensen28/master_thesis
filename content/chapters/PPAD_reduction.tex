@@ -1,9 +1,9 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ onto \PPAD}
 
-In this chapter we will discuss how one can reduce \Tarski\ onto \PPAD. We will do this by discussing the currently known proof of this reduction on high level, and then rephrasing the problem by introducing a new problem \Tarskistar. This will help us use a divide and conquer strategy to solve \Tarski\ by solving \Tarskistar\ and also allow to give a new proof of \PPAD\ membership of \Tarski\ by reducing \Tarskistar\ onto \PPAD\ using \textsc{Sperner's Lemma}, instead of the original proof using Brouwer's Fixed Point Theorem. This will give us insights for a further reduction of \Tarskistar\ onto \EOPL\ in the next chapter.
+In this chapter, we explore the reduction of \Tarski\ to the complexity class \PPAD. We begin by presenting an established proof of this reduction, focusing on a high-level overview. Subsequently, we introduce a novel problem, \Tarskistar, which facilitates a divide and conquer approach to solving Tarski by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski’s membership in PPAD using \textsc{Sperner's Lemma} instead of the traditional \textsc{Brouwer's Fixed Point Theorem}. This approach not only simplifies the proof but also sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
 
-\section{Presentation of the know reduction of \Tarski\ onto \PPAD}[Known reduction onto \PPAD]
+\section{Presentation of the known reduction of \Tarski\ onto \PPAD}[Known reduction onto \PPAD]
 
 Previous work has established that \Tarski\ lies in \PPAD, as shown in \sidecite{etessami_tarskis_2020}. We want to give a high level presentation of this proof, which will help us motivate the introduction of \Tarskistar\ and the subsequent use of \textsc{Sperner's Lemma}. The proof given by Etassami et al.\@ relies on \textsc{Brouwer's fixed point theorem}, which we introduce below.
 
@@ -13,23 +13,23 @@ Previous work has established that \Tarski\ lies in \PPAD, as shown in \sidecite
 
 The original proof can be found in \sidecite{brouwer_uber_1911}, a simpler proof relying on \textsc{Sperner's Lemma} can be found in \sidecite{aigner_proofs_2018}. This theorem gives rise to a total search problem which we call \Brouwer:
 
+\marginnote{We leave out the technical detail of how this function is given using boolean circuits, and how precise the output needs to be, as it is not relevant for this high level presentation.}
 \problem{Brouwer}{
 A continuous function $f : K \rightarrow K$.
 }{
 A fixed point $x^* \in K$ such that $f(x^*) = x^*$.
 }
-\marginnote[-18mm]{We leave out the technical detail of how this function is given using boolean circuits, and how precise the output needs to be, as it is not relevant for this high level presentation.}
 
-The problem \Brouwer\ was first introduced in \sidecite[5mm]{papadimitriou_complexity_1994-1}, and was shown to be \PPAD-complete. This means that it suffices to reduce \Tarski\ onto \Brouwer\ in order to show that \Tarski\ is in \PPAD. We will actually reduce \Tarski\ onto at most polynomially many instances of \Brouwer, which will allow us to show that \Tarski\ is in $\P^\PPAD$.
+The problem \Brouwer\ was first introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}. This means that it suffices to reduce \Tarski\ onto \Brouwer\ in order to show that \Tarski\ is in \PPAD. We will actually reduce \Tarski\ onto at most polynomially many instances of \Brouwer, which will allow us to show that \Tarski\ is in $\P^\PPAD$.
 
-The idea of the the proof is to extend the discrete function $f$, to a function $\Tilde{f} : [0, 2^n - 1]^d \rightarrow [0, 2^n - 1]^d$, such that $\Tilde{f}$ interpolates the latice function $f$, is continuous and piecewise linear between latice points, and hence continuous. This can be achieved using a simplicial decomposition of the each cell of the latice. Now we have an instance of \Brouwer, and hence we can find a fixed point $x^*$ of $\Tilde{f}$. Of course this fixed point does not need to be \define{integral}.
-\marginnote{We call a point \emph{integral} if it belongs to the original latice.}
-The key insight is that we can use this fixed point to reduce the search area for a integral fixed point by at least half, or find a violation of mononicity. In particular either there is a fixed point is $\{x \in [2^n-1]^d : x \geq x^*\}$ and $\{x \in [2^n-1]^d : x \leq x^*\}$. Or there is a violation of mononicity in the cell containing $x^*$.
+The idea of the the proof is to extend the discrete function $f$, to a function $\Tilde{f} : [0, 2^n - 1]^d \rightarrow [0, 2^n - 1]^d$, such that $\Tilde{f}$ interpolates the latice function $f$, is continuous and piecewise linear between latice points, and hence continuous. This can be achieved using a simplicial decomposition of the each cell of the latice. Now we have an instance of \Brouwer, and hence we can find a fixed point $x^*$ of $\Tilde{f}$. Of course this fixed point does not need to be \define{integral}
+\marginnote{We call a point \emph{integral} if it belongs to the original latice.}.
+The key insight is that we can use this fixed point to reduce the search area for a integral fixed point by at least half, or find a violation of mononicity. In particular either there is a fixed point in both $\{x \in [2^n-1]^d : x \geq x^*\}$ and $\{x \in [2^n-1]^d : x \leq x^*\}$. Or there is a violation of mononicity in the cell containing $x^*$.
 We can repeat this procedure always halfing the search area, which allows us to solve a \Tarski\ instance using at most $\BigO{d \cdot n}$ calls to \Brouwer. This concludes the proof that \Tarski\ is in $\P^\PPAD$. The result follows from the fact that \PPAD\ is closed under polynomial time reductions \sidecite{buss_propositional_2012}.
 
 \section{Introducing \Tarskistar}
 
-In the previous section we have seen that \Tarski\ can be reduced onto a polynomial number of \Brouwer\ instances. We would like to study a single such reduction, in order to give an alternative proof that \Tarski\ is in \PPAD. In order to do this we introduce a new problem, \Tarskistar. This problem can be thought of, as a subproblem in order to solve \Tarski, as we will argue. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, as for instance in \sidecite{etessami_tarskis_2020}. We want to construct a problem, which allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution. We propose the following problem:
+In the previous section we have seen that \Tarski\ can be reduced onto a polynomial number of \Brouwer\ instances. We would like to study a single such reduction, in order to give an alternative proof that \Tarski\ is in \PPAD. In order to do this we introduce a new problem, \Tarskistar. This problem can be thought of, as a subproblem towards solving \Tarski, as we will argue. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, as for instance used in \sidecite{etessami_tarskis_2020}. We want to construct a problem, which allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution. We propose the following problem:
 
 For the sake of generality and for the proofs in the following we introduce the problem on a general latice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
 \problem{\Tarskistar}{
@@ -55,7 +55,7 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
 
     \textbf{Case 3.1:} If $x < y$ and $f(x) \not\leq f(y)$, we have a violation of monoticity, which solves the given \Tarski\ instance.
 
-    \textbf{Case 3.2:} If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that $x$ and $y$ can be thought of as being vertices on the same hypercube of length $1$, because $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 2), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monoticity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
+    \textbf{Case 3.2:} If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that $x$ and $y$ can be thought of as being vertices on the same hypercube of length $1$, because $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 2), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monoticity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ we have $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
     \begin{align*}
         \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \quad \text{and} \quad \normone{f(x) - f(y)} \leq \normone{x - y} - 2
     \end{align*}
@@ -66,26 +66,28 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
         S_x = \set{z \in L : z \geq x} \quad \text{and} \quad S_y = \set{z \in L : z \leq y}.
     \end{align*}
     These two sets are disjoint: if there was a $z \in S_x \cap S_y$, then $x \leq z \leq y$, which would imply $x \leq y$, which is a contradiction. We will show that $S_x$ must contain a solution to the \Tarski\ instance.
-    \marginnote{We do not actually need to check these points, it suffice to have the algorithm stop if at any point it notices that $f$ leaves $S_x$.}
+    \marginnote{We do not actually need to check these points, it suffice to have the algorithm stop if at any point it notices that $f$ leaves $S_x$, as this would lead to a violation of monoticity.}
     If for some $z \in S_x$ we have $f(z) \not\in S_x$, then we have $f(z) \not\leq f(x)$, because or else we have $f(z) \leq f(x) \leq x$, which contradicts the assumption, hence $x, z$ are two points withnessing a violation of monoticity of $f$. This means that $S_x$ froms a new valid instance of \Tarski. By the same argumentation $S_y$ also forms a valid instance of \Tarski\ and hence it suffices to solve the smaller of the two instances. In particular because they are disjoint, one of the instances $S_x$ or $S_y$ contains less than half of the lattice points of $L$, and hence we can solve the instance in $\BigO{\log{2^{dn}}} = \BigO{d \cdot n}$ calls of \Tarskistar.
 \end{proof}
 
+Now that we know that \Tarskistar\ good stepping stone towards solving \Tarski, we want to investigate why \Tarskistar\ lies in \PPAD.
+
 \section{\textsc{Sperner's} Lemma}
 
-Of course the previous discussions assumes, that \Tarskistar\ is a total problem, that is, that every instance has a solution, which we will prove in this section, in order to conclude that that \Tarskistar\ is in \TFNP. Instead of using \textsc{Brouwer's theorem}, a tool from continuous topology, we want to use it's discrete counterpart, \textsc{Sperner's Lemma}, which is a combinatorial result. This seems natural for two reasons:
+The preceding discussion hinges on the assumption that \Tarskistar is a total problem, implying that every instance of the problem is guaranteed a solution. In this section, we will substantiate this claim, establishing \Tarskistar's classification within \TFNP. Rather than employing \textsc{Brouwer's fixed point Theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analogue, \textsc{Sperner’s Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
 \begin{itemize}
     \item We are working on a discrete latice, and hence it seems more natural to use a discrete tool.
     \item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ onto \Sperner\ in \sidecite{papadimitriou_complexity_1994-1}. Hence by reducing onto Brouwer, we introduce continuity into the problem, which is not necessary.
 \end{itemize}
 
-We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_neuer_1928}, a more modern proof can be found in \sidecite{aigner_proofs_2018}.
+We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_neuer_1928}, and for which a more modern proof can be found in \sidecite{aigner_proofs_2018}.
 \begin{theorem}[Sperner's Lemma]
     Suppose that a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices (in 2 dimensions this is a tringulation). Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then there is a subsimplex, such that all colors are used.
 \end{theorem}
 
 We give an example of a 2-dimensional simplex, which is subdivided into smaller simplices, and colored according to \textsc{Sperner's} Lemma in TODO.
 
-Next we introduce the problem \Sperner, which is a total search problem, that was introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}.
+Next we introduce the problem \Sperner, which is a total search problem, that was introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general latice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
 \marginnote{We define Sperner on a euclidian latice for convenience, but it can be defined on any simplicial decomposition of the space.}
 \problem{\Sperner}{
 A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that for every $i \in \set{0, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$.
@@ -94,7 +96,9 @@ A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in 
 }
 A presentation of why construction can be seen as a simplicial decomposition of a $d$-dimensional simplex, and the coloring as a coloring of the vertices of the simplex can also be found in \cite{papadimitriou_complexity_1994-1}.
 
-For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances, we need to define a coloring of the vertices of $L$. We propose the following coloring $l : L \rightarrow \set{0, \dots, d}$:
+\section{Reducing \Tarskistar\ onto \Sperner}
+
+For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances, we need to define a coloring of the vertices of $L$. We propose the following coloring $c : L \rightarrow \set{0, \dots, d}$:
 \marginnote{A vertex colored 0 indicates that the function points \emph{forwards} in all dimensions, a vertex colored $i$ for $i \geq 1$ indicates that the function points \emph{backwards} in at least the $i$-th dimension.}
 \begin{align*}
     c(x) =
@@ -108,8 +112,12 @@ For us to be able to use \textsc{Sperner's} Lemma, on our \Tarskistar\ instances
 
 We now need two results. First we need to show that a cell with all colors always exists, which will allow us to show that \Tarskistar\ is a total search problem. Second we need to show that finding a cell with all colors, yields a solution to \Tarskistar, in polynomial time.
 
-The first result, follows directly from \textsc{Sperner's} Lemma, and the coloring we have defined. There can never be a vertex colored $i$ with $x[i] = 0$, because this would imply that $f(x)[i] \leq x[i]$, which is a contradiction to the construction of the function. Hence by dividing each cell of the latice into simplices, we can apply \textsc{Sperner's} Lemma to show that a cell with all colors always exists. The vertices we use as the vertices of the large simplex are $\set{(0, \dots, 0), (2^n - 1, 0, \dots, 0), \dots, (0, \dots, 2^n - 1)}$. Now we can advance to the second part:
-
+\begin{claim}
+    There is always a cell with all colors.
+\end{claim}
+\begin{proof}
+    This claim follows directly from \textsc{Sperner's} Lemma, and the coloring we have defined. There can never be a vertex colored $i$ with $x[i] = 0$, because this would imply that $f(x)[i] \leq x[i]$, which is a contradiction to the construction of the function. Hence by dividing each cell of the latice into simplices, we can apply \textsc{Sperner's} Lemma to show that a cell with all colors always exists. The vertices we use as the vertices of the large simplex are $\set{(0, \dots, 0), (2^n - 1, 0, \dots, 0), \dots, (0, \dots, 2^n - 1)}$.
+\end{proof}
 \begin{claim}
     Finding a cell with all colors, yields a solution to \Tarskistar, in $\BigO{d}$ steps.
 \end{claim}
@@ -131,3 +139,4 @@ The first result, follows directly from \textsc{Sperner's} Lemma, and the colori
 
     \textbf{Case 3:} If $x_0 \neq f(x_0)$ and $x_0 \neq \mathbf{0}$. We claim that either $f(\mathbf{0}) \leq \mathbf{0}$, or we have a violation of monoticity. Assume for the sake of contradiction that there is an $i$ such that $f(\mathbf{0})[i] > \mathbf{0}[i]$. Then we must have $f(x_i)[i] < x_i[i]$ hence we get: $f(\mathbf{0})[i] \not\leq f(x_i)[i]$, which is a violation of monoticity. This means that either we can return $y = x_0$ and $x = \mathbf{0}$ as a solution to \Tarskistar, or $x_i$ and $\mathbf{0}$ as a violation of mononicity.
 \end{proof}
+This shows that \Tarskistar is a total search problem, and can be reduced onto \Sperner. Hence \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$ we have shown that \Tarski\ lies in \PPAD.
