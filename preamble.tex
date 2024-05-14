@@ -57,10 +57,11 @@
 \setmonofont[Ligatures=TeX]{Fira Mono}
 
 %Use Fira Math for Equations
-%\usepackage{firamath-otf}
-%\setmathfont{Fira Math}
+\usepackage{firamath-otf}
+\setmathfont{TeX Gyre DejaVu Math}[range={\vdots,\ddots}] %Fallback for \vdots and \ddots
+\setmathfont{Fira Math}[range=]
 %Fix Mathcal
-%\DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
 
 \newcommand{\define}[1]{\textit{#1}\index{#1}}
 
