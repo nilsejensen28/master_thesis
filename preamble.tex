@@ -48,13 +48,19 @@
 \setmainfont[
     Ligatures=TeX,
     % UprightFont = ,
-    ItalicFont = Fira Sans Light Italic,
+    ItalicFont = Fira Sans Italic,
     % SmallCapsFont = ,
-    BoldFont = Fira Sans,
-    BoldItalicFont = Fira Sans Italic
-]{Fira Sans Light}
+    BoldFont = Fira Sans Medium,
+    BoldItalicFont = Fira Sans Medium Italic
+]{Fira Sans Regular}
 % \setsansfont[Ligatures=TeX]{Fira Sans}
 \setmonofont[Ligatures=TeX]{Fira Mono}
+
+%Use Fira Math for Equations
+%\usepackage{firamath-otf}
+%\setmathfont{Fira Math}
+%Fix Mathcal
+%\DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
 
 \newcommand{\define}[1]{\textit{#1}\index{#1}}
 
