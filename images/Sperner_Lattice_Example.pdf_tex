@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'Sperners_Lemma_Example.pdf' (pdf, eps, ps)
+%% Accompanies image file 'Sperner_Lattice_Example.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{414.26216666bp}%
+    \setlength{\unitlength}{363.38694655bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,12 +50,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.87018561)%
+  \begin{picture}(1,0.436911)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{Sperners_Lemma_Example.pdf}}%
-    \put(0.58341668,0.82498402){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0$\end{tabular}}}}%
-    \put(0.05300463,0.01407371){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\end{tabular}}}}%
-    \put(0.91326679,0.01064052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Sperner_Lattice_Example.pdf}}%
+    \put(0.49345453,0.00713905){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\\\end{tabular}}}}%
+    \put(0.93081822,0.00997471){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_2$\\\end{tabular}}}}%
+    \put(0.95709909,0.193197){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0$\\\end{tabular}}}}%
+    \put(0.6744759,0.38839189){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Sperner_Lattice_Example.pdf}}%
+    \put(0.0957132,0.04872013){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0$\\\end{tabular}}}}%
+    \put(0.04290087,0.25975449){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\\\end{tabular}}}}%
+    \put(0.42355688,0.0628662){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_2$\\\end{tabular}}}}%
+    \put(0.17806559,0.277146){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_3$\\\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Sperner_Lattice_Example.pdf}}%
   \end{picture}%
 \endgroup%

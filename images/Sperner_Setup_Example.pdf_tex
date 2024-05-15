@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'Sperners_Lemma_Example.pdf' (pdf, eps, ps)
+%% Accompanies image file 'Sperner_Setup_Example.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{414.26216666bp}%
+    \setlength{\unitlength}{346.97990357bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,12 +50,13 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.87018561)%
+  \begin{picture}(1,0.70547374)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{Sperners_Lemma_Example.pdf}}%
-    \put(0.58341668,0.82498402){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0$\end{tabular}}}}%
-    \put(0.05300463,0.01407371){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\end{tabular}}}}%
-    \put(0.91326679,0.01064052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Sperner_Setup_Example.pdf}}%
+    \put(0.56408139,0.68138753){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0$\\\end{tabular}}}}%
+    \put(0.04492945,0.04528668){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\\\end{tabular}}}}%
+    \put(0.94782921,0.03504198){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_2$\\\end{tabular}}}}%
+    \put(0.95507056,0.40629366){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_3$\\\end{tabular}}}}%
   \end{picture}%
 \endgroup%

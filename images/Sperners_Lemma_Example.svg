@@ -27,9 +27,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.8287917"
-     inkscape:cx="270.67052"
-     inkscape:cy="343.12273"
+     inkscape:zoom="1.293151"
+     inkscape:cx="293.08255"
+     inkscape:cy="202.21923"
      inkscape:window-width="1850"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -292,7 +292,7 @@
          id="tspan21982"
          style="stroke-width:0.427401"
          x="95.298798"
-         y="18.646055">$v_1$</tspan></text>
+         y="18.646055">$v_0$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.88638px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.401348"
@@ -303,7 +303,7 @@
          id="tspan21982-9"
          style="stroke-width:0.401348"
          x="17.494787"
-         y="126.88273">$v_2$</tspan></text>
+         y="126.88273">$v_1$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.88638px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.401348"
@@ -314,6 +314,6 @@
          id="tspan21982-1"
          style="stroke-width:0.401348"
          x="153.71623"
-         y="127.34579">$v_3$</tspan></text>
+         y="127.34579">$v_2$</tspan></text>
   </g>
 </svg>

@@ -1,7 +1,7 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \PPAD}
 
-In this chapter, we explore the membership of \Tarski\ to the complexity class \PPAD. We begin by presenting an established proof of the reduction of this problem to \Brouwer~\sidecite[20mm]{etessami_tarskis_2020}, focusing on a high-level overview. Subsequently, we introduce a novel problem, \Tarskistar, which facilitates a divide and conquer approach to solving \Tarski by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski’s membership in PPAD using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach not only simplifies the proof but also sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
+In this chapter, we explore the membership of \Tarski\ to the complexity class \PPAD. We begin by presenting an established proof of the reduction of this problem to \Brouwer~\sidecite[25mm]{etessami_tarskis_2020}, focusing on a high-level overview. Subsequently, we introduce a novel problem, \Tarskistar, which facilitates a divide and conquer approach to solving \Tarski by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski’s membership in PPAD using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach not only simplifies the proof but also sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
 
 \section{Presentation of the known reduction of \Tarski\ to \PPAD}[Known reduction to \PPAD]
 
@@ -25,7 +25,7 @@ The problem \Brouwer\ was first introduced and shown to be \PPAD-complete in \si
 The idea of the the reduction is to extend the discrete function $f$, to a function $\Tilde{f} : [0, 2^n - 1]^d \rightarrow [0, 2^n - 1]^d$, such that $\Tilde{f}$ interpolates the lattice function $f$, is continuous and piecewise linear between lattice points, and hence continuous. This can be achieved using a simplicial decomposition of each cell of the lattice. Now we have an instance of \Brouwer, and hence we can find a fixed point $x^*$ of $\Tilde{f}$. Of course, this fixed point does not need to be \define{integral}
 \marginnote{We call a point \emph{integral} if it belongs to the original lattice.}.
 The key insight is that we can use this fixed point to reduce the search area for a integral fixed point by at least half, or find a violation of monotonicity. In particular, either there is a fixed point in both $\{x \in [2^n-1]^d : x \geq x^*\}$ and $\{x \in [2^n-1]^d : x \leq x^*\}$, or there is a violation of monotonicity in the cell containing $x^*$.
-We can repeat this procedure always halfing the search area, which allows us to solve a \Tarski\ instance using at most $\BigO{d \cdot n}$ calls to \Brouwer. 
+We can repeat this procedure always halfing the search area, which allows us to solve a \Tarski\ instance using at most $\BigO{d \cdot n}$ calls to \Brouwer.
 
 \section{Introducing \Tarskistar}
 
@@ -69,38 +69,65 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
 
 Now that we know that \Tarskistar\ is a good stepping stone towards solving \Tarski, we want to investigate why \Tarskistar\ lies in \PPAD.
 
-\section{\textsc{Sperner's} Lemma}
+\section{Sperner's Lemma}
 
-The preceding discussion hinges on the assumption that \Tarskistar\ is a total problem, implying that every instance of the problem is guaranteed a solution. In this section, we will substantiate this claim, establishing \Tarskistar's classification within \TFNP. Rather than employing \textsc{Brouwer's fixed point Theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analogue, \textsc{Sperner’s Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
+The preceding discussion hinges on the assumption that \Tarskistar\ is a total problem, implying that every instance of the problem is guaranteed a solution. In this section, we will substantiate this claim, establishing \Tarskistar's classification within \TFNP. Rather than employing \textit{Brouwer's fixed point Theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analogue, \textit{Sperner’s Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
 \begin{itemize}
     \item We are working on a discrete lattice, and hence it seems more natural to use a discrete tool.
-    \item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ to \Sperner\ in \sidecite{papadimitriou_complexity_1994-1}. Hence by reducing to \Brouwer, we introduce continuity into the problem, which is not necessary.
+    \item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ to \Sperner\ \sidecite{papadimitriou_complexity_1994-1}. Hence by reducing to \Brouwer, we introduce continuity into the problem, which is not necessary, as it get removed again behind the scenes.
 \end{itemize}
+
+Our goal is to apply \textit{Sperner's Lemma} on the integer lattice. This is not directly possible, as \textit{Sperner's Lemma} is defined on a simplicial decomposition of a simplex. Hence we will first introduce \textit{Sperner's Lemma} for simplices, and then show how it can be adapted to work on an integer lattice.
+
+\subsection{Sperner's Lemma for Simplices}[on Simplices]
+
+Before we introduce the Lemma itself, we want to define the setting of the result. We consider a $d$-dimensional simplex\sidenote{By $d$ dimensional simplex we mean the convex Hull of these $d+1$ points in $\R^d$} with vertices $v_0, v_1, \dots, v_d$. We now consider a \define{simplicial subdivision} of this simplex. This means that we partition the simplex into smaller simplices. We give an example of such a partition in \cref{fig:sperner_setup_example} in the 3-dimensional case.
+
+\begin{figure}[ht]
+    \centering
+    \incfig{Sperner_Setup_Example}
+    \caption[Setup for \textsc{Sperner's Lemma}]{Setup for \textsc{Sperner's Lemma} in the 3-dimensional case. The large simplex spanned by $v_0, v_1, v_2, v_3$ is subdivided into smaller simplices.}
+    \label{fig:sperner_setup_example}
+\end{figure}
+
+Now we introduce a coloring $c$ of the vertices of this subdivision with colors $\{0, 1, \dots, d\}$. We want to enforce that the vertices $v_i$ of the large simplex are colored with color $i$, and that the vertices on a subsimplex $\{v_{i_0}, \dots, v_{i_k}\}$ are colored with colors $i_0, \dots, i_k$. We give an example of such a coloring in 2 dimensions in \cref{fig:sperner_coloring_example}.
 
 We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_neuer_1928}, and for which a more modern proof can be found in \sidecite{aigner_proofs_2018}.
 \begin{theorem}[Sperner's Lemma]
-    Suppose that a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices (in 2 dimensions this is a triangulation). Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then there is a subsimplex, such that all colors are used.
+    Suppose that a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices. Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then there is a subsimplex, with vertices of every color.
 \end{theorem}
 
-We give an example of a 2-dimensional simplex, which is subdivided into smaller simplices, and colored according to \textsc{Sperner's Lemma} in \cref{fig:sperner_lemma_example}.
+We give an example of a 2-dimensional simplex, which is subdivided into smaller simplices, and colored according to \textit{Sperner's Lemma} in \cref{fig:sperner_lemma_example}.
 
 \begin{figure}[ht]
     \centering
     \incfig{Sperners_Lemma_Example}
-    \caption[Example of \textsc{Sperners Lemma}]{Example of \textsc{Sperners Lemma} in the two dimensional case, with 3 colors. There must be a cell (colored in green), which contains all colors.}
+    \caption[Example of \textsc{Sperners Lemma}]{Example of \textsc{Sperners Lemma} in the two dimensional case, with 3 colors: orange (0), purple (1) and blue (2). The subsimplex spanned by $v_0$ and $v_1$ only contains blue and purple vertices, the subsimplex spanned by $v_1$ and $v_2$ contains only purple and blue vertices and the subsimplex spanned by $v_0$ and $v_2$ contains only orange and blue vertices. \textit{Sperner's Lemma} implies that there must be a cell (colored in green), which contains all colors.}
     \label{fig:sperner_lemma_example}
 \end{figure}
 
-Next we introduce the problem \Sperner, which is a total search problem, that was introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
+\subsection{Sperner's Lemma for an integer lattice}[on Lattices]
+
+Now that we have introduced \textit{Sperner's Lemma} for a integer lattice. The motivation is to be able to find a region of a colored lattice which contains all colors under certain conditions. Instead of looking for a subsimplex, we will look for a \define{cell}\sidenote{By cell we mean a unit hypercube of the integer lattice} of the lattice, which contains all colors.
+
+In order to do this we proceed as follows. We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this is done is not relevant in this chapter but will be discussed in the next chapter.}. We set $v_0 = (0, \dots, 0)$, $v_1 = (N_1 - 1, 0, \dots, 0), \dots, v_d = (0, \dots, 0, N_d - 1)$. We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice an we obtain an equivalent simplex, and a simplicial decomposition of this simplex.
+
+\begin{figure}
+    \centering
+    \incfig{Sperner_Lattice_Example}
+    \caption[Example of a simplicial decomposition of a lattice]{Example of the simplicial decomposition of a lattice in the 3 dimensional case on the left, and the equivalent simplicial decomposition on the right of a simplex $v_0, v_1, v_2, v_3$.}
+    \label{fig:sperner_lattice_example}
+\end{figure}
+
+This means that under the appropriate conditions --- which we will detail next --- we can apply \textit{Sperner's Lemma} to the lattice. Assume that we color all vertices of the lattice with colors $\set{0, \dots, d}$, such that $v_i$ is colored $i$, and every vertex $x$ with $x[i] = 0$, is \textit{not} colored $i$ for $i \in \set{1, \dots, d}$. Then we can apply \textit{Sperner's Lemma} to this simplical decomposition of the lattice, and we will find a simplex which contains all colors. Of course because every subsimplex is included in exactly one cell by construction, there must be a cell which contains all colors. This motivates the definition of the total problem \Sperner which was introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
 
 \problem{\Sperner}{
 A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that for every $i \in \set{0, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$.
 }{
 A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$.
 }
-\marginnote[-15mm]{We define Sperner on a integer euclidian lattice for convenience, but it can be defined on any simplicial decomposition of the space.}
 
-A presentation of why construction can be seen as a simplicial decomposition of a $d$-dimensional simplex, and the coloring as a coloring of the vertices of the simplex can also be found in \cite{papadimitriou_complexity_1994-1}.
+Next we will use this problem to show that \Tarskistar\ is a total search problem, and hence lies in \PPAD.
 
 \section{Reducing \Tarskistar\ to \Sperner}
 
