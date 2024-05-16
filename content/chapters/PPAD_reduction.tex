@@ -55,7 +55,7 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
 
     \textbf{Case 2.2:} If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that we have $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 1), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monotonicity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ we have $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
     \begin{align*}
-        \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \quad \text{and} \quad \normone{f(x) - f(y)} \leq \normone{x - y} - 2
+        \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \; \text{and} \; \normone{f(x) - f(y)} \leq \normone{x - y} - 2
     \end{align*}
     Hence we can now repeat the same argumentation with $f(x)$ and $f(y)$, and we can do this at most $\BigO{\normone{x - y}}$ times, until we find a violation of monotonicity or a fixpoint. Because $\normone{x - y} \leq d$, this will take at most $\BigO{d}$ additional steps.
 
@@ -130,6 +130,7 @@ A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in 
 Next we will use this problem to show that \Tarskistar\ is a total search problem, and hence lies in \PPAD.
 
 \section{Reducing \Tarskistar\ to \Sperner}
+\label{sec:tarskistar_to_sperner}
 
 For us to be able to use \textsc{Sperner's} Lemma on our \Tarskistar\ instances, we need to define a coloring of the vertices of $L$. We propose the following coloring $c : L \rightarrow \set{0, \dots, d}$:
 \marginnote{A vertex colored 0 indicates that the function points \emph{weakly forwards} in all dimensions, a vertex colored $i$ for $i \geq 1$ indicates that the function points \emph{backwards} in at least the $i$-th dimension.}

@@ -47,7 +47,7 @@ Next we want to discuss why this really forms a partition of the hypercube. Of c
 \begin{lemma}
     Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the \define{interior} of $S_{\pi}$ is:
     \begin{align*}
-        \interior{S} = \set{x \in [0, 1]^d : 0 < x[\pi(1)] < x[\pi(2)] < \dots < x[\pi(d)] < 1}
+        \interior{S_{\pi}} = \set{x \in [0, 1]^d : 0 < x[\pi(1)] < x[\pi(2)] < \dots < x[\pi(d)] < 1}
     \end{align*}
 \end{lemma}
 \begin{proof}
@@ -63,3 +63,88 @@ These two lemma's together show that we have a well-defined simplicial decomposi
 \begin{proof}
     Because this relation is transitive it suffice to show that $v_i < v_{i+1}$ for all $i \in \set{0, \dots, d-1}$. This follows immediately from the construction of the $v_i$ as we have $v_i[j] = v_{i+1}[j]$ for all $j \neq \pi(i+1)$ and $v_i[\pi(i+1)] = v_{i+1}[\pi(i+1)] - 1$.
 \end{proof}
+This directly implies the following corollary.
+\begin{corollary}
+    For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular $x \not\leq y$ is equivalent to $x > y$.
+\end{corollary}
+Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections.
+
+\section{Properties of the coloring of \Tarski\ instances}[Properties of the coloring]
+
+In this section we want to discuss different properties with the coloring of \Tarski\ instances have. This will be helpful in arguing that the resulting \EndOfLine\ instance does not contain any cycles. We will start with general properties and then move on to properties of sequences of simplices.
+
+\subsection{General properties of the coloring}
+
+\marginnote{Recall that the coloring was given by: \begin{align*}
+        c(x) =
+        \begin{cases}
+            0 & \text{if $x \leq f(x)$}         \\
+            1 & \text{else if $x[1] > f(x)[1]$} \\
+              & \vdots                          \\
+            d & \text{else if $x[d] > f(x)[d]$}
+        \end{cases}
+    \end{align*}}
+In this section we will assume that we are working on a integer lattice $L$, and that for a function $f : L \rightarrow L$, the points have been colored $c : L \rightarrow \set{0, \dots, d}$ as in \cref{sec:tarskistar_to_sperner}. Now we are ready to present a first observation, which will be a helpful stepping stone for more advanced results.
+
+\begin{lemma}
+    Assume that $f$ is monotone and that we have $x_i, x_j \in L$, $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ and $x_i[i] = x_j[i]$, then either:
+    \begin{enumerate}
+        \item $i \geq j$ or
+        \item $i < j$  and $x_i \not\geq x_j$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Assume that $i < j$ and $x_i \geq x_j$. We must then have $f(x_j)[i] \geq x_j[i] = x_i[i] > f(x_i)[i]$. Now by monoticity of $f$ we must have $f(x_i) \geq f(x_j)$, which is not possible if $f(x_j)[i] > f(x_i)[i]$. Hence we must have $x_i \not\geq x_j$. This shows that the lemma holds.
+\end{proof}
+
+For vertices of a given simplex we get the following corollary.
+\marginnote[10mm]{Notice that if we assume that $x_i$ and $x_j$ are in the same simplex of the simplicial decomposition, then the condition $x_i \not\geq x_j$ is equivalent to $x_i \leq x_j$.}
+\begin{corollary}
+    Assume that $f$ is monotone and that we have $x_i, x_j \in S$, for some simplex $S\in  \mathcal{S}$. Further assume that $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ with $i < j$ and that $x_i[i] = x_j[i]$, then $x_i \leq x_j$.
+\end{corollary}
+
+\subsection{Properties of sequences of simplices}
+
+Now we want to work with sequences of simplices, and show that the coloring of the vertices of these simplices have some nice properties. We start by defining what we mean by a sequence of simplices. Let $C \subset \{0, \dots, d\}$ be a subset of colors.
+\begin{definition}[Valid sequence of simplices]
+    A \emph{valid sequence of simplices for colors $C$} is a sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ such that:
+    \begin{enumerate}
+        \item $S_{i+1} \not\subset \set{S_1, \dots, S_i}$ for all $i \in \set{1, \dots, k-1}$.
+        \item $S_i$ and $S_{i+1}$ share a $d-1$-dimensional face $F_i$ for all $i \in \set{1, \dots, k-1}$.
+        \item The vertices of $F_i$ are colored only with colors in $C$.
+    \end{enumerate}
+\end{definition}
+These sequences are the objects that latter get reduced to paths in the \EndOfLine\ instance, which is why we want to study them in detail. We define the some more terminology to help us with this.
+\begin{definition}[Cycle]
+    \marginnote[-10mm]{Note that the empty sequence, and all sequences consisting of a single simplex are cycles.}
+    A \emph{cycle of simplices for colors $C$} is a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that $S_{k+1} = S_1$.
+\end{definition}
+\begin{definition}[Maximal sequence]
+    \marginnote[-10mm]{Inuitively we say that a sequence is maximal if we cannot make it longer by adding simplices at the beginning or end.}
+    A \emph{maximal sequence of simplices for colors $C$} is a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that:
+    \begin{enumerate}
+        \item There is no simplex $S_{k+1} \in \mathcal{S}$ such that $\left(S_i\right)_{i=1}^{k+1}$ is a valid sequence.
+        \item There is no simplex $S_{0} \in \mathcal{S}$ such that $\left(S_i\right)_{i=0}^{k}$ is a valid sequence.
+    \end{enumerate}
+\end{definition}
+Finally we want to define the sequence of all transitions between simplices in a sequence.
+\begin{definition}[Transition sequence]
+    The \emph{transition sequence} of a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ is the sequence $\left(F_i\right)_{i=1}^{k-1}$ of $(d-1)$-dimensional faces $F_i = S_i \cap S_{i+1}$.
+\end{definition}
+
+We now are ready to study the properties of these sequence in more detail. We now restrict ourselves to the case where $C \subset \{0, \dots, d\}$ contains exactly $d$ colors (i.e.~only one color is left out). Notice that for a valid sequence $\left( S_i \right)_{i=1}^k$ we then have that the transition sequence $\left( F_i \right)_{i=1}^{k-1}$ is a sequence of $(d-1)$-dimensional simplices $S_i$ which are colored with all $d$ colors of $C$. This means that for every $j \in C$ we get a sequence of vertices $(x_i^j)_{i=1}^k$ such that $x_i^j \in F_i$ and $c(x_i^j) = j$. We will now study this special case in more detail.
+
+\begin{lemma}
+    Let $S_i$, $F_i$ and $x_j$ be as above. For any $i \in \set{1, \dots, k-1}$ there is exactly one $j \in C$ such that we have $x_i^j \neq x_{i+1}^j$.
+\end{lemma}
+\begin{proof}
+    $F_i$ and $F_{i+1}$ are two faces of the same $d$ dimensional simplex, and thus they share exactly $d-1$ vertices. This means that there is exactly one vertex $x$ which is in $F_i$ but not in $F_{i+1}$, and exactly one vertex $y$ which is in $F_{i+1}$ but not in $F_i$. This means that there is exactly one $j$ such that $x_i^j = x$ and $x_{i+1}^j = y$.
+\end{proof}
+This means that a valid transition sequence can be seen as a sequence of change of the vertex $x_i$ for a given color $j$. Now we are ready to prove the main result of this section, which is the key to showing that a monotone \Tarski\ instance does not contain any cycles. We restrict the setting to the case where $0 \in C$, as vertices colored $0$ play a particular role.
+\begin{proposition}
+    Let $S_i$, $F_i$ and $x_j$ be as above. For a fixed $j \in C \setminus \{0\}$ we have the following:
+    \begin{enumerate}
+        \item If for some $i^* \in \set{1, \dots, k-1}$ we have $x_{i^*}^j[j] < x_{i^*}^0[j]$, then for all $i \in \set{1, \dots, k-1}$ we have $x_i^j\leq x_i^0$.
+        \item If for some $i^* \in \set{1, \dots, k-1}$ we have $x_{i^*}^j[j] > x_{i^*}^0[j]$, then for all $i \in \set{1, \dots, k-1}$ we have $x_i^j\geq x_i^0$.
+    \end{enumerate}
+\end{proposition}
