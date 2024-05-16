@@ -43,6 +43,22 @@
 %Problem box
 \newtcolorbox{pBox}{colback=gray!5!white,colframe=black,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base}
 
+% Proof box (gray line on the right hand side)
+\tcolorboxenvironment{proof}{
+  fonttitle=\bfseries,
+  breakable,
+  enhanced,
+  colframe=white,
+  top=0mm,
+  right=0mm,
+  left=3mm,
+  boxrule=0pt,frame empty,
+  borderline west={2pt}{0pt}{gray},
+  coltitle=blue,
+  colback=white,
+  sharp corners
+}
+
 
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
 \newenvironment{theorem}{\begin{dBox}\begin{theoremT}}{\end{theoremT}\end{dBox}}
