@@ -1,0 +1,65 @@
+\setchapterpreamble[u]{\margintoc}
+\chapter{Reducing \Tarski\ to \EOPL}
+
+In the previous chapter we saw how one can show membership of \Tarski\ in \PPAD\ using the a reduction to \Sperner. We now want to show that the same idea yields a reduction to \EndOfPotentialLine\ which lies in \EOPL. This will requiere a much more careful analysis of the structure of a \Tarski\ instance, and of the induced coloring of the lattice points. We will need to work directly with a special simplical decomposition of the lattice, which we will build to have some desired properties. The final goal will be to show that for a monotone \Tarski\ instance, the induced \EndOfLine\ instance does not contain any cycles. This will be enough to show that the reduction is correct.
+
+\section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
+
+In the previous chapter we left the choice of a particular simplicial decomposition of the lattice open, as it was not relevant to the reduction. We now want to be more careful and choose a simplicial decomposition, which will help us prove structural results. We first want to discuss what properties we want our simplicial decomposition to have. The first --- and obvious --- property we want our simplicial decomposition to have is that every simplex of the decomposition is contained in exactly one cell of the lattice. This means that we can reduce the question to finding a simplical decomposition of the $d$-dimensional hypercube of length $1$. Also take note, that we do not want to add any vertices, but find a decomposition of the hypercube, that can be described as a set of subsets of the hypercube's vertices.	Finally we want the vertices of a given simplex to be totally ordered, with respect to the partial order defined in \cref{sec:tarski_problem}. This will be crucial for proving important structural results.
+
+Such a decomposition exists, and is known in the litterature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it in a combinatorial way here, and refer the reader to the original paper for a more geometric construction.
+
+\begin{definition}[Freudenthal's Simplicial Decomposition]
+    Consider a unit hypercube $[0, 1]^d$ in $\R^d$ and consider $S_d$ the group of all permutations of the dimensions of the hypercube $\{1, \dots, d\}$. For every permutation $\pi \in S_d$, define the simplex $S_{\pi}$ as the convex hull of the vertices:
+    \marginnote[10mm]{Here we will use the notation $e_i$ to denote the $i$-th \define{unit vector} in $\R^d$.}
+    \begin{align*}
+        v_0 & = (0, 0, \dots, 0)                        \\
+        v_1 & = v_0 + e_{\pi(1)}                        \\
+        v_2 & = v_1 + e_{\pi(2)}                        \\
+            & \vdots                                    \\
+        v_d & = v_{d-1} + e_{\pi(d)} = (1, 1, \dots, 1)
+    \end{align*}
+    The set of such simplexes $\mathcal{S} = \set{S_{\pi} : \pi \in S_d}$ is Freudenthal's simplicial decomposition of the hypercube $[0, 1]^d$.
+\end{definition}
+We want to begin by arguing why this decomposition is well-defined. We begin by showing that every point of the hypercube is contained in at least one simplex of $\mathcal{S}$.
+\begin{lemma}
+    \label{lem:caracterisation_of_simplices}
+    Let $x = (x[1], \dots, x[d]) \in [0, 1]^d$, let $\pi \in S^d$ be the permutation such that $x[\pi(1)] \leq x[\pi(2)] \leq \dots \leq x[\pi(d)]$. Then $x \in S_{\pi}$.
+\end{lemma}
+\begin{proof}
+    We want to show that $x$ is a convex combination of the vertices of $S_{\pi}$. We define the following sequence of real numbers:
+    \begin{align*}
+        \lambda_0     & = x[\pi(1)]               \\
+        \lambda_1     & = x[\pi(2)] - x[\pi(1)]   \\
+        \lambda_2     & = x[\pi(3)] - x[\pi(2)]   \\
+                      & \vdots                    \\
+        \lambda_{d-1} & = x[\pi(d)] - x[\pi(d-1)] \\
+        \lambda_d     & = 1 - x[\pi(d)]
+    \end{align*}
+    Notice that we have $\lambda_i \geq 0$ for all $i$ and $\sum_{i=0}^{d} \lambda_i = 1$, by telescoping the sum. We can now write $x$ as a convex combination of the vertices of $S_{\pi}$ as follows by noticing that $v_i = \sum_{j=0}^{i} e_{\pi(j)}$:
+    \begin{align*}
+        \sum_{i=0}^{d} \lambda_i v_i & = \sum_{i=0}^{d} \lambda_i \left( \sum_{j=0}^{i} e_{\pi(j)} \right)  = \sum_{i=0}^{d} \sum_{j=1}^{i} \lambda_i e_{\pi(j)}                                \\
+                                     & = \sum_{j=1}^{d} \sum_{i=0}^{j} \lambda_i e_{\pi(j)}  = \sum_{j=1}^{d} e_{\pi(j)} \sum_{i=0}^{j} \lambda_i		 = \sum_{j=1}^{d} e_{\pi(j)} x[\pi(j)]		     = x
+    \end{align*}
+    This shows that $x$ is a convex combination of the vertices of $S_{\pi}$, and thus $x \in S_{\pi}$.
+\end{proof}
+Next we want to discuss why this really forms a partition of the hypercube. Of course a given point $x$ can be contained in multiple simplexes, but we want to show that this does not happen appart from on the boundary of the simplices.
+\begin{lemma}
+    Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the \define{interior} of $S_{\pi}$ is:
+    \begin{align*}
+        \interior{S} = \set{x \in [0, 1]^d : 0 < x[\pi(1)] < x[\pi(2)] < \dots < x[\pi(d)] < 1}
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    The same proof as for \cref{lem:caracterisation_of_simplices}, holds with the added constraint that all $\lambda_i > 0$, this then shows that these points are in the interior of the simplex.
+\end{proof}
+These two lemma's together show that we have a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove some structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
+\begin{lemma}
+    Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the vertices of $S_{\pi}$ are totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. In particular we claim that:
+    \begin{align*}
+        v_0 < v_1 < v_2 < \dots < v_d
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Because this relation is transitive it suffice to show that $v_i < v_{i+1}$ for all $i \in \set{0, \dots, d-1}$. This follows immediately from the construction of the $v_i$ as we have $v_i[j] = v_{i+1}[j]$ for all $j \neq \pi(i+1)$ and $v_i[\pi(i+1)] = v_{i+1}[\pi(i+1)] - 1$.
+\end{proof}
