@@ -58,7 +58,7 @@
 
 %Use Fira Math for Equations
 \usepackage{firamath-otf}
-\setmathfont{TeX Gyre DejaVu Math}[range={\vdots,\ddots}] %Fallback for \vdots and \ddots
+\setmathfont{TeX Gyre DejaVu Math}[range={\vdots,\ddots, \setminus}] %Fallback for \vdots and \ddots
 \setmathfont{Fira Math}[range=]
 %Fix Mathcal
 \DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
@@ -81,6 +81,11 @@
 
 %Remove space before itemize
 \setlist{nosep}
+
+%Enumerate settings
+\RequirePackage{enumitem}
+\setlist[enumerate]{font={\bfseries}}% Make the default 'enumerate' environment bold.
+\setlist[enumerate,1]{label={(\arabic*)}}% Make the first level of 'enumerate' use numbers.
 
 %----------------------------------------------------------------------------------------
 %	BOOK INFORMATION

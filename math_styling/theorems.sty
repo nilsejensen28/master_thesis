@@ -20,8 +20,8 @@
 	{} % Theorem head font
 	{} % Punctuation after theorem head
 	{0.25em} % Space after theorem head
-	{\sffamily\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
-	\thmnote{\sffamily\bfseries---~#3.\hspace{0.25em}}\index{#3}\newline} % Optional theorem note
+	{\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
+	\thmnote{\bfseries---~#3.\hspace{0.25em}}\index{#3}\newline} % Optional theorem note
 
 %------------------------------------------------
 
@@ -29,8 +29,10 @@
 \theoremstyle{blacknumbox}
 \newtheorem{definitionT}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
 \newtheorem{theoremT}{Theorem}[chapter]
-\newtheorem{claim}{Claim}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{claimT}{Claim}[chapter]
+\newtheorem{lemmaT}{Lemma}[chapter]
+\newtheorem{corollaryT}{Corollary}[chapter]
+\newtheorem{propositionT}{Proposition}[chapter]
 
 %----------------------------------------------------------------------------------------
 %	COLORED THEOREM BOXES
@@ -39,10 +41,13 @@
 \RequirePackage{tcolorbox} % Required for colored boxes
 
 % Definition box
-\newtcolorbox{dBox}{colback=gray!5!white,colframe=black,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base}
+\newtcolorbox{dBox}{colback=gray!20!white,colframe=white,boxrule=0.0pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base, sharp corners}
+
+% Lemma/Claim box
+\newtcolorbox{cBox}{colback=gray!20!white,colframe=white,boxrule=0.0pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base, sharp corners}
 
 %Problem box
-\newtcolorbox{pBox}{colback=gray!5!white,colframe=black,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base}
+\newtcolorbox{pBox}{colback=gray!20!white,colframe=white,boxrule=0.0pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base, sharp corners}
 
 % Proof box (gray line on the right hand side)
 \tcolorboxenvironment{proof}{
@@ -52,7 +57,7 @@
   colframe=white,
   top=0mm,
   right=0mm,
-  left=3mm,
+  left=1mm,
   boxrule=0pt,frame empty,
   borderline west={2pt}{0pt}{gray},
   coltitle=blue,
@@ -63,6 +68,10 @@
 
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
 \newenvironment{theorem}{\begin{dBox}\begin{theoremT}}{\end{theoremT}\end{dBox}}
+\newenvironment{claim}{\begin{cBox}\begin{claimT}}{\end{claimT}\end{cBox}}
+\newenvironment{lemma}{\begin{cBox}\begin{lemmaT}}{\end{lemmaT}\end{cBox}}
+\newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}
+\newenvironment{proposition}{\begin{cBox}\begin{propositionT}}{\end{propositionT}\end{cBox}}
 
 %----------------------------------------------------------------------------------------
 %	Problem definitions
