@@ -65,6 +65,7 @@ These two lemma's together show that we have a well-defined simplicial decomposi
 \end{proof}
 This directly implies the following corollary.
 \begin{corollary}
+    \label{cor:total_ordering}
     For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
 Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections.
@@ -100,9 +101,11 @@ In this section we will assume that we are working on a integer lattice $L$, and
 For vertices of a given simplex we get the following corollary.
 \marginnote[10mm]{Notice that if we assume that $x_i$ and $x_j$ are in the same simplex of the simplicial decomposition, then the condition $x_i \not\geq x_j$ is equivalent to $x_i \leq x_j$.}
 \begin{corollary}
-    Assume that $f$ is monotone and that we have $x_i, x_j \in S$, for some simplex $S\in  \mathcal{S}$. Further assume that $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ with $i < j$ and that $x_i[i] = x_j[i]$, then $x_i \leq x_j$.
+    Assume that $f$ is monotone and that we have $x_i, x_j \in S$, for some simplex $S\in  \mathcal{S}$. Further assume that $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ with $i < j$ and that $x_i[i] = x_j[i]$, then $x_i < x_j$.
 \end{corollary}
-
+\begin{proof}
+    $x_i \leq x_j$, follows immediately. Because $x_i$ and $x_j$ are colored differently, they can not be equal which shows the strict inequality.
+\end{proof}
 \subsection{Properties of sequences of simplices}
 
 Now we want to work with sequences of simplices, and show that the coloring of the vertices of these simplices have some nice properties. We start by defining what we mean by a sequence of simplices. Let $C \subset \{0, \dots, d\}$ be a subset of colors.
@@ -142,9 +145,21 @@ We now are ready to study the properties of these sequence in more detail. We no
 \end{proof}
 This means that a valid transition sequence can be seen as a sequence of change of the vertex $x_i$ for a given color $j$. Now we are ready to prove the main result of this section, which is the key to showing that a monotone \Tarski\ instance does not contain any cycles. We restrict the setting to the case where $0 \in C$, as vertices colored $0$ play a particular role.
 \begin{proposition}
-    Let $S_i$, $F_i$ and $x_j$ be as above. For a fixed $j \in C \setminus \{0\}$ we have the following:
+    Let $S_i$, $F_i$ and $x_i$ be as above and assume that the coloring is induced by a monotone function $f$. For a fixed $j \in C \setminus \{0\}$ we have that either:
     \begin{enumerate}
-        \item If for some $i^* \in \set{1, \dots, k-1}$ we have $x_{i^*}^j[j] < x_{i^*}^0[j]$, then for all $i \in \set{1, \dots, k-1}$ we have $x_i^j\leq x_i^0$.
-        \item If for some $i^* \in \set{1, \dots, k-1}$ we have $x_{i^*}^j[j] > x_{i^*}^0[j]$, then for all $i \in \set{1, \dots, k-1}$ we have $x_i^j\geq x_i^0$.
+        \item For all $i \in \set{1, \dots, k-1}$ we have $x_i^j < x_{i}^0$ or
+        \item For all $i \in \set{1, \dots, k-1}$ we have $x_i^j \geq x_{i}^0$
     \end{enumerate}
 \end{proposition}
+\begin{proof}
+    Fix $j \in C \setminus \set{0}$. Now we can proceed by case distinction.
+    \begin{pLine}
+        \textbf{Case 1:} Assume that for some $i_0 \in \set{1, \dots, k-1}$ we have $x_{i_0}^j[j] < x_{i_0}^0[j]$. Now by lemma \cref{cor:total_ordering}, we know that this means that we have: $x_{i_0}^j < x_{i_0}^0$. Now assume, for the sake of contradiction, that there is some $i_1 > i_0$ such that $x_{i_0}^j[j] = x_{i_0}^0[j]$, take the smallest such $i_1$. This means that we have the following:
+        \begin{enumerate}
+            \item $x_{i_1-1}^j[j] < x_{i_1-1}^0[j]$
+            \item $x_{i_1}^j[j] < x_{i_1}^0[j]$ \label{enum:assumption_i_1}
+            \item $x_{i-1}^j$ and $x_{i}^j$ are two adjacent vertices of $S_i$.
+        \end{enumerate}
+        Note that assumption \cref{enum:assumption_i_1} implies that $x_{i_1}^j < x_{i_1}^0$, by \cref{cor:total_ordering}. This means that there is some dimension $l \in \{1, \dots, d\}$ such that $x_{i_1}^j[l] < x_{i_1}^0[l]$.
+    \end{pLine}
+\end{proof}

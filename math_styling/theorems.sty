@@ -49,6 +49,18 @@
 %Problem box
 \newtcolorbox{pBox}{colback=gray!20!white,colframe=white,boxrule=0.0pt,arc=4pt,boxsep=0pt,left=6pt,right=6pt,top=6pt,bottom=6pt,tcbox raise base, sharp corners}
 
+\newtcolorbox{pLine}{  breakable,
+enhanced,
+colframe=white,
+top=0mm,
+right=0mm,
+left=1mm,
+boxrule=0pt,frame empty,
+borderline west={2pt}{0pt}{gray},
+coltitle=blue,
+colback=white,
+sharp corners}
+
 % Proof box (gray line on the right hand side)
 \tcolorboxenvironment{proof}{
   fonttitle=\bfseries,
