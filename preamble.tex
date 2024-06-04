@@ -45,25 +45,27 @@
 \input{styling/title_page.tex} %Use custom title page
 
 %Set the font to Fira Math for math symbols
+
 \setmainfont[
     Ligatures=TeX,
     % UprightFont = ,
-    ItalicFont = Fira Sans Italic,
+    ItalicFont = Fira Sans Light Italic,
     % SmallCapsFont = ,
-    BoldFont = Fira Sans Medium,
-    BoldItalicFont = Fira Sans Medium Italic
-]{Fira Sans Regular}
-% \setsansfont[Ligatures=TeX]{Fira Sans}
+    BoldFont = Fira Sans Regular,
+    BoldItalicFont = Fira Sans Italic
+]{Fira Sans Light}
+%\setsansfont[Ligatures=TeX]{Fira Sans}
 \setmonofont[Ligatures=TeX]{Fira Mono}
 
 %Use Fira Math for Equations
-\usepackage{firamath-otf}
-\setmathfont{TeX Gyre DejaVu Math}[range={\vdots,\ddots}] %Fallback for \vdots and \ddots
-\setmathfont{Fira Math}[range=]
-%Fix Mathcal
-\DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
-%Fix setminus
-\renewcommand{\setminus}{\mathbin{\backslash}}
+% \usepackage{firamath-otf}
+% \setmathfont{TeX Gyre DejaVu Math}[range={\vdots,\ddots}] %Fallback for \vdots and \ddots
+% %Fix Mathcal
+% \DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
+% %Fix setminus
+% \renewcommand{\setminus}{\mathbin{\backslash}}
+
+\setmathfont{Latin Modern Math}
 
 \newcommand{\define}[1]{\textit{#1}\index{#1}}
 

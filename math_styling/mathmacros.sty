@@ -15,6 +15,10 @@
 %Definition of BigO
 \newcommand{\BigO}[1]{\mathcal{O}\left(#1\right)}
 
+%Signum
+\DeclareMathOperator{\sgnOp}{sgn}
+\newcommand{\sgn}[1]{\sgnOp\left(#1\right)}
+
 %Definition of the norm
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
@@ -50,9 +54,9 @@
 
 \newcommand{\binstr}{\{0, 1\}^*}
 \newcommand{\bitstrn}{\{0, 1\}^n}
-\newcommand{\poly}{\text{poly}}
-\newcommand{\lev}{\text{lev}}
-\newcommand{\depth}{\text{depth}}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\lev}{lev}
+\DeclareMathOperator{\depth}{depth}
 
 %Medium size intersection
 \newcommand*{\medcap}{\mathbin{\scalebox{1.5}{\ensuremath{\cap}}}}%
