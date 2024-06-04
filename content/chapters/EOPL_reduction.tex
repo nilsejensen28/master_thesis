@@ -4,6 +4,7 @@
 In the previous chapter we saw how one can show membership of \Tarski\ in \PPAD\ using the a reduction to \Sperner. We now want to show that the same idea yields a reduction to \EndOfPotentialLine\ which lies in \EOPL. This will requiere a much more careful analysis of the structure of a \Tarski\ instance, and of the induced coloring of the lattice points. We will need to work directly with a special simplical decomposition of the lattice, which we will build to have some desired properties. The final goal will be to show that for a monotone \Tarski\ instance, the induced \EndOfLine\ instance does not contain any cycles. This will be enough to show that the reduction is correct.
 
 \section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
+\label{sec:freudenthal_simplicial_decomposition}
 
 In the previous chapter we left the choice of a particular simplicial decomposition of the lattice open, as it was not relevant to the reduction. We now want to be more careful and choose a simplicial decomposition, which will help us prove structural results. We first want to discuss what properties we want our simplicial decomposition to have. The first --- and obvious --- property we want our simplicial decomposition to have is that every simplex of the decomposition is contained in exactly one cell of the lattice. This means that we can reduce the question to finding a simplical decomposition of the $d$-dimensional hypercube of length $1$. Also take note, that we do not want to add any vertices, but find a decomposition of the hypercube, that can be described as a set of subsets of the hypercube's vertices.	Finally we want the vertices of a given simplex to be totally ordered, with respect to the partial order defined in \cref{sec:tarski_problem}. This will be crucial for proving important structural results.
 
@@ -69,6 +70,97 @@ This directly implies the following corollary.
     For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
 Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections.
+
+\section{Orientation of a the simplicial decomposition}[Orientating the simplices]
+
+In this section we want to discuss how to orient the simplicial decomposition of the lattice, we defined in the previous section. This will be important as we will argue in the next section, that the existence of a cycle would contradict the orientation of the simplicial decomposition. We will start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
+
+\subsection{Orientation of a simplex}[Orienting a simplex]
+
+\begin{definition}[Orientation of a simplex]
+    An \define{orientation} of a simplex $S$ spanned by the vertices $v_0, \dots, v_d$ is a choice of a permutation of the vertices $[v_{\pi(0)}, \dots, v_{\pi(d)}]$.
+\end{definition}
+
+Notice that this leaves us with $d!$ possible orientations of a simplex. Our notion of orientability should only lead to two possible classes of orientations, as an orientation of a 1-simplex is simply a choice of direction, and an orientation of a 2-simplex is a choice of a cyclic order of the vertices. Hence we want to define when two orientations are equivalent.
+
+\begin{definition}[Equivalent orientations]
+    Two orientations $\pi$ and $\sigma$ of a simplex $S$ are \define{equivalent} if they differ by an even permutation. That is if $\sigma = \pi \circ \tau$ for some permutation $\tau$ with an even number of inversions.
+\end{definition}
+
+In particular we give a more explicit definition of the equivalence of orientations of a 2-simplex, by relying on a total order $\preceq$ of the vertices\marginnote{For a lattice this can be achieved by defining $\preceq$ to be the lexicographic order of the vertices.}. We then get the following useful lemma:
+
+\begin{lemma}
+    Two orientations $\sigma, \tau$ of a simplex $S$ are equivalent if and only if $\sgn{\sigma} = \sgn{\tau}$, with respect to the total order $\preceq$.
+\end{lemma}
+
+We would like to define the \define{opposite orientation} of a simplex, which should be an orientation which has the opposite sign with respect to the total order $\preceq$. This can be achieved by setting:
+\begin{align*}
+    - [v_0, v_1, v_2, \dots, v_d] = [v_1, v_0, v_2, \dots, v_d]
+\end{align*}
+We then have that the opposite orientation is not equivalent to the original orientation. This way we have a representative of both equivalence classes.
+
+This means that we now have two equivalence classes of orientations for any simplex. We want to discuss how an orientation of a simplex extends to the faces of this simplex next. Notice that the faces of a simplex are themselves simplices, and thus have an orientation. Let $[v_0, \dots, v_{d}]$ be an orientation of a simplex $S$. Now notice that every face can be obtained by removing one of the vertices $v_j$ of $S$. Hence for every face $F$, the permutation $[v_0, \dots, \hat{v_j}, \dots, v_{d}]$ is an orientation of $F$\marginnote{We use the notation $\hat{v_j}$ to denote that $v_j$ is missing.}. But the orientation $- [v_0, \dots, \hat{v_j}, \dots, v_{d}]$ is also a valid orientation of $F$. For reasons which will become appearent latter we define the induced orientation of a face as follows:
+
+\begin{definition}[Induced orientation of a face]
+    Let $\sigma = [v_0, \dots, v_{d}]$ be an orientation of a simplex $S$. The \emph{induced orientation} of a face $F$ of $S$, which is obtained by removing the vertex $v_j$ from the vertex, is the orientation:
+    \begin{align*}
+        \sigma_j = (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
+    \end{align*}
+\end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{Orientation_of_Simplex}
+    \caption[Orientation of a simplex]{Example of the orientation of a 3-simplex on the left, and the induced orientation of the faces on the right.}
+    \label{fig:orientation_of_simplex}
+\end{figure}
+
+We give an example of the orientation of a 3-simplex and its faces in \cref{fig:orientation_of_simplex}. We can now discuss how we can extend this notion to a general simplicial complex.
+
+\subsection{Orientation of a simplicial complex}[Orienting a simplicial complex]
+
+A simplicial complex can be thought of as a collection of simplices which are be glued together on their face. Our goal is now to extend this notion of orientation to these simplicial complexes. Formally we define a simplicial complex as follows \sidecite{munkres_elements_2018}:
+
+\begin{definition}[Simplicial complex]
+    A \define{simplicial complex} $\mathcal{K}$ in $\R^d$ is a collection of simplices such that:
+    \begin{enumerate}
+        \item Every face of a simplex in $\mathcal{K}$ is also in $\mathcal{K}$.
+        \item The intersection of any two simplices in $\mathcal{K}$ is a face of both simplices.
+    \end{enumerate}
+\end{definition}
+
+Notice that the lattice points which we are interested in, together with Freudenthal's simplicial decomposition of each cell, form a simplicial complex. We now want to define an orientation of a simplicial complex. Of course such an orientation relies on an orientation of each simplex, and we want to make sure that these orientations are in some sence ``compatible'' on the faces of the simplicial complex. We will define this notion in the following definition.
+
+\begin{definition}[Orientation of a simplicial complex]
+    An \define{orientation} of a simplicial complex $\mathcal{K}$ is a choice of an orientation of every $d$-simplex in $\mathcal{K}$, such that for every intersection of two simplices $S_1, S_2 \in \mathcal{K}$, the induced orientation of the face $F = S_1 \cap S_2$ in $S_1$ and $S_2$ are opposite. \par
+    If such an orientation exists, we say that the simplicial complex is \define{orientable}.
+\end{definition}
+
+We now claim that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable. This will be crucial in the next section, where we will argue that the existence of a cycle in the \EndOfLine\ instance would contradict the orientation of the simplicial complex. In particular this shows that a Mobius Strip or the higher dimensional equivalents do not exist in our simplicial complex.
+
+\begin{claim}
+    The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
+\end{claim}
+
+\begin{proof}
+    We will give an orientation of every $k$ simplex, and then show that the induced orientation of the faces of the simplicial complex are opposite.
+    Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as described previously in \cref{sec:freudenthal_simplicial_decomposition}.
+
+    Assume that the vertices of $S_{\pi}$ are given by $v_0 < \dots < v_d$. We then orient $S_{\pi}$ using the permutation:
+    \begin{align*}
+        \sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
+    \end{align*}
+    Let $S_{\pi}$ and $S_{\sigma}$ be two simplices in the simplicial complex, and let $F = S_{\pi} \cap S_{\sigma}$ be a face of both simplices. We want to show that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+    \begin{pLine}
+        Case 1: If $S_{\pi}$ and  $S_{\sigma}$ are in the same cell, then $\pi$ and $\sigma$ differ by by one swap, and thus $\sgn{\pi} = - \sgn{\sigma}$. The missing vertices which induces $F$ have the same rank in $S_{\pi}$ and $S_{\sigma}$. This means that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are equivalent. Together this yiels that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+    \end{pLine}
+    \begin{pLine}
+        Case 2:
+    \end{pLine}
+\end{proof}
+\todo{Finish Proof}
+
+Now recall that the simplices of Freudenthals simplicial decomposition are ordered, and that we can thus define an orientation of a simplex by the order of its vertices. We defined the simplices by taking a permutation of the dimensions $\set{1, \dots, d}$, and we would like to link the orientation of the simplex to the sign of \emph{this} permutation.
 
 \section{Properties of the coloring of \Tarski\ instances}[Properties of the coloring]
 
