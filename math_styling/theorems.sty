@@ -56,7 +56,7 @@ top=0mm,
 right=0mm,
 left=1mm,
 boxrule=0pt,frame empty,
-borderline west={2pt}{0pt}{gray},
+borderline west={1pt}{0pt}{gray},
 coltitle=blue,
 colback=white,
 sharp corners}
@@ -96,3 +96,8 @@ sharp corners}
 		{\bfseries Output: } #3
 	\end{pBox}
 }
+
+%----------------------------------------------------------------------------------------
+%	Case definitions
+%----------------------------------------------------------------------------------------
+\newenvironment{case}[1]{\begin{pLine}\textbf{Case #1:}}{\end{pLine}}
