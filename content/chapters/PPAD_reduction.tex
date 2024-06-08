@@ -48,20 +48,20 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
 \end{claim}
 \begin{proof}
     We will show that we can use a single call of \Tarskistar\ to either find a violation of monotonicity, a fixpoint, or an instance of \Tarski\ which has at most half as many points, and must contain a solution. Let $x, y$ be the two points outputed by a Turing machine solving \Tarskistar on a function $f$. We proceed by case distinction:
-    \begin{case}[1]
+    \begin{case}{1}
         If either $f(x) = x$ or $f(y) = y$, then we are done, because we have found a fixpoint.
     \end{case}
-    \begin{case}[2.1]
+    \begin{case}{2.1}
         If $x < y$ and $f(x) \not\leq f(y)$, we have a violation of monotonicity, which solves the given \Tarski\ instance.
     \end{case}
-    \begin{case}[2.2]
+    \begin{case}{2.2}
         If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that we have $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 1), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monotonicity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ we have $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
         \begin{align*}
             \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \; \text{and} \; \normone{f(x) - f(y)} \leq \normone{x - y} - 2
         \end{align*}
         Hence we can now repeat the same argumentation with $f(x)$ and $f(y)$, and we can do this at most $\BigO{\normone{x - y}}$ times, until we find a violation of monotonicity or a fixpoint. Because $\normone{x - y} \leq d$, this will take at most $\BigO{d}$ additional steps.
     \end{case}
-    \begin{case}[3]
+    \begin{case}{3}
         If $x \not\leq y$, then we can partition the set of lattice points into two sets $S_x$ and $S_y$, as follows:
         \begin{align*}
             S_x = \set{z \in L : z \geq x} \quad \text{and} \quad S_y = \set{z \in L : z \leq y}.
@@ -165,16 +165,20 @@ We now need two results. First we need to show that a cell with all colors alway
         \mathbf{0} \leq x_i \leq \mathbf{1} \quad \text{and} \quad f(x_i)[i] < x_i[i] \quad \text{for $i > 0$}
     \end{align*}
     We now proceed by case distinction:
-
-    \textbf{Case 1:} If $x_0$ is a fixed point, then $x = y = x_0$ is a solution to \Tarskistar.
-
-    \textbf{Case 2:} If $x_0 \neq f(x_0)$ and $x_0 = \mathbf{0}$. Then there is an $i$ such that $f(x_0)[i] > x_0[i]$, which means that $f(x_0[i]) - x_0[i] \geq 1$. At the same time we must have $f(x_i)[i] < x_i[i]$ and $x_0[i] - x_i[i] \leq 0$ because $x_0 = \mathbf{0}$, and hence $x_i[i] - f(x_i)[i] \geq 1$. Now we get:
-    \begin{align*}
-        f(x_0)[i] - f(x_i)[i] & = \underbrace{f(x_0)[i] - x_0[i]}_{\geq 1} + \underbrace{x_0[i] - x_i[i]}_{\geq 0} + \underbrace{x_i[i] - f(x_i)[i]}_{\geq 1} \\
-        f(x_0)[i] - f(x_i)[i] & \geq 2
-    \end{align*}
-    This implies that $f(x_0) \not \leq f(x_i)$, and hence $x_0, x_i$ are two points witnessing a violation of monotonicity of $f$, which form a solution to \Tarskistar.
-
-    \textbf{Case 3:} If $x_0 \neq f(x_0)$ and $x_0 \neq \mathbf{0}$. We claim that either $f(\mathbf{0}) \leq \mathbf{0}$, or we have a violation of monotonicity. Assume for the sake of contradiction that there is an $i$ such that $f(\mathbf{0})[i] > \mathbf{0}[i]$. Then we must have $f(x_i)[i] < x_i[i]$ hence we get: $f(\mathbf{0})[i] \not\leq f(x_i)[i]$, which is a violation of monotonicity. This means that either we can return $y = x_0$ and $x = \mathbf{0}$ as a solution to \Tarskistar, or $x_i$ and $\mathbf{0}$ as a violation of monotonicity.
+    \begin{case}{1}
+        If $x_0$ is a fixed point, then $x = y = x_0$ is a solution to \Tarskistar.
+    \end{case}
+    \begin{case}{2}
+        If $x_0 \neq f(x_0)$ and $x_0 = \mathbf{0}$. Then there is an $i$ such that $f(x_0)[i] > x_0[i]$, which means that $f(x_0[i]) - x_0[i] \geq 1$. At the same time we must have $f(x_i)[i] < x_i[i]$ and $x_0[i] - x_i[i] \leq 0$ because $x_0 = \mathbf{0}$, and hence $x_i[i] - f(x_i)[i] \geq 1$. Now we get:
+        \begin{align*}
+            f(x_0)[i] - f(x_i)[i] & = \underbrace{f(x_0)[i] - x_0[i]}_{\geq 1} + \underbrace{x_0[i] - x_i[i]}_{\geq 0} + \underbrace{x_i[i] - f(x_i)[i]}_{\geq 1} \\
+            f(x_0)[i] - f(x_i)[i] & \geq 2
+        \end{align*}
+        This implies that $f(x_0) \not \leq f(x_i)$, and hence $x_0, x_i$ are two points witnessing a violation of monotonicity of $f$, which form a solution to \Tarskistar.
+    \end{case}
+    \begin{case}{3}
+        If $x_0 \neq f(x_0)$ and $x_0 \neq \mathbf{0}$. We claim that either $f(\mathbf{0}) \leq \mathbf{0}$, or we have a violation of monotonicity. Assume for the sake of contradiction that there is an $i$ such that $f(\mathbf{0})[i] > \mathbf{0}[i]$. Then we must have $f(x_i)[i] < x_i[i]$ hence we get: $f(\mathbf{0})[i] \not\leq f(x_i)[i]$, which is a violation of monotonicity. This means that either we can return $y = x_0$ and $x = \mathbf{0}$ as a solution to \Tarskistar, or $x_i$ and $\mathbf{0}$ as a violation of monotonicity.
+    \end{case}
+    This shows that we can solve a \Tarskistar\ instance in $\BigO{d}$ additional steps.
 \end{proof}
 This shows that \Tarskistar\ is a total search problem, and can be reduced to \Sperner. Hence \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$ we have shown that \Tarski\ lies in \PPAD, without relying on \Brouwer.
