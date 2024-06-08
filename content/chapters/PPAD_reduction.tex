@@ -48,23 +48,27 @@ We now want to show that \Tarskistar\ can be seen as a subproblem of \Tarski.
 \end{claim}
 \begin{proof}
     We will show that we can use a single call of \Tarskistar\ to either find a violation of monotonicity, a fixpoint, or an instance of \Tarski\ which has at most half as many points, and must contain a solution. Let $x, y$ be the two points outputed by a Turing machine solving \Tarskistar on a function $f$. We proceed by case distinction:
-
-    \textbf{Case 1:} If either $f(x) = x$ or $f(y) = y$, then we are done, because we have found a fixpoint.
-
-    \textbf{Case 2.1:} If $x < y$ and $f(x) \not\leq f(y)$, we have a violation of monotonicity, which solves the given \Tarski\ instance.
-
-    \textbf{Case 2.2:} If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that we have $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 1), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monotonicity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ we have $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
-    \begin{align*}
-        \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \; \text{and} \; \normone{f(x) - f(y)} \leq \normone{x - y} - 2
-    \end{align*}
-    Hence we can now repeat the same argumentation with $f(x)$ and $f(y)$, and we can do this at most $\BigO{\normone{x - y}}$ times, until we find a violation of monotonicity or a fixpoint. Because $\normone{x - y} \leq d$, this will take at most $\BigO{d}$ additional steps.
-
-    \textbf{Case 3:} If $x \not\leq y$, then we can partition the set of lattice points into two sets $S_x$ and $S_y$, as follows:
-    \begin{align*}
-        S_x = \set{z \in L : z \geq x} \quad \text{and} \quad S_y = \set{z \in L : z \leq y}.
-    \end{align*}
-    These two sets are disjoint: if there was a $z \in S_x \cap S_y$, then $x \leq z \leq y$, which would imply $x \leq y$, which is a contradiction. We will show that $S_x$ must contain a solution to the \Tarski\ instance.
-    If for some $z \in S_x$ we have $f(z) \not\in S_x$, then we have $f(z) \not\leq f(x)$, which means that $z$ and $x$ form a violation of monotonicity. This means that $S_x$ forms a new valid instance of \Tarski. By the same argumentation $S_y$ also forms a valid instance of \Tarski\ and hence it suffices to recursively solve the smaller of the two instances. In particular because they are disjoint, one of the instances $S_x$ or $S_y$ contains less than half of the lattice points of $L$, and hence we can solve the instance in $\BigO{\log{2^{dn}}} = \BigO{d \cdot n}$ calls of \Tarskistar.
+    \begin{case}[1]
+        If either $f(x) = x$ or $f(y) = y$, then we are done, because we have found a fixpoint.
+    \end{case}
+    \begin{case}[2.1]
+        If $x < y$ and $f(x) \not\leq f(y)$, we have a violation of monotonicity, which solves the given \Tarski\ instance.
+    \end{case}
+    \begin{case}[2.2]
+        If $x < y$ and $f(x) \leq f(y)$, we claim that we can solve the \Tarski\ instance in $\BigO{\normone{x - y}}$ additional function calls. Notice that we have $\norminf{x-y} \leq 1$. Now notice that because $f(x) > x$ (if not see case 1), there is at least one dimension $i \in \set{1, \dots, d}$ such that $f(x)[i] > x[i]$. Also notice that in this dimension $i$ if $f(y)[i] < y[i]$, then because $\abs{x[i] - y[i]} \leq \norminf{x[i] - y[i]} \leq 1$, we would have a violation of the monotonicity of $f$ in this dimension. Therefore we must have $f(y)[i] = y[i]$. The same argument shows that if in any dimension $j$ we have $f(y)[j] < y[j]$, then $f(x)[j] = x[j]$. Therefore we know that because there must be at least one such dimension $i$ and $j$ we have:
+        \begin{align*}
+            \norminf{f(x) - f(y)} \leq \norminf{x - y} \leq 1 \; \text{and} \; \normone{f(x) - f(y)} \leq \normone{x - y} - 2
+        \end{align*}
+        Hence we can now repeat the same argumentation with $f(x)$ and $f(y)$, and we can do this at most $\BigO{\normone{x - y}}$ times, until we find a violation of monotonicity or a fixpoint. Because $\normone{x - y} \leq d$, this will take at most $\BigO{d}$ additional steps.
+    \end{case}
+    \begin{case}[3]
+        If $x \not\leq y$, then we can partition the set of lattice points into two sets $S_x$ and $S_y$, as follows:
+        \begin{align*}
+            S_x = \set{z \in L : z \geq x} \quad \text{and} \quad S_y = \set{z \in L : z \leq y}.
+        \end{align*}
+        These two sets are disjoint: if there was a $z \in S_x \cap S_y$, then $x \leq z \leq y$, which would imply $x \leq y$, which is a contradiction. We will show that $S_x$ must contain a solution to the \Tarski\ instance.
+        If for some $z \in S_x$ we have $f(z) \not\in S_x$, then we have $f(z) \not\leq f(x)$, which means that $z$ and $x$ form a violation of monotonicity. This means that $S_x$ forms a new valid instance of \Tarski. By the same argumentation $S_y$ also forms a valid instance of \Tarski\ and hence it suffices to recursively solve the smaller of the two instances. In particular because they are disjoint, one of the instances $S_x$ or $S_y$ contains less than half of the lattice points of $L$, and hence we can solve the instance in $\BigO{\log{2^{dn}}} = \BigO{d \cdot n}$ calls of \Tarskistar.
+    \end{case}
 \end{proof}
 
 Now that we know that \Tarskistar\ is a good stepping stone towards solving \Tarski, we want to investigate why \Tarskistar\ lies in \PPAD.
