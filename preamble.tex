@@ -62,10 +62,13 @@
 % \setmathfont{TeX Gyre DejaVu Math}[range={\vdots,\ddots}] %Fallback for \vdots and \ddots
 % %Fix Mathcal
 % \DeclareMathAlphabet{\mathcal}{OMS}{cmbrs}{m}{n}
-% %Fix setminus
-% \renewcommand{\setminus}{\mathbin{\backslash}}
 
 \setmathfont{Latin Modern Math}
+
+%Fix setminus
+\AtBeginDocument{%
+    \RenewDocumentCommand{\setminus}{}{\ensuremath{\mathbin{\scalebox{0.75}{\backslash}}}}
+}
 
 \newcommand{\define}[1]{\textit{#1}\index{#1}}
 
