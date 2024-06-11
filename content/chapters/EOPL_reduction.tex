@@ -151,16 +151,29 @@ We now claim that the simplicial complex formed by the lattice points and Freude
         \sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
     \end{align*}
     Let $S_{\pi}$ and $S_{\sigma}$ be two simplices in the simplicial complex, and let $F = S_{\pi} \cap S_{\sigma}$ be a face of both simplices. We want to show that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
-    \begin{pLine}
-        Case 1: If $S_{\pi}$ and  $S_{\sigma}$ are in the same cell, then $\pi$ and $\sigma$ differ by by one swap, and thus $\sgn{\pi} = - \sgn{\sigma}$. The missing vertices which induces $F$ have the same rank in $S_{\pi}$ and $S_{\sigma}$. This means that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are equivalent. Together this yiels that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
-    \end{pLine}
-    \begin{pLine}
-        Case 2:
-    \end{pLine}
+    \begin{case}{1}
+        If $S_{\pi}$ and  $S_{\sigma}$ are in the same cell, then $\pi$ and $\sigma$ differ by one swap\marginnote{A \define{swap} is a cycle of length 2.}, and thus $\sgn{\pi} = - \sgn{\sigma}$. The missing vertices which induce $F$ have the same rank in $S_{\pi}$ and $S_{\sigma}$. Together this yields that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+    \end{case}
+    \begin{case}{2}
+        If $S_{\pi}$ and  $S_{\sigma}$ are not in the same cell, then $\pi$ and $\sigma$ differ by exaclty one $d$ cycle. We have two cases:
+        \begin{case}{2.1}
+            If $d$ is even then $\sgn{\pi} = - \sgn{\sigma}$, and the missing vertices which induce $F$ have rank $0$ and $d$ in $S_{\pi}$ and $S_{\sigma}$, which are both even, and hence $(-1)^0 = (-1)^d = 1$. Together this yields that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+        \end{case}
+        \begin{case}{2.2}
+            If $d$ is odd then $\sgn{\pi} = \sgn{\sigma}$, and the missing vertices which induce $F$ have rank $0$ and $d$ in $S_{\pi}$ and $S_{\sigma}$, because $d$ is odd, we have $-(-1)^d = -1$. Together this yields that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+        \end{case}
+    \end{case}
+    These cases, cover all possible situations and hence conclude the proof.
 \end{proof}
-\todo{Finish Proof}
 
-Now recall that the simplices of Freudenthals simplicial decomposition are ordered, and that we can thus define an orientation of a simplex by the order of its vertices. We defined the simplices by taking a permutation of the dimensions $\set{1, \dots, d}$, and we would like to link the orientation of the simplex to the sign of \emph{this} permutation.
+\begin{figure}[ht]
+    \centering
+    \incfig{Orientation_of_Freudenthal_Example}
+    \caption[Orientation of a simplicial complex]{Example of the orientation of a Freundenthals simplicial complex in 2 dimensions.}
+    \label{fig:orientation_of_simplicial_complex}
+\end{figure}
+
+We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}. We have now introduced the necessary tools to argue that a certain type of cycle cannot exist as we will argue in the following.
 
 \section{Properties of the coloring of \Tarski\ instances}[Properties of the coloring]
 
@@ -235,23 +248,33 @@ We now are ready to study the properties of these sequence in more detail. We no
 \begin{proof}
     $F_i$ and $F_{i+1}$ are two faces of the same $d$ dimensional simplex, and thus they share exactly $d-1$ vertices. This means that there is exactly one vertex $x$ which is in $F_i$ but not in $F_{i+1}$, and exactly one vertex $y$ which is in $F_{i+1}$ but not in $F_i$. This means that there is exactly one $j$ such that $x_i^j = x$ and $x_{i+1}^j = y$.
 \end{proof}
-This means that a valid transition sequence can be seen as a sequence of change of the vertex $x_i$ for a given color $j$. Now we are ready to prove the main result of this section, which is the key to showing that a monotone \Tarski\ instance does not contain any cycles. We restrict the setting to the case where $0 \in C$, as vertices colored $0$ play a particular role.
+
+Now for a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices, inside the color set $C = \{0, \dots, d-1\}$ we consider the following two objects:
+\begin{itemize}
+    \item The sequence of $(L_i)_{i}$ of subsimpleces of $S_i$ which are colored with colors in $C \setminus \{0\}$. This can be a $d-1$-dimensional face of $S_i$ or a $d-2$-dimensional face of $S_i$.
+    \item The sequence of $(x_i^0)_{i}$ of vertices of $S_i$ which are colored with color $0$.
+\end{itemize}
+Notice that because a simplex $S_i$ could contain two vertices colored $0$ --- in which case the corresponding $L_i$ would be a $(d-2)$-simplex --- that there is no one two one correspondence between the sequence $(x_i^0)_i$ and the sequence $(L_i)_i$. It does hold though that for every $S_i$ there is a unique $L_i$. For every $L_i$:
+\begin{itemize}
+    \item if $L_i$ is a $(d-1)$-simplex, there is a unique $j$ such that $x_j^0$ together with the vertices of $L_i$ form the $d$-simplex $S_i$.
+    \item if $L_i$ is a $(d-2)$-simplex, there is a unique $j$ such that $x_j^0$ and $x_{j+1}^0$ together with the vertices of $L_i$ form the $d$-simplex $S_i$.
+\end{itemize}
+We will call this $j$ the \define{pivot} of $L_i$. Before we start we want to collect a couple of useful properties of these objects.
 \begin{proposition}
-    Let $S_i$, $F_i$ and $x_i$ be as above and assume that the coloring is induced by a monotone function $f$. For a fixed $j \in C \setminus \{0\}$ we have that either:
+    Let $(S_i)_{i=0}^k$ be a valid sequence of simplices, with colors $C = \{0, \dots, d-1\}$. Let $(F_i)_{i=0}^{k-1}$ be the transition sequence, and $(L_i)_{i=0}^k$, $(x_j^0)_j$ be as above. Then the following holds:
     \begin{enumerate}
-        \item For all $i \in \set{1, \dots, k-1}$ we have $x_i^j < x_{i}^0$ or
-        \item For all $i \in \set{1, \dots, k-1}$ we have $x_i^j \geq x_{i}^0$
+        \item For every $j$, we have that $x_j^0$ and $x_{j+1}^0$ are connected by an edge of the simplicial decomposition; \label{prop:connected_by_edge}
+        \item For every $i$ we have that $L_i \cap L_{i+1}$ together with the pivot of $L_i$ and the pivot of $L_{i+1}$ form $F_i$, the transition face;
+        \item All $L_i$ which are $(d-1)$-simplices have the same sign of their induced orientation in $S_i$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    Fix $j \in C \setminus \set{0}$. Now we can proceed by case distinction.
-    \begin{pLine}
-        \textbf{Case 1:} Assume that for some $i_0 \in \set{1, \dots, k-1}$ we have $x_{i_0}^j[j] < x_{i_0}^0[j]$. Now by lemma \cref{cor:total_ordering}, we know that this means that we have: $x_{i_0}^j < x_{i_0}^0$. Now assume, for the sake of contradiction, that there is some $i_1 > i_0$ such that $x_{i_0}^j[j] = x_{i_0}^0[j]$, take the smallest such $i_1$. This means that we have the following:
-        \begin{enumerate}
-            \item $x_{i_1-1}^j[j] < x_{i_1-1}^0[j]$
-            \item $x_{i_1}^j[j] < x_{i_1}^0[j]$ \label{enum:assumption_i_1}
-            \item $x_{i-1}^j$ and $x_{i}^j$ are two adjacent vertices of $S_i$.
-        \end{enumerate}
-        Note that assumption \cref{enum:assumption_i_1} implies that $x_{i_1}^j < x_{i_1}^0$, by \cref{cor:total_ordering}. This means that there is some dimension $l \in \{1, \dots, d\}$ such that $x_{i_1}^j[l] < x_{i_1}^0[l]$.
-    \end{pLine}
+    Notice that $x_j^0$ and $x_{j+1}^0$ are vertices in the same simplex $S_i$. In this case we have $L_i = F_i \cap F_{i+1}$. This shows \ref{prop:connected_by_edge}. \par
+    The second property follows from the fact that $L_i$ is a face of $S_i$ and $S_{i+1}$, and that the pivot of $L_i$ and $L_{i+1}$ are the vertices of $F_i$. \par
+    The last property requieres a little more work to show. We will show that for every $i \in \set{0, \dots, k-1}$ we have that the sign of two consecutive $L_i$'s which are $(d-1)$-simplices are the same. Assume that $L_i$ is a $(d-1)$-simplex, and that $L_{i+1}, \dots, L_{i+l-1}$ are $(d-2)$-simplices, and that $L_{i+l}$ is a $(d-1)$-simplex. We then have that $L_i$ and $L_{i+l}$ share a $d-2$-dimensional face $G$. Because of the orientation of the simplicial complex, we know that the orientation of $G$ is opposite when induced in $L_i$ and $L_{i+l}$. This means that the orientation of $L_i$ and $L_{i+l}$ must be the same.
 \end{proof}
+The last property which we showed is crucial. In a certain sence it shows that the vertex colored $0$ is always on the same side of the $(d-1)$-simplex $L_i$. We will use this to obtain a contradiction in the following pages.
+
+\section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
+
+We are now ready to show that the \EndOfLine\ instance does not contain any cycles. We will do this by showing that the existence of a cycle would contradict the orientation of the simplicial complex. A cycle is a valid sequence such that $S_0$ and $S_k$ are a $(d-1)$-simplex as a face. We will show that certain situations cannot occur due to the orientation of the simplicial complex. And we will then argue that these situations must occur in a cycle. This will be enough to show that the \EndOfLine\ instance does not contain any cycles.
