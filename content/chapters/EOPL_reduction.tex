@@ -1,14 +1,14 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \EOPL}
 
-In the previous chapter we saw how one can show membership of \Tarski\ in \PPAD\ using the a reduction to \Sperner. We now want to show that the same idea yields a reduction to \EndOfPotentialLine\ which lies in \EOPL. This will requiere a much more careful analysis of the structure of a \Tarski\ instance, and of the induced coloring of the lattice points. We will need to work directly with a special simplical decomposition of the lattice, which we will build to have some desired properties. The final goal will be to show that for a monotone \Tarski\ instance, the induced \EndOfLine\ instance does not contain any cycles. This will be enough to show that the reduction is correct.
+In the previous chapter we saw how one can show membership of \Tarski\ in \PPAD\ using the a reduction to \Sperner. We now want to show that the same idea yields a reduction to \EndOfPotentialLine\ which lies in \EOPL. This will require a much more careful analysis of the structure of a \Tarski\ instance, and of the induced coloring of the lattice points. We will need to work directly with a certain simplical decomposition of the lattice, which we will build to have some \textit{useful} properties. The final goal will be to show that for a monotone \Tarski\ instance, the associated \EndOfLine\ instance does not contain any cycles. This will be enough to show that that we can obtain a reduction to \EndOfPotentialLine.
 
 \section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
 \label{sec:freudenthal_simplicial_decomposition}
 
-In the previous chapter we left the choice of a particular simplicial decomposition of the lattice open, as it was not relevant to the reduction. We now want to be more careful and choose a simplicial decomposition, which will help us prove structural results. We first want to discuss what properties we want our simplicial decomposition to have. The first --- and obvious --- property we want our simplicial decomposition to have is that every simplex of the decomposition is contained in exactly one cell of the lattice. This means that we can reduce the question to finding a simplical decomposition of the $d$-dimensional hypercube of length $1$. Also take note, that we do not want to add any vertices, but find a decomposition of the hypercube, that can be described as a set of subsets of the hypercube's vertices.	Finally we want the vertices of a given simplex to be totally ordered, with respect to the partial order defined in \cref{sec:tarski_problem}. This will be crucial for proving important structural results.
+In the previous chapter we left the choice of a particular simplicial decomposition of the lattice open, as it was not relevant to the reduction. We now want to be more careful and choose a simplicial decomposition, which will help us prove some structural results. We first want to discuss what properties we want our simplicial decomposition to have. The first --- and obvious --- property we want our simplicial decomposition to have is that every simplex of the decomposition is contained in exactly one cell of the lattice. This means that we can reduce the question to finding a simplical decomposition of a single $d$-dimensional hypercube of side-length $1$. Also take note, that we do not want to add any vertices, but find a decomposition of the hypercube, that can be described as a set of subsets of the hypercube's vertices.	Finally we want the vertices of a given simplex to be totally ordered, with respect to the partial order defined in \cref{sec:tarski_problem}. This will allow us to argue that two vertices are always comparable, hence their images through $f$ must also be comparable which will be useful.
 
-Such a decomposition exists, and is known in the litterature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it in a combinatorial way here, and refer the reader to the original paper for a more geometric construction.
+Such a decomposition exists, and is known in the litterature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it in a combinatorial way here, and refer the reader to the original paper for a geometric construction of the same decomposition.
 
 \begin{definition}[Freudenthal's Simplicial Decomposition]
     Consider a unit hypercube $[0, 1]^d$ in $\R^d$ and consider $S_d$ the group of all permutations of the dimensions of the hypercube $\{1, \dots, d\}$. For every permutation $\pi \in S_d$, define the simplex $S_{\pi}$ as the convex hull of the vertices:
@@ -70,6 +70,28 @@ This directly implies the following corollary.
     For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
 Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections.
+
+We want to discuss what simplices of the decomposition neighboor each other. We claim that a given simplex has $d-1$ neighbooring simplices inside a given cell, and two neighbooring simplices in neighbooring cells. More precisely we have the following lemma.
+
+\begin{lemma}[Neighbooring Simplices]
+    Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the following simplices are neighbooring $S_{\pi}$:
+    \begin{itemize}
+        \item For every $i \in \set{1, \dots, d-1}$, set $\sigma = \pi \circ (i, i+1)$\marginnote[0pt]{With the notation $(i, i+1)$ we indicate swaping the images of $i$ and $i+1$.}, then $S_{\sigma}$ is neighbooring $S_{\pi}$ in the same cell. There are $d-1$ such simplices.
+        \item Set $\sigma = [\pi(d), \pi(1), \pi(2), \dots, \pi(d-1)]$. Then $S_{\sigma}$ is neighbooring $S_{\pi}$ and is located in the cell which is in the negative $\pi(d)$ direction. There is exactly one such simplex.
+        \item Set $\sigma = [\pi(2), \pi(3), \dots, \pi(d), \pi(1)]$. Then $S_{\sigma}$ is neighbooring $S_{\pi}$ and is located in the cell which is in the positive $\pi(1)$ direction. There is exactly one such simplex.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Todo: Write the proof.
+\end{proof}
+
+We also want to note that the graph, with these simplices as vertices and edges between neighbooring simplices, is bipartite. This follows directly from the following observation.
+\begin{remark}
+    For every $S_{\pi}, S_{\sigma} \in \mathcal{S}$, if $S_{\sigma}$ is neighbooring $S_{\pi}$, then $\sgn{\pi} = - \sgn{\sigma}$.
+\end{remark}
+\begin{proof}
+    Is this actually true?
+\end{proof}
 
 \section{Orientation of a the simplicial decomposition}[Orientating the simplices]
 
