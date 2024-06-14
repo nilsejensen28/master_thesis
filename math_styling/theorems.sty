@@ -28,11 +28,12 @@
 % Black theorem number and optional black title with padding above and below
 \theoremstyle{blacknumbox}
 \newtheorem{definitionT}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
-\newtheorem{theoremT}{Theorem}[chapter]
-\newtheorem{claimT}{Claim}[chapter]
-\newtheorem{lemmaT}{Lemma}[chapter]
-\newtheorem{corollaryT}{Corollary}[chapter]
-\newtheorem{propositionT}{Proposition}[chapter]
+\newtheorem{theoremT}[definitionT]{Theorem}
+\newtheorem{claimT}[definitionT]{Claim}
+\newtheorem{lemmaT}[definitionT]{Lemma}
+\newtheorem{corollaryT}[definitionT]{Corollary}
+\newtheorem{propositionT}[definitionT]{Proposition}
+\newtheorem{remarkT}[definitionT]{Remark}
 
 %----------------------------------------------------------------------------------------
 %	COLORED THEOREM BOXES
@@ -86,6 +87,7 @@ sharp corners}
 \newenvironment{claim}{\begin{cBox}\begin{claimT}}{\end{claimT}\end{cBox}}
 \newenvironment{lemma}{\begin{cBox}\begin{lemmaT}}{\end{lemmaT}\end{cBox}}
 \newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}
+\newenvironment{remark}{\begin{cBox}\begin{remarkT}}{\end{remarkT}\end{cBox}}
 \newenvironment{proposition}{\begin{cBox}\begin{propositionT}}{\end{propositionT}\end{cBox}}
 
 %----------------------------------------------------------------------------------------
