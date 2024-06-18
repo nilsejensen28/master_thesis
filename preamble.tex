@@ -91,8 +91,8 @@
 
 %Enumerate settings
 \RequirePackage{enumitem}
-\setlist[enumerate]{font={\bfseries}}% Make the default 'enumerate' environment bold.
-\setlist[enumerate,1]{label={(\arabic*)}}% Make the first level of 'enumerate' use numbers.
+\setlist[enumerate,1]{leftmargin=5mm, label={(\arabic*)}, font={\bfseries}}% Make left margin smaller
+\setlist[itemize, 1]{leftmargin=5mm}% Make left margin smaller
 
 %----------------------------------------------------------------------------------------
 %	BOOK INFORMATION

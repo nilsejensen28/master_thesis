@@ -11,6 +11,7 @@ In the previous chapter we left the choice of a particular simplicial decomposit
 Such a decomposition exists, and is known in the litterature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it in a combinatorial way here, and refer the reader to the original paper for a geometric construction of the same decomposition.
 
 \begin{definition}[Freudenthal's Simplicial Decomposition]
+    \label[definition]{def:freudenthal_simplicial_decomposition}
     Consider a unit hypercube $[0, 1]^d$ in $\R^d$ and consider $S_d$ the group of all permutations of the dimensions of the hypercube $\{1, \dots, d\}$. For every permutation $\pi \in S_d$, define the simplex $S_{\pi}$ as the convex hull of the vertices:
     \marginnote[10mm]{Here we will use the notation $e_i$ to denote the $i$-th \define{unit vector} in $\R^d$.}
     \begin{align*}
@@ -69,31 +70,60 @@ This directly implies the following corollary.
     \label{cor:total_ordering}
     For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
-Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next we want to introduce a new notation which will allow us describe these simplices more succintly. Assume that a permutation $\pi$ of the dimensions, induces a simplex 
+Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next we want to introduce a new notation which will allow us describe these simplices more succintly. Assume that a permutation $\pi$ of the dimensions, induces a simplex $S_{\pi}$, woth vertices $v_0, \dots, v_d$, as defined in \cref{def:freudenthal_simplicial_decomposition}. Then we will denote the $d$-dimensional simplex $S_{\pi}$ as:
+\begin{align*}
+    v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
+\end{align*}
+This notation means that we obtain $v_i$ by moving by one unit-length in the direction $\pi(i)$ from $v_{i-1}$. We already briefly discussed how the faces of a given simplex are given. We will also describe how to describe these faces in our notation. We will denote the face of $S_{\pi}$ obtained by removing the vertex $v_i$ as:
+\begin{align*}
+    v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+\end{align*}
 
-
-
+We can remark the following about the faces of a simplex.
+\begin{remark}
+    \label[remark]{rem:faces_of_simplex}
+    For a given $d-1$ dimensional simplex $F$ in $\mathcal{S}$ we have that:
+    \marginnote[0mm]{Notice that the case \ref{rem:face_inside_cell} is the case where the face is inside the cell, and the case \ref{rem:face_border_cell} is the case where the face is on the border of the cell.}
+    \begin{enumerate}
+        \item If $F$ is of the form:
+              \begin{align*}
+                  F: \quad v_0 \xrightarrow{\pi(1)}  \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+              \end{align*}
+              Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
+              \begin{align*}
+                  S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
+                  S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w_i' \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+              \end{align*}
+              \label{rem:face_inside_cell}
+        \item If $F$ is of the form:
+              \begin{align*}
+                  F: \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots  \xrightarrow{\pi(d-1)} v_{d-1}
+              \end{align*}
+              Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
+              \begin{align*}
+                  S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w_d \\
+                  S_2: & \quad w_0 \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
+              \end{align*}
+              \label{rem:face_border_cell}
+    \end{enumerate}
+\end{remark}
 
 We want to discuss what simplices of the decomposition neighboor each other. We claim that a given simplex has $d-1$ neighbooring simplices inside a given cell, and two neighbooring simplices in neighbooring cells. More precisely we have the following lemma.
 
 \begin{lemma}[Neighbooring Simplices]
-    Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the following simplices are neighbooring $S_{\pi}$:
+    Let $S_{\pi} \in \mathcal{S}$ be a simplex:
+    \begin{align*}
+        v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
+    \end{align*}
+    Then the following simplices are neighboors of $S_{\pi}$:
     \begin{itemize}
-        \item For every $i \in \set{1, \dots, d-1}$, set $\sigma = \pi \circ (i, i+1)$\marginnote[0pt]{With the notation $(i, i+1)$ we indicate swaping the images of $i$ and $i+1$.}, then $S_{\sigma}$ is neighbooring $S_{\pi}$ in the same cell. There are $d-1$ such simplices.
-        \item Set $\sigma = [\pi(d), \pi(1), \pi(2), \dots, \pi(d-1)]$. Then $S_{\sigma}$ is neighbooring $S_{\pi}$ and is located in the cell which is in the negative $\pi(d)$ direction. There is exactly one such simplex.
-        \item Set $\sigma = [\pi(2), \pi(3), \dots, \pi(d), \pi(1)]$. Then $S_{\sigma}$ is neighbooring $S_{\pi}$ and is located in the cell which is in the positive $\pi(1)$ direction. There is exactly one such simplex.
+        \item $v_0 \xrightarrow{\pi(2)} v_1 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d$, for all $i \in \set{1, \dots, d-1}$, where $w_i$ is the vertex obtained by moving one unit in the direction $\pi(i+1)$ from $v_{i-1}$.
+        \item $w_d \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}$, where $w_d$ is the vertex obtained by moving one unit in the direction $-\pi(d)$ from $v_{0}$.
+        \item $v_2 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_1$, where $w_1$ is the vertex obtained by moving one unit in the direction $\pi(1)$ from $v_d$.
     \end{itemize}
 \end{lemma}
 \begin{proof}
-    Todo: Write the proof.
-\end{proof}
-
-We also want to note that the graph, with these simplices as vertices and edges between neighbooring simplices, is bipartite. This follows directly from the following observation.
-\begin{remark}
-    For every $S_{\pi}, S_{\sigma} \in \mathcal{S}$, if $S_{\sigma}$ is neighbooring $S_{\pi}$, then $\sgn{\pi} = - \sgn{\sigma}$.
-\end{remark}
-\begin{proof}
-    Is this actually true?
+    The proof follows directly by enumerating the faces of $S_{\pi}$ and using remark \ref{rem:faces_of_simplex}.
 \end{proof}
 
 \section{Orientation of a the simplicial decomposition}[Orientating the simplices]
@@ -101,6 +131,7 @@ We also want to note that the graph, with these simplices as vertices and edges 
 In this section we want to discuss how to orient the simplicial decomposition of the lattice, we defined in the previous section. This will be important as we will argue in the next section, that the existence of a cycle would contradict the orientation of the simplicial decomposition. We will start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
 
 \subsection{Orientation of a simplex}[Orienting a simplex]
+\label{sec:orientation_of_simplex}
 
 \begin{definition}[Orientation of a simplex]
     An \define{orientation} of a simplex $S$ spanned by the vertices $v_0, \dots, v_d$ is a choice of a permutation of the vertices $[v_{\pi(0)}, \dots, v_{\pi(d)}]$.
@@ -132,6 +163,26 @@ This means that we now have two equivalence classes of orientations for any simp
         \sigma_j = (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
     \end{align*}
 \end{definition}
+
+We claim that the induced orientations of faces, yields a consistent orientation of the simplex, that is that for every $d-2$-simplex $E$ which is a face of two $d-1$-simplices $S_1$ and $S_2$, the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
+
+\begin{claim}
+    \label[claim]{claim:opposite_orientations}
+    Let $F_1$ and $F_2$ be two $d-1$-simplices in $S$ which share a common face $E$. Then the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
+\end{claim}
+\begin{proof}
+    Let $[v_0, \dots, v_{d}]$ be an orientation of $S$. The face $E$ is obtained by removing two vertices $v_i, v_j$ from $S$. Without loss of generality assume that $F_1$ is obtained by removing $v_i$ from $S$ and $F_2$ is obtained by removing $v_j$ from $S$. Then the induced orientations $S_1$ and $S_2$ are:
+    \begin{align*}
+        S_1: \quad & (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d}] \\
+        S_2: \quad & (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, \hat{v_i}, \dots, v_{d}]
+    \end{align*}
+    Now without loss of generality assume that $i < j$, then we have that the induced orientations of $E$ in $S_1$ and $S_2$ are:
+    \begin{align*}
+        \text{$E$ in $S_1$ }: \quad & (-1)^i \cdot (-1)^{j-1} \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}] \\
+        \text{$E$ in $S_2$ }: \quad & (-1)^j \cdot (-1)^i \cdot [v_0, \dots, \hat{v_j}, \dots, \hat{v_i}, \dots, v_{d-1}]
+    \end{align*}
+    This shows that the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
+\end{proof}
 
 \begin{figure}[ht]
     \centering
@@ -168,27 +219,47 @@ We now claim that the simplicial complex formed by the lattice points and Freude
 \end{claim}
 
 \begin{proof}
-    We will give an orientation of every $k$ simplex, and then show that the induced orientation of the faces of the simplicial complex are opposite.
-    Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as described previously in \cref{sec:freudenthal_simplicial_decomposition}.
-
-    Assume that the vertices of $S_{\pi}$ are given by $v_0 < \dots < v_d$. We then orient $S_{\pi}$ using the permutation:
+    We will give an orientation of every $d$ simplex, and then show that the induced orientation of the faces of the simplicial complex are opposite.
+    Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as previously described:
+    \begin{align*}
+        v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
+    \end{align*}
+    We now orient $S_{\pi}$ using the permutation:
     \begin{align*}
         \sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
     \end{align*}
-    Let $S_{\pi}$ and $S_{\sigma}$ be two simplices in the simplicial complex, and let $F = S_{\pi} \cap S_{\sigma}$ be a face of both simplices. We want to show that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+    First we notice that for all $d-2$ simplices, two neighbooring $d-1$-simplices are contained  in exactly one $d$ simplex of the decomposition, and hence the orientation is consistent, as discussed in claim \ref{claim:opposite_orientations}. \par
+    Now let us look at a common face $F$ of two $d$-simplices $S_1$ and $S_2$. We proceed by case distinction:
     \begin{case}{1}
-        If $S_{\pi}$ and  $S_{\sigma}$ are in the same cell, then $\pi$ and $\sigma$ differ by one swap\marginnote{A \define{swap} is a cycle of length 2.}, and thus $\sgn{\pi} = - \sgn{\sigma}$. The missing vertices which induce $F$ have the same rank in $S_{\pi}$ and $S_{\sigma}$. Together this yields that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+        Assume that $S_1$ and $S_2$ are in the same cell, then $F$ is of the form:
+        \begin{align*}
+            F: \quad v_0 \xrightarrow{\pi(1)}  \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+        \end{align*}
+        And we have that $S_1$ and $S_2$ are of the form:
+        \begin{align*}
+            S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
+            S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w_i' \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+        \end{align*}
+        We immediately notice that $\sgn{S_1} = - \sgn{S_2}$\marginnote{By abuse of notation we will denote by $\sgn{S_1}$ the sign of the permutation inducing $S_1$.}. We remove a vertex $w_i, w_i'$ of the same rank in $S_1$ and $S_2$ in order to obtain $F$. Hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
     \end{case}
     \begin{case}{2}
-        If $S_{\pi}$ and  $S_{\sigma}$ are not in the same cell, then $\pi$ and $\sigma$ differ by exaclty one $d$ cycle. We have two cases:
+        Next assume that $S_1$ and $S_2$ are in neighbooring cells, then as dicussed in \cref{rem:faces_of_simplex} $F$ is of the form:
+        \begin{align*}
+            F: \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots  \xrightarrow{\pi(d-1)} v_{d-1}
+        \end{align*}
+        And we have that $S_1$ and $S_2$ are of the form:
+        \begin{align*}
+            S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w_d \\
+            S_2: & \quad w_0 \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
+        \end{align*}
+        We once again must proceed by case distinction.
         \begin{case}{2.1}
-            If $d$ is even then $\sgn{\pi} = - \sgn{\sigma}$, and the missing vertices which induce $F$ have rank $0$ and $d$ in $S_{\pi}$ and $S_{\sigma}$, which are both even, and hence $(-1)^0 = (-1)^d = 1$. Together this yields that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+            If $d$ is even, then: $\sgn(S_1) = - \sgn(S_2)$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = (-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
         \end{case}
         \begin{case}{2.2}
-            If $d$ is odd then $\sgn{\pi} = \sgn{\sigma}$, and the missing vertices which induce $F$ have rank $0$ and $d$ in $S_{\pi}$ and $S_{\sigma}$, because $d$ is odd, we have $-(-1)^d = -1$. Together this yields that the induced orientation of $F$ in $S_{\pi}$ and $S_{\sigma}$ are opposite.
+            If $d$ is odd, then $\sgn(S_1) = \sgn(S_2)$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = -1$ and $(-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
         \end{case}
     \end{case}
-    These cases, cover all possible situations and hence conclude the proof.
 \end{proof}
 
 \begin{figure}[ht]
