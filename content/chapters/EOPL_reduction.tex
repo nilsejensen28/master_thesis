@@ -53,7 +53,7 @@ Next we want to discuss why this really forms a partition of the hypercube. Of c
     \end{align*}
 \end{lemma}
 \begin{proof}
-    The same proof as for \cref{lem:caracterisation_of_simplices}, holds with the added constraint that all $\lambda_i > 0$, this then shows that these points are in the interior of the simplex.
+    The same proof as for lemma \ref{lem:caracterisation_of_simplices}, holds with the added constraint that all $\lambda_i > 0$, this then shows that these points are in the interior of the simplex.
 \end{proof}
 These two lemma's together show that we have a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove some structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
 \begin{lemma}
@@ -167,19 +167,19 @@ This means that we now have two equivalence classes of orientations for any simp
 We claim that the induced orientations of faces, yields a consistent orientation of the simplex, that is that for every $d-2$-simplex $E$ which is a face of two $d-1$-simplices $S_1$ and $S_2$, the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
 
 \begin{claim}
-    \label[claim]{claim:opposite_orientations}
+    \label{claim:opposite_orientations}
     Let $F_1$ and $F_2$ be two $d-1$-simplices in $S$ which share a common face $E$. Then the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
 \end{claim}
 \begin{proof}
     Let $[v_0, \dots, v_{d}]$ be an orientation of $S$. The face $E$ is obtained by removing two vertices $v_i, v_j$ from $S$. Without loss of generality assume that $F_1$ is obtained by removing $v_i$ from $S$ and $F_2$ is obtained by removing $v_j$ from $S$. Then the induced orientations $S_1$ and $S_2$ are:
     \begin{align*}
-        S_1: \quad & (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d}] \\
-        S_2: \quad & (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, \hat{v_i}, \dots, v_{d}]
+        S_1: \quad & (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, v_{d}] \\
+        S_2: \quad & (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
     \end{align*}
     Now without loss of generality assume that $i < j$, then we have that the induced orientations of $E$ in $S_1$ and $S_2$ are:
     \begin{align*}
         \text{$E$ in $S_1$ }: \quad & (-1)^i \cdot (-1)^{j-1} \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}] \\
-        \text{$E$ in $S_2$ }: \quad & (-1)^j \cdot (-1)^i \cdot [v_0, \dots, \hat{v_j}, \dots, \hat{v_i}, \dots, v_{d-1}]
+        \text{$E$ in $S_2$ }: \quad & (-1)^j \cdot (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}]
     \end{align*}
     This shows that the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
 \end{proof}
@@ -218,6 +218,13 @@ We now claim that the simplicial complex formed by the lattice points and Freude
     The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
 \end{claim}
 
+\begin{figure}[h]
+    \centering
+    \incfig{Orientation_of_Freudenthal_Example}
+    \caption[Orientation of a simplicial complex]{Example of the orientation of a Freundenthals simplicial complex in 2 dimensions.}
+    \label{fig:orientation_of_simplicial_complex}
+\end{figure}
+
 \begin{proof}
     We will give an orientation of every $d$ simplex, and then show that the induced orientation of the faces of the simplicial complex are opposite.
     Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as previously described:
@@ -254,22 +261,56 @@ We now claim that the simplicial complex formed by the lattice points and Freude
         \end{align*}
         We once again must proceed by case distinction.
         \begin{case}{2.1}
-            If $d$ is even, then: $\sgn(S_1) = - \sgn(S_2)$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = (-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
+            If $d$ is even, then: $\sgn{S_1} = - \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = (-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
         \end{case}
         \begin{case}{2.2}
-            If $d$ is odd, then $\sgn(S_1) = \sgn(S_2)$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = -1$ and $(-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
+            If $d$ is odd, then $\sgn{S_1} = \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = -1$ and $(-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
         \end{case}
     \end{case}
+    This shows that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
 \end{proof}
 
-\begin{figure}[ht]
-    \centering
-    \incfig{Orientation_of_Freudenthal_Example}
-    \caption[Orientation of a simplicial complex]{Example of the orientation of a Freundenthals simplicial complex in 2 dimensions.}
-    \label{fig:orientation_of_simplicial_complex}
-\end{figure}
-
 We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}. We have now introduced the necessary tools to argue that a certain type of cycle cannot exist as we will argue in the following.
+
+\section{Sequences of simplices}[Sequences of simplices]
+
+In this section we want to introduce and study \emph{sequences of simplices}. We will show that they have some nice properties in regard to the orientation of the simplicial decomposition which we previously discussed. This will be useful as we will argue that paths in the \EndOfLine\ instance are sequences of simplices, and that the orientation of the simplicial decomposition will prevent these paths from forming cycles. We will start by defining what we mean by a sequence of simplices.
+
+\begin{definition}[Sequence of simplices]
+    \label{def:sequence_of_simplices}
+    A \emph{sequence of simplices}, or \define{simplicial sequence} is a sequence $\left(S_i\right)_{i=1}^{k}$ of $d$-dimensional simplices $S_i \in \mathcal{S}$ such that:
+    \begin{enumerate}
+        \item $S_{i+1} \not\subset \set{S_1, \dots, S_i}$ for all $i \in \set{1, \dots, k-1}$.
+        \item $S_i$ and $S_{i+1}$ share a $d-1$-dimensional face $F_i$ for all $i \in \set{1, \dots, k-1}$.
+    \end{enumerate}
+\end{definition}
+
+Observe that because of the orientation of the simplicial complex, the orientation of the faces of the simplices in a sequence are consistent. We want to show that this consistent orientation also extends to faces of the simplices in the sequence. In order to do this we need to introduce what we mean by \textit{sequence of faces}. We will then show that the orientation of the simplicial complex implies that the orientation of the faces of the simplices in a sequence are consistent.
+
+\begin{definition}[Sequence of faces]
+    \label{def:sequence_of_faces}
+    A \emph{sequence of faces} of a simplicial sequence $\left(S_i\right)_{i=1}^{k}$  is a sequence $\left(L_i\right)_{i=1}^{k}$ of simplices such that:
+    \begin{enumerate}
+        \item \marginnote[0mm]{Notice that the face $L_i$ can be of dimension $d-1$ or $d-2$, in this definition.} $L_i$ is a subsimplex of the simplices $S_i$ for all $i \in \set{1, \dots, k}$.
+        \item $L_i$ and $L_{i+1}$ share a $d-2$-dimensional face $G_i$ for all $i \in \set{1, \dots, k-1}$.
+    \end{enumerate}
+\end{definition}
+
+We now want to show that such a sequence of face is consistent with the orientation of the simplicial complex.
+\begin{proposition}[Orientation of sequences of faces]
+    \label{prop:orientation_of_sequences_of_faces}
+    Let $\left(S_i\right)_{i=1}^{k}$ be a simplicial sequence, and $\left(L_i\right)_{i=1}^{k}$ a sequence of faces of the simplices in the sequence. Then the orientation of the faces $L_i$ is consistent.
+\end{proposition}
+\begin{proof}
+    It suffices to show that for any two faces $L_i$ and $L_j$, the induced orientation of $Q = L_i \cap L_j$ in $L_i$ and $L_j$ are opposite. We proceed by case distinction:
+    \begin{case}{1}
+        Assume that $L_i$ and $L_j$ are faces of the same simplex $S$, then $Q$ is a face of $S$ and the induced orientation of $Q$ in $L_i$ and $L_j$ are opposite by \cref{claim:opposite_orientations}.
+    \end{case}
+    \begin{case}{2}
+        Assume that $L_i$ and $L_j$ are faces of two simplices $S_1$ and $S_2$ which share a common face $F$. Then $Q$ is a face of $F$ and the induced orientation of $Q$ in $L_i$ and $L_j$ are opposite by \cref{claim:opposite_orientations}.
+    \end{case}
+    This shows that the orientation of the faces of the simplices in a sequence is consistent.
+\end{proof}
 
 \section{Properties of the coloring of \Tarski\ instances}[Properties of the coloring]
 
@@ -311,12 +352,9 @@ For vertices of a given simplex we get the following corollary.
 
 Now we want to work with sequences of simplices, and show that the coloring of the vertices of these simplices have some nice properties. We start by defining what we mean by a sequence of simplices. Let $C \subset \{0, \dots, d\}$ be a subset of colors.
 \begin{definition}[Valid sequence of simplices]
-    A \emph{valid sequence of simplices for colors $C$} is a sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ such that:
-    \begin{enumerate}
-        \item $S_{i+1} \not\subset \set{S_1, \dots, S_i}$ for all $i \in \set{1, \dots, k-1}$.
-        \item $S_i$ and $S_{i+1}$ share a $d-1$-dimensional face $F_i$ for all $i \in \set{1, \dots, k-1}$.
-        \item The vertices of $F_i$ are colored only with colors in $C$.
-    \end{enumerate}
+    \label{def:valid_sequence_simplices}
+    \marginnote[-10mm]{Notice that this means that the first and last simplex of the sequence could be colored with any color. All other simplices must be colored with colors in $C$.}
+    A \emph{valid sequence of simplices for colors $C$} is a sequence $\left(S_i\right)_{i=1}^{k}$ of simplices as defined previously in \cref{def:sequence_of_simplices} such that the $F_i$ are colored exactly colors of $C$.
 \end{definition}
 These sequences are the objects that latter get reduced to paths in the \EndOfLine\ instance, which is why we want to study them in detail. We define the some more terminology to help us with this.
 \begin{definition}[Cycle]
@@ -345,31 +383,23 @@ We now are ready to study the properties of these sequence in more detail. We no
     $F_i$ and $F_{i+1}$ are two faces of the same $d$ dimensional simplex, and thus they share exactly $d-1$ vertices. This means that there is exactly one vertex $x$ which is in $F_i$ but not in $F_{i+1}$, and exactly one vertex $y$ which is in $F_{i+1}$ but not in $F_i$. This means that there is exactly one $j$ such that $x_i^j = x$ and $x_{i+1}^j = y$.
 \end{proof}
 
-Now for a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices, inside the color set $C = \{0, \dots, d-1\}$ we consider the following two objects:
-\begin{itemize}
-    \item The sequence of $(L_i)_{i}$ of subsimpleces of $S_i$ which are colored with colors in $C \setminus \{0\}$. This can be a $d-1$-dimensional face of $S_i$ or a $d-2$-dimensional face of $S_i$.
-    \item The sequence of $(x_i^0)_{i}$ of vertices of $S_i$ which are colored with color $0$.
-\end{itemize}
-Notice that because a simplex $S_i$ could contain two vertices colored $0$ --- in which case the corresponding $L_i$ would be a $(d-2)$-simplex --- that there is no one two one correspondence between the sequence $(x_i^0)_i$ and the sequence $(L_i)_i$. It does hold though that for every $S_i$ there is a unique $L_i$. For every $L_i$:
-\begin{itemize}
-    \item if $L_i$ is a $(d-1)$-simplex, there is a unique $j$ such that $x_j^0$ together with the vertices of $L_i$ form the $d$-simplex $S_i$.
-    \item if $L_i$ is a $(d-2)$-simplex, there is a unique $j$ such that $x_j^0$ and $x_{j+1}^0$ together with the vertices of $L_i$ form the $d$-simplex $S_i$.
-\end{itemize}
-We will call this $j$ the \define{pivot} of $L_i$. Before we start we want to collect a couple of useful properties of these objects.
+Now for a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices, inside the color set $C = \{0, \dots, d-1\}$ we can consider all the vertices that are not colored with the color $0$. These vertices have a nice structure as the following proposition shows.
+
 \begin{proposition}
-    Let $(S_i)_{i=0}^k$ be a valid sequence of simplices, with colors $C = \{0, \dots, d-1\}$. Let $(F_i)_{i=0}^{k-1}$ be the transition sequence, and $(L_i)_{i=0}^k$, $(x_j^0)_j$ be as above. Then the following holds:
-    \begin{enumerate}
-        \item For every $j$, we have that $x_j^0$ and $x_{j+1}^0$ are connected by an edge of the simplicial decomposition; \label{prop:connected_by_edge}
-        \item For every $i$ we have that $L_i \cap L_{i+1}$ together with the pivot of $L_i$ and the pivot of $L_{i+1}$ form $F_i$, the transition face;
-        \item All $L_i$ which are $(d-1)$-simplices have the same sign of their induced orientation in $S_i$.
-    \end{enumerate}
+    Let $\left(S_i\right)_{i=1}^{k}$ be a valid sequence of simplices for colors $C = \{0, \dots, d-1\}$, then defining $L_i$ to be the face of $S_i$ which is spanned by the vertices colored with colors in $C \setminus \set{0}$. Then the sequence $\left(L_i\right)_{i=1}^{k}$ is a sequence of faces as defined in \cref{def:sequence_of_faces}.
 \end{proposition}
 \begin{proof}
-    Notice that $x_j^0$ and $x_{j+1}^0$ are vertices in the same simplex $S_i$. In this case we have $L_i = F_i \cap F_{i+1}$. This shows \ref{prop:connected_by_edge}. \par
-    The second property follows from the fact that $L_i$ is a face of $S_i$ and $S_{i+1}$, and that the pivot of $L_i$ and $L_{i+1}$ are the vertices of $F_i$. \par
-    The last property requieres a little more work to show. We will show that for every $i \in \set{0, \dots, k-1}$ we have that the sign of two consecutive $L_i$'s which are $(d-1)$-simplices are the same. Assume that $L_i$ is a $(d-1)$-simplex, and that $L_{i+1}, \dots, L_{i+l-1}$ are $(d-2)$-simplices, and that $L_{i+l}$ is a $(d-1)$-simplex. We then have that $L_i$ and $L_{i+l}$ share a $d-2$-dimensional face $G$. Because of the orientation of the simplicial complex, we know that the orientation of $G$ is opposite when induced in $L_i$ and $L_{i+l}$. This means that the orientation of $L_i$ and $L_{i+l}$ must be the same.
+    We need to show that the two conditions set by \cref{def:sequence_of_faces} are satisfied. The first condition is immediate as $L_i$ is a face of $S_i$. For the second condition we need to show that $L_i$ and $L_{i+1}$ share a $d-2$-dimensional face for every $i \in \set{1, \dots, k-1}$. In order to see this notice that $S_i$ and $S_{i+1}$, share a common face $F_i$, which contains exactly one vertex colored with color $0$. This means that $L_i$ and $L_{i+1}$ share a $d-2$-dimensional face of $F_i$, and hence a $d-2$ dimensional face of $S_i$ and $S_{i+1}$.
 \end{proof}
-The last property which we showed is crucial. In a certain sence it shows that the vertex colored $0$ is always on the same side of the $(d-1)$-simplex $L_i$. We will use this to obtain a contradiction in the following pages.
+
+As a direct consequence of this proposition we get the following corollary, which will be a key tool in the discussion on cycles in the \EndOfLine\ instance.
+
+\begin{corollary}
+    The $\left(L_i\right)_{i=1}^{k}$ defined above can be oriented consistently.
+\end{corollary}
+\begin{proof}
+    This is a direct consequence of \cref{prop:orientation_of_sequences_of_faces}, which showed that the orientation of the faces of a sequence of simplices is consistent, when using the induced orientation of the faces by the individual simplices.
+\end{proof}
 
 \section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
 
