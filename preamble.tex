@@ -100,3 +100,13 @@
 \title{The Complexity of Finding Tarski Fixed Points}
 \author{Nils Jensen}
 \date{\today}
+
+\makeatletter
+\def\tcb@split@force@last{%
+    \tcb@split@setstate@last%
+    \ifdim\tcb@h@total>\tcb@h@page\relax%
+        \gdef\tcb@after@lastbox{\clearpage}%
+        \tcbdimto\kvtcb@bbbottom{\kvtcb@bbbottom+\tcb@h@page-\tcb@h@total}%
+    \fi%
+}
+\makeatother

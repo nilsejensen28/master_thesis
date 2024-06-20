@@ -4,10 +4,12 @@
 %	PACKAGE OPTIONS AND DEPENDENCIES
 %----------------------------------------------------------------------------------------
 \let\openbox\relax
+\RequirePackage[framemethod=TikZ]{mdframed}
 \RequirePackage{amsmath} % For including equations
 \RequirePackage{amssymb} % For including symbols
 \RequirePackage{amsthm} % For including theorems
 \RequirePackage{thmtools} % For including theorems
+
 
 %------------------------------------------------
 
@@ -27,7 +29,7 @@
 
 % Black theorem number and optional black title with padding above and below
 \theoremstyle{blacknumbox}
-\newtheorem{definitionT}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
+\newtheorem{definitionT}{Definition}[chapter]%}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
 \newtheorem{theoremT}[definitionT]{Theorem}
 \newtheorem{claimT}[definitionT]{Claim}
 \newtheorem{lemmaT}[definitionT]{Lemma}
@@ -105,4 +107,20 @@ sharp corners}
 %----------------------------------------------------------------------------------------
 %	Case definitions
 %----------------------------------------------------------------------------------------
-\newenvironment{case}[1]{\begin{pLine}\textbf{Case #1:}}{\end{pLine}}
+
+%Environment for cases in proofs side line colored gray, and 1pt thick
+\newenvironment{case}[1]{\textbf{Case #1:}}{}
+\surroundwithmdframed[
+  topline=false,
+  rightline=false,
+  bottomline=false,
+  leftmargin=1pt,
+  innertopmargin=0pt,
+  innerbottommargin=0pt,
+  innerrightmargin=0pt,
+  innerleftmargin=2pt,
+  linecolor=gray,
+  linewidth=1pt,
+  skipabove=\medskipamount,
+  skipbelow=\medskipamount
+]{case}
