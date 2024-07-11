@@ -1,12 +1,12 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \EOPL}
 
-In the previous chapter we saw how one can show membership of \Tarski\ in \PPAD\ using the a reduction to \Sperner. We now want to show that the same idea yields a reduction to \EndOfPotentialLine\ which lies in \EOPL. This will require a much more careful analysis of the structure of a \Tarski\ instance, and of the induced coloring of the lattice points. We will need to work directly with a certain simplical decomposition of the lattice, which we will build to have some \textit{useful} properties. The final goal will be to show that for a monotone \Tarski\ instance, the associated \EndOfLine\ instance does not contain any cycles. This will be enough to show that that we can obtain a reduction to \EndOfPotentialLine.
+In the previous chapter, we exhibited how one can demonstrate the membership of Tarski in \PPAD\ through a reduction to Sperner. We now demonstrate that the same approach yields a reduction to \EndOfPotentialLine, which lies within \EOPL. This will necessitate a more meticulous examination of the structure of a Tarski instance and the induced colouring of the lattice points. In order to achieve our objective, we must first construct a specific simplical decomposition of the lattice. This will be done with the intention of obtaining certain useful properties. Ultimately, our goal is to demonstrate that for a monotone Tarski instance, the associated EndOfLine instance does not contain any cycles. This will prove sufficient to establish a reduction to \EndOfPotentialLine.
 
 \section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
 \label{sec:freudenthal_simplicial_decomposition}
 
-In the previous chapter we left the choice of a particular simplicial decomposition of the lattice open, as it was not relevant to the reduction. We now want to be more careful and choose a simplicial decomposition, which will help us prove some structural results. We first want to discuss what properties we want our simplicial decomposition to have. The first --- and obvious --- property we want our simplicial decomposition to have is that every simplex of the decomposition is contained in exactly one cell of the lattice. This means that we can reduce the question to finding a simplical decomposition of a single $d$-dimensional hypercube of side-length $1$. Also take note, that we do not want to add any vertices, but find a decomposition of the hypercube, that can be described as a set of subsets of the hypercube's vertices.	Finally we want the vertices of a given simplex to be totally ordered, with respect to the partial order defined in \cref{sec:tarski_problem}. This will allow us to argue that two vertices are always comparable, hence their images through $f$ must also be comparable which will be useful.
+In the previous chapter, we left the choice of a specific simplicial decomposition of the lattice open, as it did not contribute to our reduction. In this chapter, we aim to be more precise in our approach by selecting a specific simplicial decomposition that will enable us to derive structural results. We begin by outlining the desired properties of our simplicial decomposition. The most fundamental property is that every simplex of the decomposition must be contained within a single cell of the lattice. This implies that we can limit our inquiry to the identification of a simplical decomposition of a single $d$-dimensional hypercube of side-length $1$. Additionally, it is important to note that our objective does not entail the introduction of any new vertices; instead, we seek a decomposition of the hypercube that can be expressed as a set of subsets of the hypercube's vertices.	Finally, we which for the vertices of a given simplex be totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. This will allow us to argue that two vertices, inside a given simplex, are always comparable, and thus their images through $f$ must also be comparable, which will be useful.
 
 Such a decomposition exists, and is known in the litterature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it in a combinatorial way here, and refer the reader to the original paper for a geometric construction of the same decomposition.
 
@@ -330,6 +330,7 @@ In this section we want to discuss different properties with the coloring of \Ta
 In this section we will assume that we are working on a integer lattice $L$, and that for a function $f : L \rightarrow L$, the points have been colored $c : L \rightarrow \set{0, \dots, d}$ as in \cref{sec:tarskistar_to_sperner}. Now we are ready to present a first observation, which will be a helpful stepping stone for more advanced results.
 
 \begin{lemma}
+    \label{lem:monotone_coloring}
     Assume that $f$ is monotone and that we have $x_i, x_j \in L$, $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ and $x_i[i] = x_j[i]$, then either:
     \begin{enumerate}
         \item $i \geq j$ or
@@ -343,6 +344,7 @@ In this section we will assume that we are working on a integer lattice $L$, and
 For vertices of a given simplex we get the following corollary.
 \marginnote[10mm]{Notice that if we assume that $x_i$ and $x_j$ are in the same simplex of the simplicial decomposition, then the condition $x_i \not\geq x_j$ is equivalent to $x_i \leq x_j$.}
 \begin{corollary}
+    \label{cor:monotone_coloring}
     Assume that $f$ is monotone and that we have $x_i, x_j \in S$, for some simplex $S\in  \mathcal{S}$. Further assume that $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ with $i < j$ and that $x_i[i] = x_j[i]$, then $x_i < x_j$.
 \end{corollary}
 \begin{proof}
@@ -404,3 +406,51 @@ As a direct consequence of this proposition we get the following corollary, whic
 \section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
 
 We are now ready to show that the \EndOfLine\ instance does not contain any cycles. We will do this by showing that the existence of a cycle would contradict the orientation of the simplicial complex. A cycle is a valid sequence such that $S_0$ and $S_k$ are a $(d-1)$-simplex as a face. We will show that certain situations cannot occur due to the orientation of the simplicial complex. And we will then argue that these situations must occur in a cycle. This will be enough to show that the \EndOfLine\ instance does not contain any cycles.
+
+Before we start we want to make an observation on how the dimension $d$ plays together with the orientation of the simplicial complex.
+\begin{lemma}
+    \label{lem:position_of_d_in_simplex}
+    Let $l \in \set{1, \dots, d-1}$ be a dimension. Let $S$ be a $d$-simplex with colors $C = \set{0, \dots, d-1}$ in the colored simplicial complex, such that $S$ is of the form:
+    \begin{align*}
+        (S): \quad v_0 \xrightarrow{l} v_1 \xrightarrow{} \cdots \xrightarrow{} v_d
+    \end{align*}
+    and assume that the face $F$ spanned by $v_1, \dots, v_d$ is a rainbow face. Then we must have for the colors:
+    \begin{align*}
+        (F): \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d)
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Every color $c \in \set{0, \dots, d-1}$ appears exactly once in the face $F$. If the color $c \neq 0$ appear after $0$, then by \cref{cor:monotone_coloring} we must have that we move in dimension $c$ between $0$ and $c$:
+    \begin{align*}
+        (F): \quad c(v_1) \xrightarrow{} \cdots  0 \xrightarrow{} \cdots \xrightarrow{c} \cdots \xrightarrow{} c
+    \end{align*}
+    Because we have this for every color $c_i \neq 0$, which appears after $0$ in $F$ we must have:
+    \begin{align*}
+        (F): \quad c(v_1) \xrightarrow{} \cdots  0 \xrightarrow{c_1} c_1 \xrightarrow{c_2} c_2 \cdots \xrightarrow{c_k} c_k
+    \end{align*}
+    Now it is clear that because no vertex is colored with $d$, we must have that the change in dimension $d$ occurs before the vertex colored $0$ appears. This shows that we must have:
+    \begin{align*}
+        (F): \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d)
+    \end{align*}
+    This shows the Lemma.
+\end{proof}
+We now want to show that a sequence of colored simplices as defined previously, can only cross a given hyperplane, given by fixing a dimension $l$, at most once. This will be a key tool in the discussion on cycles in the \EndOfLine\ instance. Formally we have the following proposition.
+\begin{proposition}
+    Let $l \in \set{1, \dots, d-1}$ be a dimension. Consider the hyperplane $H$ given by fixing $l = L$ for some $L \in [N]$\marginnote[0mm]{In other words $H$ is given by ${H = \set{x \in \R^d \mid x[l] = L}}$}. Then consider the sequence of simplices $\left(S_i\right)_{i=1}^{k}$ such as defined previously. Then there can not be two $i \neq j$ such that $F_i \subset H$ and $F_j \subset H$.
+\end{proposition}
+Before we prove this we want to detail why this is a very powerful result. This means that in all dimensions appart from $d$ the sequences of simplices which induce the paths in the \EndOfLine\ instance are monotone. Now let us prove this result.
+\begin{proof}
+    For the sake of contradiction assume that there are two such $i \neq j$, such that $F_i \subset H$ and $F_j \subset H$. Without loss of generality we can further assume that $i < j$ and that for all $k \in \set{i+1, \dots, j-1}$ we have $F_k \not\subset H$, if so then replace $j$ with the smallest such $k$.\par
+    Now notice that $S_i$ and $S_{j}$ are on opposite sides of $H$, and that $S_{i+1}$ and $S_{j}$ are on the same side of $H$. Now let us consider the sequence of colored simplices $S_{i+1}, \dots, S_j$. Notice that \cref{lem:position_of_d_in_simplex}, which we proved earlier, implies that both $F_i$, and $F_j$ must be of the following form:
+    \begin{align*}
+        (F_i) & : \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d) \\
+        (F_j) & : \quad c(w_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(w_d)
+    \end{align*}
+    We will now proceed by case distinction:
+    \begin{case}{1}
+        Assume that $F_i$ and $F_j$ are comparable\marginnote[0mm]{By \emph{comparable} we mean that the cell containing $F_i$ is either larger or smaller than the cell containing $F_j$.}. We want to show that this is not possible. Assume without loss of generality that $F_i$ is smaller than $F_j$. Then the vertex colored $0$ in $F_i$ must be smaller than the vertex colored $l$ in $F_j$. This leads to a violation of monotonicity according to \cref{cor:monotone_coloring}.
+    \end{case}
+    \begin{case}{2}
+        Assume that $F_i$ and $F_j$ are not comparable. Our goal is to show that in this case we do not have a consistent orientation of the faces $L_i$ and $L_{j-1}$.
+    \end{case}
+\end{proof}
