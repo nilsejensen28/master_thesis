@@ -1,0 +1,73 @@
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Boolean_Circuit_Example.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{283.79054513bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.53690271)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Boolean_Circuit_Example.pdf}}%
+    \put(0.63609717,0.46614004){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}OR\end{tabular}}}}%
+    \put(0.63762076,0.25413776){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}AND\end{tabular}}}}%
+    \put(0.63662711,0.04678276){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Boolean_Circuit_Example.pdf}}%
+    \put(0.93360165,0.46944178){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_2$\end{tabular}}}}%
+    \put(0.93360165,0.25811227){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_3$\end{tabular}}}}%
+    \put(0.93360165,0.04678276){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Boolean_Circuit_Example.pdf}}%
+    \put(0.34251018,0.46613369){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}OR\end{tabular}}}}%
+    \put(0.34403377,0.25302571){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}AND\end{tabular}}}}%
+    \put(0.34108127,0.04338532){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}NOT\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Boolean_Circuit_Example.pdf}}%
+    \put(0.06825626,0.47309299){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$x_1$\end{tabular}}}}%
+    \put(0.06825626,0.26281881){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$x_2$\end{tabular}}}}%
+    \put(0.06825626,0.05043396){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$x_3$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

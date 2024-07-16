@@ -1,0 +1,86 @@
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Computing_Function_Example.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{272.52291942bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.89532401)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Computing_Function_Example.pdf}}%
+    \put(0.27137676,0.42526133){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}NOT\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Computing_Function_Example.pdf}}%
+    \put(0.27095667,0.13953974){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}NOT\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Computing_Function_Example.pdf}}%
+    \put(0.46142497,0.35142765){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}OR\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Computing_Function_Example.pdf}}%
+    \put(0.46100495,0.06665264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}AND\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Computing_Function_Example.pdf}}%
+    \put(0.07681384,0.34204217){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$x_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Computing_Function_Example.pdf}}%
+    \put(0.07681384,0.06844614){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$x_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Computing_Function_Example.pdf}}%
+    \put(0.70564956,0.35246426){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Computing_Function_Example.pdf}}%
+    \put(0.70522955,0.06665264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}OR\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Computing_Function_Example.pdf}}%
+    \put(0.93239372,0.06665264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{Computing_Function_Example.pdf}}%
+    \put(0.1754505,0.69566459){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{Computing_Function_Example.pdf}}%
+    \put(0.40112762,0.57317228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$00$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{Computing_Function_Example.pdf}}%
+    \put(0.62827792,0.80347059){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$11$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{Computing_Function_Example.pdf}}%
+    \put(0.62827792,0.57317228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$10$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{Computing_Function_Example.pdf}}%
+    \put(0.40112762,0.80347059){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$01$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{Computing_Function_Example.pdf}}%
+  \end{picture}%
+\endgroup%

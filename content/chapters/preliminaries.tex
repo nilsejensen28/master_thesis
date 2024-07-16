@@ -1,8 +1,7 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Preliminaries}
 
-The aim of this chapter is to introduce the complexity class \TFNP, and some of its subclasses, in particular \PPAD, \PLS\ and \EOPL{}.
-We will also introduce the \Tarski\ problem.
+The aim of this chapter is to introduce the framework, we will use in this Thesis in order to study the the \Tarski\ problem. This includes formally introducing the notion of total search problems, and the complexity class \TFNP, as well as the subclasses \PLS, \PPAD, and \EOPL. We will also discuss how we represent functions and sets in this framework, and will finally introduce the \Tarski\ problem formally.
 
 \section{Total search problems}
 
@@ -99,7 +98,14 @@ Now we can describe a boolean circuit, formally as follows:
     The inputs of $C$ are given by a tuple $(x_1, \dots, x_k)$, of distinct input gates. The output of $C$ is given by a tuple $(y_1, \dots, y_l)$ of distinct output gates.
 \end{definition}
 
-We give an example of such a boolean circuit in TODO. Of course we now want to use a boolean circuit to represent a function. In order to do this we need give a formal definition of the function computed by a boolean circuit.
+We give an example of such a boolean circuit in \cref{fig:boolean_circuit_example}. Of course we now want to use a boolean circuit to represent a function. In order to do this we need give a formal definition of the function computed by a boolean circuit.
+
+\begin{figure}
+    \centering
+    \incfig{Boolean_Circuit_Example}
+    \caption[Example of a Boolean Circuit]{Example of a boolean circuit with three input gates and four output gates.}
+    \label{fig:boolean_circuit_example}
+\end{figure}
 
 \begin{definition}[Computed function of a boolean circuit]
     A boolean circuit $C$ with inputs $x_1, \dots, x_n$ and outputs $y_1, \dots, y_m$ computes a function $f : \bitstr^n \rightarrow \bitstr^m$ as follows:
@@ -110,7 +116,14 @@ We give an example of such a boolean circuit in TODO. Of course we now want to u
     \end{itemize}
 \end{definition}
 
-In figure TODO we give an example of using a boolean circuit to compute a function. From now on all functions used in problems will be formally represented by boolean circuits.
+\begin{figure}
+    \centering
+    \incfig{Computing_Function_Example}
+    \caption[Computing a function with circuits]{Example of how a function $f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$ (on the top), can be computed using boolean circuits (on the bottom).}
+    \label{fig:computing_function_example}
+\end{figure}
+
+In \cref{fig:computing_function_example} we give an example of using a boolean circuit to compute a function, in particular for a function which is a \Tarski\ instance. From now on all functions used in problems will be formally represented by boolean circuits.
 
 TODO: Section on depth and complexity of functions
 
