@@ -6,14 +6,11 @@ We will also introduce the \Tarski\ problem.
 
 \section{Total search problems}
 
-The study of complexity classes originally works with so-called \define{decision-problems}, which are the question of deciding on the membership in a set ---
-also called a \define{language}.
+The study of complexity classes originally works with so-called \define{decision-problems}, which are the question of deciding on the membership in a set --- also called a \define{language}.
 \marginnote{Notable such problems include deciding on whether a boolean formula can be satified or if a $k$-Clique exist in a given graph.}
 Now while these problems are interesting, real world questions or problem often ask for an explicit anwser.
-For instance while deciding if a function has a global minimum is a decision problem, we are interrested in actually finding this minimum, which is not a
-decision problem.
-\marginnote{Even though as we will see it can be transformed into one}
-\par
+For instance while deciding if a function has a global minimum is a decision problem, we are interrested in actually finding this minimum, which is not a decision problem\marginnote{Even though as we will see it can be transformed into one}.
+
 This is where so called \define{search problems} come into play:
 
 \begin{definition}[Search Problem]
@@ -56,9 +53,66 @@ Similarly to decision problem we can also define reduction inside \TFNP{}.
 \marginnote[-15mm]{Saying \textit{one can reduce $R$ onto $S$} can be understood as saying \textit{if one can solve $S$ efficiently then I can solve $R$
         efficiently}.}
 
-\section{An excursion into Binary Circuits}[Binary Circuits]
+\section{Representation of functions and sets}[Representation of objects]
 
-TODO
+As we will see the problems we will work with, are given by questions of the form ``find an $x \in S$ such that $f(x)$ has some property''. This means that we should describe how we represent the input, that is the set $S$ and the function $f$. We start by describing how we represent sets.
+
+\subsection{Representation of sets}[Representing sets]
+
+In this thesis we will work with sets of the form $S = \{0, \dots, 2^n - 1\}$, which we will denote by $[2^n - 1]$. Notice that this set can be identified with the set of binary strings of length $n$. We will denote the set of binary strings of length $n$ by $\bitstr^n$. Formally the functions, and the model we will use to represent the functions will use the underlying binary strings in $\bitstr^n$. For notational convenience we will often only denote the integer $x \in [2^n - 1]$ instead of the binary string.
+
+Similary when considering the $d$-dimensional case, we can represent the set $L = [2^n - 1]^d$, which corresponds to a $d$-dimensional lattice with side length $2^n$, as the set of binary strings of length $n \cdot d$: $\bitstr^{nd}$. Again for simplicity while the underlying functions rely on the binary strings, we will often only denote the point $(x_1, \dots, x_d) \in [2^n - 1]^d$, instead of its binary representation.
+
+\subsection{Representation of functions}[Representing functions]
+
+Now that we have described how we describe the sets, we can describe how we represent the functions. We will represent the functions by using so-called boolean circuits. In this section we will rely on the presentation of boolean circuits as described in \sidecite{greenlaw_chapter_1998}, and refer an interested reader to this source for a more detailed description.
+
+On a high level a boolean circuit is a directed acyclic graph, where the nodes are called \define{gates}, and the edges are called \define{wires}. The sinks of the graphs are the output gates, and the sources are the input gates. We want to start by defining a gate formally.
+
+\begin{definition}[Gate]
+    \marginnote[-10mm]{This corresponds to the gate node, having $k$ incoming edges, and one outgoing edge.}
+    A gate is a function $g : \bitstr^k \rightarrow \bitstr$, where $k$ is the number of input wires of the gate.
+\end{definition}
+
+In this thesis we will only consider the following types of gates:
+\begin{itemize}
+    \marginnote{Notice that we only consider gates with at most two inputs, as we can always represent a gate with $k$ inputs as a composition of gates with at most two inputs.}
+    \item \textbf{AND-gate}: $g(x_1, x_2) = x_1 \land x_2$,
+    \item \textbf{OR-gate}: $g(x_1, x_2) = x_1 \lor x_2$,
+    \item \textbf{NOT-gate}: $g(x) = \lnot x$.
+\end{itemize}
+
+Now we can describe a boolean circuit, formally as follows:
+\begin{definition}[Boolean circuit]
+    A boolean circuit $C$ is a labeled finute directed acyclic graph, where each vertex has a \define{type} $\tau$, with
+    \begin{align*}
+        \tau(v) \in \{\text{INPUT}\} \cup \{\text{OUTPUT}\} \cup \{\text{AND}, \text{OR}, \text{NOT}\}
+    \end{align*}
+    and with the follwing properties:
+    \begin{itemize}
+        \item If $\tau(v) = \text{INPUT}$, then $v$ has no incoming edges. We call these vertices the \define{inputs gates}.
+        \item If $\tau(v) = \text{OUTPUT}$, then $v$ has one incoming edge. We call these vertices the \define{output gates}.
+        \item If $\tau(v) = \text{AND}$, then $v$ has two incoming edges. We call these vertices the \define{AND-gates}.
+        \item If $\tau(v) = \text{OR}$, then $v$ has two incoming edges. We call these vertices the \define{OR-gates}.
+        \item If $\tau(v) = \text{NOT}$, then $v$ has one incoming edge. We call these vertices the \define{NOT-gates}.
+    \end{itemize}
+    The inputs of $C$ are given by a tuple $(x_1, \dots, x_k)$, of distinct input gates. The output of $C$ is given by a tuple $(y_1, \dots, y_l)$ of distinct output gates.
+\end{definition}
+
+We give an example of such a boolean circuit in TODO. Of course we now want to use a boolean circuit to represent a function. In order to do this we need give a formal definition of the function computed by a boolean circuit.
+
+\begin{definition}[Computed function of a boolean circuit]
+    A boolean circuit $C$ with inputs $x_1, \dots, x_n$ and outputs $y_1, \dots, y_m$ computes a function $f : \bitstr^n \rightarrow \bitstr^m$ as follows:
+    \begin{itemize}
+        \item The input $x_i$ is assigned the value of the $i$-th bit of the argument to the function.
+        \item Every other vertex $v$ is assigned the value of the gate $g$ of the vertex, applied to the values of the incoming edges of $v$.
+        \item The $i$-th bit of the output of the function is the value of the output gate $y_i$.
+    \end{itemize}
+\end{definition}
+
+In figure TODO we give an example of using a boolean circuit to compute a function. From now on all functions used in problems will be formally represented by boolean circuits.
+
+TODO: Section on depth and complexity of functions
 
 \section{Subclasses of \TFNP}
 
@@ -109,9 +163,9 @@ The existence result giving rise to this class is that ``\textit{If a directed g
 \PPAD\ can be defined using the problem \textsc{End-of-Line} as introduced in \sidecite{daskalakis_complexity_2009}.
 
 \problem{End-of-Line}{
-Boolean circuit $S, P : \bitstrn \rightarrow \bitstrn$ such that $P(0^n) = 0^n \neq S(0^n)$ ($0^n$ is a source.)
+Boolean circuit $S, P : \bitstr^n \rightarrow \bitstr^n$ such that $P(0^n) = 0^n \neq S(0^n)$ ($0^n$ is a source.)
 }{
-An $x \in \bitstrn$ such that either:
+An $x \in \bitstr^n$ such that either:
 \begin{itemize}
     \item $P(S(x)) \neq x$ ($x$ is a sink) or
     \item $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
@@ -147,10 +201,10 @@ The existence results which gives rise to \EOPL\ is that \textit{``in a directed
 Similarly to \PLS\ acyclicity will be enforced using a potential.
 
 \problem{End of Potential Line}{
-Two boolean circuits $S, P : \bitstrn \rightarrow \bitstrn$, and a boolean circuit $V : \bitstrn \rightarrow [2^n - 1]$, such that $0^n$ is a source, (i.e.\
+Two boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$, and a boolean circuit $V : \bitstr^n \rightarrow [2^n - 1]$, such that $0^n$ is a source, (i.e.\
 $P(0^n) = 0^n \neq S(0^n)$).
 }{
-An $x \in \bitstrn$ such that either:
+An $x \in \bitstr^n$ such that either:
 \begin{itemize}
     \item $P(S(x)) \neq x$ ($x$ is a sink)
     \item $S(P(x)) \neq x \neq 0^n$ ($x$ is a \define{non-standard source})
