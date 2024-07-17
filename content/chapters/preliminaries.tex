@@ -1,51 +1,59 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Preliminaries}
 
-The aim of this chapter is to introduce the framework, we will use in this Thesis in order to study the the \Tarski\ problem. This includes formally introducing the notion of total search problems, and the complexity class \TFNP, as well as the subclasses \PLS, \PPAD, and \EOPL. We will also discuss how we represent functions and sets in this framework, and will finally introduce the \Tarski\ problem formally.
+This chapter aims to establish the framework used throughout this thesis to study the \Tarski\ problem. It formally introduces the concept of total search problems and the complexity class \TFNP, along with its subclasses \PLS, \PPAD, and \EOPL. In addition, this chapter will describe how functions and sets are represented in this framework, and how their complexity is measured. Finally, a formal introduction to the Tarski problem is given.
 
 \section{Total search problems}
 
-The study of complexity classes originally works with so-called \define{decision-problems}, which are the question of deciding on the membership in a set --- also called a \define{language}. \marginnote{Notable such problems include deciding on whether a boolean formula can be satified or if a $k$-Clique exist in a given graph.} Now while these problems are interesting, real world questions or problem often ask for an explicit anwser. For instance while deciding if a function has a global minimum is a decision problem, we are interrested in actually finding this minimum, which is not a decision problem\marginnote{Even though as we will see it can be transformed into one}.
+The study of complexity classes has traditionally focused on \define{decision problems}, which involve determining whether an object belongs to a set, also called a \define{language}. Notable examples include determining whether a Boolean formula is satisfiable, or whether a $k$-clique exists in a given graph. However, real-world questions often require explicit answers, and not simply existence results. For example, while deciding whether a function has a global minimum is a decision problem, the practical interest lies in actually identifying that minimum, which goes beyond mere existence.
 
-This is where so called \define{search problems} come into play:
+This is where so called \define{search problems} come into play.
+
+\subsection{Search problems}
 
 \begin{definition}[Search Problem]
+    \marginnote[0mm]{The ``No'' case can be encoded as some special binary string.}
     A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem, to find a \define{solution} $s \in \binstr$, that satisfies: $(I, s) \in R$ or output ``No'' if no such $s$ exists.
 \end{definition}
-\marginnote{The ``No'' case can be encoded as some special binary string.}
-Now of course we can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
+
+We can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
+\marginnote{Here we have simply rephrased the valid language to be the pair of a problem instance and a valid solutions.}
 \begin{align*}
     \mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
 \end{align*}
-We can then ask the classical complexity questions about these search problems, i.e.~whether these search problems are in \P{}? \NP{}? whether they are
-\NP-Hard?
-One easily observes that search problems are always at least as hard as just deciding whether a solution exist.
-This is because solving a search problem also solves the underlying decision problem.
-This leads to the natural question: what if we remove the underlying decision problem?
-This can be done by garanteeing that ``No'' is never a solution.
-We call these problems where every instance admits a solution \define{total search problems}.
+
+This leads us to ask classical complexity questions about search problems: Are these problems in \P? in \NP? Are they \NP-hard? It is readily apparent that search problems are inherently at least as complex as their decision counterparts, since solving a search problem inherently solves the associated decision question. This observation leads to an intriguing question: what if the decision component is removed from the equation? This scenario can be achieved by ensuring that ``no'' is never a valid solution. Such problems, where every instance is garanteed to admit a solution, are called total search problems.
+
 \begin{definition}[Total search problems]
-    A \define{total search problem} is a search problem given by a relation $R\subset \binstr \times \binstr$, such that for every given instance $I\in
+    A \define{total search problem} is a search problem given by a relations $R\subset \binstr \times \binstr$, such that for every given instance $I\in
         \binstr$ there is a solution $s \in \binstr$, that satisfies: $(I, s) \in R$.
 \end{definition}
-The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_1994} is simply the class of all total search problems that lie in \NP{}.
-\marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP, containing all search problems where a solution is guaranteed to
-    exist, and where one can efficiently check the feasibility of a candidate solution.}
-Examples of \TFNP\ problems are:
+
+The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_1994} is simply the class of all total search problems that lie in \NP.\marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP, containing all search problems where a solution is guaranteed to exist, and where one can efficiently check the feasibility of a candidate solution.} Examples of \TFNP\ problems are:
 \begin{itemize}
-    \item \textsc{Factoring}, the problem of finding the prime factors of a number,
-    \item \textsc{Nash}, the problem of finding a nash equilibrium in a bimatrix game,
+    \item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorisation into prime numbers, and this factorisation can be checked in polynomial time.
+    \item \textsc{Nash}, the problem of finding a nash equilibrium in a bimatrix game;
     \item \textsc{Minimize}, the problem of finding the global minimum of a convex function.
 \end{itemize}
-Similarly to decision problem we can also define reduction inside \TFNP{}.
-\begin{definition}[Reduction]
-    For two problem $R, S \in \TFNP$, we say that $R$ \define{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr
-        \rightarrow
-        \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$: if $(f(I), s) \in S$ then $(I, g(I, s)) \in R$.
-    This means that if $s$ is a solution to an instance $f(I)$ in $S$, we can compute $g(I, s)$ a solution to an instance $I$ in $R$
+
+\subsection{Reductions}
+
+Similarly to decision problem we can also define reduction inside \TFNP.
+
+\begin{definition}[Many-to-one Reduction]
+    \marginnote[0mm]{Saying \emph{one can reduce $R$ onto $S$} can be understood as saying \emph{if one can solve $S$ efficiently then I can solve $R$ efficiently}.}
+    For two problem $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$: if $(f(I), s) \in S$ then $(I, g(I, s)) \in R$. This means that if $s$ is a solution to an instance $f(I)$ in $S$, we can compute $g(I, s)$ a solution to an instance $I$ in $R$
 \end{definition}
-\marginnote[-15mm]{Saying \textit{one can reduce $R$ onto $S$} can be understood as saying \textit{if one can solve $S$ efficiently then I can solve $R$
-        efficiently}.}
+
+We also introduce the notion of Turing reduction in \TFNP, analogously to the classical Turing reduction.
+
+\begin{definition}[Turing Reduction]
+    For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if polynomial-time oracle Turing machine that solves $R$ given access to an oracle for $S$ exists.
+\end{definition}
+
+\subsection{Promise Problems}
+
+TODO: Talk about promise problems.
 
 \section{Representation of functions and sets}[Representation of objects]
 
@@ -286,5 +294,4 @@ In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ also lies 
 
 \section{Structure of \texorpdfstring{$\PLS \medcap \PPAD$}{\PLS\ and \PPAD}}[\texorpdfstring{$\PLS \medcap \PPAD$}{\PLS\ and \PPAD}]
 
-Now that we have established that \Tarski\ lies inside $\PLS \medcap \PPAD$, we want to discuss the structure of $\PLS \medcap \PPAD$ and describe recent
-advances in the study of this class.
+Now that we have established that \Tarski\ lies inside $\PLS \medcap \PPAD$, we want to discuss the structure of $\PLS \medcap \PPAD$ and describe recent advances in the study of this class.
