@@ -146,50 +146,40 @@ The depth of a boolean circuit is a measure of the time complexity of the comput
 
 \section{Subclasses of \TFNP}
 
-Because the existence of complete \FNP-Problems in \TFNP\, would imply $\NP = \coNP$, as described in \sidecite{megiddo_total_1991}.
-Because this is a very unexpected outcome we cannot expect to find complete problems in \TFNP{}.
-This means that we should use other tools to study the structure of \TFNP{}. \par
-One of the challenges is that \TFNP\ is a so-called \define{semantic} class.
-By semantic class we mean a class for which it is difficult to check if that Turing Machine defines a language in this class.
-\marginnote{Examples of syntactic classes include \P\ and \NP.}
-A \define{syntactic} class is a class for which it is easy to check that the accepted language of a Turing Machine indeed belongs to the class.
-These terms are defined in more detail in \sidecite{papadimitriou_computational_1994}.
-Hence we want to study syntactic subclasses of \TFNP.
-One of the proposed methods \sidecite{papadimitriou_complexity_1994} is to categorize total search problems with respect to the existence results which allow
-them to be \textit{total}. This is what leads to the complexity classes we will discuss next.
+The existence of complete \FNP\ problems within \TFNP\ would imply that $\NP = \coNP$ \sidecite{megiddo_total_1991}, a scenario considered highly unlikely. Consequently, complete problems are not expected within \TFNP, necessitating alternative approaches to investigate its structure.
+
+\TFNP\ is characterized as a \define{semantic} class, which means that it is difficult to verify whether a Turing machine defines a language within this class. In contrast, \define{syntactic} classes such as \P\ and \NP\ are characterized by the ease with which one can confirm that a Turing machine's accepted language belongs to the class. We refer the reader to Papadimitriou's work \sidecite{papadimitriou_computational_1994} for a more detailed discussion of these terms.
+
+To address these challenges, we want to explore syntactic subclasses of \TFNP. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, is to categorize search problems based on existence proofs that confirm their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
 
 \subsection{Polynomial Local Search (\PLS)}[\PLS]
 
-The existence results which gives rise to \PLS\ is ``\textit{every directed acyclic graph has a sink}''.
-We can then construct the class \PLS\ by defining it as all problems which reduce to finding the sink of a directed acyclic graph (DAG). \par
-Formally we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
+The existence results which gives rise to \PLS\ is:
+\principle{Every directed acyclic graph has a sink.}
+We can then construct the class \PLS\ by defining it as all problems which reduce to finding the sink of a directed acyclic graph (DAG). Formally we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
 
-\problem{Localopt}{Two binary circuits $P, S : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
-\marginnote[-15mm]{$S$ can be seen as a proposed successor, and $P$ as a potential. The goal is to find a local minima $v$ of the potential.}
+\problem{Localopt}{
+\marginnote[0mm]{$S$ can be seen as a proposed successor, and $V$ as a potential. The goal is to find a local minima $v$ of the potential.}
+Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
 
-One might ask why this is equivalent to finding the sink of a DAG\@?
-The circuit $S$ defines a directed graph, which might contain cycles.
-Only keeping the edge on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. Now we can
-define \PLS{}:
+\begin{figure}
+    \centering
+    \incfig{LOCALOPT_Solution_Example}
+    \caption[Example of a \Localopt\ Problem]{Example of a \Localopt\ Problem with $n=3$ (8 vertices). The circuit $S$ is represented by solid lines. The valid solutions are colored green.}
+    \label{fig:localopt_example}
+\end{figure}
+
+One might ask why this is equivalent to finding the sink of a DAG\@? The circuit $S$ defines a directed graph, which might contain cycles. Only keeping the edges on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. We give an example of a \Localopt\ instance in \cref{fig:localopt_example}. Now we can define \PLS:
 
 \begin{definition}[Polynomial Local Search (\PLS)]
     The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
 \end{definition}
 
-One of the reasons we think that studying very ``easy'' problems such as \PLS\ is that we strongly believe that there is no clever way of solving these
-problems
-without actually walking through the graph.
-\marginnote[-15mm]{By ``easy'' we mean that the problem can be solved by simply walking through the graph, and checking whether every vertex is a local
-    minima.}
-Hence if we have a graph of exponentially large size it seems very unlikely that one can find an efficient way of solving the problem.
-Hence all problems in \PLS\ can be though of as including the fundamental difficulty of no beeing able to do better than to walk along some graph.
+Studying ``easy'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficient than simply traversing the graph.\marginnote[-15mm]{By ``easy'' we mean that the problem can be solved by simply walking through the graph, and checking whether every vertex is a local minima.}. Hence given a graph of exponentially large size, it appears highly improbable to find an efficient solution. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the a directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement, it could be that some very clever analysis of the boolean circuits, could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
 
 \subsection{Polynomial Parity Argument on Directed Graphs (\PPAD)}[\PPAD]
 
-Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou as one of the first syntatic subclasses of \TFNP\
-in~\sidecite{papadimitriou_complexity_1994}.
-The existence result giving rise to this class is that ``\textit{If a directed graph has an unbalanced vertex, then it has at least one other unbalanced
-    vertex}''.
+Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou as one of the first syntatic subclasses of \TFNP\ in~\sidecite{papadimitriou_complexity_1994}. The existence result giving rise to this class is: \principle{If a directed graph has an unbalanced vertex, then it has at least one other unbalanced vertex.}
 \PPAD\ can be defined using the problem \textsc{End-of-Line} as introduced in \sidecite{daskalakis_complexity_2009}.
 
 \problem{End-of-Line}{
@@ -226,8 +216,8 @@ Now we can define the complexity class \PPAD\ as follows:
 
 \subsection{End of Potential Line (\EOPL)}[\EOPL]
 
-Next we want to discuss the complexity class \EOPL{} as introduced in \sidecite{EOPL_introduction}.
-The existence results which gives rise to \EOPL\ is that \textit{``in a directed acyclic graph, there must be at least two unbalanced vertices''}.
+Next we want to discuss the complexity class \EOPL{} as introduced in \sidecite{EOPL_introduction}. The existence results giving rise to \EOPL\ is:
+\principle{In a directed acyclic graph, there must be at least two unbalanced vertices.}
 Similarly to \PLS\ acyclicity will be enforced using a potential.
 
 \problem{End of Potential Line}{
