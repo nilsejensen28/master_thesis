@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="142.63934mm"
-   height="47.773849mm"
-   viewBox="0 0 142.63935 47.773848"
+   width="96.14003mm"
+   height="86.076477mm"
+   viewBox="0 0 96.140034 86.076474"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
@@ -34,15 +34,15 @@
      fit-margin-left="1"
      fit-margin-right="1"
      fit-margin-bottom="1"
-     inkscape:zoom="0.98520764"
-     inkscape:cx="63.945911"
-     inkscape:cy="-29.942927"
+     inkscape:zoom="1.9704153"
+     inkscape:cx="140.072"
+     inkscape:cy="184.47888"
      inkscape:window-width="1850"
      inkscape:window-height="1016"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      inkscape:object-paths="true"
      inkscape:snap-smooth-nodes="true"
      inkscape:snap-midpoints="true" />
@@ -1131,11 +1131,25 @@
          style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
          id="path49799-767" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="marker50039-65"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path49799-639" />
+    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
      id="layer1"
-     transform="translate(-19.129765,-9.4160439)">
+     transform="translate(-65.62908,28.886586)">
     <g
        id="layer3"
        inkscape:label="Circuit"
@@ -1389,16 +1403,27 @@
     <g
        id="layer2"
        inkscape:label="Function"
-       transform="translate(-8.89539,3.1061941)">
+       transform="translate(70.468127,-41.341907)">
+      <text
+         xml:space="preserve"
+         style="font-size:4.93889px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="24.962463"
+         y="31.717197"
+         id="text90253"><tspan
+           sodipodi:role="line"
+           id="tspan90251"
+           style="font-size:4.93889px;stroke-width:0.264583"
+           x="24.962463"
+           y="31.717197">$f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$</tspan></text>
       <path
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.252843px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker50039);stop-color:#000000;stop-opacity:1"
-         d="m 60.081332,20.097121 c 1.284038,-0.125606 6.242376,-0.400148 6.682995,-2.909433 0.200574,-1.142245 -1.168371,-2.962305 -2.272568,-3.31685 -1.099188,-0.352937 -2.366611,0.204874 -3.379052,0.759619 -0.943402,0.516916 -2.104807,1.522452 -2.104807,1.522452"
+         d="m 73.015027,20.163735 c 1.284038,-0.125606 6.242376,-0.400148 6.682995,-2.909433 0.200574,-1.142245 -1.168371,-2.962305 -2.272568,-3.31685 -1.099188,-0.352937 -2.366611,0.204874 -3.379052,0.759619 -0.943402,0.516916 -2.104807,1.522452 -2.104807,1.522452"
          id="path45763"
          sodipodi:nodetypes="csssc" />
       <g
          id="g34673-36"
          inkscape:label="Circle_Node"
-         transform="translate(6.2160725,2.8358075)">
+         transform="translate(19.149767,2.902422)">
         <path
            id="path1512-3-1-0"
            style="fill:#ff0000;fill-opacity:0;stroke:#000000;stroke-width:0.365001;stroke-miterlimit:3"
@@ -1419,7 +1444,7 @@
       <g
          id="g34673-2"
          inkscape:label="Circle_Node"
-         transform="translate(28.054309,-19.305079)">
+         transform="translate(40.988004,-19.238465)">
         <path
            id="path1512-3-1-7"
            style="fill:#ff0000;fill-opacity:0;stroke:#000000;stroke-width:0.365001;stroke-miterlimit:3"
@@ -1440,7 +1465,7 @@
       <g
          id="g34673-35"
          inkscape:label="Circle_Node"
-         transform="translate(28.054309,2.8358075)">
+         transform="translate(40.988004,2.902422)">
         <path
            id="path1512-3-1-62"
            style="fill:#ff0000;fill-opacity:0;stroke:#000000;stroke-width:0.365001;stroke-miterlimit:3"
@@ -1461,7 +1486,7 @@
       <g
          id="g34673-3"
          inkscape:label="Circle_Node"
-         transform="translate(6.2160725,-19.305079)">
+         transform="translate(19.149767,-19.238465)">
         <path
            id="path1512-3-1-6"
            style="fill:#ff0000;fill-opacity:0;stroke:#000000;stroke-width:0.365001;stroke-miterlimit:3"
@@ -1481,16 +1506,20 @@
       </g>
       <path
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.244753px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker50039);stop-color:#000000;stop-opacity:1"
-         d="M 38.243095,20.097121 H 50.239697"
+         d="M 51.17679,20.163735 H 63.173392"
          id="path34959" />
       <path
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.244854px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker50039);stop-color:#000000;stop-opacity:1"
-         d="M 55.563613,37.720287 V 25.429888"
+         d="M 68.497308,37.786901 V 25.496502"
          id="path34961" />
       <path
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.245163px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker50039);stop-color:#000000;stop-opacity:1"
-         d="M 38.243095,42.238008 H 50.279924"
+         d="M 51.17679,42.304622 H 63.213619"
          id="path34963" />
+      <path
+         style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:1;stroke:#383838;stroke-width:0.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+         d="M -3.1537538,49.795606 H 88.841857"
+         id="path120708" />
     </g>
   </g>
 </svg>

@@ -72,15 +72,15 @@
     \put(0,0){\includegraphics[width=\unitlength,page=9]{Computing_Function_Example.pdf}}%
     \put(0.93239372,0.06665264){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{Computing_Function_Example.pdf}}%
-    \put(0.1754505,0.69566459){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$\end{tabular}}}}%
+    \put(0.30998026,0.69497171){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{Computing_Function_Example.pdf}}%
-    \put(0.40112762,0.57317228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$00$\end{tabular}}}}%
+    \put(0.53565738,0.57247939){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$00$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{Computing_Function_Example.pdf}}%
-    \put(0.62827792,0.80347059){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$11$\end{tabular}}}}%
+    \put(0.76280768,0.80277771){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$11$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{Computing_Function_Example.pdf}}%
-    \put(0.62827792,0.57317228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$10$\end{tabular}}}}%
+    \put(0.76280768,0.57247939){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$10$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{Computing_Function_Example.pdf}}%
-    \put(0.40112762,0.80347059){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$01$\end{tabular}}}}%
+    \put(0.53565738,0.80277771){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$01$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{Computing_Function_Example.pdf}}%
   \end{picture}%
 \endgroup%

@@ -5,17 +5,12 @@ The aim of this chapter is to introduce the framework, we will use in this Thesi
 
 \section{Total search problems}
 
-The study of complexity classes originally works with so-called \define{decision-problems}, which are the question of deciding on the membership in a set --- also called a \define{language}.
-\marginnote{Notable such problems include deciding on whether a boolean formula can be satified or if a $k$-Clique exist in a given graph.}
-Now while these problems are interesting, real world questions or problem often ask for an explicit anwser.
-For instance while deciding if a function has a global minimum is a decision problem, we are interrested in actually finding this minimum, which is not a decision problem\marginnote{Even though as we will see it can be transformed into one}.
+The study of complexity classes originally works with so-called \define{decision-problems}, which are the question of deciding on the membership in a set --- also called a \define{language}. \marginnote{Notable such problems include deciding on whether a boolean formula can be satified or if a $k$-Clique exist in a given graph.} Now while these problems are interesting, real world questions or problem often ask for an explicit anwser. For instance while deciding if a function has a global minimum is a decision problem, we are interrested in actually finding this minimum, which is not a decision problem\marginnote{Even though as we will see it can be transformed into one}.
 
 This is where so called \define{search problems} come into play:
 
 \begin{definition}[Search Problem]
-    A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$.
-    For a given \define{instance} $I\in \binstr$ the computational problem, to find a \define{solution} $s \in \binstr$, that satisfies:
-    $(I, s) \in R$ or output ``No'' if no such $s$ exists.
+    A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem, to find a \define{solution} $s \in \binstr$, that satisfies: $(I, s) \in R$ or output ``No'' if no such $s$ exists.
 \end{definition}
 \marginnote{The ``No'' case can be encoded as some special binary string.}
 Now of course we can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
@@ -125,7 +120,21 @@ We give an example of such a boolean circuit in \cref{fig:boolean_circuit_exampl
 
 In \cref{fig:computing_function_example} we give an example of using a boolean circuit to compute a function, in particular for a function which is a \Tarski\ instance. From now on all functions used in problems will be formally represented by boolean circuits.
 
-TODO: Section on depth and complexity of functions
+\subsection{Complexity of boolean circuits}[Complexity of circuits]
+
+Of course formally the complexity of a problem is defined in terms of the \emph{size} of the input. This means that we also need to define what we mean by the size of a boolean circuit. We will use the following definition:
+
+\begin{definition}[Size of a boolean circuit]
+    The size of a boolean circuit $C$ is the number of gates in the circuit.
+\end{definition}
+
+Size is a measure of the complexity of the input, i.e.\ it gives us an indication of how many bits we need to represent the input\marginnote{It can be shown that $\poly(size(n))$ bits suffice to encore to encode any boolean circuit.}, it also tells us how many computations are made when computing the function output. We also define the depth of a boolean circuit, as follows:
+
+\begin{definition}[Depth of a boolean circuit]
+    The depth of a boolean circuit $C$ is the length of the longest path from an input gate to an output gate.
+\end{definition}
+
+The depth of a boolean circuit is a measure of the time complexity of the computation, i.e.\ it tells us how many time steps are needed to compute the output of the function. This is espacially true in a parallel setting, where all gates can be seen as setting off at the same time (exactly as in a CPU).
 
 \section{Subclasses of \TFNP}
 
