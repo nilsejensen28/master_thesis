@@ -243,9 +243,7 @@ An $x \in \bitstr^n$ such that either:
     \label{fig:eopl_example}
 \end{figure}
 
-$S$ and $P$ can be though of as representing a directed line.
-Finding another source (a non-standard source), is a violation, as a directed line only has one source.
-The potential serves a garantee of acyclicity. Now we can define the complexity class \EOPL.
+$S$ and $P$ can be though of as representing a directed line. Finding another source (a non-standard source), is a violation, as a directed line only has one source. The potential serves a garantee of acyclicity. Now we can define the complexity class \EOPL.
 
 \begin{definition}[\EOPL]
     The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
@@ -254,21 +252,16 @@ The potential serves a garantee of acyclicity. Now we can define the complexity 
 \section{The \Tarski\ Problem}[\Tarski\ Problem]
 \label{sec:tarski_problem}
 
-Next we want to introduce the \Tarski\ Problem.
-Before we do this we recall that there is a partial order on the $d$ dimensional latice ${[N]}^d$, given by $x \leq y$ iff $x_i \leq y_i$ for all $i \in \{1,
-    \dots, d\}$.
-The name originates from \textsc{Tarski's} fixed point Theorem as introduced in \sidecite{tarski_lattice-theoretical_1955} which we remind the reader of below:
+\subsection{Definition of the \Tarski\ Problem}[\Tarski\ Definition]
+
+Next we want to introduce the \Tarski\ Problem. Before we do this we recall that there is a partial order on the $d$ dimensional latice ${[N]}^d$, given by $x \leq y$ iff $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$. The name originates from Tarski's fixed point Theorem as introduced in \sidecite{tarski_lattice-theoretical_1955} which we remind the reader of below:
 
 \begin{theorem}[Tarski's fixed point Theorem]
-    Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice.
-    If $f$ is monotonous (with respect to the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that
-    $f(x)=x$.
+    \marginnote[0mm]{This theorem is also known as the Knaster–Tarski Theorem in the litterature.}
+    Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotonous (with respect to the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
 \end{theorem}
-\marginnote[-20mm]{This theorem is also known as the Knaster–Tarski Theorem in the litterature.}
 
-A proof of this theorem can be found in the previously mentionned work~\cite{tarski_lattice-theoretical_1955}.
-Without surprise the \Tarski\ problem as defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed-point.
-Formally we define the problem as follows:
+A proof of this theorem can be found in the previously mentionned work~\cite{tarski_lattice-theoretical_1955}. Without surprise the \Tarski\ problem as defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed-point. Formally we define the problem as follows:
 \problem{Tarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$.}{Either:
 \begin{itemize}
     \item An $x \in {[N]}^d$ such that $f(x)=x$ (fixed point) or
@@ -276,11 +269,38 @@ Formally we define the problem as follows:
 \end{itemize}
 }
 
-This is of course a total search problem, as there will always either be a fixed point, or a point violating monoticity.
-We now want to summarize where \Tarski\ lies inside of \TFNP{}.
-It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in both \PLS\ and $\P^{\PPAD}$.
-Previous work~\sidecite{buss_propositional_2012}, showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent.
-In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ also lies in \PPAD{}.
+\begin{figure}
+    \centering
+    \incfig{Tarski_Solution_Example}
+    \caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance.}
+    \label{fig:tarski_example}
+\end{figure}
+
+This is of course a total search problem, as there will always either be a fixed point, or a point violating monoticity. We give an example of a 2 dimensional \Tarski\ instance in \cref{fig:tarski_example}. Before we discuss the location of \Tarski\ in the \TFNP\ lanscape and two known algorithms for solving \Tarski, we want to discuss a useful Lemma, which allows us to simplify the study of Tarski instances. The definition of \Tarski\ instaSnces allows for the image of a point to be located anywhere in the lattice, we will show that we can reduce to the cases where the image of a point is in the immediate neighborhood of the point.
+
+\begin{lemma}[Simplyfying \Tarski]
+    Let $f : L \rightarrow L$ be a \Tarski\ instance on a complete lattice $L$. Consider $\ftilde : L \rightarrow L$ given by: \marginnote[0mm]{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{d}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
+    \begin{align*}
+        \ftilde(x)[i] = \begin{cases}
+                            x[i] + 1 & \text{ if } f(x)[i] > x[i], \\
+                            x[i]     & \text{ if } f(x)[i] = x[i], \\
+                            x[i] - 1 & \text{ if } f(x)[i] < x[i].
+                        \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
+    \end{align*}
+    Then for any two points $x, y \in L$, $f(x) \leq f(y)$ if and only if $\ftilde(x) \leq \ftilde(y)$.
+\end{lemma}
+\begin{proof}
+    The lemma follows directly by observing that for all $i \in \set{1, \dots, d}$ we have: $f(x)[i] \leq f(y)[i]$ if and only if $\ftilde(x)[i] \leq \ftilde(y)[i]$.
+\end{proof}
+This means that in the whole thesis we can consider the simplified version of the \Tarski\ problem, where for every $x \in L$ we have $\norminf{x - f(x)} \leq 1$, which we will implicitely assume from now on.
+
+\subsection{Two algorithms for solving \Tarski}[\Tarski\ Algorithms]
+
+TODO: Write this section.
+
+\subsection{Location of \Tarski\ in \TFNP}[\Tarski\ in \TFNP]
+
+We now want to summarize where \Tarski\ lies inside of \TFNP{}. It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in both \PLS\ and $\P^{\PPAD}$. Previous work~\sidecite{buss_propositional_2012}, showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent. In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ also lies in \PPAD{}.
 
 \section{Structure of \texorpdfstring{$\PLS \medcap \PPAD$}{\PLS\ and \PPAD}}[\texorpdfstring{$\PLS \medcap \PPAD$}{\PLS\ and \PPAD}]
 

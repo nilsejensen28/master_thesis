@@ -1,0 +1,186 @@
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Tarski_Solution_Example.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{328.91816387bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.0031492)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.94377739){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 7$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.81450607){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.68523475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.55596343){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=33]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=34]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=35]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=36]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=37]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=38]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=39]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=40]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.42669211){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=41]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=42]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=43]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=44]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=45]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=46]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=47]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=48]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.29742079){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=49]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=50]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=51]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=52]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=53]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=54]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=55]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=56]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.16814948){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=57]{Tarski_Solution_Example.pdf}}%
+    \put(0.17682169,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=58]{Tarski_Solution_Example.pdf}}%
+    \put(0.43536433,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=59]{Tarski_Solution_Example.pdf}}%
+    \put(0.30609301,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=60]{Tarski_Solution_Example.pdf}}%
+    \put(0.04755037,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=61]{Tarski_Solution_Example.pdf}}%
+    \put(0.56463565,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=62]{Tarski_Solution_Example.pdf}}%
+    \put(0.69390697,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=63]{Tarski_Solution_Example.pdf}}%
+    \put(0.82317829,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=64]{Tarski_Solution_Example.pdf}}%
+    \put(0.95244964,0.03887816){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7, 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=65]{Tarski_Solution_Example.pdf}}%
+  \end{picture}%
+\endgroup%
