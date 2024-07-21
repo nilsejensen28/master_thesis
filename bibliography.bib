@@ -34,18 +34,12 @@
 	url = {https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2020.18},
 	doi = {10.4230/LIPICS.ITCS.2020.18},
 	abstract = {The use of monotonicity and Tarski’s theorem in existence proofs of equilibria is very widespread in economics, while Tarski’s theorem is also often used for similar purposes in the context of veriﬁcation. However, there has been relatively little in the way of analysis of the complexity of ﬁnding the ﬁxed points and equilibria guaranteed by this result. We study a computational formalism based on monotone functions on the d-dimensional grid with sides of length N , and their ﬁxed points, as well as the closely connected subject of supermodular games and their equilibria. It is known that ﬁnding some (any) ﬁxed point of a monotone function can be done in time logd N , and we show it requires at least log2 N function evaluations already on the 2-dimensional grid, even for randomized algorithms. We show that the general Tarski problem of ﬁnding some ﬁxed point, when the monotone function is given succinctly (by a boolean circuit), is in the class {PLS} of problems solvable by local search and, rather surprisingly, also in the class {PPAD}. Finding the greatest or least ﬁxed point guaranteed by Tarski’s theorem, however, requires d · N steps, and is {NP}-hard in the white box model. For supermodular games, we show that ﬁnding an equilibrium in such games is essentially computationally equivalent to the Tarski problem, and ﬁnding the maximum or minimum equilibrium is similarly harder. Interestingly, two-player supermodular games where the strategy space of one player is one-dimensional can be solved in O(log N ) steps. We also show that computing (approximating) the value of Condon’s (Shapley’s) stochastic games reduces to the Tarski problem. An important open problem highlighted by this work is proving a Ω(logd N ) lower bound for small ﬁxed dimension d ≥ 3.},
-	pages = {19 pages, 651206 bytes},
 	author = {Etessami, Kousha and Papadimitriou, Christos and Rubinstein, Aviad and Yannakakis, Mihalis},
 	editora = {Vidick, Thomas},
 	editoratype = {collaborator},
 	urldate = {2024-02-24},
 	date = {2020},
 	langid = {english},
-	note = {Artwork Size: 19 pages, 651206 bytes
-{ISBN}: 9783959771344
-Medium: application/pdf
-Publisher: Schloss Dagstuhl – Leibniz-Zentrum für Informatik
-Version Number: 1.0},
 	keywords = {computational complexity, fixed points, lattices, lower bounds, monotone functions, Nash equilibria, oracle model, {PLS}, {PPAD}, stochastic games, supermodular games, Tarski’s theorem, Theory of computation → Computational complexity and cryptography},
 	file = {Etessami et al. - 2020 - Tarski’s Theorem, Supermodular Games, and the Comp.pdf:/home/nils/Zotero/storage/DKKSJSLV/Etessami et al. - 2020 - Tarski’s Theorem, Supermodular Games, and the Comp.pdf:application/pdf},
 }
@@ -394,7 +388,7 @@ Version Number: 1.0},
 @book{munkres_elements_2018,
 	location = {Boca Raton London New York},
 	title = {Elements of algebraic topology},
-	isbn = {978-0-201-62728-2 978-0-201-04586-4},
+	isbn = {978-0-201-62728-2},
 	series = {The advanced book program},
 	pagetotal = {454},
 	publisher = {{CRC} Press},
@@ -418,7 +412,7 @@ Version Number: 1.0},
 
 @incollection{greenlaw_chapter_1998,
 	location = {Oxford},
-	title = {{CHAPTER} 9 - Circuit Complexity},
+	title = {Chapter 9 - Circuit Complexity},
 	isbn = {978-1-55860-547-3},
 	url = {https://www.sciencedirect.com/science/article/pii/B9781558605473500133},
 	pages = {241--257},
@@ -429,4 +423,71 @@ Version Number: 1.0},
 	date = {1998-01-01},
 	doi = {10.1016/B978-1-55860-547-3.50013-3},
 	file = {Greenlaw and Hoover - 1998 - CHAPTER 9 - Circuit Complexity:/home/nils/Zotero/storage/4KR8L3TA/Greenlaw and Hoover - 1998 - CHAPTER 9 - Circuit Complexity:application/pdf},
+}
+
+@misc{dang_computations_2020,
+	title = {Computations and Complexities of Tarski's Fixed Points and Supermodular Games},
+	url = {http://arxiv.org/abs/2005.09836},
+	abstract = {We consider two models of computation for Tarski's order preserving function f related to fixed points in a complete lattice: the oracle function model and the polynomial function model. In both models, we find the first polynomial time algorithm for finding a Tarski's fixed point. In addition, we provide a matching oracle bound for determining the uniqueness in the oracle function model and prove it is Co-{NP} hard in the polynomial function model. The existence of the pure Nash equilibrium in supermodular games is proved by Tarski's fixed point theorem. Exploring the difference between supermodular games and Tarski's fixed point, we also develop the computational results for finding one pure Nash equilibrium and determining the uniqueness of the equilibrium in supermodular games.},
+	number = {{arXiv}:2005.09836},
+	publisher = {{arXiv}},
+	author = {Dang, Chuangyin and Qi, Qi and Ye, Yinyu},
+	urldate = {2024-07-21},
+	date = {2020-05-19},
+	eprinttype = {arxiv},
+	eprint = {2005.09836 [cs, econ]},
+	keywords = {Computer Science - Computational Complexity, Computer Science - Computer Science and Game Theory, Economics - Theoretical Economics},
+	file = {arXiv Fulltext PDF:/home/nils/Zotero/storage/AJ52MBKQ/Dang et al. - 2020 - Computations and Complexities of Tarski's Fixed Po.pdf:application/pdf;arXiv.org Snapshot:/home/nils/Zotero/storage/777RUR6W/2005.html:text/html},
+}
+
+@article{fearnley_faster_2022,
+	title = {A Faster Algorithm for Finding Tarski Fixed Points},
+	volume = {18},
+	issn = {1549-6325, 1549-6333},
+	url = {https://dl.acm.org/doi/10.1145/3524044},
+	doi = {10.1145/3524044},
+	abstract = {Dang et al. have given an algorithm that can find a Tarski fixed point in a
+              k
+              -dimensional lattice of width
+              n
+              using
+              O
+              (log
+              
+                k
+              
+              n
+              ) queries [
+              2
+              ]. Multiple authors have conjectured that this algorithm is optimal [
+              2
+              ,
+              7
+              ], and indeed this has been proven for two-dimensional instances [
+              7
+              ]. We show that these conjectures are false in dimension three or higher by giving an
+              O
+              (log
+              2
+              n
+              ) query algorithm for the three-dimensional Tarski problem. We also give a new decomposition theorem for
+              k
+              -dimensional Tarski problems which, in combination with our new algorithm for three dimensions, gives an
+              O
+              (log
+              2
+              ⌈k/3⌉
+              n
+              ) query algorithm for the
+              k
+              -dimensional problem.},
+	pages = {1--23},
+	number = {3},
+	journaltitle = {{ACM} Transactions on Algorithms},
+	shortjournal = {{ACM} Trans. Algorithms},
+	author = {Fearnley, John and Pálvölgyi, Dömötör and Savani, Rahul},
+	urldate = {2024-07-21},
+	date = {2022-07-31},
+	langid = {english},
+	file = {Submitted Version:/home/nils/Zotero/storage/WS5MMWTF/Fearnley et al. - 2022 - A Faster Algorithm for Finding Tarski Fixed Points.pdf:application/pdf},
 }

@@ -99,6 +99,14 @@
 \setlist[enumerate,1]{leftmargin=5mm, label={(\arabic*)}, font={\bfseries}}% Make left margin smaller
 \setlist[itemize, 1]{leftmargin=5mm}% Make left margin smaller
 
+%Settings for the algorithm2e package
+%Custom comments
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+%Spacing for the vertical lines in algorithms
+\SetVlineSkip{1mm}
+
 %----------------------------------------------------------------------------------------
 %	BOOK INFORMATION
 %----------------------------------------------------------------------------------------

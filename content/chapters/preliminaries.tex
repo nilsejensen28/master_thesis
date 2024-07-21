@@ -256,6 +256,8 @@ $S$ and $P$ can be though of as representing a directed line. Finding another so
 
 Next we want to introduce the \Tarski\ Problem. Before we do this we recall that there is a partial order on the $d$ dimensional latice ${[N]}^d$, given by $x \leq y$ iff $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$. The name originates from Tarski's fixed point Theorem as introduced in \sidecite{tarski_lattice-theoretical_1955} which we remind the reader of below:
 
+TODO: Write about order preserving/monotone functions.
+
 \begin{theorem}[Tarski's fixed point Theorem]
     \marginnote[0mm]{This theorem is also known as the Knaster–Tarski Theorem in the litterature.}
     Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotonous (with respect to the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
@@ -296,11 +298,110 @@ This means that in the whole thesis we can consider the simplified version of th
 
 \subsection{Two algorithms for solving \Tarski}[\Tarski\ Algorithms]
 
-TODO: Write this section.
+We briefly want to discuss the most commun algorithms used for solving \Tarski\ instances. We begin with a very simple algorithm, which is based on the following observation:
+\begin{remark}
+    Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotonous, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
+\end{remark}
+Now by noticing that by starting with the point $0^d$, and iterating the function $f$ we will eventually reach a fixed point, we can construct an iterative Algorithm for solving \Tarski, described in \cref{alg:iterative_tarski_solver}.
+
+\begin{algorithm}
+    \caption{Iterative Algorithm for \Tarski}
+    \label{alg:iterative_tarski_solver}
+    \KwData{A boolean circuit $f : L \rightarrow L$}
+    \KwResult{A fixed point of $f$}
+    $x \leftarrow 0^d$ \;
+    \While{$f(x) \neq x$}{
+        $x \leftarrow f(x)$ \;
+    }
+    \Return $x$ \;
+\end{algorithm}
+
+While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS, by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotonous along the the states of the algorithm. The circuit $S$ associates to state of the algorithm the next state it will be in.
+
+Next we want to describe a more advanced algorithm for solving \Tarski\ instances. The algorithm we will present is due to \sidecite{dang_computations_2020}. We will give an alternative presentation and simplified proof the correctness of the algorithm here. Before we do this we want to introduce some notation in order to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
+\begin{align*}
+    L_{\leq x} & = [x[1]] \times \cdots \times [x[d]],                             \\
+    L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdot \times \winterval{x[d]}{N_d}
+\end{align*}
+and for a given dimension $k \in \set{1, \dots, d}$ and $K \in [N_k]$, we define the following sublattices:
+\begin{align*}
+    L_{k < K} & = [N_1] \times \cdots \times [N_{k-1}] \times [K-1] \times [N_{k+1}] \times \cdots \times [N_d],               \\
+    L_{k = K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K\} \times [N_{k+1}] \times \cdots \times [N_d],               \\
+    L_{k > K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K+1, \dots, N_k\} \times [N_{k+1}] \times \cdots \times [N_d].
+\end{align*}
+The algorithm --- and in particular our proof of the correctness --- is based on the following observation:
+\begin{remark}
+    Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotonous function. Then:
+    \begin{enumerate}
+        \item If for some $x \in L$ we have $f(x) \leq x$, then $f$ has a fixed point in $L_{\leq x}$.
+        \item If for some $x \in L$ we have $f(x) \geq x$, then $f$ has a fixed point in $L_{\geq x}$.
+    \end{enumerate}
+\end{remark}
+\begin{proof}
+    Let $x \in L$ such that $f(x) \leq x$. Then for all $y \in L_{\leq x}$ we have $y \leq x$ and hence $f(y) \leq f(x) \leq x$, which shows that $f$ is a \Tarski\ instance on $L_{\leq x}$. By Tarski's fixed point Theorem, $f$ has a fixed point in $L_{\leq x}$. The proof for the second point is analogous.
+\end{proof}
+Hence points with these propeties seem to be particularly interesting for finding fixed points of $f$. Hence we want to give them a name:
+\begin{definition}[Progress point]
+    \marginnote[0mm]{The smallest and largest point of a lattice are always progress points.}
+    Let $f : L \rightarrow L$ a \Tarski\ function. We call a point $x \in L$ a \emph{progress point} if $f(x) \leq x$ or $f(x) \geq x$.
+\end{definition}
+This means that if we a progress point we can reduce the area in which we need to search for a fixed point. The question now becomes: how do we find such an $x$? The algorithm we will present is based on the following observation:
+\begin{remark}
+    Let $f : L \rightarrow L$ on a complete lattice ${L = [N_1] \times \cdots \times [N_d]}$, for a monotonous function $f$, be a \Tarski\ instance. By fixing some dimension ${k \in \set{1, \dots, d}}$, we can define the function ${f_{k=K} : L_{k=K} \rightarrow L_{K=k}}$ as follows:
+    \begin{align*}
+        f_{k=K}(x)[i] = \begin{cases}
+                            f(x)[i] & \text{ if } i \neq k, \\
+                            K       & \text{ if } i = k.
+                        \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
+    \end{align*}
+    Then $f_{k=K}$ is a monotone \Tarski\ instance on $L_{k=K}$, and if $x^*$ is a fixed point of $f_{k=K}$, then $x^*$ is a progess point of $f$.
+\end{remark}
+This means that if we can solve a $d-1$ dimensional \Tarski\ instance, we can find a point $x$ such that $f(x) \geq x$ or $f(x) \leq x$.
+\begin{proof}
+    The monotonicity of $f_{k=K}$ follows directly from the monoticity of $f$. \par
+    The fact that $x^*$ is a progess point follows from the fact that if $x^*$ is a fixed point of $f_{k=K}$, then $f(x^*)[i] = x^*[i]$, for all $i \neq k$. This means that if $f(x^*)[k] \leq x^*[k]$, then $f(x^*) \leq x^*[k]$ and if $f(x^*)[k] \geq x^*[k]$, then $f(x^*) \geq x^*[k]$.
+\end{proof}
+By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$ such that both $L_{\leq x}$, and $L_{\geq x}$ have at most half the size of $L$. This means that we can reduce the search space by a factor of at least 2, by solving a $d-1$ dimensional \Tarski\ instance. We can solve a $d$ dimensional \Tarski\ instance by repeatedly solving $d-1$ dimensional \Tarski\ instances, and reducing the size of the search space by a factor of at least 2 in each step. This means that we can solve a $d$ dimensional \Tarski\ instance with a combination of a $d-1$ dimensional \Tarski\ solver and a binary search. The $d-1$ dimensional instances can be solved recursively. We give the recursive algorithm for solving \Tarski\ instances in \cref{alg:recursive_tarski_solver}.
+\begin{algorithm}
+    \caption{Recursive Algorithm for \Tarski}
+    \label{alg:recursive_tarski_solver}
+    \SetKwFunction{RecursiveTarskiSolver}{RecursiveTarskiSolver}
+    \SetKwProg{Fn}{Function}{:}{}
+    \Fn{\RecursiveTarskiSolver{$f : L \rightarrow L$, $d$}}{
+        \tcc{Binary search in the $d$-th dimension}
+        \Let{l}{0}, \Let{r}{$N_d$} \tcc*[r]{The search space is $[l, r]$}
+        \While{$r - l > 1$}{
+            \Let{$m$}{$\floor{\frac{l + r}{2}}$} \tcc*[r]{Middle of the interval}
+            \If{$d-1 = 0$}{
+                \Let{$x^*$}{$m$}
+            }
+            \Else{
+                \Let{$L'$}{$L_{d = m}$} \;
+                \tcc{Solve the $d-1$ dimensional instance}
+                \Let{$x^*$}{\RecursiveTarskiSolver{$f_{d=m}, d-1$}} \;
+            }
+            \If{$f(x^*)[d] \leq x^*[d]$}{
+                \Let{r}{$m$}
+            }
+            \Else{
+                \Let{l}{$m$}
+            }
+        }
+        \Return{$x^*$}
+    }
+\end{algorithm}
+
+A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured by Etessami et.\ al.\ that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithms was developped, which mostly relies on a smarter way of finding progress points, or better said, a smarter way of dividing the problem in subinstances \sidecite{fearnley_faster_2022}. We will not discuss this algorithm in detail, as it is not relevant for the rest of the thesis, but want to mentions that it achieves a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$. This is to date the best upper bound for solving \Tarski\ instances.
+
+\subsection{Lower bounds for \Tarski}
+
+We now want to discuss the lower bounds for solving \Tarski\ instances. The best known lower bounds for \Tarski\ are given by \sidecite{etessami_tarskis_2020}. They showed that in the black-box model, where the only way to access the function $f$ is by querying it, solving a $d$-dimensional \Tarski\ requieres solving at least $\Omega(\log^{N})$ $1$ dimensional \Tarski\ instances, which are as difficult as binary search,hence this means that solving a $d$-dimensional \Tarski\ instance requieres at least $\Omega(\log^{2}{N})$ queries. This means that the upper and lower bounds are equal in the 2 dimensional case, but in all other cases there remains a gap. In particular the best known lower bound for solving \Tarski\ does not depend on the dimension $d$, which seems somewhat unexpected.
+
+This gives us reason to study \Tarski\ under the lense of complexity theory, in particular to understand where \Tarski\ lies in the \TFNP\ landscape.
 
 \subsection{Location of \Tarski\ in \TFNP}[\Tarski\ in \TFNP]
 
-We now want to summarize where \Tarski\ lies inside of \TFNP{}. It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in both \PLS\ and $\P^{\PPAD}$. Previous work~\sidecite{buss_propositional_2012}, showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent. In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ also lies in \PPAD{}.
+We now want to summarize where \Tarski\ lies inside of \TFNP. It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in both \PLS\ and $\P^{\PPAD}$. Previous work~\sidecite{buss_propositional_2012}, showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent. In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ also lies in \PPAD{}.
 
 \section{Structure of \texorpdfstring{$\PLS \medcap \PPAD$}{\PLS\ and \PPAD}}[\texorpdfstring{$\PLS \medcap \PPAD$}{\PLS\ and \PPAD}]
 
