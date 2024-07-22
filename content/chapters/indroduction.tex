@@ -9,13 +9,13 @@ A fundamental tool in complexity theory is the concept of reduction, which makes
 
 Traditionally, complexity theory has focused on decision problems, which involve determining whether a given object has a given property. Examples include determining whether a graph contains a $k$-clique or whether a number is prime. These problems typically require a decision about whether an object belongs to a set of objects --- a language ---defined by a particular property.
 
-However, real-world challenges often extend beyond simple decision-making into the realm of search problems. In practical scenarios, the existence of a solution is typically assumed, and the task is not just to verify its existence but to compute the solution itself. For example, instead of just detecting the presence of a $k$-clique in a graph, one probably wants to explicitly find this clique or confirm its absence. Similarly, instead of just recognizing a number as prime, one might want to determine its prime factors. Instead of deciding whether a function has a global minimum, one wants to compute it efficiently.
+However, real-world problems often extend beyond simple decision-making into the realm of search problems. In practical scenarios, the existence of a solution is typically assumed, and the task is not just to verify its existence but to compute the solution itself. For example, instead of just detecting the presence of a $k$-clique in a graph, one probably wants to explicitly find this clique or confirm its absence. Similarly, instead of just recognizing a number as prime, one might want to determine its prime factors. Instead of deciding whether a function has a global minimum, one wants to compute it efficiently.
 
 Within this broader category of search problems lies a special subclass known as \emph{total search problems}. These are characterized by the guaranteed existence of a solution, often proven by mathematical theorems. A notable example within this subclass is the problem of identifying a sink in a directed acyclic graph, where the existence of such a sink is guaranteed in every such graph.
 
 \section{The TFNP landscape}
 
-The class of \TFNP is the pendant of \NP, in the sense that it is the class of all total search problems, where a solution can be checked for validity in polynomial time. Studying this complexity class has been an active research subject in recent years, giving rise to many exciting results.
+The class of \TFNP\ is the pendant of \NP, in the sense that it is the class of all total search problems, where a solution can be checked for validity in polynomial time. Studying this complexity class has been an active research subject in recent years, giving rise to many exciting results.
 
 Because it is unexpected that we can find \TFNP-complete problems, the class has been studied using other tools. The primary method which has been established is the use of syntactic subclasses. The idea is to build subclasses of \TFNP, which are created by using very classical and almost obvious existence results. Three of these subclasses are particularly relevant to this thesis.
 
@@ -31,9 +31,16 @@ The main problem we study in this thesis is the \Tarski\ problem. The namesake o
 
 \section{Current algorithms for solving \Tarski}
 
-TODO: Write this section.
+We want to give an overview of the different known strategies for solving \Tarski\-instances. This has a theoretical interest, as the state of these algorithms often describe graphs, which can be seen as instances of \TFNP-complete problems, and hence can help construct reductions.
+
+The most fundamental approach to solving the Tarski problem is a simple iterative algorithm that leverages the monotonicity of the function to converge to a fixed point iteratively. Starting from the smallest point within the lattice, the Algorithm applies the function repeatedly until a fixed point is reached \sidecite{etessami_tarskis_2020}. This method is straightforward but can be computationally expensive, as it may require a large number of iterations to converge, particularly for functions defined over large lattices in the worst case for a lattice $L = [N]^d$, this Algorithm requires time $\BigO{N \cdot d}$.
+
+A more sophisticated approach involves a binary search technique, where the lattice is systematically divided, and the function's monotonicity is used to eliminate regions that cannot contain a fixed point. This is done by recursively solving lower-dimensional subproblems until the fixed point is found \sidecite{dang_computations_2020}. This method can significantly reduce the search space and converges faster than the iterative Algorithm, with a runtime of $\BigO{\log^d(N)}$.
+
+The latest developments in solving the \Tarski\ problem involve advanced decomposition methods that reduce the search space. These methods decompose the problem into smaller instances that can be more easily managed and solved. Using these techniques a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ can be achieved \sidecite{fearnley_faster_2022}.
 
 \section{Location of \Tarski\ in \TFNP}
+
 It is known that the \Tarski\ problem lies in \PPAD\ and in \PLS. A recent breakthrough has shown that the class $\PPAD \cap \PLS = \EOPL$ \sidecite{goos_further_2022}. This result immediately implies that the \Tarski\ problem is in \EOPL, which in turn means that there must be a reduction from \Tarski\ to \EOPL-complete problems, in particular to the \EndOfPotentialLine\ problem. The main goal of this thesis is to understand why \Tarski\ lies in \EOPL and to construct a reduction from \Tarski\ to the \EndOfPotentialLine\ problem, which is \EOPL-complete.
 
 \section{Thesis Outline}
