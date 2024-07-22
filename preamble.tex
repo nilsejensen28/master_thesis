@@ -42,6 +42,7 @@
 \usepackage{textcomp} %Textrightarrow
 \usepackage{marvosym} %Bold arrows
 \usepackage{newunicodechar} %Allows us to add missing unicode characters
+\usepackage{calc} %Allows for easy length calculations in latex
 
 \input{styling/title_page.tex} %Use custom title page
 
@@ -84,6 +85,15 @@
 \newcommand{\principle}[1]{\begin{center}
         ``\textit{#1}''
     \end{center}}
+
+%Special marginnote for inside tcolorboxes
+\newlength{\marginparseptemp}
+\newcommand{\boxmarginnote}[1]{
+    \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+    \marginparsep=\marginparseptemp
+    \marginnote[-\baselineskip]{#1}
+    \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+    \marginparsep=\marginparseptemp}
 
 %Settings for the justification of the text
 \tolerance=1000

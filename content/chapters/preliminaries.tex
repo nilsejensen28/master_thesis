@@ -12,7 +12,7 @@ This is where so called \define{search problems} come into play.
 \subsection{Search problems}
 
 \begin{definition}[Search Problem]
-    \marginnote[0mm]{The ``No'' case can be encoded as some special binary string.}
+    \boxmarginnote{The ``No'' case can be encoded as some special binary string.}
     A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem, to find a \define{solution} $s \in \binstr$, that satisfies: $(I, s) \in R$ or output ``No'' if no such $s$ exists.
 \end{definition}
 
@@ -41,7 +41,7 @@ The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_
 Similarly to decision problem we can also define reduction inside \TFNP.
 
 \begin{definition}[Many-to-one Reduction]
-    \marginnote[0mm]{Saying \emph{one can reduce $R$ onto $S$} can be understood as saying \emph{if one can solve $S$ efficiently then I can solve $R$ efficiently}.}
+    \boxmarginnote{Saying \emph{one can reduce $R$ onto $S$} can be understood as saying \emph{if one can solve $S$ efficiently then I can solve $R$ efficiently}.}
     For two problem $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$: if $(f(I), s) \in S$ then $(I, g(I, s)) \in R$. This means that if $s$ is a solution to an instance $f(I)$ in $S$, we can compute $g(I, s)$ a solution to an instance $I$ in $R$
 \end{definition}
 
@@ -159,7 +159,7 @@ The existence results which gives rise to \PLS\ is:
 We can then construct the class \PLS\ by defining it as all problems which reduce to finding the sink of a directed acyclic graph (DAG). Formally we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
 
 \problem{Localopt}{
-\marginnote[0mm]{$S$ can be seen as a proposed successor, and $V$ as a potential. The goal is to find a local minima $v$ of the potential.}
+\boxmarginnote{$S$ can be seen as a proposed successor, and $V$ as a potential. The goal is to find a local minima $v$ of the potential.}
 Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
 
 \begin{figure}
@@ -254,12 +254,17 @@ $S$ and $P$ can be though of as representing a directed line. Finding another so
 
 \subsection{Definition of the \Tarski\ Problem}[\Tarski\ Definition]
 
-Next we want to introduce the \Tarski\ Problem. Before we do this we recall that there is a partial order on the $d$ dimensional latice ${[N]}^d$, given by $x \leq y$ iff $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$. The name originates from Tarski's fixed point Theorem as introduced in \sidecite{tarski_lattice-theoretical_1955} which we remind the reader of below:
+Next we want to introduce the \Tarski\ Problem. Before we do this we recall that there is a partial order on the $d$ dimensional latice ${[N]}^d$, given by $x \leq y$ iff $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$\marginnote{Notice that $x \not\leq y$ does \emph{not} imply $x \geq y$. In particular two points are not always comparable.}. We can now define functions on this lattice, and in particular we can define monotone functions.
 
-TODO: Write about order preserving/monotone functions.
+\begin{definition}[Monotone function]
+    \boxmarginnote{Such functions are also called \define{order preserving} functions in the litterature.}
+    A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
+\end{definition}
+
+The name of the \Tarski\ problem originates from Tarski's fixed point Theorem, first introduced in \sidecite{tarski_lattice-theoretical_1955} which we remind the reader of below:
 
 \begin{theorem}[Tarski's fixed point Theorem]
-    \marginnote[0mm]{This theorem is also known as the Knaster–Tarski Theorem in the litterature.}
+    \boxmarginnote{This theorem is also known as the Knaster–Tarski Theorem in the litterature.}
     Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotonous (with respect to the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
 \end{theorem}
 
@@ -281,7 +286,7 @@ A proof of this theorem can be found in the previously mentionned work~\cite{tar
 This is of course a total search problem, as there will always either be a fixed point, or a point violating monoticity. We give an example of a 2 dimensional \Tarski\ instance in \cref{fig:tarski_example}. Before we discuss the location of \Tarski\ in the \TFNP\ lanscape and two known algorithms for solving \Tarski, we want to discuss a useful Lemma, which allows us to simplify the study of Tarski instances. The definition of \Tarski\ instaSnces allows for the image of a point to be located anywhere in the lattice, we will show that we can reduce to the cases where the image of a point is in the immediate neighborhood of the point.
 
 \begin{lemma}[Simplyfying \Tarski]
-    Let $f : L \rightarrow L$ be a \Tarski\ instance on a complete lattice $L$. Consider $\ftilde : L \rightarrow L$ given by: \marginnote[0mm]{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{d}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
+    Let $f : L \rightarrow L$ be a \Tarski\ instance on a complete lattice $L$. Consider $\ftilde : L \rightarrow L$ given by: \boxmarginnote{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{d}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
     \begin{align*}
         \ftilde(x)[i] = \begin{cases}
                             x[i] + 1 & \text{ if } f(x)[i] > x[i], \\
@@ -342,7 +347,7 @@ The algorithm --- and in particular our proof of the correctness --- is based on
 \end{proof}
 Hence points with these propeties seem to be particularly interesting for finding fixed points of $f$. Hence we want to give them a name:
 \begin{definition}[Progress point]
-    \marginnote[0mm]{The smallest and largest point of a lattice are always progress points.}
+    \boxmarginnote{The smallest and largest point of a lattice are always progress points.}
     Let $f : L \rightarrow L$ a \Tarski\ function. We call a point $x \in L$ a \emph{progress point} if $f(x) \leq x$ or $f(x) \geq x$.
 \end{definition}
 This means that if we a progress point we can reduce the area in which we need to search for a fixed point. The question now becomes: how do we find such an $x$? The algorithm we will present is based on the following observation:
