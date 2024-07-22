@@ -89,11 +89,29 @@
 %Special marginnote for inside tcolorboxes
 \newlength{\marginparseptemp}
 \newcommand{\boxmarginnote}[1]{
-    \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
-    \marginparsep=\marginparseptemp
-    \marginnote[-\baselineskip]{#1}\hspace{-10pt}
-    \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
-    \marginparsep=\marginparseptemp
+    %Check if we are in twosided mode
+    \ifthenelse{\boolean{twosided}}{
+        %We are in two sided mode
+        \Ifthispageodd{
+            \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+            \marginparsep=\marginparseptemp
+            \marginnote[-\baselineskip]{#1}\hspace{-10pt}
+            \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+            \marginparsep=\marginparseptemp
+        }{
+            \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+            \marginparsep=\marginparseptemp
+            \marginnote[-\baselineskip]{#1}\hspace{-10pt}
+            \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+            \marginparsep=\marginparseptemp
+        }
+    }{
+        \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+        \marginparsep=\marginparseptemp
+        \marginnote[-\baselineskip]{#1}\hspace{-10pt}
+        \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+        \marginparsep=\marginparseptemp
+    }
 }
 
 %Settings for the justification of the text
