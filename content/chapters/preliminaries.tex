@@ -53,7 +53,19 @@ We also introduce the notion of Turing reduction in \TFNP, analogously to the cl
 
 \subsection{Promise Problems}
 
-TODO: Talk about promise problems.
+Formally we have defined total search problems as problems where a solution always exists for any input in $\{0, 1\}^*$. However, in practice, we often have problems where a solution is guaranteed to exist only for a subset of the input. For instance every convex function has a global minimum, but this exitence result, relies on the fact that we are given a convex function. This leads us to the notion of \define{promise problems} as introduced in \sidecite{hollender_structural_2021}. Formally we restrict the instance space to some subset $\mathcal{X} \subset \{0, 1\}^*$. We only require our algorithm to solve the problem for instances in $\mathcal{X}$, and it can behave arbitrarily on instances outside of $\mathcal{X}$.
+
+We highlight that formally \TFNP\ does not contain promise problems where $\mathcal{X} \neq \{0, 1\}^*$. However, in practice, we can still compute various instances of \TFNP\ problems by restricting the input space to some subset $\mathcal{X}$. This is for instance the case if we can check in polynomial time whether an instance is in $\mathcal{X}$. Assume that we have a total problem $R$ on $X \subset \{0, 1\}^*$, then we can define the promise problem $R'$ on $\{0, 1\}^*$ by adding a solution $(I, \star)$ to $R$ for all $I \in \{0, 1\}^* \setminus R$, where $\star$ is some special bit string. Because it can be decided in polynomial time whether an instance is in $X$, we can solve $R'$ by checking whether the instance is in $X$ and then solving $R$, hence obtaining a problem in \TFNP.
+
+Another way to formally obtain a \TFNP\ problem, is by checking the validity of the input syntacticly. For instance if are instances are suppose to be functions, or boolean circuits, then it can be checked in polynomial time whether an instance is a valid encoding of a function or boolean circuit. This is for instance the case for the \Tarski\ problem, where the instances are boolean circuits, and the validity of the instances can be checked in polynomial time.
+
+Finally there is one final way to obtain a \TFNP\ problem, which we want to highlight. We can add \define{violations} to the solution space. For instance if we are interested in finding the global minima of convex functions, we can construct a total search problem by:
+\begin{enumerate}
+    \item Checking syntacticly that the input defines a function;
+    \item Adding a violation of convexity to the solution space\marginnote{A violation of convexity is given by a $x, y \in \mathcal{D}_f$, and $t \in \{0, 1\}$ such that $t f(x) + (1-t)f(y) < f(tx + (1-t)y)$.}.
+\end{enumerate}
+
+This means that we can often construct a \TFNP\ problem by adding violations to the solution space, and checking the validity of the input syntacticly, when given a promise problem. However it is important to note that this is not always the case, and that the construction of a \TFNP\ problem from a promise problem can be a non-trivial task.
 
 \section{Representation of functions and sets}[Representation of objects]
 
@@ -72,7 +84,7 @@ Now that we have described how we describe the sets, we can describe how we repr
 On a high level a boolean circuit is a directed acyclic graph, where the nodes are called \define{gates}, and the edges are called \define{wires}. The sinks of the graphs are the output gates, and the sources are the input gates. We want to start by defining a gate formally.
 
 \begin{definition}[Gate]
-    \marginnote[-10mm]{This corresponds to the gate node, having $k$ incoming edges, and one outgoing edge.}
+    \boxmarginnote{This corresponds to the gate node, having $k$ incoming edges, and one outgoing edge.}
     A gate is a function $g : \bitstr^k \rightarrow \bitstr$, where $k$ is the number of input wires of the gate.
 \end{definition}
 
@@ -185,13 +197,13 @@ Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou a
 \problem{End-of-Line}{
 Boolean circuit $S, P : \bitstr^n \rightarrow \bitstr^n$ such that $P(0^n) = 0^n \neq S(0^n)$ ($0^n$ is a source.)
 }{
+\boxmarginnote{Here $S$ can be thought of giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.}
 An $x \in \bitstr^n$ such that either:
 \begin{itemize}
     \item $P(S(x)) \neq x$ ($x$ is a sink) or
     \item $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
 \end{itemize}
 }
-\marginnote[-20mm]{Here $S$ can be thought of giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.}
 
 \begin{figure}[ht]
     \centering
