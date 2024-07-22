@@ -17,18 +17,24 @@ Within this broader category of search problems lies a special subclass known as
 
 The class of \TFNP, is the pendant of \NP, in the sence that it is the class of all total search problems, where a solution can be checked for validity in polynomial time. The study of this complexity class has been a active research subject in the last years and has given rise to many interesting results.
 
-TODO: Write some inuition about the subclasses.
+Because it is unexpected that we can find \TFNP-complete problems, the class has be studied using other tools. The main method which has been established is the use of syntactic subclasses. The idea is to build subclases of \TFNP\ which are created by using very classical and almost obvious existence result. Three of theses subclasses are particular relevant to this thesis.
+
+The first is the class \PPAD, which is the class of total search problems where the existence of a solution is guaranteed by \textit{Brouwer's fixed point theorem}. The problems which lie in \PPAD\ are those that can be solved by walking along a directed graph, starting from an unbalanced vertex, and ending at an other unbalanced vertex \sidecite{papadimitriou_complexity_1994}.
+
+The second class of interest is \PLS, which is the class of total search problems which can expressed as starting at a vertex of a directed acyclic graph, and finding a sink of this graph \sidecite{johnson_how_1988}.
+
+Finally the class \EOPL, is the class of total search problems which can be expressed as starting at a source of a directed acyclic graph, and finding a vertex which is a sink \sidecite{EOPL_introduction}
 
 \section{The \Tarski\ problem}
 
-The main problem we study in this thesis is the \Tarski\ problem. The name sake of the \Tarski\ problem is \textsc{Tarski's fixed point theorem}, which states that every monotone function on a complete lattice has a fixed point\sidecite{tarski_lattice-theoretical_1955}. The \Tarski\ problem is the problem of finding such a fixed point for a given function $f$ on a complete lattice $L$, or to find a violation of monoticity of this function. By Tarski's theorem, this problem is guaranteed to have a solution, and hence is a total search problem.
+The main problem we study in this thesis is the \Tarski\ problem. The name sake of the \Tarski\ problem is \textsc{Tarski's fixed point theorem}, which states that every monotone function on a complete lattice has a fixed point\sidecite{tarski_lattice-theoretical_1955}. The \Tarski\ problem is the problem of finding such a fixed point for a given function $f$ on a complete lattice $L$, or to find a violation of monoticity of this function \sidecite{etessami_tarskis_2020}. By Tarski's theorem, this problem is guaranteed to have a solution, and hence is a total search problem.
 
 \section{Current algorithms for solving \Tarski}
 
 TODO: Write this section.
 
 \section{Location of \Tarski\ in \TFNP}
-It is known that the \Tarski\ problem lies in \PPAD\ and in \PLS. A very recent breakthrough has shown that the class $\PPAD \cap \PLS = \EOPL$ \sidecite{goos_further_2022}. This result immediately implies that the \Tarski\ problem is in \EOPL, which in turn means that there must be a reduction from \Tarski\ to \EOPL-complete problems, in particular to the \EndOfPotentialLine\ problem.
+It is known that the \Tarski\ problem lies in \PPAD\ and in \PLS. A very recent breakthrough has shown that the class $\PPAD \cap \PLS = \EOPL$ \sidecite{goos_further_2022}. This result immediately implies that the \Tarski\ problem is in \EOPL, which in turn means that there must be a reduction from \Tarski\ to \EOPL-complete problems, in particular to the \EndOfPotentialLine\ problem. The main goal of this thesis is to undestand why \Tarski\ lies in \EOPL, and to construct a reduction from \Tarski\ to the \EndOfPotentialLine\ problem, which is \EOPL-complete.
 
 \section{Thesis Outline}
 
