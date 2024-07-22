@@ -91,9 +91,10 @@
 \newcommand{\boxmarginnote}[1]{
     \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
     \marginparsep=\marginparseptemp
-    \marginnote[-\baselineskip]{#1}
+    \marginnote[-\baselineskip]{#1}\hspace{-8pt}
     \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
-    \marginparsep=\marginparseptemp}
+    \marginparsep=\marginparseptemp
+}
 
 %Settings for the justification of the text
 \tolerance=1000
@@ -108,8 +109,8 @@
 
 %Enumerate settings
 \RequirePackage{enumitem}
-\setlist[enumerate,1]{leftmargin=5mm, label={(\arabic*)}, font={\bfseries}}% Make left margin smaller
-\setlist[itemize, 1]{leftmargin=5mm}% Make left margin smaller
+\setlist[enumerate,1]{leftmargin=7mm, label={(\arabic*)}, font={\bfseries}}% Make left margin smaller
+\setlist[itemize, 1]{leftmargin=7mm}% Make left margin smaller
 
 %Settings for the algorithm2e package
 %Custom comments
