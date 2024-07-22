@@ -295,7 +295,7 @@ A proof of this Theorem can be found in the previously mentioned work~\cite{tars
 \begin{figure}
     \centering
     \incfig{Tarski_Solution_Example}
-    \caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance.}
+    \caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance. A fixed is located at $x = (4, 5)$. The path to the fixed point which \cref{alg:iterative_tarski_solver} finds is colored in green.}
     \label{fig:tarski_example}
 \end{figure}
 
@@ -331,23 +331,28 @@ Now, by noticing that by starting with the point $\mathbf{0} = 0^d$ and iteratin
     \label{alg:iterative_tarski_solver}
     \KwData{A boolean circuit $f : L \rightarrow L$}
     \KwResult{A fixed point of $f$}
-    $x \leftarrow 0^d$ \;
+    $x \leftarrow \mathbf{0}$ \;
     \While{$f(x) \neq x$}{
-        $x \leftarrow f(x)$ \;
+        \If{$f(x) \not\geq x$}{
+            \Return ``$x, f(x)$ are a violation of monotonicity.'' \;
+        }
+        \Else{
+            $x \leftarrow f(x)$ \;
+        }
     }
     \Return $x$ \;
 \end{algorithm}
 
-While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotonous along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
+The path which \cref{alg:iterative_tarski_solver} takes to solve a \Tarski\ instance is colored green in \cref{fig:tarski_example}. While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS\ by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotonous along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
 
 Next, we want to describe a more advanced algorithm for solving \Tarski\ instances. The algorithm we will present is due to \sidecite{dang_computations_2020}. We will give an alternative presentation and simplified proof of the correctness of the algorithm here. Before this, we want to introduce some notations to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
 \begin{align*}
-    L_{\leq x} & = [x[1]] \times \cdots \times [x[d]],                             \\
-    L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdot \times \winterval{x[d]}{N_d}
+    L_{\leq x} & = [x[1]+1] \times \cdots \times [x[d]+1],                          \\
+    L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdots \times \winterval{x[d]}{N_d}
 \end{align*}
-and for a given dimension $k \in \set{1, \dots, d}$ and $K \in [N_k]$, we define the following sublattices:
+and\marginnote[-10mm]{We denote by $\winterval{a}{b}$ the set of whole numbers $\{a, a+1, \dots, b\}$.} for a given dimension $k \in \set{1, \dots, d}$ and $K \in [N_k]$, we define the following sublattices:
 \begin{align*}
-    L_{k < K} & = [N_1] \times \cdots \times [N_{k-1}] \times [K-1] \times [N_{k+1}] \times \cdots \times [N_d],               \\
+    L_{k < K} & = [N_1] \times \cdots \times [N_{k-1}] \times [K] \times [N_{k+1}] \times \cdots \times [N_d],                 \\
     L_{k = K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K\} \times [N_{k+1}] \times \cdots \times [N_d],               \\
     L_{k > K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K+1, \dots, N_k\} \times [N_{k+1}] \times \cdots \times [N_d].
 \end{align*}
@@ -398,7 +403,6 @@ By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$
                 \Let{$x^*$}{$m$}
             }
             \Else{
-                \Let{$L'$}{$L_{d = m}$} \;
                 \tcc{Solve the $d-1$ dimensional instance}
                 \Let{$x^*$}{\RecursiveTarskiSolver{$f_{d=m}, d-1$}} \;
             }
