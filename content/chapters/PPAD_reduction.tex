@@ -30,7 +30,7 @@ We can repeat this procedure, always halving the search area, which allows us to
 
 \section{Introducing \Tarskistar}
 
-In the previous section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of TODO. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
+In the previous section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide and conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
 
 For the sake of generality and in order to achieve more precise proofs in the following, we introduce the problem on the integer lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$ for all $i \in \{1, \dots, d\}$. We propose the following problem:
 \problem{\Tarskistar}{
@@ -38,8 +38,8 @@ A boolean circuit $f: L \rightarrow L$.
 }{
 Either:
 \begin{itemize}
-    \item[(T*1)] Two points $x, y \in L$ such that $\norminf{x-y} \leq 1$, $x \leq f(x)$ and $y \geq f(y)$, or
-    \item[(T*2)] A violation of monotonicity: Two points $x, y \in L$ such that $x \leq y$ and $f(x) \not\leq f(y)$.
+    \item Two points $x, y \in L$ such that $\norminf{x-y} \leq 1$, $x \leq f(x)$ and $y \geq f(y)$, or;
+    \item A violation of monotonicity: Two points $x, y \in L$ such that $x \leq y$ and $f(x) \not\leq f(y)$.
 \end{itemize}
 }
 
@@ -86,7 +86,7 @@ We aim to apply \textit{Sperner's Lemma} on the integer lattice. Using this tool
 
 \subsection{Sperner's Lemma for Simplices}[on Simplices]
 
-Before we introduce the Lemma itself, we want to define the setting of the result. We consider a $d$-dimensional simplex\sidenote{By $d$ dimensional simplex we mean the convex Hull of these $d+1$ points in $\R^d$} with vertices $v_0, v_1, \dots, v_d$. We now consider a \define{simplicial subdivision} of this simplex, meaning that we partition the simplex into smaller simplices. We give an example of such a partition in \cref{fig:sperner_setup_example} in the 3-dimensional case.
+Before we introduce the Lemma itself, we want to define the setting of the result. We consider a $d$-dimensional simplex\marginnote{By $d$ dimensional simplex we mean the convex Hull of these $d+1$ points in $\R^d$} with vertices $v_0, v_1, \dots, v_d$. We now consider a \define{simplicial subdivision} of this simplex, meaning that we partition the simplex into smaller simplices. We give an example of such a partition in \cref{fig:sperner_setup_example} in the 3-dimensional case.
 
 \begin{figure}[ht]
     \centering
