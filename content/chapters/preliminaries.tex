@@ -22,7 +22,7 @@ We can view these search problems as decision problems by looking at the corresp
     \mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
 \end{align*}
 
-This perspective leads us to ask classical complexity questions about search problems: Are these problems in \P? in \NP? Are they \NP-hard? It is readily apparent that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question. This observation leads to an intriguing question: what if we remove the decision component from the problem? This scenario is achieved by ensuring that ``No'' is never a valid solution. Such problems, where every instance is guaranteed to admit a solution, are called total search problems.
+This perspective leads us to ask classical complexity questions about search problems: Are these problems in \P? in \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question. This observation leads to an intriguing question: what if we remove the decision-making component from the problem? This scenario is achieved by ensuring that ``No'' is never a valid solution. Such problems, where every instance is guaranteed to admit a solution, are called total search problems.
 
 \begin{definition}[Total search problems]
     A \define{total search problem} is a search problem given by a relations $R\subset \binstr \times \binstr$, such that for every given instance $I\in
@@ -73,7 +73,7 @@ This means we can often construct a \TFNP\ problem by adding violations to the s
 
 \section{Representation of functions and sets}[Representation of objects]
 
-As we will see, the problems we will work with are given by questions of the form ``find an $x \in S$ such that $f(x)$ has some property''. A natural question we will answer next is how we represent the input, that is, the set $S$ and the function $f$. We start by describing how we represent sets.
+As we will see, the problems we will study are given by questions of the form ``find an $x \in S$ such that $f(x)$ has some property''. A question which arise, that answer next, is how we represent the input, that is, the set $S$ and the function $f$. We start by describing how we represent sets.
 
 \subsection{Representation of sets}[Representing sets]
 
@@ -152,7 +152,7 @@ Of course, formally, the complexity of a problem is defined in terms of the \emp
     The size of a boolean circuit $C$ is the number of gates in the circuit.
 \end{definition}
 
-Size is a measure of the complexity of the input, i.e.\ it gives us an indication of how many bits we need to represent the input\marginnote{It can be shown that $\poly(size(n))$ bits suffice to encore to encode any boolean circuit.}, it also tells us how many computations are made when computing the function output. We also define the depth of a boolean circuit as follows:
+The size of the boolean circuits is a measure of the input complexity, i.e.\ it gives us an indication of how many bits we need to represent the input\marginnote{It can be shown that $\poly(size(n))$ bits suffice to encore to encode any boolean circuit.}, it also tells us how many computations are made when computing the function output. We also define the depth of a boolean circuit as follows:
 
 \begin{definition}[Depth of a boolean circuit]
     The depth of a boolean circuit $C$ is the length of the longest path from an input gate to an output gate.
