@@ -164,7 +164,7 @@ The depth of a boolean circuit is a measure of the time complexity of the comput
 
 Complete \FNP\ problems within \TFNP\ would imply that $\NP = \coNP$ \sidecite{megiddo_total_1991}, a highly unlikely scenario. Consequently, complete problems are not expected within \TFNP, necessitating alternative approaches to investigate its structure.
 
-\TFNP\ is characterized as a \define{semantic} class, which means it is difficult to verify whether a Turing machine defines a language within this class. In contrast, \define{syntactic} classes such as \P\, and \NP\ are characterized by the ease with which one can confirm that a Turing machine's accepted language belongs to the class. We refer the reader to Papadimitriou's work \sidecite{papadimitriou_computational_1994} for a more detailed discussion of these terms.
+\TFNP\ is a \define{semantic} class, which means it is difficult to verify whether a Turing machine defines a language within this class. In contrast, \define{syntactic} classes such as \P\, and \NP\ are characterized by the ease with which one can confirm that a Turing machine's accepted language belongs to the class. We refer the reader to Papadimitriou's work \sidecite{papadimitriou_computational_1994} for a more detailed discussion of these terms.
 
 We want to explore syntactic subclasses of \TFNP\ to address these challenges. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, categorizes search problems based on existence proofs confirming their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
 
@@ -185,13 +185,13 @@ Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ 
     \label{fig:localopt_example}
 \end{figure}
 
-One might ask why this is equivalent to finding the sink of a DAG\@? The circuit $S$ defines a directed graph, which might contain cycles. Only keeping the edges on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. We give an example of a \Localopt\ instance in \cref{fig:localopt_example}. Now we can define \PLS:
+Let us discuss why solving a \Localopt\ instance is equivalent to finding the sink of a DAG. The circuit $S$ defines a directed graph, which might contain cycles. Only keeping the edges on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. We give an example of a \Localopt\ instance in \cref{fig:localopt_example}. Now we can define \PLS:
 
 \begin{definition}[Polynomial Local Search (\PLS)]
     The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
 \end{definition}
 
-Studying ``easy'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficiently than simply traversing the graph.\marginnote[-15mm]{By ``easy'', we mean that the problem can be solved by simply walking through the graph and checking whether every vertex is a local minimum.}. Hence, given a graph of exponentially large size, it appears highly improbable that an efficient solution can be found. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement; it could be that some very clever analysis of the boolean circuits could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
+Studying ``easy'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficiently than simply traversing the graph\marginnote[-15mm]{By ``easy'', we mean that the problem can be solved by simply walking through the graph and checking whether every vertex is a local minimum.}. Hence, given a graph of exponentially large size, it appears highly improbable that an efficient solution can be found. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement; it could be that some very clever analysis of the boolean circuits could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
 
 \subsection{Polynomial Parity Argument on Directed Graphs (\PPAD)}[\PPAD]
 
@@ -218,7 +218,7 @@ An $x \in \bitstr^n$ such that either:
     \label{fig:ppad_example}
 \end{figure}
 
-These boolean circuits represent a directed graph with maximal in and out-degree one by having an edge from $x$ to $y$ if and only if $S(x) = y$ and $P(y) =
+These boolean circuits represent a directed graph with maximal in and out-degree of one by having an edge from $x$ to $y$ if and only if $S(x) = y$ and $P(y) =
     x$.
 The goal is to find a sink in the graph or another source.
 \marginnote{Notice that \textsc{End-of-Line} allows cycles and that these do not induce solutions.}
@@ -232,7 +232,7 @@ Now we can define the complexity class \PPAD\ as follows:
 
 \subsection{End of Potential Line (\EOPL)}[\EOPL]
 
-Next, we want to discuss the complexity class \EOPL{} introduced in \sidecite{EOPL_introduction}. The existence results giving rise to \EOPL\ is:
+Next, we discuss the complexity class \EOPL{} introduced in \sidecite{EOPL_introduction}. The existence results giving rise to \EOPL\ is:
 \principle{In a directed acyclic graph, there must be at least two unbalanced vertices.}
 Similarly to \PLS\ acyclicity will be enforced using a potential.
 
@@ -270,7 +270,7 @@ $S$ and $P$ can be thought of as representing a directed line. Finding another s
 
 \subsection{Definition of the \Tarski\ Problem}[\Tarski\ Definition]
 
-Next, we want to introduce the \Tarski\ Problem. Before we do this, we recall that there is a partial order on the $d$ dimensional lattice ${[N]}^d$, given by $x \leq y$ if and only if $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$\marginnote{Notice that $x \not\leq y$ does \emph{not} imply $x \geq y$. In particular, two points are not always comparable.}. We can now define functions on this lattice, and in particular, we can define monotone functions.
+Next, we introduce the \Tarski\ Problem. Before we do this, we recall that there is a partial order on the $d$ dimensional lattice ${[N]}^d$, given by $x \leq y$ if and only if $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$\marginnote{Notice that $x \not\leq y$ does \emph{not} imply $x \geq y$. In particular, two points are not always comparable.}. We can now define functions on this lattice, and in particular, we can define monotone functions.
 
 \begin{definition}[Monotone function]
     \boxmarginnote{Such functions are also called \define{order preserving} functions in the litterature.}
