@@ -1,37 +1,35 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Preliminaries}
 
-This Chapter aims to establish the framework used throughout this thesis to study the \Tarski\ problem. It formally introduces the concept of total search problems, the complexity class \TFNP, and its subclasses \PLS, \PPAD, and \EOPL. In addition, in this Chapter, we will describe how we represent sets and functions in this framework and how their complexity is measured. Finally, we give a formal introduction to the \Tarski\ problem and a presentation of the known algorithms for solving it and its location in the \TFNP\ landscape.
+This Chapter aims to establish the complexity framework used throughout this thesis to study the \Tarski\ problem. It formally introduces the concept of total search problems, the complexity class \TFNP, and its subclasses \PLS, \PPAD, and \EOPL. In addition, in this Chapter, we will describe how we represent sets and functions in this framework and how their complexity is measured. Finally, we give a formal introduction to the \Tarski\ problem and a presentation of the known algorithms for solving it and its location in the \TFNP\ landscape.
 
 \section{Total search problems}
 
-The study of complexity classes has traditionally focused on \define{decision problems}, which involve determining whether an object belongs to a set, also called a \define{language}. Notable examples include determining whether a Boolean formula is satisfiable or whether a $k$-clique exists in a given graph \sidecite{arora_computational_2009}. However, real-world questions often require explicit answers rather than existence results. For example, while deciding whether a function has a global minimum is a decision problem, the practical interest lies in identifying that minimum, which goes beyond mere existence.
-
-Here, so-called \define{search problems} come into play.
+The study of complexity classes has traditionally focused on \define{decision problems}, which involve determining whether an object belongs to a set, also called a \define{language}. Notable examples include determining whether a Boolean formula is satisfiable or whether a $k$-clique exists in a given graph \sidecite{arora_computational_2009}. However, real-world questions often require explicit answers rather than existence results. For example, while deciding whether a function has a global minimum is a decision problem, the practical interest lies in identifying that minimum, which goes beyond mere existence. Here, so-called \define{search problems} come into play.
 
 \subsection{Search problems}
 
 \begin{definition}[Search Problem]
     \boxmarginnote{The ``No'' case can be encoded as some special binary string.}
-    A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem, to find a \define{solution} $s \in \binstr$, that satisfies: $(I, s) \in R$ or output ``No'' if no such $s$ exists.
+    A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem is, to find a \define{solution} $s \in \binstr$ that satisfies: $(I, s) \in R$, or output ``No'' if no such $s$ exists.
 \end{definition}
 
 We can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
-\marginnote{Here, we have rephrased the valid language as the pair of a problem instance and a valid solution.}
+\marginnote[10mm]{Here, we have rephrased the valid language as the pair of a problem instance and a valid solution.}
 \begin{align*}
     \mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
 \end{align*}
 
-This perspective leads us to ask classical complexity questions about search problems: Are these problems in \P? in \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question. This observation leads to an intriguing question: what if we remove the decision-making component from the problem? This scenario is achieved by ensuring that ``No'' is never a valid solution. Such problems, where every instance is guaranteed to admit a solution, are called total search problems.
+The above shows, that every search problem can be seen as a decision problme of a broader language. This perspective allows us to ask classical complexity questions about search problems: Are these problems in \P or in \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question. This observation leads to an intriguing question: what if we remove the decision-making component from the problem? This scenario is achieved by ensuring that ``No'' is never a valid solution. Such problems, where every instance is guaranteed to admit a solution, are called total search problems.
 
 \begin{definition}[Total search problems]
-    A \define{total search problem} is a search problem given by a relations $R\subset \binstr \times \binstr$, such that for every given instance $I\in
-        \binstr$ there is a solution $s \in \binstr$, that satisfies: $(I, s) \in R$.
+    A \define{total search problem} is a search problem given by a relation $R\subset \binstr \times \binstr$, such that for every given instance $I\in
+        \binstr$ there is a solution $s \in \binstr$ that satisfies: $(I, s) \in R$.
 \end{definition}
 
 The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_1994} is simply the class of all total search problems that lie in \NP.\marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP, containing all search problems where a solution is guaranteed to exist, and where one can efficiently check the feasibility of a candidate solution.} Examples of \TFNP\ problems are:
 \begin{itemize}
-    \item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorization into prime numbers, which can be checked in polynomial time.
+    \item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorization into prime numbers, which can be checked in polynomial time;
     \item \textsc{Nash}, the problem of finding a Nash equilibrium in a bimatrix game \sidecite{daskalakis_complexity_2009};
     \item \textsc{Minimize}, the problem of finding the global minimum of a convex function \sidecite{daskalakis_continuous_2011}.
 \end{itemize}
@@ -41,12 +39,12 @@ The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_
 Similarly to decision problems, we can also define reductions inside \TFNP.
 
 \begin{definition}[Many-to-one Reduction]
-    \boxmarginnote{Saying \emph{one can reduce $R$ onto $S$} can be understood as saying \emph{if one can solve $S$ efficiently then I can solve $R$ efficiently}.}
+    \boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently,then one can solve $R$ efficiently}.}
     For two problem $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$:
     \begin{align*}
         \text{If } (f(I), s) \in S \text{ then } (I, g(I, s)) \in R.
     \end{align*}
-    This means that if $s$ is a solution to an instance $f(I)$ in $S$, we can compute $g(I, s)$ a solution to an instance $I$ in $R$
+    This means that if $s$ is a solution to the instance $f(I)$ in $S$, we can compute a solution $g(I, s)$ to an instance $I$ in $R$
 \end{definition}
 
 We also introduce the notion of Turing reduction in \TFNP, analogously to the classical Turing reduction.
@@ -73,7 +71,7 @@ This means we can often construct a \TFNP\ problem by adding violations to the s
 
 \section{Representation of functions and sets}[Representation of objects]
 
-As we will see, the problems we will study are given by questions of the form ``find an $x \in S$ such that $f(x)$ has some property''. A question which arise, that answer next, is how we represent the input, that is, the set $S$ and the function $f$. We start by describing how we represent sets.
+As we will see, the problems we will study are given by questions of the form ``find an $x \in S$ such that $f(x)$ has some property''. A question which arises, that we answer next, is how we represent the input, that is, the set $S$ and the function $f$. We start by describing how we represent sets.
 
 \subsection{Representation of sets}[Representing sets]
 
