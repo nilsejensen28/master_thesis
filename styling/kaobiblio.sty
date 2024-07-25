@@ -41,7 +41,7 @@
 	citetracker=true,
 	ibidtracker=context,
 	autopunct=true,
-	autocite=plain,
+	autocite=plain
 }{biblatex}
 
 % Pass the unknown options to biblatex, overwriting the previous settings. Avoid passing the kao-specific options.
@@ -144,6 +144,27 @@
 %----------------------------------------------------------------------------------------
 %	CITATION COMMANDS
 %----------------------------------------------------------------------------------------
+
+%Replace the old command to get 2 names.
+\DeclareCiteCommand*{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   %If there are 3 or more names print the first, if there are 2 print both.
+   \ifnumgreater{\value{labelname}}{2}
+	 {\printnames[][1-1]{labelname}}{}
+	\ifnumequal{\value{labelname}}{2}
+	 {\printnames[][1-2]{labelname}}{}
+	\ifnumequal{\value{labelname}}{1}
+	 {\printnames[][1-1]{labelname}}{}
+  }
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+
 
 % Command to format the marginnote created for cited items
 \NewDocumentCommand{\formatmargincitation}{m}{% The parameter is a single citation key
