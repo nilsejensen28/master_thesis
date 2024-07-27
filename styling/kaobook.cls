@@ -25,7 +25,7 @@
 %----------------------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{kaobook}[2021/08/23 v0.9.8 kaobook]
+\ProvidesClass{styling/kaobook}[2021/08/23 v0.9.8 kaobook]
 \newcommand{\@baseclass}{scrbook} % Base class name
 
 % Set the default options
