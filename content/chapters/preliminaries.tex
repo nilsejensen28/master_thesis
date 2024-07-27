@@ -20,14 +20,30 @@ We can view these search problems as decision problems by looking at the corresp
     \mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
 \end{align*}
 
-The above shows, that every search problem can be seen as a decision problme of a broader language. This perspective allows us to ask classical complexity questions about search problems: Are these problems in \P or in \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question. This observation leads to an intriguing question: what if we remove the decision-making component from the problem? This scenario is achieved by ensuring that ``No'' is never a valid solution. Such problems, where every instance is guaranteed to admit a solution, are called total search problems.
+The above shows that every search problem can be seen as a decision problem of a broader language. This perspective allows us to ask classical complexity questions about search problems: Are these problems in \P\ or \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question.
+
+Similarly to decision problems, we want to study which problems can be solved efficiently and which cannot. This question leads us to the definition of the complexity class \FNP, which is pendant for search problems, to  \NP\ for decision problems. We introduce \FNP\ formally as in~\sidecite{megiddo_total_1991}.
+
+\begin{definition}[Function \NP\ (\FNP)]
+    We say that a relation $R\subset \binstr \times \binstr$ is in \FNP\ if it is \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{y} \leq p(\length{x})$.
+    The class \FNP\ is the set of all relations $R$ that are polynomially balanced.
+\end{definition}
+
+This means that checking a solution to a search problem can be done in polynomial time. What cannot be done in polynomial time is checking whether no solution exists. This leads to the question of what happens if we remove this decision problem from the search problem. This question is what leads to the definition of a total search problem~\cite{megiddo_total_1991}:
 
 \begin{definition}[Total search problems]
+    \boxmarginnote{This means that a solution always exists for any input, i.e.\ ``No'' is never a valid answer.}
     A \define{total search problem} is a search problem given by a relation $R\subset \binstr \times \binstr$, such that for every given instance $I\in
         \binstr$ there is a solution $s \in \binstr$ that satisfies: $(I, s) \in R$.
 \end{definition}
 
-The complexity class \TFNP\ as introduced in \sidecite{papadimitriou_complexity_1994} is simply the class of all total search problems that lie in \NP.\marginnote{This means that \TFNP\ can be seen as an intermediate class between \P\ and \NP, containing all search problems where a solution is guaranteed to exist, and where one can efficiently check the feasibility of a candidate solution.} Examples of \TFNP\ problems are:
+The complexity class \TFNP\ is simply the class of all \emph{total} problems in \TNP.
+
+\begin{definition}[Total Function \NP\ (\TFNP)]
+    The class \TFNP\ is the set of all problems given by total relations polynomially bounded relations $R$.
+\end{definition}
+
+Similarly to \P, \FP\ is the class of all search problems that can be solved in polynomial time. It is not known whether \FP\ is equal to \TFNP, but it is widely believed --- similarly to \P\ and \NP\ --- that they are different. Examples of \TFNP\ problems are:
 \begin{itemize}
     \item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorization into prime numbers, which can be checked in polynomial time;
     \item \textsc{Nash}, the problem of finding a Nash equilibrium in a bimatrix game \sidecite{daskalakis_complexity_2009};
@@ -415,7 +431,7 @@ By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$
     }
 \end{algorithm}
 
-A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured by Etessami et.\ al.\ that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed, which mostly relies on a smarter way of finding progress points, and a smarter way of dividing the problem into sub-instances \sidecite{fearnley_faster_2022}. We will not discuss this algorithm in detail, as it is not relevant for the rest of the thesis, but we want to mention that it achieves a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$. This is, to date, the best upper bound for solving \Tarski\ instances.
+A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured by Etessami et.\ al.\ that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$. This is, to date, the best upper bound for solving \Tarski\ instances.
 
 \subsection{Lower bounds for \Tarski}
 
