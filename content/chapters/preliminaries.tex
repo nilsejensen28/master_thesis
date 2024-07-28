@@ -63,37 +63,33 @@ Similarly to decision problems, we can also define reductions inside \TFNP.
     This means that if $s$ is a solution to the instance $f(I)$ in $S$, we can compute a solution $g(I, s)$ to an instance $I$ in $R$
 \end{definition}
 
-We also introduce the notion of Turing reduction in \TFNP, analogously to the classical Turing reduction.
+Notice that many-to-one reductions map \emph{instances} to \emph{instances}, if we instead assume that we can compute a solution, we use a \emph{Turing reduction}, which we introduce analogously to the classical Turing reduction.
 
 \begin{definition}[Turing Reduction]
-    For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if a polynomial-time oracle Turing machine that solves $R$ given access to an oracle for $S$ exists.
+    For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if a polynomial-time oracle Turing machine that solves $R$ given access to an oracle\boxmarginnote{An \define{oracle} is a black-box which solves $S$.} for $S$ exists.
 \end{definition}
 
 \subsection{Promise Problems}
 
 We have defined total search problems as problems where a solution always exists for \emph{any} input in $\{0, 1\}^*$. However, in practice, we often study problems where a solution is guaranteed to exist only for a subset of the inputs. For instance, every convex function has a global minimum, but this existence result relies on the fact that we are given a convex function. This leads us to the notion of \define{promise problems} as introduced in \sidecite{hollender_structural_2021}. Formally, we restrict the instance space to some subset $\mathcal{X} \subset \{0, 1\}^*$. We only require our algorithm to solve the problem for instances in $\mathcal{X}$, and it can behave arbitrarily on instances outside of $\mathcal{X}$.
 
-We highlight that formally \TFNP\ does not contain promise problems where $\mathcal{X} \neq \{0, 1\}^*$. However, in practice, we can still compute various instances of \TFNP\ problems by restricting the input space to some subset $\mathcal{X}$. This is, for instance, the case when we can check in polynomial time whether an instance is in $\mathcal{X}$. Assume that we have a total problem $R$ on $X \subset \{0, 1\}^*$, then we can define the promise problem $R'$ on $\{0, 1\}^*$ by adding a solution $(I, \star)$ to $R$ for all $I \in \{0, 1\}^* \setminus R$, where $\star$ is some special binary string. Because it can be decided in polynomial time whether an instance is in $\mathcal{X}$, we can solve $R'$ by checking whether the instance is in $\mathcal{X}$ and then solving $R$, hence obtaining a problem in \TFNP.
+We highlight that formally \TFNP\ does not contain promise problems where $\mathcal{X} \neq \{0, 1\}^*$. We still want to study these problems inside the \TFNP-Framework. There is a trick for restricting the input space to a subset $\mathcal{X} \subset \set{0, 1}^*$, where the language $\mathcal{X}$ can be decided in polynomial time. For a search problem $R$ on $X \subset \{0, 1\}^*$, we can then define the promise problem $R'$ on $\{0, 1\}^*$ by adding a solution $(I, \star)$ to $R$ for all $I \in \{0, 1\}^* \setminus R$, where $\star$ is some special binary string. Because it can be decided in polynomial time whether an instance is in $\mathcal{X}$, we can solve $R'$ by checking whether the instance is in $\mathcal{X}$ and then solving $R$, hence obtaining a problem in \TFNP.
 
-Another way to formally obtain a \TFNP\ problem is by checking the validity of the input syntactically. For instance, if instances are supposed to be functions or boolean circuits, then it can be checked whether an instance is a valid encoding of a function or boolean circuit in polynomial time. For example, this is the case for the \Tarski\ problem, where the instances are boolean circuits, and the validity of the instances can be checked in polynomial time.
+For example, in this thesis, we use syntactic validation when the instances are a function or a boolean circuit to validate that the given input is indeed an encoding of a function or circuit. This verification can be done in polynomial time \sidecite{greenlaw_chapter_1998}, and a special binary string can be outputed if this verification fails. For example, this is the case for the \Tarski\ problem, where the instances are boolean circuits, and the validity of the instances can be checked in polynomial time. For the sake of simplicity, we will assume that this step implicitly when defining \TFNP-Problems, and allow instances which have an input space $\mathcal{X} \subset \set{0, 1}^*$ if it can be validated in polynomial time.
 
-Finally, there is one final way to obtain a \TFNP\ problem, which we want to highlight. We can add \define{violations} to the solution space. For example, if we are interested in finding the global minima of convex functions, we can construct a total search problem by:
+Additionally to this syntactic validation, we can construct \TFNP-instances by adding \define{violations} to the solution space. For example, if we are interested in finding the global minima of convex functions, we can construct a total search problem by:
 \begin{enumerate}
     \item Checking syntactically that the input defines a function;
-    \item Adding a violation of convexity to the solution space\marginnote{A violation of convexity is given by a $x, y \in \mathcal{D}_f$, and $t \in \{0, 1\}$ such that $t f(x) + (1-t)f(y) < f(tx + (1-t)y)$.}.
+    \item Adding a violation of convexity to the solution space\marginnote{A violation of convexity is given by a $x, y \in \mathcal{D}_f$, and $t \in \{0, 1\}$ such that $t f(x) + (1-t)f(y) < f(tx + (1-t)y)$.}. Formally, this is done by changing the relation $R$ to ensure that a solution exists for every instance $I$; this can be thought of as allowing more solutions.
 \end{enumerate}
 
-This means we can often construct a \TFNP\ problem by adding violations to the solution space and checking the validity of the input syntactically when given a promise problem. However, it is essential to note that this is only sometimes the case and that constructing a \TFNP\ problem from a promise problem can be a non-trivial task.
-
-\section{Representation of functions and sets}[Representation of objects]
-
-As we will see, the problems we will study are given by questions of the form ``find an $x \in S$ such that $f(x)$ has some property''. A question which arises, that we answer next, is how we represent the input, that is, the set $S$ and the function $f$. We start by describing how we represent sets.
+This means we can often construct a \TFNP-problem starting out with a promise-problem by checking the validity of the input syntactically and adding violations to the solution space. However, it is essential to note that this is only sometimes the case and that constructing a \TFNP\ problem from a promise problem can be a non-trivial task. Also, there is no unique way of constructing \TFNP-Problems from promise problems, and care has to be taken to introduce the studied problem rigorously.
 
 \subsection{Representation of sets}[Representing sets]
 
-In this thesis, we will work with sets of the form $S = \{0, \dots, 2^n - 1\}$, which we will denote by $[2^n]$. Notice that this set can be identified with the set of binary strings of length $n$. We will denote the set of binary strings of length $n$ by $\bitstr^n$. Formally, the functions and the model we will use to represent the functions will use the underlying binary strings in $\bitstr^n$. We often denote the integer $x \in [2^n]$ instead of the binary string for notational convenience.
+In this thesis, we will work with sets of the form $S = \{0, \dots, 2^n - 1\}$, which we will denote by $[2^n]$. Notice that this set can be identified with the set of binary strings of length $n$. We will denote the set of binary strings of length $n$ by $\bitstr^n$. Formally, the functions and the model we will use to represent the functions will use the underlying binary strings in $\bitstr^n$. We often denote the integer $x \in [2^n]$ interchangeably with its representation as a binary string.
 
-Similarly, when considering the $d$-dimensional case, we can represent the set $L = [2^n]^d$, which corresponds to a $d$-dimensional lattice with side length $2^n$, as the set of binary strings of length $n \cdot d$, i.e.\ $\bitstr^{nd}$. Again, for simplicity, while the underlying functions rely on the binary strings, we often only denote the point $(x_1, \dots, x_d) \in [2^n]^d$, instead of its binary representation.
+Similarly, when considering the $d$-dimensional case, we can represent the set $L = [2^n]^d$, which corresponds to a $d$-dimensional lattice with side length $2^n$, as the set of binary strings of length $n \cdot d$, i.e.\ $\bitstr^{nd}$. Again, for simplicity, while the underlying functions rely on the binary strings, these naturally correspond to a unique point $(x_1, \dots, x_d) \in [2^n]^d$. We will use both notations interchangeably.
 
 \subsection{Representation of functions}[Representing functions]
 
@@ -338,7 +334,7 @@ We briefly discuss the most common algorithms for solving \Tarski\ instances. We
 \begin{remark}
     Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotonous, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
 \end{remark}
-Now, by noticing that by starting with the point $\mathbf{0} = 0^d$ and iterating the function $f$, we will eventually reach a fixed point, we can construct an iterative Algorithm for solving \Tarski, described in \cref{alg:iterative_tarski_solver}.
+Now, by noting that by starting at the point $\mathbf{0} = 0^d$ and iterating the function $f$, we will eventually reach a fixed point, we can construct an iterative algorithm for solving \Tarski, described in \cref{alg:iterative_tarski_solver}.
 
 \begin{algorithm}
     \caption{Iterative Algorithm for \Tarski}
@@ -359,7 +355,7 @@ Now, by noticing that by starting with the point $\mathbf{0} = 0^d$ and iteratin
 
 The path which \cref{alg:iterative_tarski_solver} takes to solve a \Tarski\ instance is colored green in \cref{fig:tarski_example}. While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS\ by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotonous along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
 
-Next, we want to describe a more advanced algorithm for solving \Tarski\ instances. The algorithm we will present is due to \sidecite{dang_computations_2020}. We will give an alternative presentation and simplified proof of the correctness of the algorithm here. Before this, we want to introduce some notations to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
+Next, we describe a more advanced algorithm for solving \Tarski\ instances and also give an alternative presentation and simplified proof of its correctness. The algorithm we will present is due to \sidecite{dang_computations_2020}. The following notation aim to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
 \begin{align*}
     L_{\leq x} & = [x[1]+1] \times \cdots \times [x[d]+1],                          \\
     L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdots \times \winterval{x[d]}{N_d}
@@ -435,7 +431,7 @@ A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L 
 
 \subsection{Lower bounds for \Tarski}
 
-We want to discuss the lower bounds for solving \Tarski\ instances. The best-known lower bounds for \Tarski\ are given by \sidecite{etessami_tarskis_2020}. They showed that in the black-box model, where the only way to access the function $f$ is by querying it, solving a $d$-dimensional \Tarski\ requires solving at least $\Omega(\log^{N})$ one-dimensional \Tarski\ instances, which are as difficult as binary search, hence this means that solving a $d$-dimensional \Tarski\ instance requires at least $\Omega(\log^{2}{N})$ queries. This means that the upper and lower bounds are equal in the 2-dimensional case, but in all other cases, there remains a gap. In particular, the best-known lower bound for solving \Tarski\ does not depend on the dimension $d$, which seems somewhat unexpected.
+The best-known lower bounds for \Tarski\ are given by \sidecite{etessami_tarskis_2020}. They showed that in the black-box model, where the only way to access the function $f$ is by querying it, solving a $d$-dimensional \Tarski\ requires solving at least $\Omega(\log^{N})$ one-dimensional \Tarski\ instances, which are as difficult as binary search, hence this means that solving a $d$-dimensional \Tarski\ instance requires at least $\Omega(\log^{2}{N})$ queries. This means that the upper and lower bounds are equal in the 2-dimensional case, but in all other cases, there remains a gap. In particular, the best-known lower bound for solving \Tarski\ does not depend on the dimension $d$, which seems somewhat unexpected.
 
 This gives us reason to study \Tarski\ under the lens of complexity theory, in particular to understand where \Tarski\ lies in the \TFNP\ landscape.
 
@@ -445,4 +441,4 @@ We now want to summarize where \Tarski\ lies inside of \TFNP. It has been shown 
 
 Now that we have established that \Tarski\ lies inside $\PLS \medcap \PPAD$, we want to discuss the structure of $\PLS \medcap \PPAD$ and describe recent advances in the study of this class. There have been two surprising advances in the study of $\PLS \medcap \PPAD$ in the last few years. The first is that $\CLS = \PLS \medcap \PPAD$ \sidecite{fearnley_complexity_2023}. \CLS\ (Continuous Local Search) was first introduced by Daskalakis and Papadimitriou in \sidecite{daskalakis_continuous_2011} and can be informally thought of as the class of all problems that can be solved by finding the local optimum of a potential in a discrete space equipped with an adjacency relation. This result shows that the problems in $\PLS \medcap \PPAD$ are exactly those that gradient descent algorithms can solve.
 
-A further notable collapse is the result $\PLS \medcap \PPAD = \EOPL$, which was only recently shown in \sidecite{goos_further_2022}. This, of course, means that, in particular, \Tarski\ lies in \EOPL. A question that then arises, and which this thesis will try to answer, is whether we can construct an explicit reduction of \Tarski\ to \EndOfPotentialLine.
+A further notable collapse is the result $\PLS \medcap \PPAD = \EOPL$, which was only recently shown in \sidecite{goos_further_2022}. This, of course, means that, in particular, \Tarski\ lies in \EOPL. A question that then arises, and which this thesis will attempt to answer, is whether we can construct an explicit reduction of \Tarski\ to \EndOfPotentialLine.

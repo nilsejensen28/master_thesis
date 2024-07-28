@@ -1,7 +1,7 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \EOPL}
 
-In the previous chapter, we exhibited how one can demonstrate the membership of Tarski in \PPAD\ through a reduction to Sperner. We now demonstrate that the same approach yields a reduction to \EndOfPotentialLine, which lies within \EOPL. This will necessitate a more meticulous examination of the structure of a Tarski instance and the induced colouring of the lattice points. In order to achieve our objective, we must first construct a specific simplical decomposition of the lattice. This will be done with the intention of obtaining certain useful properties. Ultimately, our goal is to demonstrate that for a monotone Tarski instance, the associated EndOfLine instance does not contain any cycles. This will prove sufficient to establish a reduction to \EndOfPotentialLine.
+In the previous chapter, we demonstrate how one can prove the membership of Tarski in \PPAD\ through a reduction to Sperner. We now demonstrate that the same approach yields a reduction to \EndOfPotentialLine, which lies within \EOPL. This will necessitate a more meticulous examination of the structure of a Tarski instance and the induced colouring of the lattice points. In order to achieve our objective, we must first construct a specific simplical decomposition of the lattice. We do this with the intention of obtaining certain useful properties. Ultimately, our goal is to demonstrate that for a monotone Tarski instance, the associated EndOfLine instance does not contain any cycles. This will prove sufficient to establish a reduction to \EndOfPotentialLine.
 
 \section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
 \label{sec:freudenthal_simplicial_decomposition}
@@ -45,7 +45,7 @@ We want to begin by arguing why this decomposition is well-defined. We begin by 
     \end{align*}
     This shows that $x$ is a convex combination of the vertices of $S_{\pi}$, and thus $x \in S_{\pi}$.
 \end{proof}
-Next we want to discuss why this really forms a partition of the hypercube. Of course a given point $x$ can be contained in multiple simplexes, but we want to show that this does not happen appart from on the boundary of the simplices.
+Next we discuss why this really forms a partition of the hypercube. Of course a given point $x$ can be contained in multiple simplexes, but we want to show that this does not happen appart from on the boundary of the simplices.
 \begin{lemma}
     Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the \define{interior} of $S_{\pi}$ is:
     \begin{align*}
@@ -108,7 +108,7 @@ We can remark the following about the faces of a simplex.
     \end{enumerate}
 \end{remark}
 
-We want to discuss what simplices of the decomposition neighboor each other. We claim that a given simplex has $d-1$ neighbooring simplices inside a given cell, and two neighbooring simplices in neighbooring cells. More precisely we have the following lemma.
+We discuss what simplices of the decomposition neighboor each other. We claim that a given simplex has $d-1$ neighbooring simplices inside a given cell, and two neighbooring simplices in neighbooring cells. More precisely we have the following lemma.
 
 \begin{lemma}[Neighbooring Simplices]
     Let $S_{\pi} \in \mathcal{S}$ be a simplex:
@@ -128,7 +128,7 @@ We want to discuss what simplices of the decomposition neighboor each other. We 
 
 \section{Orientation of a the simplicial decomposition}[Orientating the simplices]
 
-In this section we want to discuss how to orient the simplicial decomposition of the lattice, we defined in the previous section. This will be important as we will argue in the next section, that the existence of a cycle would contradict the orientation of the simplicial decomposition. We will start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
+In this section we discuss how to orient the simplicial decomposition of the lattice, we defined in the previous section. This will be important as we will argue in the next section, that the existence of a cycle would contradict the orientation of the simplicial decomposition. We start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
 
 \subsection{Orientation of a simplex}[Orienting a simplex]
 \label{sec:orientation_of_simplex}
@@ -205,7 +205,7 @@ A simplicial complex can be thought of as a collection of simplices which are be
     \end{enumerate}
 \end{definition}
 
-Notice that the lattice points which we are interested in, together with Freudenthal's simplicial decomposition of each cell, form a simplicial complex. We now want to define an orientation of a simplicial complex. Of course such an orientation relies on an orientation of each simplex, and we want to make sure that these orientations are in some sence ``compatible'' on the faces of the simplicial complex. We will define this notion in the following definition.
+The lattice points which we are interested in, together with Freudenthal's simplicial decomposition of each cell, form a simplicial complex. We now want to define an orientation of a simplicial complex. Of course such an orientation relies on an orientation of each simplex, and we want to make sure that these orientations are in some sence ``compatible'' on the faces of the simplicial complex. We will define this notion in the following definition.
 
 \begin{definition}[Orientation of a simplicial complex]
     An \define{orientation} of a simplicial complex $\mathcal{K}$ is a choice of an orientation of every $d$-simplex in $\mathcal{K}$, such that for every intersection of two simplices $S_1, S_2 \in \mathcal{K}$, the induced orientation of the face $F = S_1 \cap S_2$ in $S_1$ and $S_2$ are opposite. \par
@@ -274,7 +274,7 @@ We give an example of such an orientation in \cref{fig:orientation_of_simplicial
 
 \section{Sequences of simplices}[Sequences of simplices]
 
-In this section we want to introduce and study \emph{sequences of simplices}. We will show that they have some nice properties in regard to the orientation of the simplicial decomposition which we previously discussed. This will be useful as we will argue that paths in the \EndOfLine\ instance are sequences of simplices, and that the orientation of the simplicial decomposition will prevent these paths from forming cycles. We will start by defining what we mean by a sequence of simplices.
+In this section we introduce and study \emph{sequences of simplices}. We will show that they have some nice properties in regard to the orientation of the simplicial decomposition which we previously discussed. This will be useful as we will argue that paths in the \EndOfLine\ instance are sequences of simplices, and that the orientation of the simplicial decomposition will prevent these paths from forming cycles. We start by defining what we mean by a sequence of simplices.
 
 \begin{definition}[Sequence of simplices]
     \label{def:sequence_of_simplices}
@@ -296,7 +296,7 @@ Observe that because of the orientation of the simplicial complex, the orientati
     \end{enumerate}
 \end{definition}
 
-We now want to show that such a sequence of face is consistent with the orientation of the simplicial complex.
+Now we want to show that such a sequence of face is consistent with the orientation of the simplicial complex.
 \begin{proposition}[Orientation of sequences of faces]
     \label{prop:orientation_of_sequences_of_faces}
     Let $\left(S_i\right)_{i=1}^{k}$ be a simplicial sequence, and $\left(L_i\right)_{i=1}^{k}$ a sequence of faces of the simplices in the sequence. Then the orientation of the faces $L_i$ is consistent.
@@ -314,7 +314,7 @@ We now want to show that such a sequence of face is consistent with the orientat
 
 \section{Properties of the coloring of \Tarski\ instances}[Properties of the coloring]
 
-In this section we want to discuss different properties with the coloring of \Tarski\ instances have. This will be helpful in arguing that the resulting \EndOfLine\ instance does not contain any cycles. We will start with general properties and then move on to properties of sequences of simplices.
+In this section we discuss different properties with the coloring of \Tarski\ instances have. This will be helpful in arguing that the resulting \EndOfLine\ instance does not contain any cycles. We will start with general properties and then move on to properties of sequences of simplices.
 
 \subsection{General properties of the coloring}
 
@@ -327,7 +327,7 @@ In this section we want to discuss different properties with the coloring of \Ta
             d & \text{else if $x[d] > f(x)[d]$}
         \end{cases}
     \end{align*}}
-In this section we will assume that we are working on a integer lattice $L$, and that for a function $f : L \rightarrow L$, the points have been colored $c : L \rightarrow \set{0, \dots, d}$ as in \cref{sec:tarskistar_to_sperner}. Now we are ready to present a first observation, which will be a helpful stepping stone for more advanced results.
+For this section we assume that we are working on a integer lattice $L$, and that for a function $f : L \rightarrow L$, the points have been colored $c : L \rightarrow \set{0, \dots, d}$ as in \cref{sec:tarskistar_to_sperner}. Now we are ready to present a first observation, which will be a helpful stepping stone for more advanced results.
 
 \begin{lemma}
     \label{lem:monotone_coloring}
@@ -405,7 +405,7 @@ As a direct consequence of this proposition we get the following corollary, whic
 
 \section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
 
-We are now ready to show that the \EndOfLine\ instance does not contain any cycles. We will do this by showing that the existence of a cycle would contradict the orientation of the simplicial complex. A cycle is a valid sequence such that $S_0$ and $S_k$ are a $(d-1)$-simplex as a face. We will show that certain situations cannot occur due to the orientation of the simplicial complex. And we will then argue that these situations must occur in a cycle. This will be enough to show that the \EndOfLine\ instance does not contain any cycles.
+Now we are ready to show that the \EndOfLine\ instance does not contain any cycles. We do this by showing that the existence of a cycle would contradict the orientation of the simplicial complex. A cycle is a valid sequence such that $S_0$ and $S_k$ are a $(d-1)$-simplex as a face. We will show that certain situations cannot occur due to the orientation of the simplicial complex before argueing that these situations must occur in a cycle. This will be enough to show that the \EndOfLine\ instance does not contain any cycles.
 
 Before we start we want to make an observation on how the dimension $d$ plays together with the orientation of the simplicial complex.
 \begin{lemma}
@@ -434,11 +434,11 @@ Before we start we want to make an observation on how the dimension $d$ plays to
     \end{align*}
     This shows the Lemma.
 \end{proof}
-We now want to show that a sequence of colored simplices as defined previously, can only cross a given hyperplane, given by fixing a dimension $l$, at most once. This will be a key tool in the discussion on cycles in the \EndOfLine\ instance. Formally we have the following proposition.
+Next we show that a sequence of colored simplices as defined previously, can only cross a given hyperplane, given by fixing a dimension $l$, at most once. This will be a key tool in the discussion on cycles in the \EndOfLine\ instance. Formally we have the following proposition.
 \begin{proposition}
     Let $l \in \set{1, \dots, d-1}$ be a dimension. Consider the hyperplane $H$ given by fixing $l = L$ for some $L \in [N]$\marginnote[0mm]{In other words $H$ is given by ${H = \set{x \in \R^d \mid x[l] = L}}$}. Then consider the sequence of simplices $\left(S_i\right)_{i=1}^{k}$ such as defined previously. Then there can not be two $i \neq j$ such that $F_i \subset H$ and $F_j \subset H$.
 \end{proposition}
-Before we prove this we want to detail why this is a very powerful result. This means that in all dimensions appart from $d$ the sequences of simplices which induce the paths in the \EndOfLine\ instance are monotone. Now let us prove this result.
+Prior to proving this result, it is essential to highlight the underlying rationale behind its significance. This implies that, with the exception of the dimension $d$ the sequences of simplices that induce the paths in the \EndOfLine\ instance are monotone. Now let us prove this result.
 \begin{proof}
     For the sake of contradiction assume that there are two such $i \neq j$, such that $F_i \subset H$ and $F_j \subset H$. Without loss of generality we can further assume that $i < j$ and that for all $k \in \set{i+1, \dots, j-1}$ we have $F_k \not\subset H$, if so then replace $j$ with the smallest such $k$.\par
     Now notice that $S_i$ and $S_{j}$ are on opposite sides of $H$, and that $S_{i+1}$ and $S_{j}$ are on the same side of $H$. Now let us consider the sequence of colored simplices $S_{i+1}, \dots, S_j$. Notice that \cref{lem:position_of_d_in_simplex}, which we proved earlier, implies that both $F_i$, and $F_j$ must be of the following form:
