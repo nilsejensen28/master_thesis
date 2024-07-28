@@ -33,6 +33,7 @@
 \PassOptionsToClass{fontsize=10pt}{\@baseclass}
 \PassOptionsToClass{parskip=half}{\@baseclass}
 \PassOptionsToClass{headings=optiontoheadandtoc}{\@baseclass}
+\PassOptionsToClass{listof=totoc}{\@baseclass}
 
 % Pass through any other options to the base class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\@baseclass}} 

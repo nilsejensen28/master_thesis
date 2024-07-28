@@ -38,7 +38,6 @@
 \usepackage{import}
 \usepackage{xifthen}
 \usepackage{pdfpages}
-\usepackage{transparent}
 \usepackage{textcomp} %Textrightarrow
 \usepackage{marvosym} %Bold arrows
 \usepackage{newunicodechar} %Allows us to add missing unicode characters
@@ -59,6 +58,10 @@
 \setmonofont[Ligatures=TeX]{Fira Mono}
 %Fix missing characters
 \newunicodechar{∩}{\ensuremath{\cap}}
+
+\AtBeginDocument{%
+    \DeclareFontShape{TU}{FiraSansLight(0)}{m}{scsl}{<->ssub*lmr/m/sc}{}% %Fira sans does not have slanted small caps, so we use small caps instead
+}
 
 %Use Fira Math for Equations
 % \usepackage{firamath-otf}
