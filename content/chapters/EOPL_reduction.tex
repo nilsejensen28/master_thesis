@@ -1,7 +1,7 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \EOPL}
 
-In the previous chapter, we demonstrate how one can prove the membership of Tarski in \PPAD\ through a reduction to Sperner. We now demonstrate that the same approach yields a reduction to \EndOfPotentialLine, which lies within \EOPL. This will necessitate a more meticulous examination of the structure of a Tarski instance and the induced colouring of the lattice points. In order to achieve our objective, we must first construct a specific simplical decomposition of the lattice. We do this with the intention of obtaining certain useful properties. Ultimately, our goal is to demonstrate that for a monotone Tarski instance, the associated EndOfLine instance does not contain any cycles. This will prove sufficient to establish a reduction to \EndOfPotentialLine.
+In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner. We now demonstrate that the same approach yields a reduction to \EndOfPotentialLine, which lies within \EOPL. This will necessitate a more meticulous examination of the structure of a \Tarski\ instance and the induced colouring of the lattice points. In order to achieve our objective, we must first construct a specific simplical decomposition of the lattice. We do this with the intention of obtaining certain useful properties. Ultimately, our goal is to demonstrate that for a monotone \Tarski\ instance, the associated \EndOfLine\ instance does not contain any cycles. This will prove sufficient to establish a reduction to \EndOfPotentialLine.
 
 \section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
 \label{sec:freudenthal_simplicial_decomposition}
@@ -55,7 +55,7 @@ Next we discuss why this really forms a partition of the hypercube. Of course a 
 \begin{proof}
     The same proof as for lemma \ref{lem:caracterisation_of_simplices}, holds with the added constraint that all $\lambda_i > 0$, this then shows that these points are in the interior of the simplex.
 \end{proof}
-These two lemma's together show that we have a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove some structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
+These two Lemmata together show that we have a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove some structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
 \begin{lemma}
     Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the vertices of $S_{\pi}$ are totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. In particular we claim that:
     \begin{align*}
@@ -70,7 +70,7 @@ This directly implies the following corollary.
     \label{cor:total_ordering}
     For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
-Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next we want to introduce a new notation which will allow us describe these simplices more succintly. Assume that a permutation $\pi$ of the dimensions, induces a simplex $S_{\pi}$, woth vertices $v_0, \dots, v_d$, as defined in \cref{def:freudenthal_simplicial_decomposition}. Then we will denote the $d$-dimensional simplex $S_{\pi}$ as:
+Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next we want to introduce a new notation which will allow us describe these simplices more succinctly. Assume that a permutation $\pi$ of the dimensions, induces a simplex $S_{\pi}$, with vertices $v_0, \dots, v_d$, as defined in \cref{def:freudenthal_simplicial_decomposition}. Then we will denote the $d$-dimensional simplex $S_{\pi}$ as:
 \begin{align*}
     v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
 \end{align*}
@@ -108,7 +108,7 @@ We can remark the following about the faces of a simplex.
     \end{enumerate}
 \end{remark}
 
-We discuss what simplices of the decomposition neighboor each other. We claim that a given simplex has $d-1$ neighbooring simplices inside a given cell, and two neighbooring simplices in neighbooring cells. More precisely we have the following lemma.
+We discuss what simplices of the decomposition neighbour each other. We claim that a given simplex has $d-1$ neighbooring simplices inside a given cell, and two neighbooring simplices in neighbooring cells. More precisely we have the following lemma.
 
 \begin{lemma}[Neighbooring Simplices]
     Let $S_{\pi} \in \mathcal{S}$ be a simplex:
