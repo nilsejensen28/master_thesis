@@ -287,7 +287,7 @@ Next, we introduce the \Tarski\ Problem. Before we do this, we recall that there
     A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
 \end{definition}
 
-The name of the \Tarski\ problem originates from Tarski's fixed point Theorem, first introduced in \sidecite{tarski_lattice-theoretical_1955}. It goes as follows:
+The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. The Theorem states the following:
 
 \begin{theorem}[Tarski's fixed point Theorem]
     \boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}
@@ -325,7 +325,7 @@ This is a total search problem, as there will always either be a fixed point or 
 \begin{proof}
     The lemma follows directly by observing that for all $i \in \set{1, \dots, d}$ we have: $f(x)[i] \leq f(y)[i]$ if and only if $\ftilde(x)[i] \leq \ftilde(y)[i]$.
 \end{proof}
-This means that in this thesis, we can consider the simplified version of the \Tarski\ problem, where for every $x \in L$, we have $\norminf{x - f(x)} \leq 1$, which we will implicitly assume from now on.
+This means that in this thesis, we can consider the simplified version of the \Tarski\ problem\marginnote{Also note that given a circuit that computes $f$ we can construct a circuit with at most double the size which computes $\ftilde$.}, where for every $x \in L$, we have $\norminf{x - f(x)} \leq 1$, which we will implicitly assume from now on.
 
 \subsection{Two algorithms for solving \Tarski}[\Tarski\ Algorithms]
 \label{sec:tarski_algorithms}
@@ -334,7 +334,7 @@ We briefly discuss the most common algorithms for solving \Tarski\ instances. We
 \begin{remark}
     Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotonous, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
 \end{remark}
-Now, by noting that by starting at the point $\mathbf{0} = 0^d$ and iterating the function $f$, we will eventually reach a fixed point, we can construct an iterative algorithm for solving \Tarski, described in \cref{alg:iterative_tarski_solver}.
+Now, note that by starting at the point $\mathbf{0} = 0^d$ and iterating the function $f$, we will eventually reach a fixed point. This means that we can construct an iterative algorithm for solving \Tarski, as described in \cref{alg:iterative_tarski_solver}.
 
 \begin{algorithm}
     \caption{Iterative Algorithm for \Tarski}
@@ -355,7 +355,7 @@ Now, by noting that by starting at the point $\mathbf{0} = 0^d$ and iterating th
 
 The path which \cref{alg:iterative_tarski_solver} takes to solve a \Tarski\ instance is colored green in \cref{fig:tarski_example}. While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS\ by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotonous along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
 
-Next, we describe a more advanced algorithm for solving \Tarski\ instances and also give an alternative presentation and simplified proof of its correctness. The algorithm we will present is due to \sidecite{dang_computations_2020}. The following notation aim to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
+Next, we describe a more advanced algorithm, due to \sidecite{dang_computations_2020}, for solving \Tarski\ instances and also give an alternative presentation and simplified proof of its correctness. The following notation aims to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
 \begin{align*}
     L_{\leq x} & = [x[1]+1] \times \cdots \times [x[d]+1],                          \\
     L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdots \times \winterval{x[d]}{N_d}
@@ -427,7 +427,7 @@ By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$
     }
 \end{algorithm}
 
-A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured by Etessami et.\ al.\ that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$. This is, to date, the best upper bound for solving \Tarski\ instances.
+A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$. This is, to date, the best upper bound for solving \Tarski\ instances.
 
 \subsection{Lower bounds for \Tarski}
 
@@ -437,7 +437,7 @@ This gives us reason to study \Tarski\ under the lens of complexity theory, in p
 
 \subsection{Location of \Tarski\ in \TFNP}[\Tarski\ in \TFNP]
 
-We now want to summarize where \Tarski\ lies inside of \TFNP. It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in \PLS\ as we discussed when presenting \cref{alg:iterative_tarski_solver}. The same paper showed that \Tarski\ lies $\P^{\PPAD}$. We will provide an alternative proof of this second fact in \cref{ch:ppad_reduction}. Previous work~\sidecite{buss_propositional_2012} showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent. In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ lies in \PPAD{}.
+Next we summarize where \Tarski\ lies inside of \TFNP. It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in \PLS\ as we discussed when presenting \cref{alg:iterative_tarski_solver}. The same paper showed that \Tarski\ lies $\P^{\PPAD}$. We will provide an alternative proof of this second fact in \cref{ch:ppad_reduction}. Previous work~\sidecite{buss_propositional_2012} showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent. In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ lies in \PPAD{}.
 
 Now that we have established that \Tarski\ lies inside $\PLS \medcap \PPAD$, we want to discuss the structure of $\PLS \medcap \PPAD$ and describe recent advances in the study of this class. There have been two surprising advances in the study of $\PLS \medcap \PPAD$ in the last few years. The first is that $\CLS = \PLS \medcap \PPAD$ \sidecite{fearnley_complexity_2023}. \CLS\ (Continuous Local Search) was first introduced by Daskalakis and Papadimitriou in \sidecite{daskalakis_continuous_2011} and can be informally thought of as the class of all problems that can be solved by finding the local optimum of a potential in a discrete space equipped with an adjacency relation. This result shows that the problems in $\PLS \medcap \PPAD$ are exactly those that gradient descent algorithms can solve.
 
