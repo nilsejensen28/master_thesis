@@ -29,7 +29,7 @@
 }
 
 %Extra Packages
-\usepackage{svg} %Allows rendering of SVG files
+\usepackage[notransparent]{svg} %Allows rendering of SVG files
 \usepackage{afterpage} %Allows for the creation of empty pages
 \usepackage{fontspec} %Allows for the use of custom fonts
 \usepackage{math_styling/mathmacros} %Allows for the use of custom math fonts
@@ -157,3 +157,7 @@
     \fi%
 }
 \makeatother
+
+%Supress the "marginpar on page X moved." warnings
+\usepackage{silence}
+\WarningFilter{latex}{Marginpar on page}
