@@ -2,14 +2,14 @@
 \chapter{Reducing \Tarski\ to \PPAD}
 \label{ch:ppad_reduction}
 
-This chapter explores the membership of \Tarski\ in the complexity class \PPAD. We begin by presenting a high level overview of an established proof of the reduction of this problem to \Brouwer~\sidecite[35mm]{etessami_tarskis_2020}. We subsequently introduce a novel problem, \Tarskistar, which facilitates a divide-and-conquer approach to solving \Tarski\ by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski's membership in \PPAD\ using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach simplifies the proof and sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
+This chapter explores the membership of \Tarski\ in the complexity class \PPAD. We begin by presenting a high-level overview of an established proof of the reduction of this problem to \Brouwer~\sidecite[35mm]{etessami_tarskis_2020}. We subsequently introduce a novel problem, \Tarskistar, which facilitates a divide-and-conquer approach to solving \Tarski\ by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski's membership in \PPAD\ using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach simplifies the proof and sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
 
 \section{Presentation of the known reduction of \Tarski\ to \PPAD}[Known reduction to \PPAD]
 
 We want to give a high-level presentation of the proof of \Tarski\ membership in \PPAD\ from \sidecite{etessami_tarskis_2020}, which will help us motivate the introduction of \Tarskistar\ and the subsequent use of \textit{Sperner's Lemma}. The proof given by Etessami et al.\@ relies on \textit{Brouwer's fixed point theorem}, which we introduce below.
 
 \begin{theorem}[Brouwer's fixed point theorem]
-    Let $K \subset \R^d$ be a compact, convex set. Then every continuous function $f : K \rightarrow K$ has a fixed point $x^*	\in K$, i.e. $f(x^*) = x^*$.
+    Let $K \subset \R^d$ be a compact, convex set. Then every continuous function $f : K \rightarrow K$ has a fixed point $x^*  \in K$, i.e. $f(x^*) = x^*$.
 \end{theorem}
 
 The original proof can be found in \sidecite{brouwer_uber_1911}, and a more straightforward proof relying on \textsc{Sperner's Lemma} can be found in \sidecite{aigner_proofs_2018}. This Theorem gives rise to a total search problem which we call \Brouwer:
@@ -30,7 +30,7 @@ We can repeat this procedure, always halving the search area, which allows us to
 
 \section{Introducing \Tarskistar}
 
-In the previous section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide-and-conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
+In the previous Section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide-and-conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
 
 For the sake of generality and in order to achieve more precise proofs in the following, we introduce the problem on the integer lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$ for all $i \in \{1, \dots, d\}$. We propose the following problem:
 \problem{\Tarskistar}{
@@ -76,7 +76,7 @@ Now that we know that \Tarskistar\ is a good stepping stone towards solving \Tar
 
 \section{Sperner's Lemma}
 
-The preceding discussion hinges on the assumption that \Tarskistar\ is a total problem, implying that every instance of the problem is guaranteed a solution. This section will substantiate this claim, establishing \ Tarskistar's classification within \TFNP. Rather than employing \textit{Brouwer's fixed point Theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analog, \textit{Sperner's Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
+The preceding discussion hinges on the assumption that \Tarskistar\ is a total problem, implying that every instance of the problem is guaranteed a solution. This Section will substantiate this claim, establishing \ Tarskistar's classification within \TFNP. Rather than employing \textit{Brouwer's fixed point Theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analog, \textit{Sperner's Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
 \begin{itemize}
     \item We are working on a discrete lattice, so it seems more natural to use a discrete tool.
     \item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ to \Sperner\ \sidecite{papadimitriou_complexity_1994-1}. Hence, by reducing to \Brouwer, we introduce continuity into the problem, which is unnecessary, as it gets removed again behind the scenes.
@@ -99,7 +99,7 @@ Now we introduce a coloring $c$ of the vertices of this subdivision with colors 
 
 We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_neuer_1928}, and for which a more modern proof can be found in \sidecite{aigner_proofs_2018}.
 \begin{theorem}[Sperner's Lemma]
-    Suppose that a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices. Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then, there is a subsimplex with vertices of every color.
+    Suppose a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices. Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a subsimplex $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors $i_0, \dots, i_k$. Then, there is a subsimplex with vertices of every color.
 \end{theorem}
 
 We give an example of a 2-dimensional simplex, subdivided into smaller simplices, and colored according to \textit{Sperner's Lemma} in \cref{fig:sperner_lemma_example}.
@@ -113,9 +113,9 @@ We give an example of a 2-dimensional simplex, subdivided into smaller simplices
 
 \subsection{Sperner's Lemma for an integer lattice}[on Lattices]
 
-In chapter XX introduced \textit{Sperner's Lemma} for an integer lattice. This enables us to find a region of a colored lattice that contains all colors under certain conditions. Instead of a subsimplex, we look for a \define{cell}\sidenote{By cell, we mean a unit hypercube of the integer lattice} of the lattice, which contains all colors.
+In the previous Section, we introduced \textit{Sperner's Lemma} for an integer lattice. This enables us to find a region of a colored lattice that contains all colors under certain conditions. Instead of a subsimplex, we look for a \define{cell}\sidenote{By cell, we mean a unit hypercube of the integer lattice} of the lattice, which contains all colors.
 
-For this we proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. We set $v_0 = (0, \dots, 0)$, $v_1 = (N_1 - 1, 0, \dots, 0), \dots, v_d = (0, \dots, 0, N_d - 1)$. We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice and obtain an equivalent simplex and a simplicial decomposition of this simplex.
+For this, we proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. We set $v_0 = (0, \dots, 0)$, $v_1 = (N_1 - 1, 0, \dots, 0), \dots, v_d = (0, \dots, 0, N_d - 1)$. We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice and obtain an equivalent simplex and a simplicial decomposition of this simplex.
 
 \begin{figure}
     \centering
