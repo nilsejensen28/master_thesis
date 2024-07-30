@@ -174,10 +174,6 @@ The depth of a boolean circuit is a measure of the time complexity of the comput
 
 Complete \FNP\ problems within \TFNP\ would imply that $\NP = \coNP$ \sidecite{megiddo_total_1991}, a highly unlikely scenario. Consequently, complete problems are not expected within \TFNP, necessitating alternative approaches to investigate its structure.
 
-
-
-
-
 \TFNP\ is known as a \define{semantic} class \sidecite{papadimitriou_computational_1994}. This is known to mean that it is unlikely that we can find complete \TFNP\ problems \sidecite{nielsen_relativization_1982}. We refer the reader to Papadimitriou's work  for a more detailed discussion of these terms and their implications. We want to explore \textit{syntactic} subclasses of \TFNP\ to address this challenge. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, categorizes search problems based on existence proofs confirming their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
 
 \subsection{Polynomial Local Search (\PLS)}[\PLS]
@@ -430,7 +426,9 @@ By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$
     }
 \end{algorithm}
 
-A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$. This is, to date, the best upper bound for solving \Tarski\ instances.
+A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a query complexity of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$.
+
+A further advance using more advanced methods were made in \sidecite{chen_improved_2022}. They achieve a query complexity of $\BigO{\log^{\ceil{\frac{d-1}{2}}}{N}}$ for $L = [N]^d$. This is to date the best known bound for solving \Tarski\ instances.
 
 \subsection{Lower bounds for \Tarski}
 

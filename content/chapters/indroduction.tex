@@ -37,7 +37,7 @@ The most fundamental approach to solving the Tarski problem is a simple iterativ
 
 A more sophisticated approach involves a binary search technique, where the lattice is systematically divided, and the function's monotonicity is used to eliminate regions that cannot contain a fixed point. This is done by recursively solving lower-dimensional subproblems until the fixed point is found \sidecite{dang_computations_2020}. This method can significantly reduce the search space and converges faster than the iterative Algorithm, with a runtime of $\BigO{\log^d(N)}$.
 
-The latest developments in solving the \Tarski\ problem involve advanced decomposition methods that reduce the search space. These methods decompose the problem into smaller instances that can be more easily managed and solved. Using these techniques a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ can be achieved \sidecite{fearnley_faster_2022}.
+The latest developments in solving the \Tarski\ problem involve advanced decomposition methods that reduce the search space. These methods decompose the problem into smaller instances that can be more easily managed and solved. Using these techniques a runtime of $\BigO{\log^{\ceil{\frac{d-1}{2}}}{N}}$ can be achieved \sidecite{chen_improved_2022}.
 
 \section{Location of \Tarski\ in \TFNP}
 
