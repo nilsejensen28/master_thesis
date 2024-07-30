@@ -168,15 +168,17 @@ The size of the boolean circuits is a measure of the input complexity, i.e.\ it 
     The depth of a boolean circuit $C$ is the length of the longest path from an input gate to an output gate.
 \end{definition}
 
-The depth of a boolean circuit is a measure of the time complexity of the computation, i.e.\ it tells us how many time steps are needed to compute the output of the function. This is especially true in a parallel setting, where all gates can be seen as setting off at the same time (exactly as in a CPU).
+The depth of a boolean circuit is a measure of the time complexity of the computation, i.e.\ it tells us how many time steps are needed to compute the output of the function. This is especially true in a parallel setting, where all gates can be seen as setting off at the same time.
 
 \section{Subclasses of \TFNP}
 
 Complete \FNP\ problems within \TFNP\ would imply that $\NP = \coNP$ \sidecite{megiddo_total_1991}, a highly unlikely scenario. Consequently, complete problems are not expected within \TFNP, necessitating alternative approaches to investigate its structure.
 
-\TFNP\ is a \define{semantic} class, which means it is difficult to verify whether a Turing machine defines a language within this class. In contrast, \define{syntactic} classes such as \P\, and \NP\ are characterized by the ease with which one can confirm that a Turing machine's accepted language belongs to the class. We refer the reader to Papadimitriou's work \sidecite{papadimitriou_computational_1994} for a more detailed discussion of these terms.
 
-We want to explore syntactic subclasses of \TFNP\ to address these challenges. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, categorizes search problems based on existence proofs confirming their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
+
+
+
+\TFNP\ is known as a \define{semantic} class \sidecite{papadimitriou_computational_1994}. This is known to mean that it is unlikely that we can find complete \TFNP\ problems \sidecite{nielsen_relativization_1982}. We refer the reader to Papadimitriou's work  for a more detailed discussion of these terms and their implications. We want to explore \textit{syntactic} subclasses of \TFNP\ to address this challenge. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, categorizes search problems based on existence proofs confirming their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
 
 \subsection{Polynomial Local Search (\PLS)}[\PLS]
 
@@ -201,11 +203,11 @@ Let us discuss why solving a \Localopt\ instance is equivalent to finding the si
     The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
 \end{definition}
 
-Studying ``easy'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficiently than simply traversing the graph\marginnote[-15mm]{By ``easy'', we mean that the problem can be solved by simply walking through the graph and checking whether every vertex is a local minimum.}. Hence, given a graph of exponentially large size, it appears highly improbable that an efficient solution can be found. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement; it could be that some very clever analysis of the boolean circuits could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
+Studying ``simple'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficiently than simply traversing the graph, even though the might be a very clever way of analyzing the input circuit, which leads to a quicker result. Hence, given a graph of exponentially large size, it appears highly improbable that an efficient solution can be found. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement; it could be that some very clever analysis of the boolean circuits could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
 
 \subsection{Polynomial Parity Argument on Directed Graphs (\PPAD)}[\PPAD]
 
-Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou as one of the first syntactic subclasses of \TFNP\ in~\sidecite{papadimitriou_complexity_1994}. The existence result giving rise to this class is: \principle{If a directed graph has an unbalanced vertex, then it has at least one other unbalanced vertex.}
+Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou~\sidecite{papadimitriou_complexity_1994} as one of the first syntactic subclasses of \TFNP. The existence result giving rise to this class is: \principle{If a directed graph has an unbalanced vertex, then it has at least one other unbalanced vertex.}
 \PPAD\ can be defined using the problem \textsc{End-of-Line} as introduced in \sidecite{daskalakis_complexity_2009}.
 
 \problem{End-of-Line}{
@@ -244,7 +246,7 @@ Now we can define the complexity class \PPAD\ as follows:
 
 Next, we discuss the complexity class \EOPL{} introduced in \sidecite{EOPL_introduction}. The existence results giving rise to \EOPL\ is:
 \principle{In a directed acyclic graph, there must be at least two unbalanced vertices.}
-Similarly to \PLS\ acyclicity will be enforced using a potential.
+Similarly to \PLS, acyclicity will be enforced using a potential.
 
 \problem{End of Potential Line}{
 Two boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$, and a boolean circuit $V : \bitstr^n \rightarrow [2^n - 1]$, such that $0^n$ is a source, (i.e.\
@@ -287,32 +289,32 @@ Next, we introduce the \Tarski\ Problem. Before we do this, we recall that there
     A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
 \end{definition}
 
-The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. The Theorem states the following:
+The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. In our setting the Theorem states the following:
 
 \begin{theorem}[Tarski's fixed point Theorem]
     \boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}
-    Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotonous (for the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
+    Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotone (for the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
 \end{theorem}
 
 A proof of this Theorem can be found in the previously mentioned work~\cite{tarski_lattice-theoretical_1955}. Without surprise, the \Tarski\ problem, defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed point. Formally, we define the problem as follows:
 \problem{Tarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$.}{Either:
 \begin{itemize}
     \item An $x \in {[N]}^d$ such that $f(x)=x$ (fixed point) or
-    \item $x, y \in {[N]}^d$ such that $x \leq y$ and $f(x) \nleq f(y)$ (violation of monoticity).
+    \item $x, y \in {[N]}^d$ such that $x \leq y$ and $f(x) \nleq f(y)$ (violation of monotonicity).
 \end{itemize}
 }
 
 \begin{figure}
     \centering
     \incfig{Tarski_Solution_Example}
-    \caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance. A fixed is located at $x = (4, 5)$. The path to the fixed point which \cref{alg:iterative_tarski_solver} finds is colored in green.}
+    \caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance. A fixed point is located at $x = (4, 5)$. The path to the fixed point which \cref{alg:iterative_tarski_solver} finds is colored in green.}
     \label{fig:tarski_example}
 \end{figure}
 
 This is a total search problem, as there will always either be a fixed point or a point violating monotonicity. We give an example of a two-dimensional \Tarski\ instance in \cref{fig:tarski_example}. Before we discuss the location of \Tarski\ in the \TFNP\ landscape and two known algorithms for solving \Tarski, we want to discuss a useful Lemma, which allows us to simplify the study of Tarski instances. The definition of \Tarski\ instances allows for the image of a point to be located anywhere in the lattice; we will show that we can reduce to the cases where the image of a point is in the immediate neighborhood of the point.
 
 \begin{lemma}[Simplyfying \Tarski]
-    Let $f : L \rightarrow L$ be a \Tarski\ instance on a complete lattice $L$. Consider $\ftilde : L \rightarrow L$ given by: \boxmarginnote{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{d}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
+    Let $f : [2^n]^d \rightarrow [2^n]^d$ be a \Tarski\ instance on a complete lattice $[2^n]^d$. Consider $\ftilde : [2^n]^d \rightarrow [2^n]^d$ given by: \boxmarginnote{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{\poly{d}}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
     \begin{align*}
         \ftilde(x)[i] = \begin{cases}
                             x[i] + 1 & \text{ if } f(x)[i] > x[i], \\
@@ -320,19 +322,19 @@ This is a total search problem, as there will always either be a fixed point or 
                             x[i] - 1 & \text{ if } f(x)[i] < x[i].
                         \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
     \end{align*}
-    Then, for any two points $x, y \in L$, $f(x) \leq f(y)$ if and only if $\ftilde(x) \leq \ftilde(y)$.
+    Then, for any two points $x, y \in [2^n]^d$, $f(x) \leq f(y)$ if and only if $\ftilde(x) \leq \ftilde(y)$.
 \end{lemma}
 \begin{proof}
     The lemma follows directly by observing that for all $i \in \set{1, \dots, d}$ we have: $f(x)[i] \leq f(y)[i]$ if and only if $\ftilde(x)[i] \leq \ftilde(y)[i]$.
 \end{proof}
-This means that in this thesis, we can consider the simplified version of the \Tarski\ problem\marginnote{Also note that given a circuit that computes $f$ we can construct a circuit with at most double the size which computes $\ftilde$.}, where for every $x \in L$, we have $\norminf{x - f(x)} \leq 1$, which we will implicitly assume from now on.
+This means that in this thesis, we can consider the simplified version of the \Tarski\ problem\marginnote{Also note that given a circuit that computes $f$, we can construct a circuit with at most $\BigO{\poly{d}}$ additional gates which computes $\ftilde$.}, where for every $x \in [2^n]^d$, we have $\norminf{x - f(x)} \leq 1$, which we will implicitly assume from now on.
 
 \subsection{Two algorithms for solving \Tarski}[\Tarski\ Algorithms]
 \label{sec:tarski_algorithms}
 
 We briefly discuss the most common algorithms for solving \Tarski\ instances. We begin with a straightforward algorithm, which is based on the following observation:
 \begin{remark}
-    Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotonous, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
+    Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotone, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
 \end{remark}
 Now, note that by starting at the point $\mathbf{0} = 0^d$ and iterating the function $f$, we will eventually reach a fixed point. This means that we can construct an iterative algorithm for solving \Tarski, as described in \cref{alg:iterative_tarski_solver}.
 
@@ -344,16 +346,17 @@ Now, note that by starting at the point $\mathbf{0} = 0^d$ and iterating the fun
     $x \leftarrow \mathbf{0}$ \;
     \While{$f(x) \neq x$}{
         \If{$f(x) \not\geq x$}{
-            \Return ``$x, f(x)$ are a violation of monotonicity.'' \;
+            \Return ``$x_{\text{old}}, x$ are a violation of monotonicity.'' \;
         }
         \Else{
+            $x_{\text{old}} \leftarrow x$
             $x \leftarrow f(x)$ \;
         }
     }
     \Return $x$ \;
 \end{algorithm}
 
-The path which \cref{alg:iterative_tarski_solver} takes to solve a \Tarski\ instance is colored green in \cref{fig:tarski_example}. While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS\ by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotonous along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
+The path which \cref{alg:iterative_tarski_solver} takes to solve a \Tarski\ instance is colored green in \cref{fig:tarski_example}. While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS\ by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotone along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
 
 Next, we describe a more advanced algorithm, due to \sidecite{dang_computations_2020}, for solving \Tarski\ instances and also give an alternative presentation and simplified proof of its correctness. The following notation aims to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
 \begin{align*}
@@ -409,7 +412,7 @@ By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$
         \Let{l}{0}, \Let{r}{$N_d$} \tcc*[r]{The search space is $[l, r]$}
         \While{$r - l > 1$}{
             \Let{$m$}{$\floor{\frac{l + r}{2}}$} \tcc*[r]{Middle of the interval}
-            \If{$d-1 = 0$}{
+            \If{$d = 1$}{
                 \Let{$x^*$}{$m$}
             }
             \Else{
@@ -431,7 +434,7 @@ A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L 
 
 \subsection{Lower bounds for \Tarski}
 
-The best-known lower bounds for \Tarski\ are given by \sidecite{etessami_tarskis_2020}. They showed that in the black-box model, where the only way to access the function $f$ is by querying it, solving a $d$-dimensional \Tarski\ requires solving at least $\Omega(\log^{N})$ one-dimensional \Tarski\ instances, which are as difficult as binary search, hence this means that solving a $d$-dimensional \Tarski\ instance requires at least $\Omega(\log^{2}{N})$ queries. This means that the upper and lower bounds are equal in the 2-dimensional case, but in all other cases, there remains a gap. In particular, the best-known lower bound for solving \Tarski\ does not depend on the dimension $d$, which seems somewhat unexpected.
+The best-known lower bounds for \Tarski\ are given by \sidecite{etessami_tarskis_2020}. They showed that in the black-box model, where the only way to access the function $f$ is by querying it, solving a $d$-dimensional \Tarski\ requires solving at least $\Omega(\log{N})$ one-dimensional \Tarski\ instances, which are as difficult as binary search, hence this means that solving a $d$-dimensional \Tarski\ instance requires at least $\Omega(\log^{2}{N})$ queries. This means that the upper and lower bounds are equal in the two- and three-dimensional cases, but in all other cases, there remains a gap. In particular, the best-known lower bound for solving \Tarski\ does not depend on the dimension $d$, which seems somewhat unexpected.
 
 This gives us reason to study \Tarski\ under the lens of complexity theory, in particular to understand where \Tarski\ lies in the \TFNP\ landscape.
 
@@ -441,4 +444,4 @@ Next we summarize where \Tarski\ lies inside of \TFNP. It has been shown in~\cit
 
 Now that we have established that \Tarski\ lies inside $\PLS \medcap \PPAD$, we want to discuss the structure of $\PLS \medcap \PPAD$ and describe recent advances in the study of this class. There have been two surprising advances in the study of $\PLS \medcap \PPAD$ in the last few years. The first is that $\CLS = \PLS \medcap \PPAD$ \sidecite{fearnley_complexity_2023}. \CLS\ (Continuous Local Search) was first introduced by Daskalakis and Papadimitriou in \sidecite{daskalakis_continuous_2011} and can be informally thought of as the class of all problems that can be solved by finding the local optimum of a potential in a discrete space equipped with an adjacency relation. This result shows that the problems in $\PLS \medcap \PPAD$ are exactly those that gradient descent algorithms can solve.
 
-A further notable collapse is the result $\PLS \medcap \PPAD = \EOPL$, which was only recently shown in \sidecite{goos_further_2022}. This, of course, means that, in particular, \Tarski\ lies in \EOPL. A question that then arises, and which this thesis will attempt to answer, is whether we can construct an explicit reduction of \Tarski\ to \EndOfPotentialLine.
+A further notable collapse is the result $\PLS \medcap \PPAD = \EOPL$, which was only recently shown in \sidecite{goos_further_2022}. This means that \Tarski\ lies in \EOPL. A question that then arises, and which this thesis will attempt to answer, is whether we can construct an explicit reduction of \Tarski\ to \EndOfPotentialLine.
