@@ -29,6 +29,10 @@ Finally, the class \EOPL\ is the class of total search problems, which can be ex
 
 The main problem we study in this thesis is the \Tarski\ problem. The namesake of the \Tarski\ problem is \textit{Tarski's fixed point theorem}, which states that every monotone function on a complete lattice has a fixed point\sidecite{tarski_lattice-theoretical_1955}. The \Tarski\ problem is the problem of finding such a fixed point for a given function $f$ on a complete lattice $L$, or to find a violation of monotonicity of this function \sidecite{etessami_tarskis_2020}. According to \textit{Tarski's theorem}, this problem is guaranteed to have a solution, and hence, it is a total search problem.
 
+The \Tarski-problem has numerous applications in various fields. For example, it can be shown that supermodular games, which model certain economic situation, have a equilibrium by \textit{Tarski's Theorem}~\sidecite{topkis_equilibrium_1979, milgrom_rationalizability_1990}. These equilibria can be found by solving \Tarski-instances~\cite{etessami_tarskis_2020}. The existence of equilibria in some stochastic games can be found using \textit{Tarski's Theorem}, and finding this equilibria can be reduced to solving a \Tarski\ instance~\sidecite{condon_complexity_1992}.
+
+Another application of this problem can be found when studying the celebrated \Arrival\ problem. It can be shown that \Arrival\ reduces to \Tarski\ \sidecite{gartner_subexponential_2021} hence studying the \Tarski\ problem can help understand the complexity of \Arrival.
+
 \section{Current algorithms for solving \Tarski}
 
 We want to give an overview of the different known strategies for solving \Tarski-instances. This has a theoretical interest, as the state of these algorithms often describe graphs, which can be seen as instances of \TFNP-complete problems, and hence can help construct reductions.
