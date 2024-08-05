@@ -10,14 +10,14 @@ The study of complexity classes has traditionally focused on \define{decision pr
 \subsection{Search problems}
 
 \begin{definition}[Search Problem]
-    \boxmarginnote{The ``No'' case can be encoded as some special binary string.}
-    A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem is, to find a \define{solution} $s \in \binstr$ that satisfies: $(I, s) \in R$, or output ``No'' if no such $s$ exists.
+	\boxmarginnote{The ``No'' case can be encoded as some special binary string.}
+	A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem is, to find a \define{solution} $s \in \binstr$ that satisfies: $(I, s) \in R$, or output ``No'' if no such $s$ exists.
 \end{definition}
 
 We can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
 \marginnote[10mm]{Here, we have rephrased the valid language as the pair of a problem instance and a valid solution.}
 \begin{align*}
-    \mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
+	\mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
 \end{align*}
 
 The above shows that every search problem can be seen as a decision problem of a broader language. This perspective allows us to ask classical complexity questions about search problems: Are these problems in \P\ or \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question.
@@ -25,29 +25,29 @@ The above shows that every search problem can be seen as a decision problem of a
 Similarly to decision problems, we want to study which problems can be solved efficiently and which cannot. This question leads us to the definition of the complexity class \FNP, which is pendant for search problems, to  \NP\ for decision problems. We introduce \FNP\ formally as in~\sidecite{megiddo_total_1991}.
 
 \begin{definition}[Function \NP\ (\FNP)]
-    We say that a relation $R\subset \binstr \times \binstr$ is in \FNP\ if it is \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{y} \leq p(\length{x})$.
-    The class \FNP\ is the set of all relations $R$ that are polynomially balanced.
+	We say that a relation $R\subset \binstr \times \binstr$ is in \FNP\ if it is \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{y} \leq p(\length{x})$.
+	The class \FNP\ is the set of all relations $R$ that are polynomially balanced.
 \end{definition}
 
 This means that checking a solution to a search problem can be done in polynomial time. What cannot be done in polynomial time is checking whether no solution exists. This leads to the question of what happens if we remove this decision problem from the search problem. This question is what leads to the definition of a total search problem~\cite{megiddo_total_1991}:
 
 \begin{definition}[Total search problems]
-    \boxmarginnote{This means that a solution always exists for any input, i.e.\ ``No'' is never a valid answer.}
-    A \define{total search problem} is a search problem given by a relation $R\subset \binstr \times \binstr$, such that for every given instance $I\in
-        \binstr$ there is a solution $s \in \binstr$ that satisfies: $(I, s) \in R$.
+	\boxmarginnote{This means that a solution always exists for any input, i.e.\ ``No'' is never a valid answer.}
+	A \define{total search problem} is a search problem given by a relation $R\subset \binstr \times \binstr$, such that for every given instance $I\in
+		\binstr$ there is a solution $s \in \binstr$ that satisfies: $(I, s) \in R$.
 \end{definition}
 
 The complexity class \TFNP\ is simply the class of all \emph{total} problems in \TNP.
 
 \begin{definition}[Total Function \NP\ (\TFNP)]
-    The class \TFNP\ is the set of all problems given by total relations polynomially bounded relations $R$.
+	The class \TFNP\ is the set of all problems given by total relations polynomially bounded relations $R$.
 \end{definition}
 
 Similarly to \P, \FP\ is the class of all search problems that can be solved in polynomial time. It is not known whether \FP\ is equal to \TFNP, but it is widely believed --- similarly to \P\ and \NP\ --- that they are different. Examples of \TFNP\ problems are:
 \begin{itemize}
-    \item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorization into prime numbers, which can be checked in polynomial time;
-    \item \textsc{Nash}, the problem of finding a Nash equilibrium in a bimatrix game \sidecite{daskalakis_complexity_2009};
-    \item \textsc{Minimize}, the problem of finding the global minimum of a convex function \sidecite{daskalakis_continuous_2011}.
+	\item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorization into prime numbers, which can be checked in polynomial time;
+	\item \textsc{Nash}, the problem of finding a Nash equilibrium in a bimatrix game \sidecite{daskalakis_complexity_2009};
+	\item \textsc{Minimize}, the problem of finding the global minimum of a convex function \sidecite{daskalakis_continuous_2011}.
 \end{itemize}
 
 \subsection{Reductions}
@@ -55,18 +55,18 @@ Similarly to \P, \FP\ is the class of all search problems that can be solved in 
 Similarly to decision problems, we can also define reductions inside \TFNP.
 
 \begin{definition}[Many-to-one Reduction]
-    \boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently,then one can solve $R$ efficiently}.}
-    For two problem $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$:
-    \begin{align*}
-        \text{If } (f(I), s) \in S \text{ then } (I, g(I, s)) \in R.
-    \end{align*}
-    This means that if $s$ is a solution to the instance $f(I)$ in $S$, we can compute a solution $g(I, s)$ to an instance $I$ in $R$
+	\boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently,then one can solve $R$ efficiently}.}
+	For two problem $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$:
+	\begin{align*}
+		\text{If } (f(I), s) \in S \text{ then } (I, g(I, s)) \in R.
+	\end{align*}
+	This means that if $s$ is a solution to the instance $f(I)$ in $S$, we can compute a solution $g(I, s)$ to an instance $I$ in $R$
 \end{definition}
 
 Notice that many-to-one reductions map \emph{instances} to \emph{instances}, if we instead assume that we can compute a solution, we use a \emph{Turing reduction}, which we introduce analogously to the classical Turing reduction.
 
 \begin{definition}[Turing Reduction]
-    For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if a polynomial-time oracle Turing machine that solves $R$ given access to an oracle\boxmarginnote{An \define{oracle} is a black-box which solves $S$.} for $S$ exists.
+	For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if a polynomial-time oracle Turing machine that solves $R$ given access to an oracle\boxmarginnote{An \define{oracle} is a black-box which solves $S$.} for $S$ exists.
 \end{definition}
 
 \subsection{Promise Problems}
@@ -79,8 +79,8 @@ For example, in this thesis, we use syntactic validation when the instances are 
 
 Additionally to this syntactic validation, we can construct \TFNP-instances by adding \define{violations} to the solution space. For example, if we are interested in finding the global minima of convex functions, we can construct a total search problem by:
 \begin{enumerate}
-    \item Checking syntactically that the input defines a function;
-    \item Adding a violation of convexity to the solution space\marginnote{A violation of convexity is given by a $x, y \in \mathcal{D}_f$, and $t \in \{0, 1\}$ such that $t f(x) + (1-t)f(y) < f(tx + (1-t)y)$.}. Formally, this is done by changing the relation $R$ to ensure that a solution exists for every instance $I$; this can be thought of as allowing more solutions.
+	\item Checking syntactically that the input defines a function;
+	\item Adding a violation of convexity to the solution space\marginnote{A violation of convexity is given by a $x, y \in \mathcal{D}_f$, and $t \in \{0, 1\}$ such that $t f(x) + (1-t)f(y) < f(tx + (1-t)y)$.}. Formally, this is done by changing the relation $R$ to ensure that a solution exists for every instance $I$; this can be thought of as allowing more solutions.
 \end{enumerate}
 
 This means we can often construct a \TFNP-problem starting out with a promise-problem by checking the validity of the input syntactically and adding violations to the solution space. However, it is essential to note that this is only sometimes the case and that constructing a \TFNP\ problem from a promise problem can be a non-trivial task. Also, there is no unique way of constructing \TFNP-Problems from promise problems, and care has to be taken to introduce the studied problem rigorously.
@@ -98,58 +98,58 @@ Now that we have described the sets, we can describe how we represent the functi
 On a high level, a boolean circuit is a directed acyclic graph, where the nodes are called \define{gates}, and the edges are called \define{wires}. The sinks of the graphs are the output gates, and the sources are the input gates. We want to start by defining a gate formally.
 
 \begin{definition}[Gate]
-    \boxmarginnote{This corresponds to the gate node, having $k$ incoming edges, and one outgoing edge.}
-    A gate is a function $g : \bitstr^k \rightarrow \bitstr$, where $k$ is the number of input wires of the gate.
+	\boxmarginnote{This corresponds to the gate node, having $k$ incoming edges, and one outgoing edge.}
+	A gate is a function $g : \bitstr^k \rightarrow \bitstr$, where $k$ is the number of input wires of the gate.
 \end{definition}
 
 In this thesis, we will only consider the following types of gates:
 \begin{itemize}
-    \marginnote{Notice that we only consider gates with at most two inputs, as we can always represent a gate with $k$ inputs as a composition of gates with at most two inputs.}
-    \item \textbf{AND-gate}: $g(x_1, x_2) = x_1 \land x_2$,
-    \item \textbf{OR-gate}: $g(x_1, x_2) = x_1 \lor x_2$,
-    \item \textbf{NOT-gate}: $g(x) = \lnot x$.
+	\marginnote{Notice that we only consider gates with at most two inputs, as we can always represent a gate with $k$ inputs as a composition of gates with at most two inputs.}
+	\item \textbf{AND-gate}: $g(x_1, x_2) = x_1 \land x_2$,
+	\item \textbf{OR-gate}: $g(x_1, x_2) = x_1 \lor x_2$,
+	\item \textbf{NOT-gate}: $g(x) = \lnot x$.
 \end{itemize}
 
 Now, we can describe a boolean circuit formally as follows:
 \begin{definition}[Boolean circuit]
-    A boolean circuit $C$ is a labeled finite directed acyclic graph, where each vertex has a \define{type} $\tau$, with
-    \begin{align*}
-        \tau(v) \in \{\text{INPUT}\} \cup \{\text{OUTPUT}\} \cup \{\text{AND}, \text{OR}, \text{NOT}\}
-    \end{align*}
-    and with the following properties:
-    \begin{itemize}
-        \item If $\tau(v) = \text{INPUT}$, then $v$ has no incoming edges. We call these vertices the \define{inputs gates}.
-        \item If $\tau(v) = \text{OUTPUT}$, then $v$ has one incoming edge. We call these vertices the \define{output gates}.
-        \item If $\tau(v) = \text{AND}$, then $v$ has two incoming edges. We call these vertices the \define{AND-gates}.
-        \item If $\tau(v) = \text{OR}$, then $v$ has two incoming edges. We call these vertices the \define{OR-gates}.
-        \item If $\tau(v) = \text{NOT}$, then $v$ has one incoming edge. We call these vertices the \define{NOT-gates}.
-    \end{itemize}
-    The inputs of $C$ are given by a tuple $(x_1, \dots, x_k)$ of distinct input gates. The output of $C$ is given by a tuple $(y_1, \dots, y_l)$ of distinct output gates.
+	A boolean circuit $C$ is a labeled finite directed acyclic graph, where each vertex has a \define{type} $\tau$, with
+	\begin{align*}
+		\tau(v) \in \{\text{INPUT}\} \cup \{\text{OUTPUT}\} \cup \{\text{AND}, \text{OR}, \text{NOT}\}
+	\end{align*}
+	and with the following properties:
+	\begin{itemize}
+		\item If $\tau(v) = \text{INPUT}$, then $v$ has no incoming edges. We call these vertices the \define{inputs gates}.
+		\item If $\tau(v) = \text{OUTPUT}$, then $v$ has one incoming edge. We call these vertices the \define{output gates}.
+		\item If $\tau(v) = \text{AND}$, then $v$ has two incoming edges. We call these vertices the \define{AND-gates}.
+		\item If $\tau(v) = \text{OR}$, then $v$ has two incoming edges. We call these vertices the \define{OR-gates}.
+		\item If $\tau(v) = \text{NOT}$, then $v$ has one incoming edge. We call these vertices the \define{NOT-gates}.
+	\end{itemize}
+	The inputs of $C$ are given by a tuple $(x_1, \dots, x_k)$ of distinct input gates. The output of $C$ is given by a tuple $(y_1, \dots, y_l)$ of distinct output gates.
 \end{definition}
 
 We give an example of a boolean circuit in \cref{fig:boolean_circuit_example}. Of course, we now want to use a boolean circuit to represent a function. To do this, we need to define the function computed by a boolean circuit formally.
 
 \begin{figure}
-    \centering
-    \incfig{Boolean_Circuit_Example}
-    \caption[Example of a Boolean Circuit]{example of a Boolean circuit with three input and four output gates.}
-    \label{fig:boolean_circuit_example}
+	\centering
+	\incfig{Boolean_Circuit_Example}
+	\caption[Example of a Boolean Circuit]{example of a Boolean circuit with three input and four output gates.}
+	\label{fig:boolean_circuit_example}
 \end{figure}
 
 \begin{definition}[Computed function of a boolean circuit]
-    A boolean circuit $C$ with inputs $x_1, \dots, x_n$ and outputs $y_1, \dots, y_m$ computes a function $f : \bitstr^n \rightarrow \bitstr^m$ as follows:
-    \begin{itemize}
-        \item The input $x_i$ is assigned the value of the $i$-th bit of the argument to the function.
-        \item Every other vertex $v$ is assigned the value of the gate $g$ of the vertex, applied to the values of the incoming edges of $v$.
-        \item The $i$-th bit of the output of the function is the value of the output gate $y_i$.
-    \end{itemize}
+	A boolean circuit $C$ with inputs $x_1, \dots, x_n$ and outputs $y_1, \dots, y_m$ computes a function $f : \bitstr^n \rightarrow \bitstr^m$ as follows:
+	\begin{itemize}
+		\item The input $x_i$ is assigned the value of the $i$-th bit of the argument to the function.
+		\item Every other vertex $v$ is assigned the value of the gate $g$ of the vertex, applied to the values of the incoming edges of $v$.
+		\item The $i$-th bit of the output of the function is the value of the output gate $y_i$.
+	\end{itemize}
 \end{definition}
 
 \begin{figure}
-    \centering
-    \incfig{Computing_Function_Example}
-    \caption[Computing a function with circuits]{example of how a function $f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$ (on the top), can be computed using boolean circuits (on the bottom).}
-    \label{fig:computing_function_example}
+	\centering
+	\incfig{Computing_Function_Example}
+	\caption[Computing a function with circuits]{example of how a function $f : \{0, 1\}^2 \rightarrow \{0, 1\}^2$ (on the top), can be computed using boolean circuits (on the bottom).}
+	\label{fig:computing_function_example}
 \end{figure}
 
 In \cref{fig:computing_function_example}, we give an example of using a boolean circuit to compute a function, in particular for a function that is a \Tarski\ instance. From now on, we will formally represent all functions used in problems by boolean circuits.
@@ -159,13 +159,13 @@ In \cref{fig:computing_function_example}, we give an example of using a boolean 
 Of course, formally, the complexity of a problem is defined in terms of the \emph{size} of the input. This means we also need to define what we mean by the size of a boolean circuit. We will use the following definition:
 
 \begin{definition}[Size of a boolean circuit]
-    The size of a boolean circuit $C$ is the number of gates in the circuit.
+	The size of a boolean circuit $C$ is the number of gates in the circuit.
 \end{definition}
 
 The size of the boolean circuits is a measure of the input complexity, i.e.\ it gives us an indication of how many bits we need to represent the input\marginnote{It can be shown that $\poly(size(n))$ bits suffice to encore to encode any boolean circuit.}, it also tells us how many computations are made when computing the function output. We also define the depth of a boolean circuit as follows:
 
 \begin{definition}[Depth of a boolean circuit]
-    The depth of a boolean circuit $C$ is the length of the longest path from an input gate to an output gate.
+	The depth of a boolean circuit $C$ is the length of the longest path from an input gate to an output gate.
 \end{definition}
 
 The depth of a boolean circuit is a measure of the time complexity of the computation, i.e.\ it tells us how many time steps are needed to compute the output of the function. This is especially true in a parallel setting, where all gates can be seen as setting off at the same time.
@@ -187,16 +187,16 @@ We can then construct the class \PLS\ by defining it as all problems which reduc
 Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
 
 \begin{figure}
-    \centering
-    \incfig{LOCALOPT_Solution_Example}
-    \caption[Example of a \Localopt\ Problem]{Example of a \Localopt\ Problem with $n=3$ (8 vertices). Solid lines represent the circuit $S$. The valid solutions are colored green.}
-    \label{fig:localopt_example}
+	\centering
+	\incfig{LOCALOPT_Solution_Example}
+	\caption[Example of a \Localopt\ Problem]{Example of a \Localopt\ Problem with $n=3$ (8 vertices). Solid lines represent the circuit $S$. The valid solutions are colored green.}
+	\label{fig:localopt_example}
 \end{figure}
 
 Let us discuss why solving a \Localopt\ instance is equivalent to finding the sink of a DAG. The circuit $S$ defines a directed graph, which might contain cycles. Only keeping the edges on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. We give an example of a \Localopt\ instance in \cref{fig:localopt_example}. Now we can define \PLS:
 
 \begin{definition}[Polynomial Local Search (\PLS)]
-    The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
+	The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
 \end{definition}
 
 Studying ``simple'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficiently than simply traversing the graph, even though the might be a very clever way of analyzing the input circuit, which leads to a quicker result. Hence, given a graph of exponentially large size, it appears highly improbable that an efficient solution can be found. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement; it could be that some very clever analysis of the boolean circuits could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
@@ -206,28 +206,28 @@ Studying ``simple'' problems such as PLS is particularly insightful because we s
 Now we want to discuss the complexity class \PPAD, introduced by Papadimitriou~\sidecite{papadimitriou_complexity_1994} as one of the first syntactic subclasses of \TFNP. The existence result giving rise to this class is: \principle{If a directed graph has an unbalanced vertex, then it has at least one other unbalanced vertex.}
 \PPAD\ can be defined using the problem \textsc{End-of-Line} as introduced in \sidecite{daskalakis_complexity_2009}.
 
-\problem{End-of-Line}{
+\problem{End-of-Line (\textsc{EoL})}{
 Boolean circuit $S, P : \bitstr^n \rightarrow \bitstr^n$ such that $P(0^n) = 0^n \neq S(0^n)$ ($0^n$ is a source.)
 }{
 \boxmarginnote{Here, $S$ can be thought of as giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.}
 An $x \in \bitstr^n$ such that either:
 \begin{itemize}
-    \item $P(S(x)) \neq x$ ($x$ is a sink) or
-    \item $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
+	\item $P(S(x)) \neq x$ ($x$ is a sink) or
+	\item $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
 \end{itemize}
 }
 
 \begin{figure}[ht]
-    \centering
-    \incfig{PPAD_Example}
-    \caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=3$ (8 vertices).
-        Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$.
-        The solutions are the sinks $x=5$, $x=7$ and $x=1$, aswell as the sources $x=4$ and $x=6$.}
-    \label{fig:ppad_example}
+	\centering
+	\incfig{PPAD_Example}
+	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=3$ (8 vertices).
+		Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$.
+		The solutions are the sinks $x=5$, $x=7$ and $x=1$, aswell as the sources $x=4$ and $x=6$.}
+	\label{fig:ppad_example}
 \end{figure}
 
 These boolean circuits represent a directed graph with maximal in and out-degree of one by having an edge from $x$ to $y$ if and only if $S(x) = y$ and $P(y) =
-    x$.
+	x$.
 The goal is to find a sink in the graph or another source.
 \marginnote{Notice that \textsc{End-of-Line} allows cycles and that these do not induce solutions.}
 It can be shown that the general case of finding a second imbalanced vertex in a directed graph (a problem called \textsc{Imbalance}) can be reduced to
@@ -235,8 +235,28 @@ It can be shown that the general case of finding a second imbalanced vertex in a
 Now we can define the complexity class \PPAD\ as follows:
 
 \begin{definition}[\PPAD]
-    The class \PPAD\ is the set of all \TFNP\ problems that reduce to \textsc{End-of-Line}.
+	The class \PPAD\ is the set of all \TFNP\ problems that reduce to \textsc{End-of-Line}.
 \end{definition}
+
+\subsection{\PPADS}
+
+Now that we have introduced \PPAD, we introduce a slight variation which we call \PPADS, first introduced in \sidecite{papadimitriou_graph-theoretic_1990} as \textbf{PSK} and formalized in \sidecite{beame_relative_1998}. The cannonical problem which gives rise to \PPADS\ is \textsc{Sink-of-Line}, which is the identical to \EndOfLine\ except that only sinks --- and not further sources --- are solutions. We introduce it formally:
+
+\problem{Sink-of-Line (\textsc{SoL})}{
+Boolean circuit $S, P : \bitstr^n \rightarrow \bitstr^n$ such that $P(0^n) = 0^n \neq S(0^n)$ ($0^n$ is a source.)
+}{
+An $x \in \bitstr^n$ such that:
+\begin{itemize}
+	\item $P(S(x)) \neq x$ ($x$ is a sink)
+\end{itemize}
+}
+
+This then gives rise to \PPADS\ as previously:
+\begin{definition}[\PPAD]
+	The class \PPADS\ is the set of all \TFNP\ problems that reduce to \textsc{Sink-of-Line}.
+\end{definition}
+
+We note that Papadimitriou thought that $\PPAD{} = \PPADS{}$ \cite{papadimitriou_graph-theoretic_1990}. This turns out \emph{not} to be true, as we in fact have $\PPADS{} \subsetneqq \PPAD{}$~\cite{beame_relative_1998}.
 
 \subsection{End of Potential Line (\EOPL)}[\EOPL]
 
@@ -250,27 +270,27 @@ $P(0^n) = 0^n \neq S(0^n)$).
 }{
 An $x \in \bitstr^n$ such that either:
 \begin{itemize}
-    \item $P(S(x)) \neq x$ ($x$ is a sink)
-    \item $S(P(x)) \neq x \neq 0^n$ ($x$ is a \define{non-standard source})
-    \item $S(x) \neq x$, $P(S(x)) = x$ and $V(S(x)) \leq V(x)$ (violation of the monoticity of the potential)
+	\item $P(S(x)) \neq x$ ($x$ is a sink)
+	\item $S(P(x)) \neq x \neq 0^n$ ($x$ is a \define{non-standard source})
+	\item $S(x) \neq x$, $P(S(x)) = x$ and $V(S(x)) \leq V(x)$ (violation of the monoticity of the potential)
 \end{itemize}
 }
 \marginnote[-50mm]{Here, $S$ can be thought of as giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.
-    $ V $ is a potential that is supposed to increase monotonously along the line.}
+	$ V $ is a potential that is supposed to increase monotonously along the line.}
 
 \begin{figure}[ht]
-    \centering
-    \incfig{EOPL_Solution_Example}
-    \caption[Example of an \EOPL\ Problem]{Example of an \EOPL\ Problem with $n=3$ (8 vertices).
-        Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$.
-        The solutions are the sink $x=7$, the violation of potential at $x=5$, and the non-standard source $x=4$.}
-    \label{fig:eopl_example}
+	\centering
+	\incfig{EOPL_Solution_Example}
+	\caption[Example of an \EOPL\ Problem]{Example of an \EOPL\ Problem with $n=3$ (8 vertices).
+		Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$.
+		The solutions are the sink $x=7$, the violation of potential at $x=5$, and the non-standard source $x=4$.}
+	\label{fig:eopl_example}
 \end{figure}
 
 $S$ and $P$ can be thought of as representing a directed line. Finding another source (a non-standard source) is a violation, as a directed line only has one source. The potential serves as a guarantee of acyclicity. Now, we can define the complexity class \EOPL.
 
 \begin{definition}[\EOPL]
-    The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
+	The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
 \end{definition}
 
 \section{The \Tarski\ Problem}[\Tarski\ Problem]
@@ -281,47 +301,47 @@ $S$ and $P$ can be thought of as representing a directed line. Finding another s
 Next, we introduce the \Tarski\ Problem. Before we do this, we recall that there is a partial order on the $d$ dimensional lattice ${[N]}^d$, given by $x \leq y$ if and only if $x_i \leq y_i$ for all $i \in \{1, \dots, d\}$\marginnote{Notice that $x \not\leq y$ does \emph{not} imply $x \geq y$. In particular, two points are not always comparable.}. We can now define functions on this lattice, and in particular, we can define monotone functions.
 
 \begin{definition}[Monotone function]
-    \boxmarginnote{Such functions are also called \define{order preserving} functions in the litterature.}
-    A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
+	\boxmarginnote{Such functions are also called \define{order preserving} functions in the litterature.}
+	A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
 \end{definition}
 
 The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. In our setting the Theorem states the following:
 
 \begin{theorem}[Tarski's fixed point Theorem]
-    \boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}
-    Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotone (for the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
+	\boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}
+	Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotone (for the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
 \end{theorem}
 
 A proof of this Theorem can be found in the previously mentioned work~\cite{tarski_lattice-theoretical_1955}. Without surprise, the \Tarski\ problem, defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed point. Formally, we define the problem as follows:
 \problem{Tarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$.}{Either:
 \begin{itemize}
-    \item An $x \in {[N]}^d$ such that $f(x)=x$ (fixed point) or
-    \item $x, y \in {[N]}^d$ such that $x \leq y$ and $f(x) \nleq f(y)$ (violation of monotonicity).
+	\item An $x \in {[N]}^d$ such that $f(x)=x$ (fixed point) or
+	\item $x, y \in {[N]}^d$ such that $x \leq y$ and $f(x) \nleq f(y)$ (violation of monotonicity).
 \end{itemize}
 }
 
 \begin{figure}
-    \centering
-    \incfig{Tarski_Solution_Example}
-    \caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance. A fixed point is located at $x = (4, 5)$. The path to the fixed point which \cref{alg:iterative_tarski_solver} finds is colored in green.}
-    \label{fig:tarski_example}
+	\centering
+	\incfig{Tarski_Solution_Example}
+	\caption[Example of a \Tarski\ instance]{Example of a 2 dimensional \Tarski\ instance. A fixed point is located at $x = (4, 5)$. The path to the fixed point which \cref{alg:iterative_tarski_solver} finds is colored in green.}
+	\label{fig:tarski_example}
 \end{figure}
 
 This is a total search problem, as there will always either be a fixed point or a point violating monotonicity. We give an example of a two-dimensional \Tarski\ instance in \cref{fig:tarski_example}. Before we discuss the location of \Tarski\ in the \TFNP\ landscape and two known algorithms for solving \Tarski, we want to discuss a useful Lemma, which allows us to simplify the study of Tarski instances. The definition of \Tarski\ instances allows for the image of a point to be located anywhere in the lattice; we will show that we can reduce to the cases where the image of a point is in the immediate neighborhood of the point.
 
 \begin{lemma}[Simplyfying \Tarski]
-    Let $f : [2^n]^d \rightarrow [2^n]^d$ be a \Tarski\ instance on a complete lattice $[2^n]^d$. Consider $\ftilde : [2^n]^d \rightarrow [2^n]^d$ given by: \boxmarginnote{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{\poly{d}}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
-    \begin{align*}
-        \ftilde(x)[i] = \begin{cases}
-                            x[i] + 1 & \text{ if } f(x)[i] > x[i], \\
-                            x[i]     & \text{ if } f(x)[i] = x[i], \\
-                            x[i] - 1 & \text{ if } f(x)[i] < x[i].
-                        \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
-    \end{align*}
-    Then, for any two points $x, y \in [2^n]^d$, $f(x) \leq f(y)$ if and only if $\ftilde(x) \leq \ftilde(y)$.
+	Let $f : [2^n]^d \rightarrow [2^n]^d$ be a \Tarski\ instance on a complete lattice $[2^n]^d$. Consider $\ftilde : [2^n]^d \rightarrow [2^n]^d$ given by: \boxmarginnote{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{\poly{d}}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
+	\begin{align*}
+		\ftilde(x)[i] = \begin{cases}
+			                x[i] + 1 & \text{ if } f(x)[i] > x[i], \\
+			                x[i]     & \text{ if } f(x)[i] = x[i], \\
+			                x[i] - 1 & \text{ if } f(x)[i] < x[i].
+		                \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
+	\end{align*}
+	Then, for any two points $x, y \in [2^n]^d$, $f(x) \leq f(y)$ if and only if $\ftilde(x) \leq \ftilde(y)$.
 \end{lemma}
 \begin{proof}
-    The lemma follows directly by observing that for all $i \in \set{1, \dots, d}$ we have: $f(x)[i] \leq f(y)[i]$ if and only if $\ftilde(x)[i] \leq \ftilde(y)[i]$.
+	The lemma follows directly by observing that for all $i \in \set{1, \dots, d}$ we have: $f(x)[i] \leq f(y)[i]$ if and only if $\ftilde(x)[i] \leq \ftilde(y)[i]$.
 \end{proof}
 This means that in this thesis, we can consider the simplified version of the \Tarski\ problem\marginnote{Also note that given a circuit that computes $f$, we can construct a circuit with at most $\BigO{\poly{d}}$ additional gates which computes $\ftilde$.}, where for every $x \in [2^n]^d$, we have $\norminf{x - f(x)} \leq 1$, which we will implicitly assume from now on.
 
@@ -330,100 +350,100 @@ This means that in this thesis, we can consider the simplified version of the \T
 
 We briefly discuss the most common algorithms for solving \Tarski\ instances. We begin with a straightforward algorithm, which is based on the following observation:
 \begin{remark}
-    Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotone, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
+	Let $f$ be a \Tarski\ instance on a complete lattice $L$. If $f$ is monotone, and for some $x \in L$ we have $f(x) \geq x$, then $f(f(x)) \geq f(x)$.
 \end{remark}
 Now, note that by starting at the point $\mathbf{0} = 0^d$ and iterating the function $f$, we will eventually reach a fixed point. This means that we can construct an iterative algorithm for solving \Tarski, as described in \cref{alg:iterative_tarski_solver}.
 
 \begin{algorithm}
-    \caption{Iterative Algorithm for \Tarski}
-    \label{alg:iterative_tarski_solver}
-    \KwData{A boolean circuit $f : L \rightarrow L$}
-    \KwResult{A fixed point of $f$}
-    $x \leftarrow \mathbf{0}$ \;
-    \While{$f(x) \neq x$}{
-        \If{$f(x) \not\geq x$}{
-            \Return ``$x_{\text{old}}, x$ are a violation of monotonicity.'' \;
-        }
-        \Else{
-            $x_{\text{old}} \leftarrow x$
-            $x \leftarrow f(x)$ \;
-        }
-    }
-    \Return $x$ \;
+	\caption{Iterative Algorithm for \Tarski}
+	\label{alg:iterative_tarski_solver}
+	\KwData{A boolean circuit $f : L \rightarrow L$}
+	\KwResult{A fixed point of $f$}
+	$x \leftarrow \mathbf{0}$ \;
+	\While{$f(x) \neq x$}{
+		\If{$f(x) \not\geq x$}{
+			\Return ``$x_{\text{old}}, x$ are a violation of monotonicity.'' \;
+		}
+		\Else{
+			$x_{\text{old}} \leftarrow x$
+			$x \leftarrow f(x)$ \;
+		}
+	}
+	\Return $x$ \;
 \end{algorithm}
 
 The path which \cref{alg:iterative_tarski_solver} takes to solve a \Tarski\ instance is colored green in \cref{fig:tarski_example}. While \cref{alg:iterative_tarski_solver} might not be very efficient --- it runs in worst-case time $\BigO{d \cdot N}$ for $L = [N]^d$ --- it does have some theoretical applications for locating \Tarski\ inside \TFNP. Previous work \sidecite{etessami_tarskis_2020} showed that \Tarski\ lies in \PLS\ by considering the set of possible states of the previously described algorithm, together with a potential function given by $V(x) = \sum_{i=1}^{d}{x[i]}$, and showing that this potential is monotone along the states of the algorithm. The circuit $S$ associates to the state of the algorithm the next state it will be in.
 
 Next, we describe a more advanced algorithm, due to \sidecite{dang_computations_2020}, for solving \Tarski\ instances and also give an alternative presentation and simplified proof of its correctness. The following notation aims to make the argument as clear as possible. For a given complete lattice $L = [N_1] \times \cdots \times [N_d]$ and some dimension $x \in L$ we define the following sublattices:
 \begin{align*}
-    L_{\leq x} & = [x[1]+1] \times \cdots \times [x[d]+1],                          \\
-    L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdots \times \winterval{x[d]}{N_d}
+	L_{\leq x} & = [x[1]+1] \times \cdots \times [x[d]+1],                          \\
+	L_{\geq x} & = \winterval{x[1]}{N_1} \times \cdots \times \winterval{x[d]}{N_d}
 \end{align*}
 and\marginnote[-10mm]{We denote by $\winterval{a}{b}$ the set of whole numbers $\{a, a+1, \dots, b\}$.} for a given dimension $k \in \set{1, \dots, d}$ and $K \in [N_k]$, we define the following sublattices:
 \begin{align*}
-    L_{k < K} & = [N_1] \times \cdots \times [N_{k-1}] \times [K] \times [N_{k+1}] \times \cdots \times [N_d],                 \\
-    L_{k = K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K\} \times [N_{k+1}] \times \cdots \times [N_d],               \\
-    L_{k > K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K+1, \dots, N_k\} \times [N_{k+1}] \times \cdots \times [N_d].
+	L_{k < K} & = [N_1] \times \cdots \times [N_{k-1}] \times [K] \times [N_{k+1}] \times \cdots \times [N_d],                 \\
+	L_{k = K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K\} \times [N_{k+1}] \times \cdots \times [N_d],               \\
+	L_{k > K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K+1, \dots, N_k\} \times [N_{k+1}] \times \cdots \times [N_d].
 \end{align*}
 The algorithm --- and in particular, our proof of the correctness --- is based on the following observation:
 \begin{remark}
-    Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotonous function. Then:
-    \begin{enumerate}
-        \item If for some $x \in L$ we have $f(x) \leq x$, then $f$ has a fixed point in $L_{\leq x}$.
-        \item If for some $x \in L$ we have $f(x) \geq x$, then $f$ has a fixed point in $L_{\geq x}$.
-    \end{enumerate}
+	Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotonous function. Then:
+	\begin{enumerate}
+		\item If for some $x \in L$ we have $f(x) \leq x$, then $f$ has a fixed point in $L_{\leq x}$.
+		\item If for some $x \in L$ we have $f(x) \geq x$, then $f$ has a fixed point in $L_{\geq x}$.
+	\end{enumerate}
 \end{remark}
 \begin{proof}
-    Let $x \in L$ such that $f(x) \leq x$. Then for all $y \in L_{\leq x}$ we have $y \leq x$ and hence $f(y) \leq f(x) \leq x$, which shows that $f$ is a \Tarski\ instance on $L_{\leq x}$. By Tarski's fixed point Theorem, $f$ has a fixed point in $L_{\leq x}$. The proof for the second point is analogous.
+	Let $x \in L$ such that $f(x) \leq x$. Then for all $y \in L_{\leq x}$ we have $y \leq x$ and hence $f(y) \leq f(x) \leq x$, which shows that $f$ is a \Tarski\ instance on $L_{\leq x}$. By Tarski's fixed point Theorem, $f$ has a fixed point in $L_{\leq x}$. The proof for the second point is analogous.
 \end{proof}
 Hence, points with these properties seem particularly interesting when searching for fixed points of $f$. Hence, we want to give them a name:
 \begin{definition}[Progress point]
-    \boxmarginnote{The lattice's smallest vertex and largest vertex are always progress points.}
-    Let $f : L \rightarrow L$ a \Tarski\ function. We call a point $x \in L$ a \emph{progress point} if $f(x) \leq x$ or $f(x) \geq x$.
+	\boxmarginnote{The lattice's smallest vertex and largest vertex are always progress points.}
+	Let $f : L \rightarrow L$ a \Tarski\ function. We call a point $x \in L$ a \emph{progress point} if $f(x) \leq x$ or $f(x) \geq x$.
 \end{definition}
 This means that if we have a progress point, we can reduce the area where we need to search for a fixed point. The question now becomes: how do we find such an $x$? The algorithm we will present is based on the following observation:
 \begin{remark}
-    Let $f : L \rightarrow L$ on a complete lattice ${L = [N_1] \times \cdots \times [N_d]}$, for a monotonous function $f$, be a \Tarski\ instance. By fixing some dimension ${k \in \set{1, \dots, d}}$, we can define the function ${f_{k=K} : L_{k=K} \rightarrow L_{K=k}}$ as follows:
-    \begin{align*}
-        f_{k=K}(x)[i] = \begin{cases}
-                            f(x)[i] & \text{ if } i \neq k, \\
-                            K       & \text{ if } i = k.
-                        \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
-    \end{align*}
-    Then $f_{k=K}$ is a monotone \Tarski\ instance on $L_{k=K}$, and if $x^*$ is a fixed point of $f_{k=K}$, then $x^*$ is a progess point of $f$.
+	Let $f : L \rightarrow L$ on a complete lattice ${L = [N_1] \times \cdots \times [N_d]}$, for a monotonous function $f$, be a \Tarski\ instance. By fixing some dimension ${k \in \set{1, \dots, d}}$, we can define the function ${f_{k=K} : L_{k=K} \rightarrow L_{K=k}}$ as follows:
+	\begin{align*}
+		f_{k=K}(x)[i] = \begin{cases}
+			                f(x)[i] & \text{ if } i \neq k, \\
+			                K       & \text{ if } i = k.
+		                \end{cases} \quad \text{for all $i \in \set{1, \dots, d}$}
+	\end{align*}
+	Then $f_{k=K}$ is a monotone \Tarski\ instance on $L_{k=K}$, and if $x^*$ is a fixed point of $f_{k=K}$, then $x^*$ is a progess point of $f$.
 \end{remark}
 If we can solve a $d-1$ dimensional \Tarski\ instance, we can find a point $x$ such that $f(x) \geq x$ or $f(x) \leq x$.
 \begin{proof}
-    The monotonicity of $f_{k=K}$ follows directly from the monotonicity of $f$. \par
-    The fact that $x^*$ is a progess point follows from the fact that if $x^*$ is a fixed point of $f_{k=K}$, then $f(x^*)[i] = x^*[i]$, for all $i \neq k$. This means that if $f(x^*)[k] \leq x^*[k]$, then $f(x^*) \leq x^*[k]$ and if $f(x^*)[k] \geq x^*[k]$, then $f(x^*) \geq x^*[k]$.
+	The monotonicity of $f_{k=K}$ follows directly from the monotonicity of $f$. \par
+	The fact that $x^*$ is a progess point follows from the fact that if $x^*$ is a fixed point of $f_{k=K}$, then $f(x^*)[i] = x^*[i]$, for all $i \neq k$. This means that if $f(x^*)[k] \leq x^*[k]$, then $f(x^*) \leq x^*[k]$ and if $f(x^*)[k] \geq x^*[k]$, then $f(x^*) \geq x^*[k]$.
 \end{proof}
 By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$ such that both $L_{\leq x}$, and $L_{\geq x}$ have at most half the size of $L$. This means we can reduce the search space by a factor of at least two by solving a $d-1$ dimensional \Tarski\ instance. We can solve a $d$ dimensional \Tarski\ instance by repeatedly solving $d-1$ dimensional \Tarski\ instances and reducing the search space size by a factor of at least 2 in each step. This means we can solve a $d$ dimensional \Tarski\ instance by combining a $d-1$ dimensional \Tarski\ solver and a binary search. The $d-1$ dimensional instances can be solved recursively. We give the recursive algorithm for solving \Tarski\ instances in \cref{alg:recursive_tarski_solver}.
 \begin{algorithm}
-    \caption{Recursive Algorithm for \Tarski}
-    \label{alg:recursive_tarski_solver}
-    \SetKwFunction{RecursiveTarskiSolver}{RecursiveTarskiSolver}
-    \SetKwProg{Fn}{Function}{:}{}
-    \Fn{\RecursiveTarskiSolver{$f : L \rightarrow L$, $d$}}{
-        \tcc{Binary search in the $d$-th dimension}
-        \Let{l}{0}, \Let{r}{$N_d$} \tcc*[r]{The search space is $[l, r]$}
-        \While{$r - l > 1$}{
-            \Let{$m$}{$\floor{\frac{l + r}{2}}$} \tcc*[r]{Middle of the interval}
-            \If{$d = 1$}{
-                \Let{$x^*$}{$m$}
-            }
-            \Else{
-                \tcc{Solve the $d-1$ dimensional instance}
-                \Let{$x^*$}{\RecursiveTarskiSolver{$f_{d=m}, d-1$}} \;
-            }
-            \If{$f(x^*)[d] \leq x^*[d]$}{
-                \Let{r}{$m$}
-            }
-            \Else{
-                \Let{l}{$m$}
-            }
-        }
-        \Return{$x^*$}
-    }
+	\caption{Recursive Algorithm for \Tarski}
+	\label{alg:recursive_tarski_solver}
+	\SetKwFunction{RecursiveTarskiSolver}{RecursiveTarskiSolver}
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\RecursiveTarskiSolver{$f : L \rightarrow L$, $d$}}{
+		\tcc{Binary search in the $d$-th dimension}
+		\Let{l}{0}, \Let{r}{$N_d$} \tcc*[r]{The search space is $[l, r]$}
+		\While{$r - l > 1$}{
+			\Let{$m$}{$\floor{\frac{l + r}{2}}$} \tcc*[r]{Middle of the interval}
+			\If{$d = 1$}{
+				\Let{$x^*$}{$m$}
+			}
+			\Else{
+				\tcc{Solve the $d-1$ dimensional instance}
+				\Let{$x^*$}{\RecursiveTarskiSolver{$f_{d=m}, d-1$}} \;
+			}
+			\If{$f(x^*)[d] \leq x^*[d]$}{
+				\Let{r}{$m$}
+			}
+			\Else{
+				\Let{l}{$m$}
+			}
+		}
+		\Return{$x^*$}
+	}
 \end{algorithm}
 
 A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a query complexity of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$.
