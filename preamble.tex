@@ -23,9 +23,9 @@
 % Make LaTeX produce the files required to compile the index
 
 \newcommand*{\newpartpage}[1]{
-    \pagelayout{wide} % No margins
-    \addpart{#1}
-    \pagelayout{margin} % Restore margins
+	\pagelayout{wide} % No margins
+	\addpart{#1}
+	\pagelayout{margin} % Restore margins
 }
 
 %Extra Packages
@@ -41,18 +41,19 @@
 \usepackage{textcomp} %Textrightarrow
 \usepackage{marvosym} %Bold arrows
 \usepackage{newunicodechar} %Allows us to add missing unicode characters
+\usepackage{unicode-math} %Allows for the use of unicode math fonts
 \usepackage{calc} %Allows for easy length calculations in latex
 
 \input{styling/title_page.tex} %Use custom title page
 
 %Set the font to Fira Math for math symbols
 \setmainfont[
-    Ligatures=TeX,
-    % UprightFont = ,
-    ItalicFont = Fira Sans Light Italic,
-    % SmallCapsFont = ,
-    BoldFont = Fira Sans Regular,
-    BoldItalicFont = Fira Sans Italic
+	Ligatures=TeX,
+	% UprightFont = ,
+	ItalicFont = Fira Sans Light Italic,
+	% SmallCapsFont = ,
+	BoldFont = Fira Sans Regular,
+	BoldItalicFont = Fira Sans Italic
 ]{Fira Sans Light}
 %\setsansfont[Ligatures=TeX]{Fira Sans}
 \setmonofont[Ligatures=TeX]{Fira Mono}
@@ -60,7 +61,7 @@
 \newunicodechar{∩}{\ensuremath{\cap}}
 
 \AtBeginDocument{%
-    \DeclareFontShape{TU}{FiraSansLight(0)}{m}{scsl}{<->ssub*lmr/m/sc}{}% %Fira sans does not have slanted small caps, so we use small caps instead
+	\DeclareFontShape{TU}{FiraSansLight(0)}{m}{scsl}{<->ssub*lmr/m/sc}{}% %Fira sans does not have slanted small caps, so we use small caps instead
 }
 
 %Use Fira Math for Equations
@@ -73,48 +74,51 @@
 
 %Fix setminus
 \AtBeginDocument{%
-    \RenewDocumentCommand{\setminus}{}{\ensuremath{\mathbin{\scalebox{0.75}{\backslash}}}}
+	\RenewDocumentCommand{\setminus}{}{\ensuremath{\mathbin{\scalebox{0.75}{\backslash}}}}
 }
+
+%Use STIX Two Math for missing math symbols
+\setmathfont[range={\subsetneqq}]{STIX Two Math}
 
 \newcommand{\define}[1]{\textit{#1}\index{#1}}
 
 %Easy import of inkscape figures
 \newcommand{\incfig}[1]{%
-    \def\svgwidth{\textwidth}
-    \import{./images/}{#1.pdf_tex}
+	\def\svgwidth{\textwidth}
+	\import{./images/}{#1.pdf_tex}
 }
 
 %New command for principles
 \newcommand{\principle}[1]{\begin{center}
-        ``\textit{#1}''
-    \end{center}}
+		``\textit{#1}''
+	\end{center}}
 
 %Special marginnote for inside tcolorboxes
 \newlength{\marginparseptemp}
 \newcommand{\boxmarginnote}[1]{
-    %Check if we are in twosided mode
-    \ifthenelse{\boolean{twosided}}{
-        %We are in two sided mode
-        \Ifthispageodd{
-            \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
-            \marginparsep=\marginparseptemp
-            \marginnote[-\baselineskip]{#1}\hspace{-10pt}
-            \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
-            \marginparsep=\marginparseptemp
-        }{
-            \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
-            \marginparsep=\marginparseptemp
-            \marginnote[-\baselineskip]{#1}\hspace{-10pt}
-            \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
-            \marginparsep=\marginparseptemp
-        }
-    }{
-        \setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
-        \marginparsep=\marginparseptemp
-        \marginnote[-\baselineskip]{#1}\hspace{-10pt}
-        \setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
-        \marginparsep=\marginparseptemp
-    }
+	%Check if we are in twosided mode
+	\ifthenelse{\boolean{twosided}}{
+		%We are in two sided mode
+		\Ifthispageodd{
+			\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+			\marginparsep=\marginparseptemp
+			\marginnote[-\baselineskip]{#1}\hspace{-10pt}
+			\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+			\marginparsep=\marginparseptemp
+		}{
+			\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+			\marginparsep=\marginparseptemp
+			\marginnote[-\baselineskip]{#1}\hspace{-10pt}
+			\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+			\marginparsep=\marginparseptemp
+		}
+	}{
+		\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
+		\marginparsep=\marginparseptemp
+		\marginnote[-\baselineskip]{#1}\hspace{-10pt}
+		\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
+		\marginparsep=\marginparseptemp
+	}
 }
 
 %Settings for the justification of the text
@@ -150,11 +154,11 @@
 
 \makeatletter
 \def\tcb@split@force@last{%
-    \tcb@split@setstate@last%
-    \ifdim\tcb@h@total>\tcb@h@page\relax%
-        \gdef\tcb@after@lastbox{\clearpage}%
-        \tcbdimto\kvtcb@bbbottom{\kvtcb@bbbottom+\tcb@h@page-\tcb@h@total}%
-    \fi%
+	\tcb@split@setstate@last%
+	\ifdim\tcb@h@total>\tcb@h@page\relax%
+		\gdef\tcb@after@lastbox{\clearpage}%
+		\tcbdimto\kvtcb@bbbottom{\kvtcb@bbbottom+\tcb@h@page-\tcb@h@total}%
+	\fi%
 }
 \makeatother
 
