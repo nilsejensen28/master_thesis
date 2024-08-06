@@ -1,0 +1,107 @@
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Tarski_Coloring_Example.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{223.85214498bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.04791926)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Tarski_Coloring_Example.pdf}}%
+    \put(0.0622572,0.91680143){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Tarski_Coloring_Example.pdf}}%
+    \put(0.93794838,0.91601402){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Tarski_Coloring_Example.pdf}}%
+    \put(0.71902557,0.91406397){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Tarski_Coloring_Example.pdf}}%
+    \put(0.5001028,0.91406397){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Tarski_Coloring_Example.pdf}}%
+    \put(0.28118,0.91406397){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Tarski_Coloring_Example.pdf}}%
+    \put(0.0622572,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Tarski_Coloring_Example.pdf}}%
+    \put(0.93794838,0.7014373){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Tarski_Coloring_Example.pdf}}%
+    \put(0.71902557,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Tarski_Coloring_Example.pdf}}%
+    \put(0.28118,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{Tarski_Coloring_Example.pdf}}%
+    \put(0.06186412,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{Tarski_Coloring_Example.pdf}}%
+    \put(0.9375553,0.48686057){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{Tarski_Coloring_Example.pdf}}%
+    \put(0.71863249,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{Tarski_Coloring_Example.pdf}}%
+    \put(0.49970972,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{Tarski_Coloring_Example.pdf}}%
+    \put(0.28078692,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{Tarski_Coloring_Example.pdf}}%
+    \put(0.0614158,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{Tarski_Coloring_Example.pdf}}%
+    \put(0.93710699,0.27228384){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{Tarski_Coloring_Example.pdf}}%
+    \put(0.71818418,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{Tarski_Coloring_Example.pdf}}%
+    \put(0.4992614,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{Tarski_Coloring_Example.pdf}}%
+    \put(0.28033861,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{Tarski_Coloring_Example.pdf}}%
+    \put(0.0614158,0.05575707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{Tarski_Coloring_Example.pdf}}%
+    \put(0.93710699,0.05770712){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{Tarski_Coloring_Example.pdf}}%
+    \put(0.71818418,0.05575707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{Tarski_Coloring_Example.pdf}}%
+    \put(0.4992614,0.05575707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{Tarski_Coloring_Example.pdf}}%
+    \put(0.28033859,0.05575706){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{Tarski_Coloring_Example.pdf}}%
+    \put(0.50010279,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
