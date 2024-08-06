@@ -37,7 +37,7 @@ This means that checking a solution to a search problem can be done in polynomia
 		\binstr$ there is a solution $s \in \binstr$ that satisfies: $(I, s) \in R$.
 \end{definition}
 
-The complexity class \TFNP\ is simply the class of all \emph{total} problems in \TNP.
+The complexity class \TFNP\ is simply the class of all \emph{total} problems in \FNP.
 
 \begin{definition}[Total Function \NP\ (\TFNP)]
 	The class \TFNP\ is the set of all problems given by total relations polynomially bounded relations $R$.
@@ -387,7 +387,7 @@ and\marginnote[-10mm]{We denote by $\winterval{a}{b}$ the set of whole numbers $
 \end{align*}
 The algorithm --- and in particular, our proof of the correctness --- is based on the following observation:
 \begin{remark}
-	Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotonous function. Then:
+	Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotone function. Then:
 	\begin{enumerate}
 		\item If for some $x \in L$ we have $f(x) \leq x$, then $f$ has a fixed point in $L_{\leq x}$.
 		\item If for some $x \in L$ we have $f(x) \geq x$, then $f$ has a fixed point in $L_{\geq x}$.
@@ -403,7 +403,7 @@ Hence, points with these properties seem particularly interesting when searching
 \end{definition}
 This means that if we have a progress point, we can reduce the area where we need to search for a fixed point. The question now becomes: how do we find such an $x$? The algorithm we will present is based on the following observation:
 \begin{remark}
-	Let $f : L \rightarrow L$ on a complete lattice ${L = [N_1] \times \cdots \times [N_d]}$, for a monotonous function $f$, be a \Tarski\ instance. By fixing some dimension ${k \in \set{1, \dots, d}}$, we can define the function ${f_{k=K} : L_{k=K} \rightarrow L_{K=k}}$ as follows:
+	Let $f : L \rightarrow L$ on a complete lattice ${L = [N_1] \times \cdots \times [N_d]}$, for a monotone function $f$, be a \Tarski\ instance. By fixing some dimension ${k \in \set{1, \dots, d}}$, we can define the function ${f_{k=K} : L_{k=K} \rightarrow L_{K=k}}$ as follows:
 	\begin{align*}
 		f_{k=K}(x)[i] = \begin{cases}
 			                f(x)[i] & \text{ if } i \neq k, \\
