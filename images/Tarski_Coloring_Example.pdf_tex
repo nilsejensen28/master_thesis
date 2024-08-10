@@ -50,58 +50,59 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.04791926)%
+  \begin{picture}(1,1.00462101)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{Tarski_Coloring_Example.pdf}}%
-    \put(0.0622572,0.91680143){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0.0622572,0.91680146){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{Tarski_Coloring_Example.pdf}}%
-    \put(0.93794838,0.91601402){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.93794838,0.91601406){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{Tarski_Coloring_Example.pdf}}%
-    \put(0.71902557,0.91406397){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.71902557,0.91406401){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{Tarski_Coloring_Example.pdf}}%
-    \put(0.5001028,0.91406397){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.5001028,0.91406401){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{Tarski_Coloring_Example.pdf}}%
-    \put(0.28118,0.91406397){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0.28118,0.91406401){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{Tarski_Coloring_Example.pdf}}%
-    \put(0.0622572,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0.0622572,0.69948728){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{Tarski_Coloring_Example.pdf}}%
-    \put(0.93794838,0.7014373){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.93794838,0.70143733){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{Tarski_Coloring_Example.pdf}}%
-    \put(0.71902557,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.71902557,0.69948728){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{Tarski_Coloring_Example.pdf}}%
-    \put(0.28118,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0.28118,0.69948728){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{Tarski_Coloring_Example.pdf}}%
-    \put(0.06186412,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0.06186412,0.48491056){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{Tarski_Coloring_Example.pdf}}%
-    \put(0.9375553,0.48686057){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.9375553,0.48686061){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{Tarski_Coloring_Example.pdf}}%
-    \put(0.71863249,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.71863249,0.48491056){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{Tarski_Coloring_Example.pdf}}%
-    \put(0.49970972,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.49970972,0.48491056){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{Tarski_Coloring_Example.pdf}}%
-    \put(0.28078692,0.48491052){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
+    \put(0.28078692,0.48491056){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{Tarski_Coloring_Example.pdf}}%
-    \put(0.0614158,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.0614158,0.27033382){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=16]{Tarski_Coloring_Example.pdf}}%
-    \put(0.93710699,0.27228384){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.93710699,0.27228388){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=17]{Tarski_Coloring_Example.pdf}}%
-    \put(0.71818418,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.71818418,0.27033382){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=18]{Tarski_Coloring_Example.pdf}}%
-    \put(0.4992614,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.49926141,0.27033382){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=19]{Tarski_Coloring_Example.pdf}}%
-    \put(0.28033861,0.27033379){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.28033861,0.27033382){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=20]{Tarski_Coloring_Example.pdf}}%
-    \put(0.0614158,0.05575707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.0614158,0.0557571){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=21]{Tarski_Coloring_Example.pdf}}%
-    \put(0.93710699,0.05770712){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.93710699,0.05770716){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=22]{Tarski_Coloring_Example.pdf}}%
-    \put(0.71818418,0.05575707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.71818418,0.0557571){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=23]{Tarski_Coloring_Example.pdf}}%
-    \put(0.4992614,0.05575707){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
+    \put(0.49926141,0.0557571){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=24]{Tarski_Coloring_Example.pdf}}%
-    \put(0.28033859,0.05575706){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.28033859,0.0557571){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=25]{Tarski_Coloring_Example.pdf}}%
-    \put(0.50010279,0.69948724){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
+    \put(0.50010279,0.69948728){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}0\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{Tarski_Coloring_Example.pdf}}%
   \end{picture}%
 \endgroup%

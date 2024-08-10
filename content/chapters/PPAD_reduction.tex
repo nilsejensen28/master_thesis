@@ -132,10 +132,22 @@ A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such th
 A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$.
 }
 
+\subsection{Reducing \Sperner\ to \EndOfLine}[\Sperner\ to \EndOfLine\ reduction]
+\label{sec:sperner_eol_reduction}
+
 In order for a reduction of \Tarskistar\ onto \Sperner\ to show membership in \PPAD, we need to show that \Sperner\ is \PPAD-Complete. A sketch of the proof was first given in \sidecite{papadimitriou_complexity_1994-1}. We will give a complete proof, as the construction we use will become relevant in the following chapters.
 \begin{theorem}
 	\Sperner\ is \PPAD-complete.
 \end{theorem}
+
+\begin{figure}
+	\centering
+	\incfig{Sperner_EoL_Reduction}
+	\caption[Reduction of \Sperner\ to \EndOfLine]{Reduction of two dimensional \Sperner\ to \EndOfLine. The circuit $S$ is given by the full arrows and $S$ by the dashed arrows. The solutions are colored green. The designated source is colored blue.}
+	\label{fig:sperner_eol_reduction}
+\end{figure}
+
+
 \begin{proof}
 	To prove that \Sperner\ is \PPAD-complete it suffices to show that \Sperner\ can be reduced to \EndOfLine\ and that \EndOfLine\ can be reduced to \Sperner, because by definition \EndOfLine\ is PPAD-Complete.
 

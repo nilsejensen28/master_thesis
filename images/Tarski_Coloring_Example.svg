@@ -3,8 +3,8 @@
 
 <svg
    width="78.970062mm"
-   height="82.75425mm"
-   viewBox="0 0 78.97007 82.754245"
+   height="79.334984mm"
+   viewBox="0 0 78.97007 79.334979"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
@@ -34,15 +34,15 @@
      fit-margin-left="0.2"
      fit-margin-right="0.2"
      fit-margin-bottom="1"
-     inkscape:zoom="4"
-     inkscape:cx="143.75"
-     inkscape:cy="272.125"
+     inkscape:zoom="2"
+     inkscape:cx="88.5"
+     inkscape:cy="143.75"
      inkscape:window-width="1850"
      inkscape:window-height="1136"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g32551-7-2-2-72"
+     inkscape:current-layer="g32551-7-2-2"
      inkscape:object-paths="true"
      inkscape:snap-smooth-nodes="true"
      inkscape:snap-to-guides="true"
@@ -59,8 +59,8 @@
        spacingy="15"
        empspacing="1"
        units="mm"
-       originx="4.1014919"
-       originy="11.731524"
+       originx="4.1014929"
+       originy="8.312255"
        enabled="false" />
   </sodipodi:namedview>
   <defs
@@ -1289,11 +1289,39 @@
          d="M 10,3 0,6 V 0 Z"
          id="path23274-14-5-8-2-4" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="marker192589-44-5-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path192587-9-1-82" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker192589-44-5-61"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path192587-9-1-32" />
+    </marker>
   </defs>
   <g
      inkscape:label="Arrows"
      id="layer1"
-     transform="translate(-22.80465,-4.3863515)">
+     transform="translate(-22.80465,-7.8056201)">
     <g
        id="g86052"
        inkscape:label="y=4"
@@ -1318,7 +1346,7 @@
              id="tspan28420-2-9"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.490265">$2$</tspan></text>
+             y="18.490265">2</tspan></text>
       </g>
       <g
          id="g32551-7-2-3"
@@ -1340,14 +1368,14 @@
              id="tspan28420-2-9-4-0-1-8-6"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-35"
          transform="translate(59.594842,-3.5396029)"
          inkscape:label="Node">
         <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#aad400;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
            id="path1512-3-7-62"
            cx="23.251024"
            cy="17.409365"
@@ -1362,14 +1390,14 @@
              id="tspan28420-2-9-4-0-1-2"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">2</tspan></text>
       </g>
       <g
          id="g32551-7-2-2"
          transform="translate(42.306497,-3.5396029)"
          inkscape:label="Node">
         <circle
-           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#aad400;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
            id="path1512-3-7-7"
            cx="23.251024"
            cy="17.409365"
@@ -1384,7 +1412,11 @@
              id="tspan28420-2-9-4-0-1-0"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">2</tspan></text>
+        <path
+           style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
+           d="M 26.087279,20.925817 37.328303,31.176635"
+           id="path118086" />
       </g>
       <g
          id="g32551-7-2-36"
@@ -1406,7 +1438,7 @@
              id="tspan28420-2-9-4-80"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$2$</tspan></text>
+             y="18.706442">2</tspan></text>
       </g>
     </g>
     <g
@@ -1433,7 +1465,7 @@
              id="tspan28420-2-9-47"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$2$</tspan></text>
+             y="18.706442">2</tspan></text>
       </g>
       <g
          id="g32551-7-2-3-2"
@@ -1455,7 +1487,7 @@
              id="tspan28420-2-9-4-0-1-8-39"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-35-9"
@@ -1477,7 +1509,7 @@
              id="tspan28420-2-9-4-0-1-9"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">0</tspan></text>
       </g>
       <g
          id="g32551-7-2-2-9"
@@ -1508,7 +1540,7 @@
              id="tspan28420-2-9-4-8"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$2$</tspan></text>
+             y="18.706442">2</tspan></text>
       </g>
     </g>
     <g
@@ -1535,7 +1567,7 @@
              id="tspan28420-2-9-4"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$2$</tspan></text>
+             y="18.706442">2</tspan></text>
       </g>
       <g
          id="g32551-7-2-3-5"
@@ -1557,7 +1589,7 @@
              id="tspan28420-2-9-4-0-1-8-4"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-35-1"
@@ -1579,7 +1611,7 @@
              id="tspan28420-2-9-4-0-1-8-0"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-2-2"
@@ -1601,7 +1633,7 @@
              id="tspan28420-2-9-4-0-1-62"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">0</tspan></text>
       </g>
       <g
          id="g32551-7-2-36-5"
@@ -1623,7 +1655,7 @@
              id="tspan28420-2-9-4-1"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$2$</tspan></text>
+             y="18.706442">2</tspan></text>
       </g>
     </g>
     <g
@@ -1650,7 +1682,7 @@
              id="tspan28420-2-9-4-0"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">0</tspan></text>
       </g>
       <g
          id="g32551-7-2-3-4"
@@ -1672,7 +1704,7 @@
              id="tspan28420-2-9-4-0-1-8-33"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-35-7"
@@ -1694,7 +1726,7 @@
              id="tspan28420-2-9-4-0-1-8-3"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-2-7"
@@ -1716,7 +1748,7 @@
              id="tspan28420-2-9-4-0-1-8"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-36-4"
@@ -1738,7 +1770,7 @@
              id="tspan28420-2-9-4-0-1-5"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">0</tspan></text>
       </g>
     </g>
     <g
@@ -1765,7 +1797,7 @@
              id="tspan28420-2-9-4-0-1"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$0$</tspan></text>
+             y="18.706442">0</tspan></text>
       </g>
       <g
          id="g32551-7-2-3-6"
@@ -1787,7 +1819,7 @@
              id="tspan28420-2-9-4-0-1-8-05"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-35-4"
@@ -1809,7 +1841,7 @@
              id="tspan28420-2-9-4-0-1-8-64"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-2-72"
@@ -1829,7 +1861,7 @@
              id="tspan28420-2-9-4-0-1-8-67"
              style="font-size:4.23333px;stroke-width:0.264583"
              x="23.251024"
-             y="18.706442">$1$</tspan></text>
+             y="18.706442">1</tspan></text>
       </g>
       <g
          id="g32551-7-2-36-0"
@@ -1855,7 +1887,7 @@
            id="tspan28420-2-9-4-0-1-6"
            style="font-size:4.23333px;stroke-width:0.264583"
            x="48.269173"
-           y="15.16684">$0$</tspan></text>
+           y="15.16684">0</tspan></text>
     </g>
     <g
        id="g43523"
@@ -1902,20 +1934,8 @@
          id="path11306" />
       <path
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
-         d="m 62.2978,26.087254 v -7.9097"
-         id="path11308" />
-      <path
-         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
-         d="m 66.815518,13.659835 h 8.252907"
-         id="path11310" />
-      <path
-         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
          d="m 92.356774,13.505839 -8.252913,0.153996"
          id="path11312" />
-      <path
-         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
-         d="m 79.586143,26.087254 v -7.9097"
-         id="path11314" />
       <path
          style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
          d="m 92.356774,30.450977 -8.252913,0.153995"
@@ -1957,7 +1977,7 @@
          transform="translate(4.1571533,-38.537591)">
         <g
            id="g1326"
-           transform="matrix(0.49680307,-0.8678633,-0.8678633,-0.49680307,32.803047,178.97498)">
+           transform="matrix(0.49680307,-0.8678633,-0.8678633,-0.49680307,32.4149,195.20067)">
           <path
              style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ExperimentalArrow-3-9-8-9)"
              d="m 134.80769,23.267699 c 0,0 3.24586,-2.874136 5.1315,-2.560294 1.06759,0.177686 2.53715,1.125513 2.27915,2.312432 -0.39755,1.828895 -5.13644,2.267829 -5.13644,2.267829"
@@ -1985,6 +2005,14 @@
          id="tspan28420-2-9-4-0-1-7"
          style="font-size:4.23333px;stroke-width:0.264583"
          x="62.297798"
-         y="31.90205">$0$</tspan></text>
+         y="31.90205">0</tspan></text>
+    <path
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
+       d="m 66.815518,30.604972 8.252907,1e-6"
+       id="path108683" />
+    <path
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#marker192589-44-5);stop-color:#000000;stop-opacity:1"
+       d="m 79.586143,18.177554 v 7.9097"
+       id="path108687" />
   </g>
 </svg>
