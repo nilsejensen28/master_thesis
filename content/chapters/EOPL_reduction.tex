@@ -302,7 +302,38 @@ We now claim that the simplicial complex formed by the lattice points and Freude
 	This shows that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
 \end{proof}
 
-We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}. We have now introduced the necessary tools to argue that a certain type of cycle cannot exist as we will argue in the following.
+We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}. Now that we have shown that the Freudenthal decomposition is orientable, we want to talk about how it can be extended to colored simplices in the next section.
+
+\subsection{Orienting colored simplices}[Colored orientations]
+
+In the previous sections we dicussed how one could orient simplices. We now want to discuss the orientation of colored faces. We are only interested in rainbow-faces, i.e.~$d-1$-dimensional faces, colored with all colors $\set{0, \dots, d-1}$, as these are the faces that we traverse when reducing \Sperner\ to \EndOfLine. We should obtain two orientations for every face, depending on what direction we traverse it in.
+
+\begin{definition}[Orientation of colored faces]
+	Let $F$ be a face of a simplex $S$. Let the vertices of $F$ be labelled $v_1, \dots, v_d$, such that $v_1 < \cdots < v_d$. Then there is a permutation $\gamma \in S_d$ such that:
+	\begin{align*}
+		c(v_{\gamma(1)}) < c(v_{\gamma(2)}) < \cdots < c(v_{\gamma(d)})
+	\end{align*}
+	Then with $\sigma_F$ the induced orientation of $F$ in $S$, the orientation of the colored face $F$ is:
+	\begin{align*}
+		\orient_S(F) = \sgn{\gamma} \cdot \sgn{\sigma_F}
+	\end{align*}
+\end{definition}
+
+Now we should check that our definition is sound. We want that the orientation of a face $F$ is opposite when traversing the face from opposite sides. This is the content of the following lemma.
+
+\begin{lemma}[Well-definedness of colored orientation]
+	Let $S_1$ and $S_2$ be two $d$-dimensional simplices which share a $d-1$-dimensional rainbow face $F$. Then:
+	\begin{align*}
+		\orient_{S_1}(F) = - \orient_{S_2}(F).
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	Because the simplicial complex we work with is orientable, for $\indorient_{S_1}(F)$ the induced orientation of $F$ in $S_1$ and $\indorient_{S_2}(F)$ the induced orientation of $F$ in $S_2$, we have:
+	\begin{align*}
+		\sgn{\indorient_{S_1}(F)} = - \sgn{\indorient_{S_2}(F)}
+	\end{align*}
+	This immediatetly implies the desired result.
+\end{proof}
 
 \section{Sequences of simplices}[Sequences of simplices]
 
@@ -316,8 +347,30 @@ In this section we introduce and study \emph{sequences of simplices}. We will sh
 		\item $S_i$ and $S_{i+1}$ share a $d-1$-dimensional face $F_i$ for all $i \in \set{1, \dots, k-1}$.
 	\end{enumerate}
 \end{definition}
+We want to also introduce formally the notion of \emph{transition faces}, which will represent the face we are \emph{walking through}.
 
-Observe that because of the orientation of the simplicial complex, the orientation of the faces of the simplices in a sequence are consistent. Now we want to discuss how we can orient colored-faces of theses simplices. Before we do this we want to discuss why this will be important.
+\begin{definition}[Transition faces]
+	\label{def:transition_faces}
+	Let $\left(S_i\right)_{i=1}^{k}$ be a simplicial sequence. We call the sequence $\left(F_i\right)_{i=1}^{k-1}$, of $d-1$-dimensional faces given by $F_i = S_i \cap S_{i+1}$, the \define{transition sequence}. We call the individual $F_i$ \emph{transition faces}.
+\end{definition}
+
+Let us now restrict these general definitions to the context that we will be studying.  We will only be studying sequences where the $F_i$'s are rainbow faces i.e.~faces colored with exactly the colors $\set{0, \dots, d-1}$. We will call a sequence of simplices with this property a \define{rainbow simplicial sequence}. We say that a rainbow simplicial sequence is \define{maximal} if it cannot be extended, i.e. if there is not simplex $S_{i+1}$ such that $\left(S_i\right)_{i=1}^{k+1}$ is a valid rainbow sequence. This can be the case if both $S_1$ and $S_k$ are rainbow simplices (colored exactly with $\set{0, \dots, d}$) or if we have a cycle. Notice that maximal rainbow simplicial sequences are exactly the sequences of simplices which yield the lines in the \EndOfLine\ instance which we reduce \Sperner\ instances to. We now want to make a statement about how these rainbow transition faces are oriented.
+
+\begin{lemma}[Orientation of transition faces]
+	Let $\left(S_i\right)_{i=1}^{k}$ be a valid rainbow simplicial sequence. $\left(\orient_{S_i}(F_i)\right)_{i=1}^{k-1}$ is constant.
+\end{lemma}
+
+This means that our definition of orientation of colored faces, makes sence: when we walk though these faces, we always walk through faces which are oriented in the same way.
+
+\begin{proof}
+	It suffices to show that for all $i \in \set{1, \dots, k-2}$:
+	\begin{align*}
+		\orient_{S_i}(F_i) =  \orient_{S_{i+1}}(F_{i+1})
+	\end{align*}
+	Fix $i$, and notice that $F_i$ and $F_{i+1}$ are both faces of $S_{i+1}$. Let us label the vertices of $S_i$ $v_0 < v_1 < \dots < v_d$. Let us denote $k$ and $j$ such that $F_i$ is obtained by removing $v_k$ from $S_{i+1}$ and $F_{i+1}$ is obtained by removing $v_j$ from $S_{i+1}$.
+
+	Without loss of generality assume that $k < j$. TODO write the remainded of this proof.
+\end{proof}
 
 
 
