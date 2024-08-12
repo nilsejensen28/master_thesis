@@ -15,14 +15,14 @@
 
 % Black theorem number and optional black title padding above and below
 \newtheoremstyle{blacknumbox} % Theorem style name
-	{0pt} % Space above
-	{0pt} % Space below
-	{\normalfont} % Body font
-	{} % Indent amount
-	{} % Theorem head font
-	{} % Punctuation after theorem head
-	{0.25em} % Space after theorem head
-	{\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
+{0pt} % Space above
+{0pt} % Space below
+{\normalfont} % Body font
+{} % Indent amount
+{} % Theorem head font
+{} % Punctuation after theorem head
+{0.25em} % Space after theorem head
+{\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
 	\thmnote{\bfseries---~#3.\hspace{0.25em}}\index{#3}\newline\ignorespaces} % Optional theorem note
 
 %------------------------------------------------
@@ -59,31 +59,31 @@
 \newtcolorbox{pBox}{colback=gray!20!white,colframe=white,boxrule=0.0pt,arc=4pt,boxsep=0pt,left=\theoremboxmargin,right=\theoremboxmargin,top=\theoremboxmargin,bottom=\theoremboxmargin,tcbox raise base, sharp corners}
 
 \newtcolorbox{pLine}{  breakable,
-enhanced,
-colframe=white,
-top=0mm,
-right=0mm,
-left=1mm,
-boxrule=0pt,frame empty,
-borderline west={1pt}{0pt}{gray},
-coltitle=blue,
-colback=white,
-sharp corners}
+	enhanced,
+	colframe=white,
+	top=0mm,
+	right=0mm,
+	left=1mm,
+	boxrule=0pt,frame empty,
+	borderline west={1pt}{0pt}{gray},
+	coltitle=blue,
+	colback=white,
+	sharp corners}
 
 % Proof box (gray line on the right hand side)
 \tcolorboxenvironment{proof}{
-  fonttitle=\bfseries,
-  breakable,
-  enhanced,
-  colframe=white,
-  top=0mm,
-  right=0mm,
-  left=1mm,
-  boxrule=0pt,frame empty,
-  borderline west={2pt}{0pt}{gray},
-  coltitle=blue,
-  colback=white,
-  sharp corners
+	fonttitle=\bfseries,
+	breakable,
+	enhanced,
+	colframe=white,
+	top=0mm,
+	right=0mm,
+	left=1mm,
+	boxrule=0pt,frame empty,
+	borderline west={2pt}{0pt}{gray},
+	coltitle=blue,
+	colback=white,
+	sharp corners
 }
 
 
@@ -114,16 +114,17 @@ sharp corners}
 %Environment for cases in proofs side line colored gray, and 1pt thick
 \newenvironment{case}[1]{\textbf{Case #1:}}{}
 \surroundwithmdframed[
-  topline=false,
-  rightline=false,
-  bottomline=false,
-  leftmargin=1pt,
-  innertopmargin=0pt,
-  innerbottommargin=0pt,
-  innerrightmargin=0pt,
-  innerleftmargin=2pt,
-  linecolor=gray,
-  linewidth=1pt,
-  skipabove=\medskipamount,
-  skipbelow=\medskipamount
+	topline=false,
+	rightline=false,
+	bottomline=false,
+	leftmargin=1pt,
+	innertopmargin=0pt,
+	innerbottommargin=0pt,
+	innerrightmargin=0pt,
+	innerleftmargin=2pt,
+	linecolor=gray,
+	linewidth=1pt,
+	nobreak=false,
+	skipabove=\medskipamount,
+	skipbelow=\medskipamount
 ]{case}
