@@ -212,6 +212,9 @@ A special type of line that we can obtain in the \EndOfLine\ instances are cycle
 
 Notice that maximal rainbow simplicial sequences are exactly the sequences of simplices which yield the lines in the \EndOfLine\ instance which we reduce \Sperner\ instances to. We can now discuss how we orient these simplices.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Orientation of Simplices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Orientation of a the simplicial decomposition}[Orientating the simplices]
 
 In this section we discuss how to orient the simplicial decomposition of the lattice, we defined in the previous section. This will be important as we will argue in the next section, that the existence of a cycle would contradict the orientation of the simplicial decomposition. We start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
@@ -390,6 +393,9 @@ Now we should check that our definition is sound. We want that the orientation o
 	This immediatetly implies the desired result.
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Properties of colored of oriented simplical sequences
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Properties of colored of oriented simplical sequences}
 
 \subsection{General properties of the coloring}
@@ -438,6 +444,7 @@ Now we want to work with sequences of simplices, and show that the coloring of t
 \end{proof}
 
 \begin{lemma}[Orientation of transition faces]
+	\label{lem:consistent_orientation_of_transition_faces}
 	\boxmarginnote{This means that our definition of orientation of colored faces, makes sence: when we walk though these faces, we always walk through faces which are oriented in the same way.}
 	Let $\left(S_i\right)_{i=1}^{k}$ be a valid rainbow simplicial sequence. Then $\left(\orient_{S_i}(F_i)\right)_{i=1}^{k-1}$ is constant.
 \end{lemma}
@@ -458,10 +465,6 @@ Now we want to work with sequences of simplices, and show that the coloring of t
 	\end{align*}
 	This is the desired result and concludes the proof.
 \end{proof}
-
-\section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
-
-Now we are ready to show that the \EndOfLine\ instance does not contain any cycles. We do this by showing that the existence of a cycle would contradict the orientation of the simplicial complex. A cycle is a valid sequence such that $S_0$ and $S_k$ are a $(d-1)$-simplex as a face. We will show that certain situations cannot occur due to the orientation of the simplicial complex before argueing that these situations must occur in a cycle. This will be enough to show that the \EndOfLine\ instance does not contain any cycles.
 
 Before we start we want to make an observation on how the dimension $d$ plays together with the orientation of the simplicial complex.
 \begin{lemma}
@@ -490,23 +493,41 @@ Before we start we want to make an observation on how the dimension $d$ plays to
 	\end{align*}
 	This shows the Lemma.
 \end{proof}
-Next we show that a sequence of colored simplices as defined previously, can only cross a given hyperplane, given by fixing a dimension $l$, at most once. This will be a key tool in the discussion on cycles in the \EndOfLine\ instance. Formally we have the following proposition.
-\begin{proposition}
-	Let $l \in \set{1, \dots, d-1}$ be a dimension. Consider the hyperplane $H$ given by fixing $l = L$ for some $L \in [N]$\marginnote[0mm]{In other words $H$ is given by ${H = \set{x \in \R^d \mid x[l] = L}}$}. Then consider the sequence of simplices $\left(S_i\right)_{i=1}^{k}$ such as defined previously. Then there can not be two $i \neq j$ such that $F_i \subset H$ and $F_j \subset H$.
-\end{proposition}
-Prior to proving this result, it is essential to highlight the underlying rationale behind its significance. This implies that, with the exception of the dimension $d$ the sequences of simplices that induce the paths in the \EndOfLine\ instance are monotone. Now let us prove this result.
-\begin{proof}
-	For the sake of contradiction assume that there are two such $i \neq j$, such that $F_i \subset H$ and $F_j \subset H$. Without loss of generality we can further assume that $i < j$ and that for all $k \in \set{i+1, \dots, j-1}$ we have $F_k \not\subset H$, if so then replace $j$ with the smallest such $k$.\par
-	Now notice that $S_i$ and $S_{j}$ are on opposite sides of $H$, and that $S_{i+1}$ and $S_{j}$ are on the same side of $H$. Now let us consider the sequence of colored simplices $S_{i+1}, \dots, S_j$. Notice that \cref{lem:position_of_d_in_simplex}, which we proved earlier, implies that both $F_i$, and $F_j$ must be of the following form:
+
+\begin{lemma}[Ordering of the vertices in transition faces]
+	\label{lem:ordering_of_vertices_in_transition_faces}
+	Let $\left(S_i\right)_{i=1}^k$ be a valid rainbow simplicial sequence. For all $i$ such that $F_i$ is a face between cells\boxmarginnote{A face between cell is a face of type (2) in \cref{rem:faces_of_simplex}.} then assume that we are moving in dimension $l \in \set{1, \dots, d-1}$, that is $l$ is not a dimension of $F_i$. Then for all colors $c \in \set{k+1, \dots, d-1} \cup \set{0}$, we have that $c$ appears after $l$ in $F_i$. This means that $F_i$ is of the form:
 	\begin{align*}
-		(F_i) & : \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d) \\
-		(F_j) & : \quad c(w_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(w_d)
+		(F_i): \quad c(v_1) \xrightarrow{} \cdots \xrightarrow{} l \xrightarrow{} \cdots \xrightarrow{} c \xrightarrow{} \cdots \xrightarrow{} c(v_d)
 	\end{align*}
-	We will now proceed by case distinction:
-	\begin{case}{1}
-		Assume that $F_i$ and $F_j$ are comparable\marginnote[0mm]{By \emph{comparable} we mean that the cell containing $F_i$ is either larger or smaller than the cell containing $F_j$.}. We want to show that this is not possible. Assume without loss of generality that $F_i$ is smaller than $F_j$. Then the vertex colored $0$ in $F_i$ must be smaller than the vertex colored $l$ in $F_j$. This leads to a violation of monotonicity according to \cref{cor:monotone_coloring}.
-	\end{case}
-	\begin{case}{2}
-		Assume that $F_i$ and $F_j$ are not comparable. Our goal is to show that in this case we do not have a consistent orientation of the faces $L_i$ and $L_{j-1}$.
-	\end{case}
+\end{lemma}
+\begin{proof}
+	Assume for the sake of contradiction that for $c \in \set{k+1, \dots, d-1} \cup \set{0}$ we have that $c$ appears before $l$ in $F_i$. Then by \cref{cor:monotone_coloring} we must have that we move in dimension $l$ between $l$ and $c$. But the dimension $l$ is not a dimension of $F_i$. This is a contradiction and shows the Lemma.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%No cycles in End of Line instances
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
+
+\begin{remark}
+	Assume that we have a valid colored simplicial sequence which crosses a hyperplane obtained by fixing one dimension $H = L_{k = K}$, for a dimension $k \in \set{1, \dots, d}$ and $K \in [N]$, twice. Let $F_i$ and $F_j$ be the transition faces which cross the hyperplane. Then: \boxmarginnote{This means that when looking at the hyperplane from any side, $F_i$ and $F_j$ have opposite orientations.}
+	\begin{align*}
+		\orient_{S_i}(F_i) = - \orient_{S_{j+1}}(F_j)
+	\end{align*}
+\end{remark}
+\begin{proof}
+	This is a reformulation of the more general \cref{lem:consistent_orientation_of_transition_faces}.
+\end{proof}
+
+\begin{lemma}
+	Fix $k \in \set{2, \dots, d-1}$. Assume that we have a valid colored simplicial sequence $\left(S_i\right)_{i=1}^k$ which does not move in dimensions $\set{1, \dots, , k-1}$. Then for any hyperplane $H = L_{k = K}$ for $K \in [N]$, the sequence cannot cross $H$ more than once.
+\end{lemma}
+\begin{proof}
+	Assume for the sake of contradiction that such a sequence can exist, that is that there are transition faces $F_i$ and $F_j$ on the hyperplane $H$. Now we start by noticing the following. Let $Q_i$ be the set of colors that appear before $k$ in $F_i$ and $Q_j$ be the set of colors that appear before $k$ in $F_i$. We claim that $Q_i = Q_j$.
+
+	First notice that by \cref{lem:ordering_of_vertices_in_transition_faces} we have that $Q_i, Q_j	\subset \set{1, \dots, k-1}$. Now assume that $Q_i \neq Q_j$, then without loss of generality assume that there is a color $c \in Q_i$ which is not in $Q_j$. This means that $c$ appears before $k$ in $F_i$ and after $k$ in $F_j$.
+
+
+
 \end{proof}
