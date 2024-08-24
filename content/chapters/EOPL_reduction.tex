@@ -552,3 +552,14 @@ Now we are ready for the proof of our main result. We will start by proving that
 	\end{case}
 	Because we will always move in at least dimension 1 or 2 this concludes the proof.
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Discussing the EOPL Reduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussing the reduction of \Tarskistar\ to \EndOfPotentialLine}[Discussing the reduction to \EOPL]
+
+We have now shown that there are no cycles in the \EndOfLine\ instance which arise from monotone \Tarskistar\ instances. This does not directly imply a direction onto \EndOfPotentialLine. Inuitively an \EndOfLine\ instance without cycles should be equivalent to an \EndOfPotentialLine\ instance. But in \EndOfPotentialLine\ the non-existence of a cycle is given by a potential which grows monotonically along the lines.
+
+The challenge in our case is to define such a potential. We briefly want to give some inuition for why this is not easy. A first naive attempt, would be to define the potential as something similar to the sum of the coordinates of a vertex of the simplex\marginnote{Recall that this is exactly the same potential as we used to reduce \Tarski\ onto \Localopt.}. This will not work in our case though, because it can very well happen that the path though the simplicial complex is not monotone with respect to the sum of the coordinates, in particular we can cross a hyperplane multiple times, which would not be possible if the sum of the coordinates was a valid potential.
+
+This means that we need to be more creative in our definition of the potential. The idea is to decide on how we orient our potential locally. We start by giving every cell of the simplicial complex coordinates, these will be the coordinates of the smallest vertex of cell. Now look at the colors of the vertices of the cell.
