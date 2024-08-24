@@ -213,6 +213,13 @@ A special type of line that we can obtain in the \EndOfLine\ instances are cycle
 Notice that maximal rainbow simplicial sequences are exactly the sequences of simplices which yield the lines in the \EndOfLine\ instance which we reduce \Sperner\ instances to. We can now discuss how we orient these simplices.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%A side note on super-unique Tarski
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A side note on super-unique \Tarski\ instances}[Super-unique \Tarski\ instances]
+
+TODO.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Orientation of Simplices
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Orientation of a the simplicial decomposition}[Orientating the simplices]
@@ -520,14 +527,28 @@ Before we start we want to make an observation on how the dimension $d$ plays to
 	This is a reformulation of the more general \cref{lem:consistent_orientation_of_transition_faces}.
 \end{proof}
 
-\begin{lemma}
-	Fix $k \in \set{2, \dots, d-1}$. Assume that we have a valid colored simplicial sequence $\left(S_i\right)_{i=1}^k$ which does not move in dimensions $\set{1, \dots, , k-1}$. Then for any hyperplane $H = L_{k = K}$ for $K \in [N]$, the sequence cannot cross $H$ more than once.
-\end{lemma}
+Now we are ready for the proof of our main result. We will start by proving that there are no cycles in the three dimensional case, and then extend this to the general case.
+
+\begin{theorem}[No cycles in three-dimensional \Tarskistar]
+	\label{thm:no_cycles_in_three_dimensional_tarskistar}
+	There are no cycles in the \EndOfLine\ instance which we reduce three dimensional \Tarskistar\ instances to.
+\end{theorem}
 \begin{proof}
-	Assume for the sake of contradiction that such a sequence can exist, that is that there are transition faces $F_i$ and $F_j$ on the hyperplane $H$. Now we start by noticing the following. Let $Q_i$ be the set of colors that appear before $k$ in $F_i$ and $Q_j$ be the set of colors that appear before $k$ in $F_i$. We claim that $Q_i = Q_j$.
+	Assume for the sake of contradiction that we have a cycle in the \EndOfLine\ instance. Let $\left(S_i\right)_{i=1}^k$ be a cycle of simplices for colors $C = \set{0, 1, 2}$. We will show that this leads to a contradiction. \par
 
-	First notice that by \cref{lem:ordering_of_vertices_in_transition_faces} we have that $Q_i, Q_j	\subset \set{1, \dots, k-1}$. Now assume that $Q_i \neq Q_j$, then without loss of generality assume that there is a color $c \in Q_i$ which is not in $Q_j$. This means that $c$ appears before $k$ in $F_i$ and after $k$ in $F_j$.
+	Consider the faces $L_i$ which are the faces spanned by vertices colored not $0$ in $S_i$, and the faces $M_i$ which are the faces spanned by vertices not colored $1$ in $S_i$. Formally:
+	\begin{align*}
+		L_i & = \set{v \in S_i \mid c(v) \neq 0} \\
+		M_i & = \set{v \in S_i \mid c(v) \neq 1}
+	\end{align*}
+	Notice that these $L_i$'s and $M_i$'s are always either 2-dimensional or 1-dimensional. Now for the sake of simplicity assume that we remove all 1-dimensional faces from these sequences, and only consider the 2-dimensional faces. Notice that this is in itself a valid oriented simplicial sequence, and in particular a cycle. \par
 
-
-
+	Now if we look at the transion faces $\left(Q_i\right)_i$ of $\left(L_i \right)_i$, and $\left(R_i\right)_i$ of $\left(M_i\right)_i$, then we have that by \cref{lem:consistent_orientation_of_transition_faces} that the orientations of the sequence $\left(Q_i\right)_i$ is constant and the orientation of the sequence $\left(R_i\right)_i$ is constant. We can now proceed by case distinction
+	\begin{case}{1}
+		If we move in dimension 1 then, let $H$ be a hyperplane obtained by fixing dimension 1 which we cross twice. Then let $Q_i$ and $Q_j$ be the transition faces which cross the hyperplane. Then by the remark above we have that: $\orient_{S_i}(Q_i) = \orient_{S_j}(Q_j)$, which means that for either $Q_i$ or $Q_j$, we have that the vertex colored $1$ is larger than the vertex colored $2$. This is not possible because we do not move in dimension 1 between these two vertices. This contradicts monotonicity by \cref{cor:monotone_coloring}.
+	\end{case}
+	\begin{case}{2}
+		If we move in dimensions 2 then, let $H$ be a hyperplane obtained by fixing dimension 2 which we cross twice. Then let $M_i$ and $M_j$ be the transition faces which cross the hyperplane. Then by the remark above we have that: $\orient_{S_i}(M_i) = \orient_{S_j}(M_j)$, which means that for either $M_i$ or $M_j$, we have that the vertex colored $2$ is larger than the vertex colored $0$. This is not possible because we do not move in dimension 2 between these two vertices. This contradicts monotonicity by \cref{cor:monotone_coloring}
+	\end{case}
+	Because we will always move in at least dimension 1 or 2 this concludes the proof.
 \end{proof}
