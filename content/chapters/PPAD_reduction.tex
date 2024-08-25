@@ -2,7 +2,7 @@
 \chapter{Reducing \Tarski\ to \PPAD}
 \label{ch:ppad_reduction}
 
-This chapter explores the membership of \Tarski\ in the complexity class \PPAD. We begin by presenting a high-level overview of an established proof of the reduction of this problem to \Brouwer~\sidecite[35mm]{etessami_tarskis_2020}. We subsequently introduce a novel problem, \Tarskistar, which facilitates a divide-and-conquer approach to solving \Tarski\ by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski's membership in \PPAD\ using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach simplifies the proof and sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
+This chapter explores the membership of \Tarski\ in the complexity class \PPAD. We begin by presenting a high-level overview of an established proof of the reduction of this problem to \Brouwer~\cite{etessami_tarskis_2020}. We subsequently introduce a novel problem, \Tarskistar, which facilitates a divide-and-conquer approach to solving \Tarski\ by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski's membership in \PPAD\ using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach simplifies the proof and sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
 
 \section{Presentation of the known reduction of \Tarski\ to \PPAD}[Known reduction to \PPAD]
 
@@ -113,9 +113,40 @@ We give an example of a 2-dimensional simplex, subdivided into smaller simplices
 
 \subsection{Sperner's Lemma for an integer lattice}[on Lattices]
 
-In the previous Section, we introduced \textit{Sperner's Lemma} for an integer lattice. This enables us to find a region of a colored lattice that contains all colors under certain conditions. Instead of a subsimplex, we look for a \define{cell}\sidenote{By cell, we mean a unit hypercube of the integer lattice} of the lattice, which contains all colors.
+In the previous Section, we introduced \textit{Sperner's Lemma} for an large outer simplex. We want to make construct a \TFNP\ problem, which captures the finding of the subsimplex containing all colors. The challenge here is that encoding the structure of this simplex is not straightforward, and hence defining circuits which encode the setting of the problem will be difficult. Furthermore our final goal is to reduce \Tarskistar\ to the problem of fidnding a subsimplex containing all colors. The setting we are given in this case is not a simplex but an integer lattice.
 
-For this, we proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. We set $v_0 = (0, \dots, 0)$, $v_1 = (N_1 - 1, 0, \dots, 0), \dots, v_d = (0, \dots, 0, N_d - 1)$. We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice and obtain an equivalent simplex and a simplicial decomposition of this simplex.
+For these reasons, we want to apply \textit{Sperner's Lemma} to an integer lattice. We proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. Now we need a technical lemma, which states that the simplicial complex we obtain can be deformend into a large outer simplex.
+
+\begin{lemma}[Simplicial deformation of integer lattice]
+	Let $L = [N_1] \times \dots \times [N_d]$ be a $d$-dimensional lattice. We subdivide each cell into simplices. Then, there is a deformation of the lattice into a large outer simplex.
+\end{lemma}
+\begin{proof}
+	We start by choosing the vertices of the lattice which will form the outer simplex. Consider the following $d+1$ vertices:
+	\begin{align*}
+		v_0 & = (0, \dots, 0)         \\
+		v_1 & = (N_1, 0, \dots, 0)    \\
+		v_2 & = (0, N_2, 0, \dots, 0) \\
+		    & \vdots                  \\
+		v_d & = (0, \dots, 0, N_d)
+	\end{align*}
+	Now we need to dicuss how we can deform the lattice into this simplex. The idea is the following: Every point which is on the boundary of the lattices should be moved to the boundary of the simplex. The points in the interior of the lattice should be moved to the interior of the simplex. We can do this by a linear interpolation between the two points. We now give the construction of the deformation function $D : [0, N_1] \times \cdots \times [0, N_d] \rightarrow [0, N_1] \times \cdots \times [0, N_d]$. Notice that we define the deformation function for the hypercube $H = [0, N_1] \times \cdots \times [0, N_d]$ for simplicity. The deformation of the lattice then immediately follows by restricting the deformation function to the lattice.
+
+	Let $x = (x_1, \dots, x_d)$ be a point on the boundary of the hypercube $H$, i.e.\ there is a $i \in \set{1, \dots, d}$ such that $x_i = 0$ or $x_i = N_i$. Notice that we can write:
+	\begin{align*}
+		x = \sum_{i=1}^{d} \lambda_i \cdot v_i \quad \text{with} \quad \lambda_i > 0
+	\end{align*}
+	Now we can define the deformation function for these points on the boundary as follows:
+	\begin{align*}
+		D(x) = \frac{1}{\norm{\lambda}_1} \cdot \sum_{i=1}^{d} \lambda_i \cdot v_i
+	\end{align*}
+	We immediately notice that if $x$ is on the boundary of the hypercube, then $D(x)$ is on the boundary of the simplex. We can now define the deformation function for the interior of the hypercube by linear interpolation. Let $y$ be a point in the interior of the hypercube, then we can write: $y = \gamma \cdot x$, for some $x$ on the boundary of the hypercube and $\gamma \in [0, 1]$. We can now define the deformation function for the interior of the hypercube as follows:
+	\begin{align*}
+		D(y) = \gamma \cdot D(x)
+	\end{align*}
+	This contruction has some key properties. Most importantly, segments (edges of the simplical decomposition) are mapped to segments, and simplices are mapped to simplices. This means that the simplicial decomposition of the lattice is mapped to a simplicial decomposition of the simplex. This means that we can apply \textit{Sperner's Lemma} to the simplicial decomposition of the lattice. This concludes the proof.
+\end{proof}
+
+We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice and obtain an equivalent simplex and a simplicial decomposition of this simplex.
 
 \begin{figure}
 	\centering
@@ -135,9 +166,10 @@ A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in 
 \subsection{Reducing \Sperner\ to \EndOfLine}[\Sperner\ to \EndOfLine\ reduction]
 \label{sec:sperner_eol_reduction}
 
-In order for a reduction of \Tarskistar\ onto \Sperner\ to show membership in \PPAD, we need to show that \Sperner\ is \PPAD-Complete. A sketch of the proof was first given in \sidecite{papadimitriou_complexity_1994-1}. We will give a complete proof, as the construction we use will become relevant in the following chapters.
-\begin{theorem}
-	\Sperner\ is \PPAD-complete.
+In this section we will discuss the reduction of \Sperner\ to \EndOfLine. This reduction was first constructed in the three-dimensional case in \sidecite{papadimitriou_complexity_1994-1}. The same paper also gives the idea of the generalization to the $d$-dimensional case. In the following we will give the full construction of the reduction. This is important as we will use this reduction to argue as to why \Tarskistar\ is in \EOPL.
+
+\begin{theorem}[\Sperner\ is in \PPAD]
+	\Sperner\ reduces to \EndOfLine.
 \end{theorem}
 
 \begin{figure}
@@ -147,11 +179,8 @@ In order for a reduction of \Tarskistar\ onto \Sperner\ to show membership in \P
 	\label{fig:sperner_eol_reduction}
 \end{figure}
 
-
 \begin{proof}
-	To prove that \Sperner\ is \PPAD-complete it suffices to show that \Sperner\ can be reduced to \EndOfLine\ and that \EndOfLine\ can be reduced to \Sperner, because by definition \EndOfLine\ is PPAD-Complete.
-
-	We start by showing that \EndOfLine\ reduces onto \Sperner. Take an \EndOfLine\ instance $P, S : [N] \rightarrow [N]$, such that $0$ is the designated source. Now we construct a two dimensional \Sperner instance on a lattice $L = N^2$ as follows
+	TODO.
 
 \end{proof}
 
