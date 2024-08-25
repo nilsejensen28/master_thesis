@@ -118,6 +118,7 @@ In the previous Section, we introduced \textit{Sperner's Lemma} for an large out
 For these reasons, we want to apply \textit{Sperner's Lemma} to an integer lattice. We proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. Now we need a technical lemma, which states that the simplicial complex we obtain can be deformend into a large outer simplex.
 
 \begin{lemma}[Simplicial deformation of integer lattice]
+	\label{lem:simplicial_deformation}
 	Let $L = [N_1] \times \dots \times [N_d]$ be a $d$-dimensional lattice. We subdivide each cell into simplices. Then, there is a deformation of the lattice into a large outer simplex.
 \end{lemma}
 \begin{proof}
@@ -155,7 +156,7 @@ We give an example of such a subdivision in the 3-dimensional case in \cref{fig:
 	\label{fig:sperner_lattice_example}
 \end{figure}
 
-This means that under the appropriate conditions --- which we will detail next --- we can apply \textit{Sperner's Lemma} to the lattice. Assume that we color all vertices of the lattice with colors $\set{0, \dots, d}$, such that $v_i$ is colored $i$, and every vertex $x$ with $x[i] = 0$, is \textit{not} colored $i$ for $i \in \set{1, \dots, d}$. Then, we can apply \textit{Sperner's Lemma} to this simplicial decomposition of the lattice, and we will find a simplex that contains all colors. Of course, because every subsimplex is included in exactly one cell by construction, there must be a cell that contains all colors. This motivates the definition of the total problem \Sperner, which was introduced in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
+Assuming that we color all vertices of the lattice with colors $\set{0, \dots, d}$, such that $v_i$ is colored $i$, and every vertex $x$ with $x[i] = 0$, is \textit{not} colored $i$ for $i \in \set{1, \dots, d}$. Then, we can apply \textit{Sperner's Lemma} to this simplicial decomposition of the lattice, and we will find a simplex that contains all colors. Of course, because every subsimplex is included in exactly one cell by construction, there must be a cell that contains all colors. This motivates the definition of the total problem \Sperner, which was introduced in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$.
 
 \problem{\Sperner}{
 A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that for every $i \in \set{0, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$.
@@ -172,6 +173,11 @@ In this section we will discuss the reduction of \Sperner\ to \EndOfLine. This r
 	\Sperner\ reduces to \EndOfLine.
 \end{theorem}
 
+The idea of the reduction is the following. We want to want to find a cell which contains all colors: assume that we start at a cell with all but one color $d$. Then move to the neighbooring cell though a face containing all colors but $d$. Now either this cell contains the color $d$ in which case we are finished, or we have a second face containing all colors but $d$. We can repeat this process until we find a cell containing all colors.
+
+
+Now there are two problems we need to discuss. First once again using cell leads to some difficulty as there could be more than two faces for a given cell, which could contain all colors but one. We will solve this problem once again by considering a simplicial decomposition of the lattice. Second, we need to define a designated source. In order to do this we will slightly expand the simplicial complex. We are now ready for the formal proof, we recommend the reader to follow along with the construction in \cref{fig:sperner_eol_reduction}.
+
 \begin{figure}
 	\centering
 	\incfig{Sperner_EoL_Reduction}
@@ -180,12 +186,37 @@ In this section we will discuss the reduction of \Sperner\ to \EndOfLine. This r
 \end{figure}
 
 \begin{proof}
-	TODO.
+	Formally we will proceed by induction over the dimensions of the lattice. First we discuss the base-case. In the one dimensional case, we have a lattice $L = [N]$. We color the lattice with colors $\set{0, 1}$. Now for every segment $s = [x, x+1]$, of which there are $N-1$ which we number from left to right of the latice we define the circuits $S, P : [N-1] \rightarrow [N-1]$ as follows:
+	\begin{align*}
+		S(x) & = \begin{cases}
+			         x + 1 & \text{if $c(x+1) = 0$} \\
+			         x     & \text{else}
+		         \end{cases} \quad \text{and} \\
+		P(x) & = \begin{cases}
+			         x - 1 & \text{if $c(x-1) = 0$} \\
+			         x     & \text{else}
+		         \end{cases}
+	\end{align*}
+	Furthemore set $P(0) = \xtilde$ and $S(N-1) = N-1$. By adding a designated source $\xtilde$ outside of the lattice, and setting $P(\xtilde) = \xtilde$ and $S(\xtilde) = 0$, we obtain an instance of \EndOfLine.
 
+	Now we are ready to prooceed with the induction. Assume the theorem is true for all dimensions $1, \dots, d-1$. We will prove it for dimension $d$.
+
+	Consider the simplicial subdivision of the colored lattice. A given cell is subdivided into $d!$ simplices\marginnote{A more detailed discussion of this is discussed in \cref{sec:freudenthal_simplicial_decomposition}.}. This means that we have $N = N_1 \cdot \cdots \cdot N_d \cdot d!$ simplices, which we can number from $0$ to $N-1$.
+
+	We now can define the circuit $S, P : [N] \rightarrow [N]$. For a given $d$-simplex $x \in [N]$ we consider the color of the vertices. We proceed by case distinction:
+	\begin{case}{1}
+		If $x$ has a vertex with every color in $\set{0, \dots, d-1}$, but no vertex colored $d$, then $x$ has two faces colored with all colors but $d$. One of these faces is oriented positively and one of the faces oriented negatively \boxmarginnote{See \cref{sec:orientation_of_simplex} for a detailed dicussion of how we define these orientations}. Now define $S(x)$ to be the simplex obtained by moving from $x$ to the positively oriented face. If this face contains a vertex colored $d$, then we define $P(x)$ to be the simplex obtained by moving to the negatively oriented face, and $P(x)$ the simplex obtained by moving through the negatively oriented face.
+	\end{case}
+	\begin{case}{2}
+		If $x$ is a simplex with all colors, then look at the face spanned by the vertices colored $\set{0, \dots, d-1}$. If this face is oriented positively, then define $S(x)$ to be the simplex obtained by moving through this face and $P(x) = x$. If this face is oriented negatively, then define $P(x)$ to be the simplex obtained by moving through this face and $S(x) = x$. Notice that these are the sources/sinks of the circuit, and the solutions to the sperner instances.
+	\end{case}
+	\begin{case}{3}
+		In all other cases we define $S(x) = P(x) = x$.
+	\end{case}
+	Notice that we can compute $S$ and $P$ in polynomial time with respect to $d$. We still need to define a distinguished source. Notice that finding a distinguished source can be seen as finding a face colored with all colors $\set{0, \dots, d-1}$ on the face spanned by the vertices $v_0, \dots, v_{d-1}$. We can do this by solving a $d-1$ dimensional \Sperner\ instance on this face. By induction hypothesis this can be reduced to an \EndOfLine\ instance. We can now define the distinguished source as the source of this \EndOfLine\ instance, and slightly modify the circuit $S$ and $P$ to combine this \EndOfLine\ instance with the circuits $S$ and $P$ we have constructed above. This concludes the proof.
 \end{proof}
 
-
-Next, we will use this problem to show that \Tarskistar\ is a total search problem and hence lies in \PPAD.
+Next, we will use this problem to show that \Tarskistar\ reduces to \Sperner\ and hence lies in \PPAD.
 
 \section{Reducing \Tarskistar\ to \Sperner}
 \label{sec:tarskistar_to_sperner}
