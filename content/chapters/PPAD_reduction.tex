@@ -215,14 +215,3 @@ We give an example of the coloring of a Tarski instance in \cref{fig:tarskistar_
 \end{proof}
 This shows that \Tarskistar\ is a total search problem and can be reduced to \Sperner. Hence, \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$, we have shown that \Tarski\ lies in \PPAD, without relying on \Brouwer.
 
-\section{\Tarski\ and \PPADS}
-
-By using Sperner's Lemma instead of Brouwer's fixed point theorem to show that \Tarskistar\ is in \PPAD\ we get a further result for free: we can show that \Tarski\ is in \PPADS\marginnote{Recall that \PPADS\ arises from finding the sink, of a DAG as opposed to either a sink or a source for \PPAD.}, which is a subclass of \PPAD.
-
-For this we note that a slight variation of \Sperner\ is a complete problem for \PPADS. The idea is to construct a variation of the \Sperner-problem which only allows one of the two end of the path we contruct to be a solution, i.e. only the sink and not the source. When we are given a simplicial decomposition, we can give each simplex an orientation based on the colors\marginnote{A more detailled notion of orientation will be discussed in the next chapter.}.
-
-\problem{Oriented-Sperner}{
-A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that for every $i \in \set{0, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$.
-}{
-A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$, and such that the cell is positively oriented.
-}
