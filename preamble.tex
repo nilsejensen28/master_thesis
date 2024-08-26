@@ -100,6 +100,8 @@
 
 %Special marginnote for inside tcolorboxes
 \newlength{\marginparseptemp}
+\newlength{\characterlength}
+\settowidth{\characterlength}{\ }
 \newcommand{\boxmarginnote}[1]{
 	\leavevmode
 	%Check if we are in twosided mode
@@ -111,12 +113,14 @@
 			\marginnote[-\baselineskip]{#1}
 			\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
 			\marginparsep=\marginparseptemp
+			\hspace{-\marginparseptemp}
 		}{
 			\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
 			\marginparsep=\marginparseptemp
 			\marginnote[-\baselineskip]{#1}
 			\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
 			\marginparsep=\marginparseptemp
+			\hspace{\marginparseptemp}
 		}
 	}{
 		\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
@@ -124,6 +128,7 @@
 		\marginnote[-\baselineskip]{#1}
 		\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
 		\marginparsep=\marginparseptemp
+		\hspace{-\marginparseptemp}
 	}
 }
 
