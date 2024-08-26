@@ -12,7 +12,7 @@ We want to give a high-level presentation of the proof of \Tarski\ membership in
 	Let $K \subset \R^d$ be a compact, convex set. Then every continuous function $f : K \rightarrow K$ has a fixed point $x^*  \in K$, i.e. $f(x^*) = x^*$.
 \end{theorem}
 
-The original proof can be found in \sidecite{brouwer_uber_1911}, and a more straightforward proof relying on \textsc{Sperner's Lemma} can be found in \sidecite{aigner_proofs_2018}. This Theorem gives rise to a total search problem which we call \Brouwer:
+The original proof can be found in \sidecite{brouwer_uber_1911}, and a more straightforward proof relying on \textsc{Sperner's Lemma} can be found in \sidecite{aigner_proofs_2018}. This theorem gives rise to a total search problem, which we call \Brouwer:
 
 \marginnote{We leave out the technical detail of how this function is given using boolean circuits and how precise the output needs to be, as it is irrelevant for this high-level presentation.}
 \problem{Brouwer}{
@@ -30,7 +30,7 @@ We can repeat this procedure, always halving the search area, which allows us to
 
 \section{Introducing \Tarskistar}
 
-In the previous Section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide-and-conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
+In the previous section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide-and-conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
 
 For the sake of generality and in order to achieve more precise proofs in the following, we introduce the problem on the integer lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$ for all $i \in \{1, \dots, d\}$. We propose the following problem:
 \problem{\Tarskistar}{
@@ -76,7 +76,7 @@ Now that we know that \Tarskistar\ is a good stepping stone towards solving \Tar
 
 \section{Sperner's Lemma}
 
-The preceding discussion hinges on the assumption that \Tarskistar\ is a total problem, implying that every instance of the problem is guaranteed a solution. This Section will substantiate this claim, establishing \ Tarskistar's classification within \TFNP. Rather than employing \textit{Brouwer's fixed point Theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analog, \textit{Sperner's Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
+The preceding discussion hinges on the assumption that \Tarskistar\ is a total problem, implying that every instance of the problem is guaranteed a solution. This section will substantiate this claim, establishing \ Tarskistar's classification within \TFNP. Rather than employing \textit{Brouwer's fixed point theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analog, \textit{Sperner's Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
 \begin{itemize}
 	\item We are working on a discrete lattice, so it seems more natural to use a discrete tool.
 	\item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ to \Sperner\ \sidecite{papadimitriou_complexity_1994-1}. Hence, by reducing to \Brouwer, we introduce continuity into the problem, which is unnecessary, as it gets removed again behind the scenes.
@@ -113,9 +113,9 @@ We give an example of a 2-dimensional simplex, subdivided into smaller simplices
 
 \subsection{Sperner's Lemma for an integer lattice}[on Lattices]
 
-In the previous Section, we introduced \textit{Sperner's Lemma} for an large outer simplex. We want to make construct a \TFNP\ problem, which captures the finding of the subsimplex containing all colors. The challenge here is that encoding the structure of this simplex is not straightforward, and hence defining circuits which encode the setting of the problem will be difficult. Furthermore our final goal is to reduce \Tarskistar\ to the problem of fidnding a subsimplex containing all colors. The setting we are given in this case is not a simplex but an integer lattice.
+In the previous section, we introduced \textit{Sperner's Lemma} for a large outer simplex. We want to construct a \TFNP\ problem, which captures the finding of the subsimplex containing all colors. The challenge here is that encoding the structure of this simplex is not straightforward, and hence, defining circuits that encode the setting of the problem will be difficult. Furthermore, our final goal is to reduce \Tarskistar\ to the problem of finding a subsimplex containing all colors. In this case, our setting is not a large outer simplex but an integer lattice.
 
-For these reasons, we want to apply \textit{Sperner's Lemma} to an integer lattice. We proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. Now we need a technical lemma, which states that the simplicial complex we obtain can be deformend into a large outer simplex.
+We want to apply \textit{Sperner's Lemma} to an integer lattice for these reasons. We proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How this we do this is not relevant in this chapter but will be discussed in the next chapter.}. We need a technical lemma, which states that the simplicial complex we obtain can be deformed into a large outer simplex.
 
 \begin{lemma}[Simplicial deformation of integer lattice]
 	\label{lem:simplicial_deformation}
@@ -130,21 +130,21 @@ For these reasons, we want to apply \textit{Sperner's Lemma} to an integer latti
 		    & \vdots                  \\
 		v_d & = (0, \dots, 0, N_d)
 	\end{align*}
-	Now we need to dicuss how we can deform the lattice into this simplex. The idea is the following: Every point which is on the boundary of the lattices should be moved to the boundary of the simplex. The points in the interior of the lattice should be moved to the interior of the simplex. We can do this by a linear interpolation between the two points. We now give the construction of the deformation function $D : [0, N_1] \times \cdots \times [0, N_d] \rightarrow [0, N_1] \times \cdots \times [0, N_d]$. Notice that we define the deformation function for the hypercube $H = [0, N_1] \times \cdots \times [0, N_d]$ for simplicity. The deformation of the lattice then immediately follows by restricting the deformation function to the lattice.
+	Now, we need to discuss how we can deform the lattice into this simplex. The idea is the following: Every point on the boundary of the lattices should be moved to the boundary of the simplex. The points in the interior of the lattice should be moved to the interior of the simplex. We can do this by a linear interpolation between the two points. We now give the construction of the deformation function $D : [0, N_1] \times \cdots \times [0, N_d] \rightarrow [0, N_1] \times \cdots \times [0, N_d]$. Notice that we define the deformation function for the hypercube $H = [0, N_1] \times \cdots \times [0, N_d]$ for simplicity. The deformation of the lattice then immediately follows by restricting the deformation function to the lattice.
 
 	Let $x = (x_1, \dots, x_d)$ be a point on the boundary of the hypercube $H$, i.e.\ there is a $i \in \set{1, \dots, d}$ such that $x_i = 0$ or $x_i = N_i$. Notice that we can write:
 	\begin{align*}
 		x = \sum_{i=1}^{d} \lambda_i \cdot v_i \quad \text{with} \quad \lambda_i > 0
 	\end{align*}
-	Now we can define the deformation function for these points on the boundary as follows:
+	Now, we can define the deformation function for these points on the boundary as follows:
 	\begin{align*}
 		D(x) = \frac{1}{\norm{\lambda}_1} \cdot \sum_{i=1}^{d} \lambda_i \cdot v_i
 	\end{align*}
-	We immediately notice that if $x$ is on the boundary of the hypercube, then $D(x)$ is on the boundary of the simplex. We can now define the deformation function for the interior of the hypercube by linear interpolation. Let $y$ be a point in the interior of the hypercube, then we can write: $y = \gamma \cdot x$, for some $x$ on the boundary of the hypercube and $\gamma \in [0, 1]$. We can now define the deformation function for the interior of the hypercube as follows:
+	We immediately notice that if $x$ is on the boundary of the hypercube, then $D(x)$ is on the boundary of the simplex. We can now define the deformation function for the interior of the hypercube by linear interpolation. Let $y$ be a point in the interior of the hypercube; then we can write: $y = \gamma \cdot x$, for some $x$ on the boundary of the hypercube and $\gamma \in [0, 1]$. We can now define the deformation function for the interior of the hypercube as follows:
 	\begin{align*}
 		D(y) = \gamma \cdot D(x)
 	\end{align*}
-	This contruction has some key properties. Most importantly, segments (edges of the simplical decomposition) are mapped to segments, and simplices are mapped to simplices. This means that the simplicial decomposition of the lattice is mapped to a simplicial decomposition of the simplex. This means that we can apply \textit{Sperner's Lemma} to the simplicial decomposition of the lattice. This concludes the proof.
+	This construction has some fundamental properties. Most importantly, segments (edges of the simplicial decomposition) are mapped to segments, and simplices are mapped to simplices. This means that the simplicial decomposition of the lattice is mapped to a simplicial decomposition of the simplex. It follows that we can apply \textit{Sperner's Lemma} to the simplicial decomposition of the lattice. This concludes the proof.
 \end{proof}
 
 We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice and obtain an equivalent simplex and a simplicial decomposition of this simplex.
@@ -167,16 +167,16 @@ A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in 
 \subsection{Reducing \Sperner\ to \EndOfLine}[\Sperner\ to \EndOfLine\ reduction]
 \label{sec:sperner_eol_reduction}
 
-In this section we will discuss the reduction of \Sperner\ to \EndOfLine. This reduction was first constructed in the three-dimensional case in \sidecite{papadimitriou_complexity_1994-1}. The same paper also gives the idea of the generalization to the $d$-dimensional case. In the following we will give the full construction of the reduction. This is important as we will use this reduction to argue as to why \Tarskistar\ is in \EOPL.
+This section will discuss the reduction of \Sperner\ to \EndOfLine. This reduction was first constructed in the three-dimensional case in \sidecite{papadimitriou_complexity_1994-1}. The same paper also gives the idea of the generalization to the $d$-dimensional case. In the following section, we will give the complete construction of the reduction. This is important as we will use this reduction to argue as to why \Tarskistar\ is in \EOPL.
 
 \begin{theorem}[\Sperner\ is in \PPAD]
 	\Sperner\ reduces to \EndOfLine.
 \end{theorem}
 
-The idea of the reduction is the following. We want to want to find a cell which contains all colors: assume that we start at a cell with all but one color $d$. Then move to the neighbooring cell though a face containing all colors but $d$. Now either this cell contains the color $d$ in which case we are finished, or we have a second face containing all colors but $d$. We can repeat this process until we find a cell containing all colors.
+We start by giving the idea of the construction. We want to find a cell that contains all colors: assume that we start at a cell with all but one color $d$. Then, we move to the neighboring cell through a face containing all colors but $d$. Now, either this cell contains the color $d$, in which case we are finished, or we have a second face containing all colors but $d$. We can repeat this process until we find a cell containing all colors.
 
 
-Now there are two problems we need to discuss. First once again using cell leads to some difficulty as there could be more than two faces for a given cell, which could contain all colors but one. We will solve this problem once again by considering a simplicial decomposition of the lattice. Second, we need to define a designated source. In order to do this we will slightly expand the simplicial complex. We are now ready for the formal proof, we recommend the reader to follow along with the construction in \cref{fig:sperner_eol_reduction}.
+Now, there are two problems we need to discuss. First, once again, using a cell leads to some difficulty as there could be more than two faces for a given cell, which could contain all colors but one. We will solve this problem again by considering the lattice's simplicial decomposition. Second, we need to define a designated source. In order to do this, we will expand the simplicial complex slightly. We are now ready for the formal proof; we recommend the reader to follow along with the construction in \cref{fig:sperner_eol_reduction}.
 
 \begin{figure}
 	\centering
@@ -186,7 +186,7 @@ Now there are two problems we need to discuss. First once again using cell leads
 \end{figure}
 
 \begin{proof}
-	Formally we will proceed by induction over the dimensions of the lattice. First we discuss the base-case. In the one dimensional case, we have a lattice $L = [N]$. We color the lattice with colors $\set{0, 1}$. Now for every segment $s = [x, x+1]$, of which there are $N-1$ which we number from left to right of the latice we define the circuits $S, P : [N-1] \rightarrow [N-1]$ as follows:
+	Formally, we will proceed by induction over the dimensions of the lattice. First, we discuss the base case. We have a lattice $L = [N]$ in the one dimensional case. We color the lattice with colors $\set{0, 1}$. Now for every segment $s = [x, x+1]$, of which there are $N-1$ which we number from left to right of the lattice, we define the circuits $S, P : [N-1] \rightarrow [N-1]$ as follows:
 	\begin{align*}
 		S(x) & = \begin{cases}
 			         x + 1 & \text{if $c(x+1) = 0$} \\
@@ -197,23 +197,23 @@ Now there are two problems we need to discuss. First once again using cell leads
 			         x     & \text{else}
 		         \end{cases}
 	\end{align*}
-	Furthemore set $P(0) = \xtilde$ and $S(N-1) = N-1$. By adding a designated source $\xtilde$ outside of the lattice, and setting $P(\xtilde) = \xtilde$ and $S(\xtilde) = 0$, we obtain an instance of \EndOfLine.
+	Furthemore set $P(0) = \xtilde$ and $S(N-1) = N-1$. By adding a designated source $\xtilde$ outside of the lattice and setting $P(\xtilde) = \xtilde$ and $S(\xtilde) = 0$, we obtain an instance of \EndOfLine.
 
-	Now we are ready to prooceed with the induction. Assume the theorem is true for all dimensions $1, \dots, d-1$. We will prove it for dimension $d$.
+	Now, we are ready to proceed with the induction. Assume the theorem holds for all dimensions $1, \dots, d-1$. We will prove it for dimension $d$.
 
-	Consider the simplicial subdivision of the colored lattice. A given cell is subdivided into $d!$ simplices\marginnote{A more detailed discussion of this is discussed in \cref{sec:freudenthal_simplicial_decomposition}.}. This means that we have $N = N_1 \cdot \cdots \cdot N_d \cdot d!$ simplices, which we can number from $0$ to $N-1$.
+	Consider the simplicial subdivision of the colored lattice. A given cell is subdivided into $d!$ simplices\marginnote{A more detailed discussion of this is discussed in \cref{sec:freudenthal_simplicial_decomposition}.}. It follows that we have $N = N_1 \cdot \cdots \cdot N_d \cdot d!$ simplices, which we can number from $0$ to $N-1$.
 
-	We now can define the circuit $S, P : [N] \rightarrow [N]$. For a given $d$-simplex $x \in [N]$ we consider the color of the vertices. We proceed by case distinction:
+	We now can define the circuit $S, P : [N] \rightarrow [N]$. For a given $d$-simplex $x \in [N]$, we consider the color of the vertices. We proceed by case distinction:
 	\begin{case}{1}
-		If $x$ has a vertex with every color in $\set{0, \dots, d-1}$, but no vertex colored $d$, then $x$ has two faces colored with all colors but $d$. One of these faces is oriented positively and one of the faces oriented negatively \boxmarginnote{See \cref{sec:orientation_of_simplex} for a detailed dicussion of how we define these orientations}. Now define $S(x)$ to be the simplex obtained by moving from $x$ to the positively oriented face. If this face contains a vertex colored $d$, then we define $P(x)$ to be the simplex obtained by moving to the negatively oriented face, and $P(x)$ the simplex obtained by moving through the negatively oriented face.
+		If $x$ has a vertex with every color in $\set{0, \dots, d-1}$, but no vertex colored $d$, then $x$ has two faces colored with all colors but $d$. One of these faces is oriented positively, and one is oriented negatively \boxmarginnote{See \cref{sec:orientation_of_simplex} for a detailed discussion of how we define these orientations}. Now, define $S(x)$ as the simplex obtained by moving from $x$ through the positively oriented face and define $P(x)$ as the simplex obtained by moving to the negatively oriented face.
 	\end{case}
 	\begin{case}{2}
-		If $x$ is a simplex with all colors, then look at the face spanned by the vertices colored $\set{0, \dots, d-1}$. If this face is oriented positively, then define $S(x)$ to be the simplex obtained by moving through this face and $P(x) = x$. If this face is oriented negatively, then define $P(x)$ to be the simplex obtained by moving through this face and $S(x) = x$. Notice that these are the sources/sinks of the circuit, and the solutions to the sperner instances.
+		If $x$ is a simplex with all colors, look at the face spanned by the vertices colored $\set{0, \dots, d-1}$. If this face is positively oriented, then define $S(x)$ as the simplex obtained by moving through this face and $P(x) = x$. If this face is oriented negatively, then define $P(x)$ as the simplex obtained by moving through this face and $S(x) = x$. Notice that these are the sources/sinks of the circuit and the solutions to the sperner instances.
 	\end{case}
 	\begin{case}{3}
-		In all other cases we define $S(x) = P(x) = x$.
+		We define $S(x) = P(x) = x$ in all other cases.
 	\end{case}
-	Notice that we can compute $S$ and $P$ in polynomial time with respect to $d$. We still need to define a distinguished source. Notice that finding a distinguished source can be seen as finding a face colored with all colors $\set{0, \dots, d-1}$ on the face spanned by the vertices $v_0, \dots, v_{d-1}$. We can do this by solving a $d-1$ dimensional \Sperner\ instance on this face. By induction hypothesis this can be reduced to an \EndOfLine\ instance. We can now define the distinguished source as the source of this \EndOfLine\ instance, and slightly modify the circuit $S$ and $P$ to combine this \EndOfLine\ instance with the circuits $S$ and $P$ we have constructed above. This concludes the proof.
+	Notice that we can compute $S$ and $P$ in polynomial time with respect to $d$. We still need to define a distinguished source. Finding a distinguished source can be seen as finding a face colored with all colors $\set{0, \dots, d-1}$ on the face spanned by the vertices $v_0, \dots, v_{d-1}$. We can do this by solving a $d-1$ dimensional \Sperner\ instance on this face. By induction hypothesis, this can be reduced to an \EndOfLine\ instance. We can now define the distinguished source as the source of this \EndOfLine\ instance and slightly modify the circuit $S$ and $P$ to combine this \EndOfLine\ instance with the circuits $S$ and $P$ we have constructed above. This concludes the proof.
 \end{proof}
 
 Next, we will use this problem to show that \Tarskistar\ reduces to \Sperner\ and hence lies in \PPAD.
@@ -236,7 +236,7 @@ For us to be able to use \textsc{Sperner's} Lemma on our \Tarskistar\ instances,
 \begin{figure}[ht]
 	\centering
 	\incfig{Tarski_Coloring_Example}
-	\caption[Coloring of a \Tarskistar instance]{Coloring of a \Tarskistar\ instance on a 2-dimensional lattice. The vertices colored 0 indicate that the function points weakly forwards in all dimensions, the vertices colored 1 indicate that the function points backwards in the first dimension, and the vertices colored 2 indicate that the function points backwards in the second dimension and not in the first.}
+	\caption[Coloring of a \Tarskistar instance]{Coloring of a \Tarskistar\ instance on a 2-dimensional lattice. The vertices colored 0 indicate that the function points weakly forward in all dimensions, the vertices colored 1 indicate that the function points backward in the first dimension, and the vertices colored 2 indicate that the function points backward in the second dimension and not in the first.}
 	\label{fig:tarskistar_coloring}
 \end{figure}
 
