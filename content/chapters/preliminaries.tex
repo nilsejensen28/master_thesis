@@ -436,14 +436,6 @@ The best-known lower bounds for \Tarski\ are given by \sidecite{etessami_tarskis
 
 This gives us reason to study \Tarski\ under the lens of complexity theory, in particular to understand where \Tarski\ lies in the \TFNP\ landscape.
 
-\subsection{Location of \Tarski\ in \TFNP}[\Tarski\ in \TFNP]
-
-Next we summarize where \Tarski\ lies inside of \TFNP. It has been shown in~\cite{etessami_tarskis_2020} that \Tarski\ lies in \PLS\ as we discussed when presenting \cref{alg:iterative_tarski_solver}. The same paper showed that \Tarski\ lies $\P^{\PPAD}$. We will provide an alternative proof of this second fact in \cref{ch:ppad_reduction}. Previous work~\sidecite{buss_propositional_2012} showed that many-to-one reductions and Turing-reduction onto \PPAD\ are equivalent. In particular this means that $\P^{\PPAD} = \PPAD$, and that \Tarski\ lies in \PPAD{}.
-
-Now that we have established that \Tarski\ lies inside $\PLS \medcap \PPAD$, we want to discuss the structure of $\PLS \medcap \PPAD$ and describe recent advances in the study of this class. There have been two surprising advances in the study of $\PLS \medcap \PPAD$ in the last few years. The first is that $\CLS = \PLS \medcap \PPAD$ \sidecite{fearnley_complexity_2023}. \CLS\ (Continuous Local Search) was first introduced by Daskalakis and Papadimitriou in \sidecite{daskalakis_continuous_2011} and can be informally thought of as the class of all problems that can be solved by finding the local optimum of a potential in a discrete space equipped with an adjacency relation. This result shows that the problems in $\PLS \medcap \PPAD$ are exactly those that gradient descent algorithms can solve.
-
-A further notable collapse is the result $\PLS \medcap \PPAD = \EOPL$, which was only recently shown in \sidecite{goos_further_2022}. This means that \Tarski\ lies in \EOPL. A question that then arises, and which this thesis will attempt to answer, is whether we can construct an explicit reduction of \Tarski\ to \EndOfPotentialLine.
-
 \subsection{Variants of \Tarski}[\Tarski\ Variants]
 
 Before we conclude this chapter, we want to discuss some variants of the \Tarski\ problem. The first variant we introduce is the \emph{promise} variant of \Tarski, which is defined as follows:
