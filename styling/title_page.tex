@@ -1,36 +1,39 @@
 %Setup for Title Page
 \newlength{\drop}
-\newcommand*{\titleP}{
-    \begingroup
-    \drop=0.12\textheight
-    \vspace*{\drop}
-    \hspace*{0.3\textwidth}
-    {\Huge The Complexity}\\[\baselineskip]
-    \hspace*{0.3\textwidth}
-    {\Huge of Finding Tarski}\\[\baselineskip]
-    \hspace*{0.3\textwidth}
-    {\Huge Fixed Points}\par
-    \vspace*{0.5\drop}
-    \hspace*{0.3\textwidth}
-    {\Large Master Thesis}\par
-    \hspace*{0.3\textwidth}
-    {\large \today}\par
-    \vspace*{2.5\drop}
-    {\Large Nils Jensen}
-    \vfill
-    {\scshape Advised by}\par
-    {\scshape Prof.\ Dr.\ Bernd Gärtner}\par
-    {\scshape Sebastian Haslebacher}\par
-    \vspace*{0.5\drop}
-    \endgroup
-    %Add ETH Logo to the bottom right corner with margin
-    \vspace{\baselineskip}
-    {\raggedleft{}
-        \begin{picture}(0,0)
 
-            \put(-0.3\textwidth,0){\includesvg[width=0.3\textwidth]{images/ethz_logo.svg}}
-        \end{picture}
-        \par}
+\newcommand*{\titleP}{
+	\begingroup
+	\vspace*{-2cm}\par
+	\hspace*{0.28\textwidth}\textcolor{Maroon}{\rule{2pt}{12cm}}\vspace*{-10cm}\par
+	\drop=0.12\textheight
+	\vspace*{\drop}
+	\hspace*{0.3\textwidth}
+	\textcolor{Maroon}{\textbf{{\Huge The Complexity}}}\\[\baselineskip]
+	\hspace*{0.3\textwidth}
+	\textcolor{Maroon}{\textbf{\Huge of Finding Tarski}}\\[\baselineskip]
+	\hspace*{0.3\textwidth}
+	\textcolor{Maroon}{\textbf{{\Huge Fixed Points}}}\par
+	\vspace*{0.5\drop}
+	\hspace*{0.3\textwidth}
+	{\Large Master Thesis}\par
+	\hspace*{0.3\textwidth}
+	{\large \today}\par
+	\vspace*{2.5\drop}
+	{\Large Nils Jensen}
+	\vfill
+	{\scshape Advised by}\par
+	{\scshape Prof.\ Dr.\ Bernd Gärtner}\par
+	{\scshape Sebastian Haslebacher}\par
+	\vspace*{0.5\drop}
+	\endgroup
+	%Add ETH Logo to the bottom right corner with margin
+	\vspace{\baselineskip}
+	{\raggedleft{}
+		\begin{picture}(0,0)
+
+			\put(-0.3\textwidth,0){\includesvg[width=0.3\textwidth]{images/ethz_logo.svg}}
+		\end{picture}
+		\par}
 }
 
 \renewcommand*{\maketitle}{\titleP{} \afterpage{\blankpage}}
