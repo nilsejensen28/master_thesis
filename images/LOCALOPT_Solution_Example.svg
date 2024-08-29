@@ -35,10 +35,10 @@
      fit-margin-right="0.2"
      fit-margin-bottom="1"
      inkscape:zoom="1.393294"
-     inkscape:cx="223.92977"
-     inkscape:cy="21.89057"
+     inkscape:cx="170.81822"
+     inkscape:cy="71.772361"
      inkscape:window-width="1850"
-     inkscape:window-height="1136"
+     inkscape:window-height="1043"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -762,7 +762,7 @@
              id="tspan57906-0"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.293768"
-             y="10.400994">$V=1$</tspan></text>
+             y="10.400994">$V=6$</tspan></text>
         <g
            id="g32551-6"
            transform="translate(1.6991921)">
@@ -829,7 +829,7 @@
              id="tspan57906-9"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.293768"
-             y="10.400994">$V=7$</tspan></text>
+             y="10.400994">$V=0$</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:3.88056px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -840,7 +840,7 @@
              id="tspan57906-9-0"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.046749"
-             y="45.841148">$V=4$</tspan></text>
+             y="45.841148">$V=3$</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:3.88056px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -851,7 +851,7 @@
              id="tspan57906-9-7"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="39.623875"
-             y="46.321274">$V=2$</tspan></text>
+             y="46.321274">$V=5$</tspan></text>
         <g
            id="g32551-7"
            transform="translate(1.6991921)">
@@ -890,7 +890,7 @@
              id="tspan57906-7"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.293768"
-             y="10.400994">$V=6$</tspan></text>
+             y="10.400994">$V=1$</tspan></text>
         <g
            id="g32551-8"
            transform="translate(1.6991921)">
@@ -929,7 +929,7 @@
              id="tspan57906-06"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.293768"
-             y="10.400994">$V=0$</tspan></text>
+             y="10.400994">$V=7$</tspan></text>
         <g
            id="g32551-3"
            transform="translate(1.6991921)">
@@ -968,7 +968,7 @@
              id="tspan57906-3"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.293768"
-             y="10.400994">$V=3$</tspan></text>
+             y="10.400994">$V=4$</tspan></text>
         <g
            id="g32551-74"
            transform="translate(1.6991921)">
@@ -1007,7 +1007,7 @@
              id="tspan57906-07"
              style="font-size:3.88056px;stroke-width:0.264583"
              x="18.293768"
-             y="10.400994">$V=5$</tspan></text>
+             y="10.400994">$V=2$</tspan></text>
         <g
            id="g32551-86"
            transform="translate(1.6991921)">

@@ -55,26 +55,26 @@
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.0570467,0.08096174){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$3$\end{tabular}}}}%
-    \put(0.85453821,0.23375715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=1$\end{tabular}}}}%
+    \put(0.85453821,0.23375715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=6$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.90879944,0.16419888){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$7$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.22964432,0.08096173){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$4$\end{tabular}}}}%
-    \put(0.00277721,0.30561148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=7$\end{tabular}}}}%
-    \put(0.00076359,0.0167147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=4$\end{tabular}}}}%
-    \put(0.17665341,0.01280087){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=2$\end{tabular}}}}%
+    \put(0.00277721,0.30561148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=0$\end{tabular}}}}%
+    \put(0.00076359,0.0167147){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=3$\end{tabular}}}}%
+    \put(0.17665341,0.01280087){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=5$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.05703844,0.23605322){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
-    \put(0.68193233,0.23375715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=6$\end{tabular}}}}%
+    \put(0.68193233,0.23375715){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.73619357,0.16419888){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6$\end{tabular}}}}%
-    \put(0.33524152,0.23423407){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=0$\end{tabular}}}}%
+    \put(0.33524152,0.23423407){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=7$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.38950276,0.1646758){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5$\end{tabular}}}}%
-    \put(0.5155795,0.23471557){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=3$\end{tabular}}}}%
+    \put(0.5155795,0.23471557){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=4$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.56984074,0.1651573){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$2$\end{tabular}}}}%
-    \put(0.17538307,0.30561148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=5$\end{tabular}}}}%
+    \put(0.17538307,0.30561148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V=2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{LOCALOPT_Solution_Example.pdf}}%
     \put(0.22964431,0.23605322){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{LOCALOPT_Solution_Example.pdf}}%
