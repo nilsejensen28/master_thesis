@@ -26,10 +26,10 @@ Similarly to decision problems, we want to study which problems can be solved ef
 
 \begin{definition}[Function \NP\ (\FNP)]
 	We say that a relation $R\subset \binstr \times \binstr$ is in \FNP\ if it is:
-    \begin{itemize}
-        \item \define{polynomial-time recognizable}, i.e.\ there is a Turing machine $M$ which decides in polynomial time if a given pair $(I, s)$ is in $R$; and
-        \item  \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{s} \leq p(\length{I})$.
-    \end{itemize}
+	\begin{itemize}
+		\item \define{polynomial-time recognizable}, i.e.\ there is a Turing machine $M$ which decides in polynomial time if a given pair $(I, s)$ is in $R$; and
+		\item  \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{s} \leq p(\length{I})$.
+	\end{itemize}
 	The class \FNP\ is the set of all relations $R$ that are polynomially balanced.
 \end{definition}
 
@@ -53,7 +53,7 @@ Examples of \TFNP\ problems are:
 	\item \textsc{Nash}, the problem of finding a Nash equilibrium in a bimatrix game \sidecite{daskalakis_complexity_2009};
 	\item \textsc{Minimize}, the problem of finding the global minimum of a convex function \sidecite{daskalakis_continuous_2011}.
 \end{itemize}
-Similarly to \P, \FP\ is the class of all search problems that can be solved in polynomial time. It is not known whether \FP\ is equal to \TFNP, but it is widely believed --- similarly to \P\ and \NP\ --- that they are different. 
+Similarly to \P, \FP\ is the class of all search problems that can be solved in polynomial time. It is not known whether \FP\ is equal to \TFNP, but it is widely believed --- similarly to \P\ and \NP\ --- that they are different.
 
 \subsection{Reductions}
 
@@ -65,7 +65,7 @@ Similarly to decision problems, we can also define reductions inside \TFNP.
 	\begin{align*}
 		\text{If } (f(I), s) \in S \text{ then } (I, g(I, s)) \in R.
 	\end{align*}
-    \boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently, then one can solve $R$ efficiently}.}
+	\boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently, then one can solve $R$ efficiently}.}
 	This means that if $s$ is a solution to the instance $f(I)$ in $S$, we can compute a solution $g(I, s)$ to an instance $I$ in $R$
 \end{definition}
 
@@ -285,6 +285,13 @@ $S$ and $P$ can be thought of as representing a directed line. Finding another s
 	The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
 \end{definition}
 
+\begin{figure}
+	\centering
+	\incfig{TFNP_Structure}
+	\caption[\TFNP-landscape]{Structure of the \TFNP-landscape. Inclusions $\subset$ are indicate by arrows $\rightarrow$.}
+	\label{fig:tfnp_structure}
+\end{figure}
+
 \section{The \Tarski\ Problem}[\Tarski\ Problem]
 \label{sec:tarski_problem}
 
@@ -297,10 +304,10 @@ Next, we introduce the \Tarski\ Problem. Before we do this, we recall that there
 	A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
 \end{definition}
 
-The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. 
+The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}.
 
 \begin{theorem}[Tarski's fixed point Theorem]
-    Let $L$ be a complete lattice and $\leq$ be a partial order on $L$\boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}. Furthermore, let $f$ be a monotone function with respect to $\leq$. Then the set of fixed points of $f$ in $L$ forms a complete lattice under $\leq$.
+	Let $L$ be a complete lattice and $\leq$ be a partial order on $L$\boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}. Furthermore, let $f$ be a monotone function with respect to $\leq$. Then the set of fixed points of $f$ in $L$ forms a complete lattice under $\leq$.
 \end{theorem}
 
 A proof of this Theorem can be found in the previously mentioned work~\cite{tarski_lattice-theoretical_1955}.In our setting we will only use a special corollary of this theorem which can be formulated as follows:
