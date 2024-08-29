@@ -1,17 +1,17 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Preliminaries}
 
-This Chapter aims to establish the complexity framework used throughout this thesis to study the \Tarski\ problem. It formally introduces the concept of total search problems, the complexity class \TFNP, and its subclasses \PLS, \PPAD, and \EOPL. In addition, in this Chapter, we will describe how we represent sets and functions in this framework and how their complexity is measured. Finally, we give a formal introduction to the \Tarski\ problem and a presentation of the known algorithms for solving it and its location in the \TFNP\ landscape.
+This chapter aims to establish the complexity framework used throughout this thesis to study the \Tarski\ problem. It formally introduces the concept of total search problems, the complexity class \TFNP, and its subclasses \PLS, \PPAD, and \EOPL. In addition, in this chapter, we will describe how we represent sets and functions in this framework and how their complexity is measured. Finally, we give a formal introduction to the \Tarski\ problem, a presentation of some known algorithms for solving it, and its location in the \TFNP\ landscape.
 
 \section{Total search problems}
 
-The study of complexity classes has traditionally focused on \define{decision problems}, which involve determining whether an object belongs to a set, also called a \define{language}. Notable examples include determining whether a Boolean formula is satisfiable or whether a $k$-clique exists in a given graph \sidecite{arora_computational_2009}. However, real-world questions often require explicit answers rather than existence results. For example, while deciding whether a function has a global minimum is a decision problem, the practical interest lies in identifying that minimum, which goes beyond mere existence. Here, so-called \define{search problems} come into play.
+The study of complexity classes has traditionally been centered on \define{decision problems}, which ask whether a certain object is a member of a specific set, or \define{language}. Yet, the complexity of real-world issues often demands more than just determining the existence of solutions; they require the solutions themselves. We will formally introduce the complexity framework we will use to study these type of problems in this section.
 
 \subsection{Search problems}
 
 \begin{definition}[Search Problem]
 	\boxmarginnote{The ``No'' case can be encoded as some special binary string.}
-	A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$ the computational problem is, to find a \define{solution} $s \in \binstr$ that satisfies: $(I, s) \in R$, or output ``No'' if no such $s$ exists.
+	A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$, the computational problem is to find a \define{solution} $s \in \binstr$ that satisfies $(I, s) \in R$, or output ``No'' if no such $s$ exists.
 \end{definition}
 
 We can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
@@ -20,16 +20,20 @@ We can view these search problems as decision problems by looking at the corresp
 	\mathcal{L}_R = \{ I \in \binstr |\ \exists s \in \binstr : (I, s) \in R\}
 \end{align*}
 
-The above shows that every search problem can be seen as a decision problem of a broader language. This perspective allows us to ask classical complexity questions about search problems: Are these problems in \P\ or \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts since solving a search problem inherently solves the associated decision question.
+The above shows that every search problem can be seen as a decision problem of a broader language. This perspective allows us to ask classical complexity questions about search problems: Are these problems in \P\ or \NP? Are they \NP-hard? It is evident that search problems are at least as complex as their decision counterparts, since solving a search problem inherently solves the associated decision question.
 
 Similarly to decision problems, we want to study which problems can be solved efficiently and which cannot. This question leads us to the definition of the complexity class \FNP, which is pendant for search problems, to  \NP\ for decision problems. We introduce \FNP\ formally as in~\sidecite{megiddo_total_1991}.
 
 \begin{definition}[Function \NP\ (\FNP)]
-	We say that a relation $R\subset \binstr \times \binstr$ is in \FNP\ if it is \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{y} \leq p(\length{x})$.
+	We say that a relation $R\subset \binstr \times \binstr$ is in \FNP\ if it is:
+    \begin{itemize}
+        \item \define{polynomial-time recognizable}, i.e.\ there is a Turing machine $M$ which decides in polynomial time if a given pair $(I, s)$ is in $R$; and
+        \item  \define{polynomially balanced}, i.e.\ there exists a polynomial $p$ such that for every $(I, s) \in R$ implies $\length{s} \leq p(\length{I})$.
+    \end{itemize}
 	The class \FNP\ is the set of all relations $R$ that are polynomially balanced.
 \end{definition}
 
-This means that checking a solution to a search problem can be done in polynomial time. What cannot be done in polynomial time is checking whether no solution exists. This leads to the question of what happens if we remove this decision problem from the search problem. This question is what leads to the definition of a total search problem~\cite{megiddo_total_1991}:
+This means that for a relation $R$ in, \FNP we can check the validity of a solution to the associated search problem in polynomial time. Of course, in the general case all instances $I$ do not have a solution $s$, such that $(I, s)$, and deciding if such an $s$ exists is the question which we aim to answer when working with decision problems. This means that finding a solution to a \FNP\ instance can in some sense be seen as also solving the underlying decision problem. Removing this natural counterpart, by guaranteeing that every instance has a solution, is what leads to the definition of a total search problem~\cite{megiddo_total_1991}:
 
 \begin{definition}[Total search problems]
 	\boxmarginnote{This means that a solution always exists for any input, i.e.\ ``No'' is never a valid answer.}
@@ -40,60 +44,68 @@ This means that checking a solution to a search problem can be done in polynomia
 The complexity class \TFNP\ is simply the class of all \emph{total} problems in \FNP.
 
 \begin{definition}[Total Function \NP\ (\TFNP)]
-	The class \TFNP\ is the set of all problems given by total relations polynomially bounded relations $R$.
+	The class \TFNP\ is the set of all problems given by total relations which lie in \FNP.
 \end{definition}
 
-Similarly to \P, \FP\ is the class of all search problems that can be solved in polynomial time. It is not known whether \FP\ is equal to \TFNP, but it is widely believed --- similarly to \P\ and \NP\ --- that they are different. Examples of \TFNP\ problems are:
+Examples of \TFNP\ problems are:
 \begin{itemize}
-	\item \textsc{Factoring}, the problem of finding the prime factors of a number. Every number admits a factorization into prime numbers, which can be checked in polynomial time;
+	\item \textsc{Factoring}, the problem of finding the prime factors of a natural number. Every natural number admits a factorization into prime numbers, which can be checked in polynomial time;
 	\item \textsc{Nash}, the problem of finding a Nash equilibrium in a bimatrix game \sidecite{daskalakis_complexity_2009};
 	\item \textsc{Minimize}, the problem of finding the global minimum of a convex function \sidecite{daskalakis_continuous_2011}.
 \end{itemize}
+Similarly to \P, \FP\ is the class of all search problems that can be solved in polynomial time. It is not known whether \FP\ is equal to \TFNP, but it is widely believed --- similarly to \P\ and \NP\ --- that they are different. 
 
 \subsection{Reductions}
 
 Similarly to decision problems, we can also define reductions inside \TFNP.
 
 \begin{definition}[Many-to-one Reduction]
-	\boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently,then one can solve $R$ efficiently}.}
-	For two problem $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$:
+	\boxmarginnote{Many-to-one reductions are also sometimes called \define{Karp reductions} in the litterature.}
+	For two problems $R, S \in \TFNP$, we say that $R$ \emph{reduces} (many to one) to $S$ if there exist polynomial time computable functions $f : \binstr \rightarrow \binstr$ and $g : \binstr \times \binstr \rightarrow \binstr$ such that for $I, s \in \binstr$:
 	\begin{align*}
 		\text{If } (f(I), s) \in S \text{ then } (I, g(I, s)) \in R.
 	\end{align*}
+    \boxmarginnote{Saying that \emph{one can reduce $R$ onto $S$} can be understood as saying that \emph{if one can solve $S$ efficiently, then one can solve $R$ efficiently}.}
 	This means that if $s$ is a solution to the instance $f(I)$ in $S$, we can compute a solution $g(I, s)$ to an instance $I$ in $R$
 \end{definition}
 
-Notice that many-to-one reductions map \emph{instances} to \emph{instances}, if we instead assume that we can compute a solution, we use a \emph{Turing reduction}, which we introduce analogously to the classical Turing reduction.
+Notice that many-to-one reductions map \emph{instances} to \emph{instances}. There is a more general type of reduction, which allows us to use multiple instances of $S$ to reduce $R$ onto $S$, which we introduce next:
 
 \begin{definition}[Turing Reduction]
-	For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if a polynomial-time oracle Turing machine that solves $R$ given access to an oracle\boxmarginnote{An \define{oracle} is a black-box which solves $S$.} for $S$ exists.
+	For two problems $R, S \in \TFNP$, we say that $R$ \emph{Turing reduces} to $S$ if there exists a polynomial-time oracle Turing machine that solves $R$ given access to an oracle\boxmarginnote{An \define{oracle} is a black-box which solves $S$ in one computational step.} for $S$.
 \end{definition}
+
+Note that if $R$ \emph{Turing}-reduces to $S$, then $R$ also \emph{many-to-one}-reduces to $S$. The reverse implication is generally not true, but is known to hold inside specific complexity classes, some of which we will study in this thesis.
 
 \subsection{Promise Problems}
 
 We have defined total search problems as problems where a solution always exists for \emph{any} input in $\{0, 1\}^*$. However, in practice, we often study problems where a solution is guaranteed to exist only for a subset of the inputs. For instance, every convex function has a global minimum, but this existence result relies on the fact that we are given a convex function. This leads us to the notion of \define{promise problems} as introduced in \sidecite{hollender_structural_2021}. Formally, we restrict the instance space to some subset $\mathcal{X} \subset \{0, 1\}^*$. We only require our algorithm to solve the problem for instances in $\mathcal{X}$, and it can behave arbitrarily on instances outside of $\mathcal{X}$.
 
-We highlight that formally \TFNP\ does not contain promise problems where $\mathcal{X} \neq \{0, 1\}^*$. We still want to study these problems inside the \TFNP-Framework. There is a trick for restricting the input space to a subset $\mathcal{X} \subset \set{0, 1}^*$, where the language $\mathcal{X}$ can be decided in polynomial time. For a search problem $R$ on $X \subset \{0, 1\}^*$, we can then define the promise problem $R'$ on $\{0, 1\}^*$ by adding a solution $(I, \star)$ to $R$ for all $I \in \{0, 1\}^* \setminus R$, where $\star$ is some special binary string. Because it can be decided in polynomial time whether an instance is in $\mathcal{X}$, we can solve $R'$ by checking whether the instance is in $\mathcal{X}$ and then solving $R$, hence obtaining a problem in \TFNP.
+We highlight that formally \TFNP\ does not contain promise problems where $\mathcal{X} \neq \{0, 1\}^*$. We still want to study these problems inside the \TFNP-framework. There is a trick for restricting the input space to a subset $\mathcal{X} \subset \set{0, 1}^*$, where the language $\mathcal{X}$ can be decided in polynomial time. For a promise problem $R$ on $X \subset \{0, 1\}^*$, which is both polynomial-time recognizable and polynomially bounded, we can define the total search problem $R'$ on $\{0, 1\}^*$ by adding a solution $(I, \star)$ to $R$ for all $I \in \{0, 1\}^* \setminus R$, where $\star$ is some special binary string. Because it can be decided in polynomial time whether an instance is in $\mathcal{X}$, we can solve $R'$ by checking whether the instance is in $\mathcal{X}$ and then solving $R$, hence obtaining a problem in \TFNP, due to the assumption that $R$ is polynomial-time recognizable and polynomially balanced.
 
-For example, in this thesis, we use syntactic validation when the instances are a function or a boolean circuit to validate that the given input is indeed an encoding of a function or circuit. This verification can be done in polynomial time \sidecite{greenlaw_chapter_1998}, and a special binary string can be outputed if this verification fails. For example, this is the case for the \Tarski\ problem, where the instances are boolean circuits, and the validity of the instances can be checked in polynomial time. For the sake of simplicity, we will assume that this step implicitly when defining \TFNP-Problems, and allow instances which have an input space $\mathcal{X} \subset \set{0, 1}^*$ if it can be validated in polynomial time.
+For example, in this thesis, we use syntactic validation when the instances are a function or a boolean circuit to validate that the given input is indeed an encoding of a function or circuit. This verification can be done in polynomial time \sidecite{greenlaw_chapter_1998}, and a special binary string can be outputted if this verification fails. For example, this is the case for the \Tarski\ problem, where the instances are boolean circuits, and the validity of the instances can be checked in polynomial time. For the sake of simplicity, we will assume this step implicitly when defining \TFNP-Problems, and allow instances which have an input space $\mathcal{X} \subset \set{0, 1}^*$ if it can be validated in polynomial time.
 
-Additionally to this syntactic validation, we can construct \TFNP-instances by adding \define{violations} to the solution space. For example, if we are interested in finding the global minima of convex functions, we can construct a total search problem by:
+In practice we often use \define{violations} to enfore these synctatic limits. For example, if we are interested in finding the global minima of convex functions, we can construct a total search problem by:
 \begin{enumerate}
 	\item Checking syntactically that the input defines a function;
 	\item Adding a violation of convexity to the solution space\marginnote{A violation of convexity is given by a $x, y \in \mathcal{D}_f$, and $t \in \{0, 1\}$ such that $t f(x) + (1-t)f(y) < f(tx + (1-t)y)$.}. Formally, this is done by changing the relation $R$ to ensure that a solution exists for every instance $I$; this can be thought of as allowing more solutions.
 \end{enumerate}
 
-This means we can often construct a \TFNP-problem starting out with a promise-problem by checking the validity of the input syntactically and adding violations to the solution space. However, it is essential to note that this is only sometimes the case and that constructing a \TFNP\ problem from a promise problem can be a non-trivial task. Also, there is no unique way of constructing \TFNP-Problems from promise problems, and care has to be taken to introduce the studied problem rigorously.
+We conclude that we can often construct a \TFNP-problem starting from a promise-problem by checking the validity of the input syntactically and adding violations to the solution space. However, it is essential to note that this is only sometimes the case and that constructing a \TFNP\ problem from a promise problem can be a non-trivial task. Also, there is no unique way of constructing \TFNP-Problems from promise problems, and care has to be taken to introduce the studied problem rigorously.
 
-\subsection{Representation of sets}[Representing sets]
+\subsection{Representation of the problems}[Representing problems]
+
+As we discussed in the previous subsection, great care has to be taken, when describing the inputs of the problems we will be working with. We will mainly work with sets and functions as describing the input of problems. In this subsection, we describe how we denote these objects in this thesis, and how we formally encode them.
+
+\subsubsection{Representation of sets}
 
 In this thesis, we will work with sets of the form $S = \{0, \dots, 2^n - 1\}$, which we will denote by $[2^n]$. Notice that this set can be identified with the set of binary strings of length $n$. We will denote the set of binary strings of length $n$ by $\bitstr^n$. Formally, the functions and the model we will use to represent the functions will use the underlying binary strings in $\bitstr^n$. We often denote the integer $x \in [2^n]$ interchangeably with its representation as a binary string.
 
 Similarly, when considering the $d$-dimensional case, we can represent the set $L = [2^n]^d$, which corresponds to a $d$-dimensional lattice with side length $2^n$, as the set of binary strings of length $n \cdot d$, i.e.\ $\bitstr^{nd}$. Again, for simplicity, while the underlying functions rely on the binary strings, these naturally correspond to a unique point $(x_1, \dots, x_d) \in [2^n]^d$. We will use both notations interchangeably.
 
-\subsection{Representation of functions}[Representing functions]
+\subsubsection{Representation of functions}
 
-Now that we have described the sets, we can describe how we represent the functions. We will represent the functions by using so-called boolean circuits. In this section, we will rely on the presentation of boolean circuits described in \sidecite{greenlaw_chapter_1998} and refer an interested reader to this source for a more detailed description.
+Now that we have described the sets, we can describe how we represent the functions we will use in our problem instances. We will represent the functions by using so-called boolean circuits. In this section, we will rely on the presentation of boolean circuits described in \sidecite{greenlaw_chapter_1998} and refer an interested reader to this source for a more detailed description.
 
 On a high level, a boolean circuit is a directed acyclic graph, where the nodes are called \define{gates}, and the edges are called \define{wires}. The sinks of the graphs are the output gates, and the sources are the input gates. We want to start by defining a gate formally.
 
@@ -162,7 +174,7 @@ Of course, formally, the complexity of a problem is defined in terms of the \emp
 	The size of a boolean circuit $C$ is the number of gates in the circuit.
 \end{definition}
 
-The size of the boolean circuits is a measure of the input complexity, i.e.\ it gives us an indication of how many bits we need to represent the input\marginnote{It can be shown that $\poly(size(n))$ bits suffice to encore to encode any boolean circuit.}, it also tells us how many computations are made when computing the function output. We also define the depth of a boolean circuit as follows:
+The size of the boolean circuits is a measure of the input size, i.e.\ it gives us an indication of how many bits we need to represent the input, it also tells us how many computations are made when computing the function output. We also define the depth of a boolean circuit as follows:
 
 \begin{definition}[Depth of a boolean circuit]
 	The depth of a boolean circuit $C$ is the length of the longest path from an input gate to an output gate.
@@ -174,17 +186,17 @@ The depth of a boolean circuit is a measure of the time complexity of the comput
 
 Complete \FNP\ problems within \TFNP\ would imply that $\NP = \coNP$ \sidecite{megiddo_total_1991}, a highly unlikely scenario. Consequently, complete problems are not expected within \TFNP, necessitating alternative approaches to investigate its structure.
 
-\TFNP\ is known as a \define{semantic} class \sidecite{papadimitriou_computational_1994}. This is known to mean that it is unlikely that we can find complete \TFNP\ problems \sidecite{nielsen_relativization_1982}. We refer the reader to Papadimitriou's work  for a more detailed discussion of these terms and their implications. We want to explore \textit{syntactic} subclasses of \TFNP\ to address this challenge. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, categorizes search problems based on existence proofs confirming their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
+\TFNP\ is a \define{semantic} class \sidecite{papadimitriou_computational_1994}. This is known to mean that it is unlikely that we can find complete \TFNP\ problems \sidecite{nielsen_relativization_1982}. We refer the reader to Papadimitriou's work  for a more detailed discussion of these terms and their implications. We want to explore \textit{syntactic} subclasses of \TFNP\ to address this challenge. One approach, proposed by Papadimitriou \cite{papadimitriou_computational_1994}, categorizes search problems based on existence proofs confirming their totalness. This basic strategy leads to the detailed study of specific complexity classes discussed in the following sections.
 
 \subsection{Polynomial Local Search (\PLS)}[\PLS]
 
 The existence result which gives rise to \PLS\ is:
 \principle{Every directed acyclic graph has a sink.}
-We can then construct the class \PLS\ by defining it as all problems which reduce to finding the sink of a directed acyclic graph (DAG). Formally we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
+We can then construct the class \PLS\ by defining it as all problems which reduce to finding the sink of a directed acyclic graph (DAG). Formally, we first define the problem \Localopt\ as in \sidecite{johnson_how_1988}:
 
 \problem{Localopt}{
-\boxmarginnote{$S$ can be seen as a proposed successor, and $V$ as a potential. The goal is to find a local minima $v$ of the potential.}
-Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \geq\ P(v)$.}
+\boxmarginnote{$S$ can be seen as a proposed successor, and $V$ as a potential. The goal is to find a local maxima $v$ of the potential.}
+Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ such that $P(S(v)) \leq\ P(v)$.}
 
 \begin{figure}
 	\centering
@@ -193,13 +205,13 @@ Two boolean circuits $S, V : [2^n] \rightarrow\ [2^n]$.}{A vertex $v \in [2^n]$ 
 	\label{fig:localopt_example}
 \end{figure}
 
-Let us discuss why solving a \Localopt\ instance is equivalent to finding the sink of a DAG. The circuit $S$ defines a directed graph, which might contain cycles. Only keeping the edges on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \geq\ P(v)$. We give an example of a \Localopt\ instance in \cref{fig:localopt_example}. Now we can define \PLS:
+Let us discuss why solving a \Localopt\ instance is equivalent to finding the sink of a DAG. The circuit $S$ defines a directed graph, which might contain cycles. Only keeping the edges on which the potential decreases (strictly) leads to a DAG, with as sinks exactly the $v$ such that $P(S(v)) \leq\ P(v)$ and isolated vertices which are self-loops. We give an example of a \Localopt\ instance in \cref{fig:localopt_example}. Now we can define \PLS:
 
 \begin{definition}[Polynomial Local Search (\PLS)]
 	The class \PLS\ is the set of all \TFNP\ problems that reduce to \Localopt.
 \end{definition}
 
-Studying ``simple'' problems such as PLS is particularly insightful because we strongly believe that these problems cannot be solved by any method more efficiently than simply traversing the graph, even though the might be a very clever way of analyzing the input circuit, which leads to a quicker result. Hence, given a graph of exponentially large size, it appears highly improbable that an efficient solution can be found. Therefore, all problems in \PLS\ inherently embody the fundamental challenge of not being able to surpass the basic strategy of navigating through the directed acyclic graph. Of course --- and here lies the difficulty of complexity theory --- we cannot prove this statement; it could be that some very clever analysis of the boolean circuits could lead to an efficient algorithm for finding sinks of exponentially large directed acyclic graphs.
+Studying ``simple'' problems such as \Localopt\ is particularly insightful because it seems difficult to find a better algorithm than simply traversing the graph, which solves these problems. One should emphasize that there very well might be an algorithm which outperforms a traversal of the graph. For instance, there could be a clever way of analyzing the input circuit, which leads to a faster algorithm. Such an algorithm has yet to be discovered, and it is seen as highly unlikely that it exists. Of course --- and here lies the difficulty of complexity theory --- we do not know how to prove that such an algorithm cannot exist. It does seem sound though to conjecture that \PLS\ is not in \FP.
 
 \subsection{Polynomial Parity Argument on Directed Graphs (\PPAD)}[\PPAD]
 
@@ -231,7 +243,7 @@ These boolean circuits represent a directed graph with maximal in and out-degree
 The goal is to find a sink in the graph or another source.
 \marginnote{Notice that \textsc{End-of-Line} allows cycles and that these do not induce solutions.}
 It can be shown that the general case of finding a second imbalanced vertex in a directed graph (a problem called \textsc{Imbalance}) can be reduced to
-\textsc{End-of-Line} \sidecite{goldberg_hairy_2021}.
+\textsc{End-of-Line} and is \PPAD-complete \sidecite{goldberg_hairy_2021}.
 Now we can define the complexity class \PPAD\ as follows:
 
 \begin{definition}[\PPAD]
@@ -285,14 +297,21 @@ Next, we introduce the \Tarski\ Problem. Before we do this, we recall that there
 	A function $f : {[N]}^d \rightarrow {[N]}^d$ is \define{monotone} if for all $x, y \in {[N]}^d$ we have $x \leq y$ implies $f(x) \leq f(y)$.
 \end{definition}
 
-The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. In our setting the Theorem states the following:
+The \Tarski-problem originates from Tarski's fixed point Theorem, introduced in \sidecite{tarski_lattice-theoretical_1955}. 
 
 \begin{theorem}[Tarski's fixed point Theorem]
-	\boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}
-	Let $f : {[N]}^d \rightarrow {[N]}^d$ a function on the $d$-dimentional lattice. If $f$ is monotone (for the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
+    Let $L$ be a complete lattice and $\leq$ be a partial order on $L$\boxmarginnote{This Theorem is also known as the Knaster–Tarski Theorem in the literature.}. Furthermore, let $f$ be a monotone function with respect to $\leq$. Then the set of fixed points of $f$ in $L$ forms a complete lattice under $\leq$.
 \end{theorem}
 
-A proof of this Theorem can be found in the previously mentioned work~\cite{tarski_lattice-theoretical_1955}. Without surprise, the \Tarski\ problem, defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed point. Formally, we define the problem as follows:
+A proof of this Theorem can be found in the previously mentioned work~\cite{tarski_lattice-theoretical_1955}.In our setting we will only use a special corollary of this theorem which can be formulated as follows:
+
+\begin{corollary}[Simplified version of Tarski's theorem]
+	Let $f : {[N]}^d \rightarrow {[N]}^d$ be a monotone function on the $d$-dimensional lattice. If $f$ is monotone (for the previously discussed partial order), then $f$ has a fixed point, i.e.\ there is an $x \in {[N]}^d$ such that $f(x)=x$.
+\end{corollary}
+
+From now on, we will refer to this corollary when referring to \emph{Tarski's fixed point theorem}. A proof of this special case follows from how \cref{alg:iterative_tarski_solver} finds a fixed-point of such a function.
+
+Without surprise, the \Tarski\ problem, defined in \sidecite{etessami_tarskis_2020}, is now to find such a fixed point. Formally, we define the problem as follows:
 \problem{Tarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$.}{Either:
 \begin{itemize}
 	\item An $x \in {[N]}^d$ such that $f(x)=x$ (fixed point) or
@@ -307,7 +326,7 @@ A proof of this Theorem can be found in the previously mentioned work~\cite{tars
 	\label{fig:tarski_example}
 \end{figure}
 
-This is a total search problem, as there will always either be a fixed point or a point violating monotonicity. We give an example of a two-dimensional \Tarski\ instance in \cref{fig:tarski_example}. Before we discuss the location of \Tarski\ in the \TFNP\ landscape and two known algorithms for solving \Tarski, we want to discuss a useful Lemma, which allows us to simplify the study of Tarski instances. The definition of \Tarski\ instances allows for the image of a point to be located anywhere in the lattice; we will show that we can reduce to the cases where the image of a point is in the immediate neighborhood of the point.
+This is a total search problem, as there will always either be a fixed point or a point violating monotonicity. We give an example of a two-dimensional \Tarski\ instance in \cref{fig:tarski_example}. Before we discuss the location of \Tarski\ in the \TFNP\ landscape and two known algorithms for solving \Tarski, we want to discuss a useful lemma, which allows us to simplify the study of Tarski instances. The definition of \Tarski\ instances allows for the image of a point to be located anywhere in the lattice; we will show that we can reduce to the cases where the image of a point is in the immediate neighborhood of the point.
 
 \begin{lemma}[Simplyfying \Tarski]
 	Let $f : [2^n]^d \rightarrow [2^n]^d$ be a \Tarski\ instance on a complete lattice $[2^n]^d$. Consider $\ftilde : [2^n]^d \rightarrow [2^n]^d$ given by: \boxmarginnote{Notice that given a circuit $C$ which computes $f$, we can construct a circuit $\Ctilde$ which computes $\ftilde$ by adding $\BigO{\poly{d}}$ gates to $C$. This means that both problems are equivalent in terms of complexity.}
@@ -426,9 +445,9 @@ By choosing $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x$
 	}
 \end{algorithm}
 
-A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$ for $L = [N]^d$. It was conjectured that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall this approach achieves a query complexity of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$.
+A simple analysis shows that this algorithm runs in $\BigO{\log^{d}{N}}$, where $N$ is the side length of the lattice. It was conjectured that this is an optimal algorithm for \Tarski\ \sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed \sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall, this approach achieves a query complexity of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = [N]^d$.
 
-A further advance using more advanced methods were made in \sidecite{chen_improved_2022}. They achieve a query complexity of $\BigO{\log^{\ceil{\frac{d-1}{2}}}{N}}$ for $L = [N]^d$. This is to date the best known bound for solving \Tarski\ instances.
+A further advance using more advanced methods and assuming that the number of dimensions $d$ is constant were made in \sidecite{chen_improved_2022}. They achieve a query complexity of $\BigO{\log^{\ceil{\frac{d-1}{2}}}{N}}$ for $L = [N]^d$. This is to date the best known bound for solving \Tarski\ instances.
 
 \subsection{Lower bounds for \Tarski}
 
