@@ -1,0 +1,16 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Install Latex
+        run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+      - name: Compile
+        run: make
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Download Artifacts
+          path: thesis.pdf
