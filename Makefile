@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 filename=thesis
 
 pdf:

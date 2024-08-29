@@ -243,3 +243,6 @@ TSWLatexianTemp*
 
 #Compiled images
 svg-inkscape/
+
+#Build dir
+build/
