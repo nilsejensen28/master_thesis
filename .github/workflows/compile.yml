@@ -15,7 +15,7 @@ jobs:
           cd /tmp
           wget https://github.com/mozilla/Fira/archive/4.202.zip
           unzip 4.202.zip
-          font_dir="/usr/share/fonts/truetype/FiraSans"
+          font_dir="/usr/share/fonts/fira"
           mkdir -p $font_dir
           cp  Fira-4.202/otf/* $font_dir/
           sudo fc-cache -f -v
@@ -23,7 +23,7 @@ jobs:
         run: |
           cd /tmp
           wget https://www.1001fonts.com/download/font/fira-mono.regular.ttf
-          font_dir="/usr/share/fonts/truetype/FiraMono"
+          font_dir="/usr/share/fonts/fira-mono"
           mkdir -p $font_dir
           cp fira-mono.regular.ttf $font_dir/
           sudo fc-cache -f -v
@@ -32,7 +32,7 @@ jobs:
           cd /tmp
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip Libertinus-7.040.zip
-          font_dir="/usr/share/fonts/truetype/libertinus"
+          font_dir="/usr/share/fonts/libertinus"
           mkdir -p $font_dir
           cp Libertinus-7.040/static/OTF/* $font_dir/
           sudo fc-cache -f -v
