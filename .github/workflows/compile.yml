@@ -19,6 +19,15 @@ jobs:
           mkdir -p $font_dir
           cp  Fira-4.202/otf/* $font_dir/
           sudo fc-cache -f -v
+      - name : Install Fira Code
+        run: |
+          cd /tmp
+          wget https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
+          unzip Fira_Code_v6.2.zip
+          font_dir="/usr/share/fonts/fira-code"
+          mkdir -p $font_dir
+          cp ttf/* $font_dir/
+          sudo fc-cache -f -v
       - name: Install Fira Mono Font
         run: |
           cd /tmp
