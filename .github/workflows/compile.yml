@@ -16,7 +16,7 @@ jobs:
           wget https://github.com/mozilla/Fira/archive/4.202.zip
           unzip 4.202.zip
           font_dir="/usr/share/fonts/opentype/fira"
-          mkdir -p $font_dir
+          sudo mkdir -p $font_dir
           cp  Fira-4.202/otf/* $font_dir/
           sudo fc-cache -f -v
       - name : Install Fira Code
@@ -25,7 +25,7 @@ jobs:
           wget https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
           unzip Fira_Code_v6.2.zip
           font_dir="/usr/share/fonts/truetype/fira-code"
-          mkdir -p $font_dir
+          sudo mkdir -p $font_dir
           cp ttf/* $font_dir/
           sudo fc-cache -f -v
       - name: Install Stix 2 Math
@@ -34,7 +34,7 @@ jobs:
           wget https://font.download/dl/font/stix-two-math.zip
           unzip stix-two-math.zip
           font_dir="/usr/share/fonts/truetype/stix-two-math"
-          mkdir -p $font_dir
+          sudo mkdir -p $font_dir
           cp *.ttf $font_dir/
           sudo fc-cache -f -v
       - name: Install Fira Mono Font
@@ -43,7 +43,7 @@ jobs:
           wget https://font.download/dl/font/fira-mono.zip
           unzip fira-mono.zip
           font_dir="/usr/share/fonts/truetype/fira-mono"
-          mkdir -p $font_dir
+          sudo mkdir -p $font_dir
           cp *.ttf $font_dir/
           sudo fc-cache -f -v
       - name: Install Libertinus Font
@@ -52,10 +52,9 @@ jobs:
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip Libertinus-7.040.zip
           font_dir="/usr/share/fonts/opentype/libertinus"
-          mkdir -p $font_dir
+          sudo mkdir -p $font_dir
           cp Libertinus-7.040/static/OTF/* $font_dir/
           sudo fc-cache -f -v
-
       - name: Install Latex
         run: sudo apt-get install texlive-full texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk texlive-xetex
       - name: Compile
