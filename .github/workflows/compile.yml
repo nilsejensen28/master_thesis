@@ -17,7 +17,7 @@ jobs:
           unzip 4.202.zip
           font_dir="=/usr/local/share/fonts/opentype/FiraSans"
           mkdir -p $font_dir
-          install -644m Fira-4.202/otf/* $font_dir/
+          install  Fira-4.202/otf/* $font_dir/
           wget http://mirrors.ctan.org/fonts/fira/tex/zip/fira.zip
           unzip fira.zip
           cp fira/tex/latex/fira/fira.sty .
@@ -29,7 +29,7 @@ jobs:
           unzip Libertinus-7.040.zip
           font_dir="=/usr/local/share/fonts/opentype/libertinus"
           mkdir -p $font_dir
-          install -644m Libertinus-7.040/static/OTF/*.otf $font_dir/
+          install Libertinus-7.040/static/OTF/*.otf $font_dir/
           sudo fc-cache -f -v
 
       - name: Install Latex
