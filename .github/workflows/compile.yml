@@ -15,7 +15,7 @@ jobs:
           cd /tmp
           wget https://github.com/mozilla/Fira/archive/4.202.zip
           unzip 4.202.zip
-          font_dir="=/usr/share/fonts/opentype/FiraSans"
+          font_dir="=/usr/share/fonts/truetype/FiraSans"
           mkdir -p $font_dir
           install  Fira-4.202/otf/* $font_dir/
           sudo fc-cache -f -v
@@ -24,7 +24,7 @@ jobs:
           cd /tmp
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip Libertinus-7.040.zip
-          font_dir="=/usr/share/fonts/opentype/libertinus"
+          font_dir="=/usr/share/fonts/truetype/libertinus"
           mkdir -p $font_dir
           install Libertinus-7.040/static/OTF/*.otf $font_dir/
           sudo fc-cache -f -v
