@@ -18,9 +18,6 @@ jobs:
           font_dir="=/usr/local/share/fonts/opentype/FiraSans"
           mkdir -p $font_dir
           install  Fira-4.202/otf/* $font_dir/
-          wget http://mirrors.ctan.org/fonts/fira/tex/zip/fira.zip
-          unzip fira.zip
-          cp fira/tex/latex/fira/fira.sty .
           sudo fc-cache -f -v
       - name: Install Libertinus Font
         run: |
