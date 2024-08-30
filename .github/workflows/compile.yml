@@ -22,10 +22,11 @@ jobs:
       - name: Install Fira Mono Font
         run: |
           cd /tmp
-          wget https://www.1001fonts.com/download/font/fira-mono.regular.ttf
+          wget https://font.download/dl/font/fira-mono.zip
+          unzip fira-mono.zip
           font_dir="/usr/share/fonts/fira-mono"
           mkdir -p $font_dir
-          cp fira-mono.regular.ttf $font_dir/
+          cp fira-mono/* $font_dir/
           sudo fc-cache -f -v
       - name: Install Libertinus Font
         run: |
