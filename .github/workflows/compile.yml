@@ -15,7 +15,7 @@ jobs:
           cd /tmp
           wget https://github.com/mozilla/Fira/archive/4.202.zip
           unzip 4.202.zip
-          font_dir="/usr/share/fonts/fira"
+          font_dir="/usr/share/fonts/opentype/fira"
           mkdir -p $font_dir
           cp  Fira-4.202/otf/* $font_dir/
           sudo fc-cache -f -v
@@ -24,7 +24,7 @@ jobs:
           cd /tmp
           wget https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
           unzip Fira_Code_v6.2.zip
-          font_dir="/usr/share/fonts/fira-code"
+          font_dir="/usr/share/fonts/truetype/fira-code"
           mkdir -p $font_dir
           cp ttf/* $font_dir/
           sudo fc-cache -f -v
@@ -33,7 +33,7 @@ jobs:
           cd /tmp
           wget https://font.download/dl/font/fira-mono.zip
           unzip fira-mono.zip
-          font_dir="/usr/share/fonts/fira-mono"
+          font_dir="/usr/share/fonts/truetype/fira-mono"
           mkdir -p $font_dir
           cp *.ttf $font_dir/
           sudo fc-cache -f -v
@@ -42,7 +42,7 @@ jobs:
           cd /tmp
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip Libertinus-7.040.zip
-          font_dir="/usr/share/fonts/libertinus"
+          font_dir="/usr/share/fonts/opentype/libertinus"
           mkdir -p $font_dir
           cp Libertinus-7.040/static/OTF/* $font_dir/
           sudo fc-cache -f -v
