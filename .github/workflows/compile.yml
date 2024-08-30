@@ -21,7 +21,7 @@ jobs:
           wget http://mirrors.ctan.org/fonts/fira/tex/zip/fira.zip
           unzip fira.zip
           cp fira/tex/latex/fira/fira.sty .
-          sudo fc-cache -f -v-
+          sudo fc-cache -f -v
       - name: Install Libertinus Font
         run: |
           cd /tmp
