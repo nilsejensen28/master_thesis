@@ -26,7 +26,7 @@ jobs:
           unzip fira-mono.zip
           font_dir="/usr/share/fonts/fira-mono"
           mkdir -p $font_dir
-          cp fira-mono/* $font_dir/
+          cp *.otf $font_dir/
           sudo fc-cache -f -v
       - name: Install Libertinus Font
         run: |
