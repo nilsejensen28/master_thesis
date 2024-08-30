@@ -21,7 +21,7 @@ jobs:
           unzip Libertinus-7.040.zip
           font_dir="$HOME/Library/Fonts"
           mkdir -p $font_dir
-          cp Libertinus-7.040/static/OFT/* $font_dir/
+          cp Libertinus-7.040/static/OTF/* $font_dir/
       - name: Install Latex
         run: sudo apt-get install texlive-full texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk texlive-xetex
       - name: Compile
