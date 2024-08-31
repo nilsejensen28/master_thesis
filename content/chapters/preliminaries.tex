@@ -394,7 +394,8 @@ And\marginnote[-10mm]{We denote by $\winterval{a}{b}$ the set of whole numbers $
 	L_{k > K} & = [N_1] \times \cdots \times [N_{k-1}] \times \{K+1, \dots, N_k\} \times [N_{k+1}] \times \cdots \times [N_d].
 \end{align*}
 The algorithm --- and in particular, our proof of the correctness --- is based on the following observation:
-\begin{remark}
+\begin{remark}[Progress points induce \Tarski-instances]
+    \label{rem:progress_points_and_subsinstances}
 	Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotone function. Then:
 	\begin{enumerate}
 		\item If for some $x \in L$ we have $f(x) \leq x$, then $f$ has a fixed point in $L_{\leq x}$.
