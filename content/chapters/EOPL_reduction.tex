@@ -2,7 +2,7 @@
 \chapter{Reducing \Tarski\ to \EOPL}
 \label{ch:eopl_reduction}
 
-In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner and then a reduction from \Sperner\ to \EndOfLine. We want to argue that the \EndOfLine\ instance we obtain when reducing a monotone function $f$ is almost an \EndOfPotentialLine\ instance. In particular, recall that the main difference is the absence of cycles in \EndOfPotentialLine\ instances, while such cycles might exist in \EndOfLine\ instances. The absence of cycles in the \EndOfPotentialLine\ instances is guaranteed by a potential. In this chapter, we will argue that the \EndOfLine\ instances that we obtain when reducing monotone functions have no cycles.
+In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner\ and then a reduction from \Sperner\ to \EndOfLine. We want to argue that the \EndOfLine\ instance we obtain when reducing a monotone function $f$ is almost an \EndOfPotentialLine\ instance. In particular, recall that the main difference is the absence of cycles in \EndOfPotentialLine\ instances, while such cycles might exist in \EndOfLine\ instances. The absence of cycles in the \EndOfPotentialLine\ instances is guaranteed by a potential. In this chapter, we will argue that the \EndOfLine\ instances that we obtain when reducing monotone functions have no cycles.
 
 In order to argue this result, we will need a more meticulous examination of the structure of a \Tarski\ instance and the induced coloring of the lattice points. We will start by arguing that there are no cycles in the two-dimensional case. Doing this will motivate the following steps to generalize the results to higher dimensions.
 
@@ -53,7 +53,7 @@ In the previous chapter, we left the choice of a specific simplicial decompositi
 
 Additionally, it is essential to note that our objective does not entail the introduction of any new vertices; instead, we seek a decomposition of the hypercube that can be expressed as a set of subsets of the hypercube's vertices. Finally, we which for the vertices of a given simplex be totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. This will allow us to argue that two vertices inside a given simplex are always comparable, and thus, their images through $f$ must also be comparable, which will be useful.
 
-Such a decomposition exists, and is known in the litterature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it combinatorially here and refer the reader to the original paper for a geometric construction of the same decomposition.
+Such a decomposition exists, and is known in the literature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it combinatorially here and refer the reader to the original paper for a geometric construction of the same decomposition.
 
 \begin{definition}[Freudenthal's Simplicial Decomposition]
 	\label[definition]{def:freudenthal_simplicial_decomposition}
@@ -121,7 +121,7 @@ Notice that this is not the case for any two points in the hypercube, as the par
 \end{align*}
 This notation means we obtain $v_i$ by moving by one unit length in the direction $\pi(i)$ from $v_{i-1}$. We already briefly discussed how the faces of a given simplex are given. We will also describe how to describe these faces in our notation. We will denote the face of $S_{\pi}$ obtained by removing the vertex $v_i$ as:
 \begin{align*}
-	v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+	v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(i - 1)} v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 \end{align*}
 
 We can remark the following about the faces of a simplex.
@@ -136,8 +136,8 @@ We can remark the following about the faces of a simplex.
 		      \end{align*}
 		      Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
 		      \begin{align*}
-			      S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
-			      S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w_i' \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+			      S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w \xrightarrow{\pi(i)} v_{i + 1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
+			      S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w' \xrightarrow{\pi(i+1)} v_{i + 1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 		      \end{align*}
 		      \label{rem:face_inside_cell}
 		\item If $F$ is of the form:
@@ -146,8 +146,8 @@ We can remark the following about the faces of a simplex.
 		      \end{align*}
 		      Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
 		      \begin{align*}
-			      S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w_d \\
-			      S_2: & \quad w_0 \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
+			      S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w \\
+			      S_2: & \quad w' \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
 		      \end{align*}
 		      \label{rem:face_border_cell}
 	\end{enumerate}
@@ -392,7 +392,7 @@ In the previous sections, we discussed how one could orient simplices. We now wa
 
 Let us check that our definition is sound. We want the orientation of a face $F$ to be opposite when traversing it from opposite sides. This is the content of the following lemma.
 
-\begin{lemma}[Well-definedness of colored orientation]
+\begin{lemma}[Colored orientations are well-defined]
 	\label{lem:soundness_of_colored_orientability}
 	Let $S_1$ and $S_2$ be two $d$-dimensional simplices that share a $d-1$-dimensional rainbow face $F$. Then:
 	\begin{align*}
