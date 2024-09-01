@@ -1,5 +1,6 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Preliminaries}
+\label{ch:preliminaries}
 
 This chapter aims to establish the complexity framework used throughout this thesis to study the \Tarski\ problem. It formally introduces the concept of total search problems, the complexity class \TFNP, and its subclasses \PLS, \PPAD, and \EOPL. In addition, in this chapter, we will describe how we represent sets and functions in this framework and how their complexity is measured. Finally, we give a formal introduction to the \Tarski\ problem, a presentation of some known algorithms for solving it, and its location in the \TFNP\ landscape.
 
@@ -473,7 +474,7 @@ Before we conclude this chapter, we want to discuss some variants of the \Tarski
 
 Notably, in this variant of \Tarski\ we are \emph{promised} that we have a monotone function, and hence we do not allow violations of monotonicity as solutions (as these should not be possible).
 
-Next we introduce two variants of \Tarski\ which are also promise variants of \Tarski. On top of promising that the function is monotone, we are promised some properties related to uniqueness of solutions. We note that these problems can be turned into total problems, by adding violations, as discussed in \cref{sec:sec:promise_problems}. For the sake of simplicity, we introduce them in their promise variants. The first variant we introduce is the \emph{unique fixpoint} variant of \Tarski, which is defined as follows:
+Next we introduce two variants of \Tarski\ which are also promise variants of \Tarski. On top of promising that the function is monotone, we are promised some properties related to uniqueness of solutions. We note that these problems can be turned into total problems, by adding violations, as discussed in \cref{sec:promise_problems}. For the sake of simplicity, we introduce them in their promise variants. The first variant we introduce is the \emph{unique fixpoint} variant of \Tarski, which is defined as follows:
 
 \problem{PromiseUniqueTarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$ such that $f$ is monotone and there is a unique fixpoint $x$}{The unique fixpoint $x$ of $f$.}
 

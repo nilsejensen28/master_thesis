@@ -2,7 +2,7 @@
 \chapter{Reducing \Tarski\ to \EOPL}
 \label{ch:eopl_reduction}
 
-In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner\ and then a reduction from \Sperner\ to \EndOfLine. We want to argue that the \EndOfLine\ instance we obtain when reducing a monotone function $f$ is almost an \EndOfPotentialLine\ instance. In particular, recall that the main difference is the absence of cycles in \EndOfPotentialLine\ instances, while such cycles might exist in \EndOfLine\ instances. The absence of cycles in the \EndOfPotentialLine\ instances is guaranteed by a potential. In this chapter, we will argue that the \EndOfLine\ instances that we obtain when reducing monotone functions have no cycles.
+In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner\ and then a reduction from \Sperner\ to \EndOfLine. We want to argue that the \EndOfLine\ instance we obtain when reducing a monotone function $f$ is almost an \EndOfPotentialLine\ instance. In particular, recall from \cref{ch:preliminaries} that the main difference is the absence of cycles in \EndOfPotentialLine\ instances, while such cycles might exist in \EndOfLine\ instances. The absence of cycles in the \EndOfPotentialLine\ instances is guaranteed by a potential. In this chapter, we will argue that the \EndOfLine\ instances that we obtain when reducing monotone functions have no cycles.
 
 In order to argue this result, we will need a more meticulous examination of the structure of a \Tarski\ instance and the induced coloring of the lattice points. We will start by arguing that there are no cycles in the two-dimensional case. Doing this will motivate the following steps to generalize the results to higher dimensions.
 
@@ -39,7 +39,7 @@ Proving this will be somewhat involved in the general $d$-dimensional case. We w
 
 Let us briefly discuss this proof's key ingredients and the steps we will take to generalize them to the $d$-dimensional case.
 
-On a high level, we want to show that one cannot cross a given hyperplane of the lattice more than once when going through rainbow faces colored $\set{0, \dots, d-1}$. This turns out not to be accurate, but we will show a weaker result, which still prohibits cycles. In two dimensions, we did this by showing that when we traverse such a hyperplane, we had restrictions on how the edges could be oriented. We will generalize this notion of  \emph{orientation} for the colored faces we work with.  We will then achieve a contradiction by showing that these faces must be oriented the same way if they are part of a path of simplices that form a line in the \EndOfLine\ reduction and obtain a contradiction from this.
+On a high level, we want to show that one cannot cross a given hyperplane of the lattice more than once when going through rainbow faces colored $\set{0, \dots, d-1}$. This turns out not to be accurate, but we will show a weaker result, which still prohibits cycles. In two dimensions, we did this by showing that when we traverse such a hyperplane, we had restrictions on how the edges could be oriented. We will generalize this notion of \emph{orientation} for the colored faces we work with.  We will then achieve a contradiction by showing that these faces must be oriented the same way if they are part of a path of simplices that form a line in the \EndOfLine\ reduction and obtain a contradiction from this.
 
 In order to do this, we will need to discuss in detail how we subdivide the cells of the lattice into simplices; we will do this by introducing \emph{Freudenthal's simplicial decomposition}. Once we have the simplices, we will discuss \emph{sequences of simplices}, which are the objects that will turn into the lines of the \EndOfLine\ instances. Then, we define the notion of \emph{orientation} for colored simplices. We will then need to show that the monotonicity of $f$ prohibits certain simplices from existing and use this to obtain a contradiction to the existence of cycles.
 
@@ -102,6 +102,7 @@ Next, we discuss why this forms a partition of the hypercube. Of course, a given
 \end{proof}
 Together, these two Lemmata show that \textit{Freudenthal's simplicial decomposition} is a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
 \begin{lemma}
+    \cref{lem:total_order_freudenthal}
 	Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then, the vertices of $S_{\pi}$ are totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. In particular, we claim that:
 	\begin{align*}
 		v_0 < v_1 < v_2 < \dots < v_d
@@ -162,9 +163,18 @@ We discuss what simplices of the decomposition neighbour each other. We claim th
 	\end{align*}
 	Then the following simplices are neighbors of $S_{\pi}$:
 	\begin{itemize}
-		\item $v_0 \xrightarrow{\pi(2)} v_1 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d$, for all $i \in \set{1, \dots, d-1}$, where $w_i$ is the vertex obtained by moving one unit in the direction $\pi(i+1)$ from $v_{i-1}$.
-		\item $w_d \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}$, where $w_d$ is the vertex obtained by moving one unit in the direction $-\pi(d)$ from $v_{0}$.
-		\item $v_2 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_1$, where $w_1$ is the vertex obtained by moving one unit in the direction $\pi(1)$ from $v_d$.
+		\item for all $i \in \set{1, \dots, d-1}$, with $w_i$ is the vertex obtained by moving one unit in the direction $\pi(i+1)$ from $v_{i-1}$ the simplex:
+        \begin{align*}
+            v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+        \end{align*}
+		\item for $w_d$ is the vertex obtained by moving one unit in the direction $-\pi(d)$ from $v_{0}$, the simplex:
+        \begin{align*}
+            w_d \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
+        \end{align*}
+		\item for $w_1$ is the vertex obtained by moving one unit in the direction $\pi(1)$ from $v_{d}$, the simplex:
+        \begin{align*}
+            v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_1
+        \end{align*}
 	\end{itemize}
 \end{lemma}
 \begin{proof}
@@ -211,13 +221,13 @@ Now, let us restrict these general definitions to the context we will be studyin
 	\end{enumerate}
 \end{definition}
 
-A particular type of line that we can obtain in the \EndOfLine\ instances are cycles. These cycles result from reducing a particular class of simplicial sequences, which we will also call \emph{cycles}.
+Notice that maximal rainbow simplicial sequences are precisely the sequences of simplices that yield the lines in the \EndOfLine\ instance, which we reduce \Sperner\ instances to. We will discuss how we can orient these sequences simplices in the next section. Before we do this though, we introduce a special type of maximal rainbow simplicial sequence which can arise. Recall that a particular type of line that we can obtain in the \EndOfLine\ instances are cycles. These cycles result from reducing a particular class of simplicial sequences, which we will also call \emph{cycles}.
 
 \begin{definition}[Cycle]
 	A \emph{cycle of simplices for colors $C$} is a valid maximal sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that $S_1 \cap S_k$ is a $d-1$ dimensional rainbow face for colors $C$.
 \end{definition}
 
-Notice that maximal rainbow simplicial sequences are precisely the sequences of simplices that yield the lines in the \EndOfLine\ instance, which we reduce \Sperner\ instances to. We can now discuss how we orient these simplices.
+As previously discussed intuitively the main difference between an \EndOfLine instance and a \EndOfPotentialLine instance is the possibility for cycles to exist in the \EndOfLine instance. Hence, our goal is to show that when given a monotone \Tarskistar instance, which we reduce to \Sperner the resulting lattice of colored points does not have any cycles, as defined above
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %A side note on super-unique Tarski
@@ -229,7 +239,7 @@ TODO.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Orientation of Simplices
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Orientation of a the simplicial decomposition}[Orientating the simplices]
+\section{Orientation of the simplicial decomposition}[Orientating the simplices]
 
 In this section, we discuss how to orient the simplicial decomposition of the lattice, which we defined in the previous section. This will be important as we will argue in the next section that the existence of a cycle would contradict the orientation of the simplicial decomposition. We start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
 
@@ -243,14 +253,30 @@ In this section, we discuss how to orient the simplicial decomposition of the la
 Notice that this leaves us with $d!$ possible orientations of a simplex. Our notion of orientability should only lead to two possible classes of orientations, as an orientation of a 1-simplex is simply a choice of direction, and an orientation of a 2-simplex is a choice of a cyclic order of the vertices. Hence, we want to define when two orientations are equivalent.
 
 \begin{definition}[Equivalent orientations]
-	Two orientations $\pi$ and $\sigma$ of a simplex $S$ are \define{equivalent} if they differ by an even permutation. That is, if $\sigma = \pi \circ \tau$ for some permutation $\tau$ with an even number of inversions.
+    \boxmarginnote{Recall that a permutation $\tau$ has an even number of inversions if and only if $\sgn{\tau}=1$}
+	Two orientations $\gamma$ and $\sigma$ of a simplex $S$ are \define{equivalent} if they differ by an even permutation. That is, if $\sigma = \gamma \circ \tau$ for some permutation $\tau$ with an even number of inversions.
 \end{definition}
 
-In particular, we give a more explicit definition of the equivalence of orientations of a 2-simplex by relying on a total order $\preceq$ of the vertices\marginnote{For a lattice, this can be achieved by defining $\preceq$ to be the lexicographic order of the vertices.}. We then get the following helpful lemma:
+In particular, we give a more explicit definition of the equivalence of orientations of a 2-simplex by relying on a total order $\preceq$ of the vertices of the simplex. We need a total order for the \emph{sign} of a permutation to be well-defined. Because we are working in \emph{Freudenthal's simplicial decomposition} all vertices of a given simplex are totally ordered by \cref{lem:total_order_freudenthal}, hence we can assume that the sign of a permutation is well-defined.
 
 \begin{lemma}
-	Two orientations $\sigma, \tau$ of a simplex $S$ are equivalent if and only if $\sgn{\sigma} = \sgn{\tau}$, with respect to the total order $\preceq$.
+	Two orientations $\sigma, \tau$ of a simplex $S$ are equivalent if and only if $\sgn{\sigma} = \sgn{\tau}$, with respect to a total order $\preceq$.
 \end{lemma}
+\begin{proof}
+    We have that $\sigma, \tau$ are equivalent if and only if they differ by an even permutation $\gamma$. This is equivalent to:
+    \begin{align*}
+        \sigma = \gamma \circ \tau \quad \text{with $\sgn{\gamma}=1$}
+    \end{align*}
+    We now prove both directions separately:
+
+    If $\sigma = \gamma \circ \tau$ then we have:
+    \begin{align*}
+        \sgn{\sigma}= \sgn{\gamma} \cdot \sgn{\tau} = \sgn{\tau}
+    \end{align*}
+    Because $\sgn{\gamma}=1$.
+
+    In the other direction it is well known that if $\sgn{\sigma}= \sgn{\gamma}$, then they differ by an even permutation.
+\end{proof}
 
 We want to define the \define{opposite orientation} of a simplex, which should be an orientation that has the opposite sign with respect to the total order $\preceq$. This can be achieved by setting:
 \begin{align*}
@@ -261,31 +287,11 @@ The opposite orientation is then not equivalent to the original orientation. Thi
 We now have two equivalence classes of orientations for any simplex. We want to discuss how the orientation of a simplex extends to the faces of this simplex next. Notice that the faces of a simplex are themselves simplices and thus have an orientation. Let $[v_0, \dots, v_{d}]$ be an orientation of a simplex $S$. Now, notice that every face can be obtained by removing one of the vertices $v_j$ of $S$. Hence for every face $F$, the permutation $[v_0, \dots, \hat{v_j}, \dots, v_{d}]$ is an orientation of $F$\marginnote{We use the notation $\hat{v_j}$ to denote that $v_j$ is missing.}. But the orientation $- [v_0, \dots, \hat{v_j}, \dots, v_{d}]$ is also a valid orientation of $F$. For reasons that will become apparent later, we define the induced orientation of a face as follows:
 
 \begin{definition}[Induced orientation of a face]
-	Let $\sigma = [v_0, \dots, v_{d}]$ be an orientation of a simplex $S$. The \emph{induced orientation} of a face $F$ of $S$, which is obtained by removing the vertex $v_j$ from the vertex, is the orientation:
+	Let $\sigma = [v_0, \dots, v_{d}]$ be an orientation of a simplex $S$. The \emph{induced orientation} of a face $F$ of $S$, which is obtained by removing the vertex $v_j$ from the simplex, is the orientation:
 	\begin{align*}
 		\sigma_j = (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
 	\end{align*}
 \end{definition}
-
-We claim that the induced orientations of faces yield a consistent orientation of the simplex. That is, for every $d-2$-simplex $E$, which is a face of two $d-1$-simplices $S_1$ and $S_2$, the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
-
-\begin{claim}
-	\label{claim:opposite_orientations}
-	Let $F_1$ and $F_2$ be two $d-1$-simplices in $S$ which share a common face $E$. Then the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
-\end{claim}
-\begin{proof}
-	Let $[v_0, \dots, v_{d}]$ be an orientation of $S$. The face $E$ is obtained by removing two vertices $v_i, v_j$ from $S$. Without loss of generality, assume that $F_1$ is obtained by removing $v_i$ from $S$ and $F_2$ is obtained by removing $v_j$ from $S$. Then the induced orientations $S_1$ and $S_2$ are:
-	\begin{align*}
-		S_1: \quad & (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, v_{d}] \\
-		S_2: \quad & (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
-	\end{align*}
-	Now without loss of generality assume that $i < j$, then we have that the induced orientations of $E$ in $S_1$ and $S_2$ are:
-	\begin{align*}
-		\text{$E$ in $S_1$ }: \quad & (-1)^i \cdot (-1)^{j-1} \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}] \\
-		\text{$E$ in $S_2$ }: \quad & (-1)^j \cdot (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}]
-	\end{align*}
-	This shows that the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
-\end{proof}
 
 \begin{figure}[ht]
 	\centering
@@ -294,11 +300,11 @@ We claim that the induced orientations of faces yield a consistent orientation o
 	\label{fig:orientation_of_simplex}
 \end{figure}
 
-We give an example of the orientation of a 3-simplex and its faces in \cref{fig:orientation_of_simplex}. We can now discuss extending this notion to a general simplicial complex.
+We give an example of the orientation of a 3-simplex and its faces in \cref{fig:orientation_of_simplex}. We will show later that this the notion of induced orientation has nice properties when we work with multiple simplices. In order to do so we need to introduce the notion of simplicial complex, and discuss how we orient it, which we will do in the following subsection.
 
 \subsection{Orientation of a simplicial complex}[Orienting a simplicial complex]
 
-A simplicial complex can be considered a collection of simplices glued together on their face. Our goal is to extend this orientation notion to these simplicial complexes. Formally, we define a simplicial complex as follows \sidecite{munkres_elements_2018}:
+A simplicial complex can be considered a collection of simplices glued together on their face. Our goal is to extend this orientation notion to these simplicial complexes. Formally, we define a simplicial complex as in \sidecite{munkres_elements_2018}:
 
 \begin{definition}[Simplicial complex]
 	A \define{simplicial complex} $\mathcal{K}$ in $\R^d$ is a collection of simplices such that:
@@ -315,11 +321,12 @@ The lattice points we are interested in and Freudenthal's simplicial decompositi
 	If such an orientation exists, we say that the simplicial complex is \define{orientable}.
 \end{definition}
 
-We now claim that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable. This will be crucial in the next section, where we will argue that the existence of a cycle in the \EndOfLine\ instance would contradict the orientation of the simplicial complex. In particular, this shows that a Mobius Strip or the higher dimensional equivalents do not exist in our simplicial complex.
+We now claim that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable. This will be crucial in the next section, where we will argue that the existence of a cycle in the \EndOfLine\ instance would contradict the orientation of the simplicial complex. In particular, this shows that a Möbius strip or the higher dimensional equivalents do not exist in our simplicial complex.
 
-\begin{claim}
-	The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
-\end{claim}
+\begin{proposition}[Freudenthal is orientable]
+    \label{prop:orientability_freudenthal}
+    The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
+\end{proposition}
 
 \begin{figure}[ht]
 	\centering
@@ -328,32 +335,41 @@ We now claim that the simplicial complex formed by the lattice points and Freude
 	\label{fig:orientation_of_simplicial_complex}
 \end{figure}
 
+We will divide the proof into two separate part. First we want to describe the orientation we give to every simplex in the complex.
+
+We give an orientation of every $d$ simplex and then show that the induced orientation of the faces of the simplicial complex are opposite.
+Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as previously described:
+\begin{align*}
+    v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
+\end{align*}
+We now orient $S_{\pi}$ using the permutation:
+\begin{align*}
+    \sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
+\end{align*}
+We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}.
+
+We will now prove two separate claims which together yield a proof of orientability of the complex. We will first proof that all faces between two $d$-simplices are consistently oriented, and then that all lower dimensional faces inside a given simplex are consistently oriented.
+
+\begin{claim}
+    A common face $F$ of two simplices $S_1$ and $S_2$ is given opposite orientation.
+\end{claim}
+
 \begin{proof}
-	We will give an orientation of every $d$ simplex and then show that the induced orientation of the faces of the simplicial complex are opposite.
-	Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as previously described:
-	\begin{align*}
-		v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
-	\end{align*}
-	We now orient $S_{\pi}$ using the permutation:
-	\begin{align*}
-		\sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
-	\end{align*}
-	First, we notice that for all $d-2$ simplices, two neighboring $d-1$-simplices are contained in exactly one $d$ simplex of the decomposition, and hence the orientation is consistent, as discussed in claim \ref{claim:opposite_orientations}. \par
-	Now let us look at a common face $F$ of two $d$-simplices $S_1$ and $S_2$. We proceed by case distinction:
+	Let us look at a common face $F$ of two $d$-simplices $S_1$ and $S_2$. We proceed by case distinction:
 	\begin{case}{1}
 		Assume that $S_1$ and $S_2$ are in the same cell, then $F$ is of the form:
 		\begin{align*}
-			F: \quad v_0 \xrightarrow{\pi(1)}  \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+			F: \quad v_0 \xrightarrow{\pi(1)}  \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+1)} v_{i+2} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 		\end{align*}
 		And we have that $S_1$ and $S_2$ are of the form:
 		\begin{align*}
-			S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
-			S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w_i' \xrightarrow{\pi(i+1)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+			S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
+			S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w_i' \xrightarrow{\pi(i+1)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 		\end{align*}
 		We immediately notice that $\sgn{S_1} = - \sgn{S_2}$\marginnote{By abuse of notation we will denote by $\sgn{S_1}$ the sign of the permutation inducing $S_1$.}. We remove a vertex $w_i, w_i'$ of the same rank in $S_1$ and $S_2$ to obtain $F$. Hence, the induced orientation of $F$ in $S_1$ and $S_2$ is the opposite.
 	\end{case}
 	\begin{case}{2}
-		Next assume that $S_1$ and $S_2$ are in neighbooring cells, then as dicussed in \cref{rem:faces_of_simplex} $F$ is of the form:
+		Next assume that $S_1$ and $S_2$ are in neighboring cells, then as discussed in \cref{rem:faces_of_simplex} $F$ is of the form:
 		\begin{align*}
 			F: \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
 		\end{align*}
@@ -370,10 +386,34 @@ We now claim that the simplicial complex formed by the lattice points and Freude
 			If $d$ is odd, then $\sgn{S_1} = \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = -1$ and $(-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
 		\end{case}
 	\end{case}
-	This shows that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
+	This is the first half of the proposition
 \end{proof}
 
-We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}. Now that we have shown that the Freudenthal decomposition is orientable, we want to discuss how it can be extended to colored simplices in the next section.
+ Now if we consider every $d$ as a simplicial complex of $d-1$-simplices (its faces) oriented with the induced orientations of faces we need to show that we get a consistent orientation. That is, for every $d-2$-simplex $E$, which is a face of two $d-1$-simplices $F_1$ and $F_2$, the induced orientations of $E$ in $F_1$ and $F_2$ are opposite.
+
+\begin{claim}
+	\label{claim:opposite_orientations}
+	Let $F_1$ and $F_2$ be two $d-1$-simplices in $S$ which share a common face $E$. Then the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
+\end{claim}
+\begin{proof}
+	Let $[v_0, \dots, v_{d}]$ be an orientation of $S$. The face $E$ is obtained by removing two vertices $v_i, v_j$ from $S$. Without loss of generality, assume that $F_1$ is obtained by removing $v_i$ from $S$ and $F_2$ is obtained by removing $v_j$ from $S$. Then the induced orientations $S_1$ and $S_2$ are:
+	\begin{align*}
+		S_1: \quad & (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, v_{d}] \\
+		S_2: \quad & (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
+	\end{align*}
+	Now without loss of generality assume that $i < j$, then we have that the induced orientations of $E$ in $F_1$ and $F_2$ are:
+	\begin{align*}
+		\text{$E$ in $S_1$ }: \quad & (-1)^i \cdot (-1)^{j-1} \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}] \\
+		\text{$E$ in $S_2$ }: \quad & (-1)^j \cdot (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}]
+	\end{align*}
+	This shows that the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
+\end{proof}
+
+The two claims, together prove \cref{prop:orientability_freudenthal}
+
+The second claim is a very neat little fact, as it will allow us to consider lower dimensional simplicial complexes it the following --- like for instance sequences of faces --- and argue that they are consistently oriented.
+
+Now that we have shown that the Freudenthal decomposition is orientable, we want to discuss how it can be extended to colored simplices in the next section.
 
 \subsection{Orienting colored simplices}[Colored orientations]
 
@@ -400,7 +440,7 @@ Let us check that our definition is sound. We want the orientation of a face $F$
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	Because the simplicial complex we work with is orientable, for $\indorient_{S_1}(F)$ the induced orientation of $F$ in $S_1$ and $\indorient_{S_2}(F)$ the induced orientation of $F$ in $S_2$, we have:
+	Because the simplicial complex we work with is orientable, for $\indorient_{S_1}(F)$ the induced orientation of $F$ in $S_1$ and \boxmarginnote{The induced orientation $\indorient$, is the same as the induced orientation of faces we previously discussed instead that we work with colors and not individual vertices, this allows us to compare the induced orientations of faces which dont contain the same vertices, but the same colors.}$\indorient_{S_2}(F)$ the induced orientation of $F$ in $S_2$, we have:
 	\begin{align*}
 		\sgn{\indorient_{S_1}(F)} = - \sgn{\indorient_{S_2}(F)}
 	\end{align*}
@@ -493,7 +533,7 @@ Before we start, we want to make an observation about the interplay of the $d$ d
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	Every color $c \in \set{0, \dots, d-1}$ appears exactly once in the face $F$. If the color $c \neq 0$ appear after $0$, then by \cref{cor:monotone_coloring} we must have that we move in dimension $c$ between $0$ and $c$:
+	Every color $c \in \set{0, \dots, d-1}$ appears exactly once in the face $F$. If the color $c \neq 0$ appears after $0$, then by \cref{cor:monotone_coloring} we must have that we move in dimension $c$ between $0$ and $c$:
 	\begin{align*}
 		(F): \quad c(v_1) \xrightarrow{} \cdots  0 \xrightarrow{} \cdots \xrightarrow{c} \cdots \xrightarrow{} c
 	\end{align*}
