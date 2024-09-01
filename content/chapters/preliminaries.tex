@@ -274,6 +274,39 @@ $S$ and $P$ can be thought of as representing a directed line. Finding another s
 	The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
 \end{definition}
 
+\subsection{The classes \PPADS\ and \SOPL}[\PPADS\ and \SOPL]\label{sec:ppads_and_sopl}
+
+We introduce variations slight variantions of the classes \PPAD\ and \EOPL\ in this section. Recall that \EndOfLine\ and \EndOfPotentialLine\ are respective complete problems for \PPAD\ and \EOPL\@. If instead of finding any end of the line we only allow sinks we get new problems \SinkOfPotentialLine\ and \SinkOfLine\@:
+
+\problem{SinkOfLine}{
+Boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$ such that $P(0^n) = 0^n \neq S(0^n)$.
+}{
+An $x \in \bitstr^n$ such that $P(S(x)) \neq x$ (a sink).
+}
+
+\problem{SinkOfPotentialLine}{
+Boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$ and $V : \bitstr^n \rightarrow [2^n - 1]$ such that $P(0^n) = 0^n \neq S(0^n)$.
+}{An $x \in \bitstr^n$ such that either:
+\begin{itemize}
+	\item $P(S(x)) \neq x$ ($x$ is a sink)
+	\item $S(x) \neq x$, $P(S(x)) = x$ and $V(S(x)) \leq V(x)$ (violation of the monoticity of the potential)
+\end{itemize}
+}
+
+The classes \PPADS\ and \SOPL\ are then constructed so that \SinkOfPotentialLine\ and \SinkOfLine\ are complete problems.
+\begin{definition}[\PPADS]
+	The class \PPADS\ is the set of all \TFNP\ problems that reduce to \textsc{Sink of Potential Line}.
+\end{definition}
+\begin{definition}[\SOPL]
+	The class \SOPL\ is the set of all \TFNP\ problems that reduce to \textsc{Sink of Line}.
+\end{definition}
+
+These two classes are not directly relevant for this thesis, but they are a stepping used in the recent collapse of the \TFNP\ hierarchy~\sidecite{goos_further_2022}, which we will discuss in \cref{ch:location_tarski}. For the time beeing it suffice to know that these classes are weaker than \PPAD\ and \EOPL\@. That is:
+\begin{align*}
+	\PPAD \subseteq \PPADS \quad \text{and} \quad \EOPL \subseteq \SOPL.
+\end{align*}
+This is because finding a sink is more restrictive than finding any end of the line.
+
 \section{The \Tarski\ Problem}[\Tarski\ Problem]\label{sec:tarski_problem}
 
 \subsection{Definition of the \Tarski\ Problem}[\Tarski\ Definition]
