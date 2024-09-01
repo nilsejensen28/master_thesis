@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{681.56359575bp}%
+    \setlength{\unitlength}{698.32631029bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,18 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.2200247)%
+  \begin{picture}(1,0.21402781)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0.96610153,0.09899937){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\TFNP\end{tabular}}}}%
-    \put(0.01614945,0.09899084){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\FP\end{tabular}}}}%
-    \put(0.14208675,0.09947326){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\UEOPL\\\end{tabular}}}}%
-    \put(0.3976691,0.09933283){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\EOPL = \CLS = \PLS \cap \PPAD$\\\end{tabular}}}}%
+    \put(0.96691526,0.09662298){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\TFNP\end{tabular}}}}%
+    \put(0.02526647,0.09661465){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\TFP\end{tabular}}}}%
+    \put(0.15566258,0.09708549){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\UEOPL\\\end{tabular}}}}%
+    \put(0.41212755,0.09694844){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\EOPL = \CLS = \PLS \cap \PPAD$\\\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{TFNP_Structure.pdf}}%
-    \put(0.53150156,0.19871632){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\SOPL= \PLS \cap \PPADS$\\\end{tabular}}}}%
-    \put(0.79381909,0.19839428){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PLS\\\end{tabular}}}}%
-    \put(0.53213989,0.00630604){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PPAD\\\end{tabular}}}}%
-    \put(0.79381909,0.0061636){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PPADS\\\end{tabular}}}}%
+    \put(0.54274748,0.19394631){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\SOPL= \PLS \cap \PPADS$\\\end{tabular}}}}%
+    \put(0.7987683,0.193632){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PLS\\\end{tabular}}}}%
+    \put(0.55708432,0.00615467){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PPAD\\\end{tabular}}}}%
+    \put(0.79876831,0.00601565){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PPADS\\\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{TFNP_Structure.pdf}}%
   \end{picture}%
 \endgroup%
