@@ -430,7 +430,7 @@ By choosing, $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x
 	}
 \end{algorithm}
 
-A simple analysis shows that this algorithm runs with query complexity $\BigO{\log^{d}{N}}$, where $N$ is the side length of the lattice. It was conjectured that this is an asymptotically optimal algorithm for \Tarski\~\sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed~\sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall, this approach achieves a query complexity of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = {[N]}^d$.
+A simple analysis shows that this algorithm runs with query complexity $\BigO{\log^{d}{N}}$, where $N$ is the side length of the lattice. It was conjectured that this is an asymptotically optimal algorithm for \Tarski~\sidecite{etessami_tarskis_2020}. This turned out not to be true, as a better algorithm was developed~\sidecite{fearnley_faster_2022}, which mostly relies on a faster way of finding a progress point in the three-dimensional case, which they call the \emph{inner algorithm}. An \emph{outer algorithm} then repeatedly applies the inner algorithm on 3-dimensional instances. Overall, this approach achieves a query complexity of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$ for $L = {[N]}^d$.
 
 A further advance using more advanced methods and assuming that the number of dimensions $d$ is constant were made in~\sidecite{chen_improved_2022}. They achieve a query complexity of $\BigO{\log^{\ceil{\frac{d+1}{2}}}{N}}$ for $L = {[N]}^d$. This is to date the best known bound for solving \Tarski\ instances.
 
@@ -452,7 +452,7 @@ Next we introduce two variants of \Tarski\ which are also promise variants of \T
 
 \problem{PromiseUniqueTarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$ such that $f$ is monotone and there is a unique fixpoint $x$}{The unique fixpoint $x$ of $f$.}
 
-A very notable recent result is that the query complexity of \SuperUniqueTarski\, \UniqueTarski\ is equal to the query complexity of \Tarski\~\sidecite{chen_reducing_2023}.  We also introduce an even stronger uniqueness variant of \Tarski\ next. This time the promise is that when fixing a subset of coordinates, the induced function has a unique fixpoint, i.e.\ $\ftilde = f_{d_1=K_1, \dots, d_k=K_k}$ has a unique fixpoint for any choice of $d_1, \dots, d_k \in \set{1, \dots, d}$ and $K_1, \dots, K_k \in [N]$.
+A very notable recent result is that the query complexity of \SuperUniqueTarski\, \UniqueTarski\ is equal to the query complexity of \Tarski~\sidecite{chen_reducing_2023}.  We also introduce an even stronger uniqueness variant of \Tarski\ next. This time the promise is that when fixing a subset of coordinates, the induced function has a unique fixpoint, i.e.\ $\ftilde = f_{d_1=K_1, \dots, d_k=K_k}$ has a unique fixpoint for any choice of $d_1, \dots, d_k \in \set{1, \dots, d}$ and $K_1, \dots, K_k \in [N]$.
 
 \problem{PromiseSuperUniqueTarski}{A boolean circuit $f : {[N]}^d \rightarrow {[N]}^d$ such that $f$ is monotone and when fixing a subset of coordinates the induce function $\ftilde$ has a unique fixpoint.}{The unique fixpoint $x$ of $f$.}
 
