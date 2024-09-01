@@ -41,15 +41,16 @@
 	citetracker=true,
 	ibidtracker=context,
 	autopunct=true,
-	autocite=plain
+	autocite=plain,
+	url=false %Makes it so that no "visited on"
 }{biblatex}
 
 % Pass the unknown options to biblatex, overwriting the previous settings. Avoid passing the kao-specific options.
 \DeclareDefaultOption{%
 	\IfBeginWith{\CurrentOption}{addspace}{}{%
-	\IfBeginWith{\CurrentOption}{linkeverything}{}{%
-		\PassOptionsToPackage{\CurrentOption}{biblatex}%
-	}}%
+		\IfBeginWith{\CurrentOption}{linkeverything}{}{%
+			\PassOptionsToPackage{\CurrentOption}{biblatex}%
+		}}%
 }
 
 % Process the options
@@ -147,22 +148,22 @@
 
 %Replace the old command to get 2 names.
 \DeclareCiteCommand*{\citeauthor}
-  {\boolfalse{citetracker}%
-   \boolfalse{pagetracker}%
-   \usebibmacro{prenote}}
-  {\ifciteindex
-     {\indexnames{labelname}}
-     {}%
-   %If there are 3 or more names print the first, if there are 2 print both.
-   \ifnumgreater{\value{labelname}}{2}
-	 {\printnames[][1-1]{labelname}}{}
+{\boolfalse{citetracker}%
+	\boolfalse{pagetracker}%
+	\usebibmacro{prenote}}
+{\ifciteindex
+	{\indexnames{labelname}}
+	{}%
+	%If there are 3 or more names print the first, if there are 2 print both.
+	\ifnumgreater{\value{labelname}}{2}
+	{\printnames[][1-1]{labelname}}{}
 	\ifnumequal{\value{labelname}}{2}
-	 {\printnames[][1-2]{labelname}}{}
+	{\printnames[][1-2]{labelname}}{}
 	\ifnumequal{\value{labelname}}{1}
-	 {\printnames[][1-1]{labelname}}{}
-  }
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
+	{\printnames[][1-1]{labelname}}{}
+}
+{\multicitedelim}
+{\usebibmacro{postnote}}
 
 
 
@@ -183,10 +184,10 @@
 
 % biblatex-like commands that also print a citation in the margin
 % Usage:
-	% First optional argument is always vertical shift and must be given as an (empty) argument when using following a postnote and/or prenote
-	% Second optional argument is always the postnote if the third argument isn't specified or is the prenote if the third argument is specified (same pattern as the biblatex commands)
-	% Third optional argument is always the postnote
-	% Mandatory argument is always the citation key(s)
+% First optional argument is always vertical shift and must be given as an (empty) argument when using following a postnote and/or prenote
+% Second optional argument is always the postnote if the third argument isn't specified or is the prenote if the third argument is specified (same pattern as the biblatex commands)
+% Third optional argument is always the postnote
+% Mandatory argument is always the citation key(s)
 
 % Command to \cite and print a citation in the margin
 % First optional argument: vertical shift
@@ -268,14 +269,14 @@
 	}%
 	% With this we print the marker in the text and add the item to the bibliography at the end
 	\IfNoValueOrEmptyTF{#2}%
-		{\def\@tempa{\textcite{#4}\kaobiblio@sidecite{#4}}}%
-		{\IfNoValueOrEmptyTF{#3}%
-			{\IfNoValueTF{#3}%
-				{\def\@tempa{\textcite[#2]{#4}\kaobiblio@sidecite{#4}}}%
-				{\def\@tempa{\textcite[#2][]{#4}\kaobook@sidecite{#4}}}% postnote is empty, so pass empty postnote
-			}%
-			{\def\@tempa{\textcite[#2][#3]{#4}\kaobiblio@sidecite{#4}}}%
+	{\def\@tempa{\textcite{#4}\kaobiblio@sidecite{#4}}}%
+	{\IfNoValueOrEmptyTF{#3}%
+		{\IfNoValueTF{#3}%
+			{\def\@tempa{\textcite[#2]{#4}\kaobiblio@sidecite{#4}}}%
+			{\def\@tempa{\textcite[#2][]{#4}\kaobook@sidecite{#4}}}% postnote is empty, so pass empty postnote
 		}%
+		{\def\@tempa{\textcite[#2][#3]{#4}\kaobiblio@sidecite{#4}}}%
+	}%
 	\ifkaobiblio@addspace%
 		\unskip~\@tempa%
 	\else%
@@ -302,26 +303,26 @@
 	}%
 	% With this we print the marker in the text and add the item to the bibliography at the end
 	\IfBooleanTF#1%
-		{\IfNoValueOrEmptyTF{#3}%
-			{\parencite*{#5}\kaobiblio@sidecite{#5}}%
-			{\IfNoValueOrEmptyTF{#4}%
-				{\IfNoValueTF{#4}%
-					{\def\@tempa{\parencite*[#3]{#5}\kaobiblio@sidecite{#5}}}%
-					{\def\@tempa{\parencite*[#3][]{#5}\kaobiblio@sidecite{#5}}}% postnote is empty, so pass empty postnote
-				}%
-				{\def\@tempa{\parencite*[#3][#4]{#5}\kaobiblio@sidecite{#5}}}%
+	{\IfNoValueOrEmptyTF{#3}%
+		{\parencite*{#5}\kaobiblio@sidecite{#5}}%
+		{\IfNoValueOrEmptyTF{#4}%
+			{\IfNoValueTF{#4}%
+				{\def\@tempa{\parencite*[#3]{#5}\kaobiblio@sidecite{#5}}}%
+				{\def\@tempa{\parencite*[#3][]{#5}\kaobiblio@sidecite{#5}}}% postnote is empty, so pass empty postnote
 			}%
+			{\def\@tempa{\parencite*[#3][#4]{#5}\kaobiblio@sidecite{#5}}}%
 		}%
-		{\IfNoValueOrEmptyTF{#3}%
-			{\def\@tempa{\parencite{#5}\kaobiblio@sidecite{#5}}}%
-			{\IfNoValueOrEmptyTF{#4}%
-				{\IfNoValueTF{#4}%
-					{\def\@tempa{\parencite[#3]{#5}\kaobiblio@sidecite{#5}}}%
-					{\def\@tempa{\parencite[#3][]{#5}\kaobiblio@sidecite{#5}}}% postnote is empty, so pass empty postnote
-				}%
-				{\def\@tempa{\parencite[#3][#4]{#5}\kaobiblio@sidecite{#5}}}%
+	}%
+	{\IfNoValueOrEmptyTF{#3}%
+		{\def\@tempa{\parencite{#5}\kaobiblio@sidecite{#5}}}%
+		{\IfNoValueOrEmptyTF{#4}%
+			{\IfNoValueTF{#4}%
+				{\def\@tempa{\parencite[#3]{#5}\kaobiblio@sidecite{#5}}}%
+				{\def\@tempa{\parencite[#3][]{#5}\kaobiblio@sidecite{#5}}}% postnote is empty, so pass empty postnote
 			}%
+			{\def\@tempa{\parencite[#3][#4]{#5}\kaobiblio@sidecite{#5}}}%
 		}%
+	}%
 	\ifkaobiblio@addspace%
 		\unskip~\@tempa%
 	\else%
@@ -337,88 +338,88 @@
 % In biblatex, when citing with the style authoryear or using \textcite, only the year is linked to the reference in the bibliography. Despite the arguments of one of the mantainers of the biblatex package (https://github.com/plk/biblatex/issues/428), some users think that in the author* style the author name should be a link as well. The `linkeverything' option provides an easy way to activate this behaviour.
 
 \ifkaobiblio@linkeverything
-	\xpatchbibmacro{cite}
-		{\usebibmacro{cite:label}%
-		 \setunit{\printdelim{nonameyeardelim}}%
-		 \usebibmacro{cite:labeldate+extradate}}
-		{\printtext[bibhyperref]{%
-			 \DeclareFieldAlias{bibhyperref}{default}%
-			 \usebibmacro{cite:label}%
-			 \setunit{\printdelim{nonameyeardelim}}%
-			 \usebibmacro{cite:labeldate+extradate}}}
-		{}
-		{\PackageWarning{biblatex-patch}
-			 {Failed to patch cite bibmacro}}
+\xpatchbibmacro{cite}
+{\usebibmacro{cite:label}%
+	\setunit{\printdelim{nonameyeardelim}}%
+	\usebibmacro{cite:labeldate+extradate}}
+{\printtext[bibhyperref]{%
+		\DeclareFieldAlias{bibhyperref}{default}%
+		\usebibmacro{cite:label}%
+		\setunit{\printdelim{nonameyeardelim}}%
+		\usebibmacro{cite:labeldate+extradate}}}
+{}
+{\PackageWarning{biblatex-patch}
+	{Failed to patch cite bibmacro}}
 
-	% Include labelname in labelyear link
-	\xpatchbibmacro{cite}
-		{\printnames{labelname}%
-		 \setunit{\printdelim{nameyeardelim}}%
-		 \usebibmacro{cite:labeldate+extradate}}
-		{\printtext[bibhyperref]{%
-			 \DeclareFieldAlias{bibhyperref}{default}%
-			 \printnames{labelname}%
-			 \setunit{\printdelim{nameyeardelim}}%
-			 \usebibmacro{cite:labeldate+extradate}}}
-		{}
-		{\PackageWarning{biblatex-patch}
-			 {Failed to patch cite bibmacro}}
+% Include labelname in labelyear link
+\xpatchbibmacro{cite}
+{\printnames{labelname}%
+	\setunit{\printdelim{nameyeardelim}}%
+	\usebibmacro{cite:labeldate+extradate}}
+{\printtext[bibhyperref]{%
+		\DeclareFieldAlias{bibhyperref}{default}%
+		\printnames{labelname}%
+		\setunit{\printdelim{nameyeardelim}}%
+		\usebibmacro{cite:labeldate+extradate}}}
+{}
+{\PackageWarning{biblatex-patch}
+	{Failed to patch cite bibmacro}}
 
-	% Access hyperref's citation link start/end commands
-	\makeatletter
-	\protected\def\blx@imc@biblinkstart{%
-		\@ifnextchar[%]
-			{\blx@biblinkstart}
-			{\blx@biblinkstart[\abx@field@entrykey]}}
-	\def\blx@biblinkstart[#1]{%
-		\blx@sfsave\hyper@natlinkstart{\the\c@refsection @#1}\blx@sfrest}
-	\protected\def\blx@imc@biblinkend{%
-		\blx@sfsave\hyper@natlinkend\blx@sfrest}
-	\blx@regimcs{\biblinkstart \biblinkend}
-	\makeatother
+% Access hyperref's citation link start/end commands
+\makeatletter
+\protected\def\blx@imc@biblinkstart{%
+	\@ifnextchar[%]
+	{\blx@biblinkstart}
+	{\blx@biblinkstart[\abx@field@entrykey]}}
+\def\blx@biblinkstart[#1]{%
+	\blx@sfsave\hyper@natlinkstart{\the\c@refsection @#1}\blx@sfrest}
+\protected\def\blx@imc@biblinkend{%
+	\blx@sfsave\hyper@natlinkend\blx@sfrest}
+\blx@regimcs{\biblinkstart \biblinkend}
+\makeatother
 
-	\newbool{cbx:link}
+\newbool{cbx:link}
 
-	% Include parentheses around labelyear in \textcite only in
-	% single citations without pre- and postnotes
-	\def\iflinkparens{%
-		\ifboolexpr{ test {\ifnumequal{\value{multicitetotal}}{0}} and
-					 test {\ifnumequal{\value{citetotal}}{1}} and
-					 test {\iffieldundef{prenote}} and
-					 test {\iffieldundef{postnote}} }}
+% Include parentheses around labelyear in \textcite only in
+% single citations without pre- and postnotes
+\def\iflinkparens{%
+	\ifboolexpr{ test {\ifnumequal{\value{multicitetotal}}{0}} and
+		test {\ifnumequal{\value{citetotal}}{1}} and
+		test {\iffieldundef{prenote}} and
+		test {\iffieldundef{postnote}} }}
 
-	\xpatchbibmacro{textcite}
-		{\printnames{labelname}}
-		{\iflinkparens
-			 {\DeclareFieldAlias{bibhyperref}{default}%
-				\global\booltrue{cbx:link}\biblinkstart%
-				\printnames{labelname}}
-			 {\printtext[bibhyperref]{\printnames{labelname}}}}
-		{}
-		{\PackageWarning{biblatex-patch}
-			 {Failed to patch textcite bibmacro}}
+\xpatchbibmacro{textcite}
+{\printnames{labelname}}
+{\iflinkparens
+	{\DeclareFieldAlias{bibhyperref}{default}%
+		\global\booltrue{cbx:link}\biblinkstart%
+		\printnames{labelname}}
+	{\printtext[bibhyperref]{\printnames{labelname}}}}
+{}
+{\PackageWarning{biblatex-patch}
+	{Failed to patch textcite bibmacro}}
 
-	\xpatchbibmacro{textcite}
-		{\usebibmacro{cite:label}}
-		{\iflinkparens
-			 {\DeclareFieldAlias{bibhyperref}{default}%
-				\global\booltrue{cbx:link}\biblinkstart%
-				\usebibmacro{cite:label}}
-			 {\usebibmacro{cite:label}}}
-		{}
-		{\PackageWarning{biblatex-patch}
-			 {Failed to patch textcite bibmacro}}
+\xpatchbibmacro{textcite}
+{\usebibmacro{cite:label}}
+{\iflinkparens
+	{\DeclareFieldAlias{bibhyperref}{default}%
+	\global\booltrue{cbx:link}\biblinkstart%
+	\usebibmacro{cite:label}}
+	{\usebibmacro{cite:label}}}
+	{}
+	{\PackageWarning{biblatex-patch}
+	{Failed to patch textcite bibmacro}}
 
 	\xpretobibmacro{textcite:postnote}
-		{\ifbool{cbx:link}
-			 {\ifbool{cbx:parens}
-					{\bibcloseparen\global\boolfalse{cbx:parens}}
-					{}%
-				\biblinkend\global\boolfalse{cbx:link}}
-			 {}}
-		{}
-		{\PackageWarning{biblatex-patch}
-			 {Failed to patch textcite:postnote bibmacro}}
+	{\ifbool{cbx:link}
+		{\ifbool{cbx:parens}
+			{\bibcloseparen\global\boolfalse{cbx:parens}}
+			{}%
+			\biblinkend\global\boolfalse{cbx:link}}
+		{}}
+	{}
+	{\PackageWarning{biblatex-patch}
+		{Failed to patch textcite:postnote bibmacro}}
 \else
 \fi
 
@@ -433,7 +434,7 @@
 \DeclareCiteCommand{\fullcite}{%
 	\defcounter{maxnames}{99}%
 	\usebibmacro{prenote}}
-	{\clearfield{url}%
+{\clearfield{url}%
 	\clearfield{pages}%
 	\clearfield{pagetotal}%
 	\clearfield{edition}%
