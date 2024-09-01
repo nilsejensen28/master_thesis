@@ -286,13 +286,6 @@ $S$ and $P$ can be thought of as representing a directed line. Finding another s
 	The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
 \end{definition}
 
-\begin{figure}
-	\centering
-	\incfig{TFNP_Structure}
-	\caption[\TFNP-landscape]{Structure of the \TFNP-landscape. Inclusions $\subset$ are indicate by arrows $\rightarrow$.}
-	\label{fig:tfnp_structure}
-\end{figure}
-
 \section{The \Tarski\ Problem}[\Tarski\ Problem]
 \label{sec:tarski_problem}
 
@@ -395,7 +388,7 @@ And\marginnote[-10mm]{We denote by $\winterval{a}{b}$ the set of whole numbers $
 \end{align*}
 The algorithm --- and in particular, our proof of the correctness --- is based on the following observation:
 \begin{remark}[Progress points induce \Tarski-instances]
-    \label{rem:progress_points_and_subsinstances}
+	\label{rem:progress_points_and_subsinstances}
 	Let $L = [N_1] \times \cdots \times [N_d]$ be a complete lattice and $f : L \rightarrow L$ a monotone function. Then:
 	\begin{enumerate}
 		\item If for some $x \in L$ we have $f(x) \leq x$, then $f$ has a fixed point in $L_{\leq x}$.
@@ -433,25 +426,25 @@ By choosing, $K = \lfloor \frac{N_k}{2} \rfloor$ we can find a progress point $x
 	\SetKwFunction{RecursiveTarskiSolver}{RecursiveTarskiSolver}
 	\SetKwProg{Fn}{Function}{:}{}
 	\Fn{\RecursiveTarskiSolver{$f : L \rightarrow L$, $d$}}{
-		\tcc{Binary search in the $d$-th dimension}
-		\Let{l}{0}, \Let{r}{$N_d$} \tcc*[r]{The search space is $[l, r[$}
-		\While{$r - l > 1$}{
-			\Let{$m$}{$\floor{\frac{l + r}{2}}$} \tcc*[r]{Middle of the interval}
-			\If{$d = 1$}{
-				\Let{$x^*$}{$m$}
-			}
-			\Else{
-				\tcc{Solve the $d-1$ dimensional instance}
-				\Let{$x^*$}{\RecursiveTarskiSolver{$f_{d=m}, d-1$}} \;
-			}
-			\If{$f(x^*)[d] \leq x^*[d]$}{
-				\Let{r}{$m$}
-			}
-			\Else{
-				\Let{l}{$m$}
-			}
+	\tcc{Binary search in the $d$-th dimension}
+	\Let{l}{0}, \Let{r}{$N_d$} \tcc*[r]{The search space is $[l, r[$}
+	\While{$r - l > 1$}{
+		\Let{$m$}{$\floor{\frac{l + r}{2}}$} \tcc*[r]{Middle of the interval}
+		\If{$d = 1$}{
+			\Let{$x^*$}{$m$}
 		}
-		\Return{$x^*$}
+		\Else{
+			\tcc{Solve the $d-1$ dimensional instance}
+			\Let{$x^*$}{\RecursiveTarskiSolver{$f_{d=m}, d-1$}} \;
+		}
+		\If{$f(x^*)[d] \leq x^*[d]$}{
+			\Let{r}{$m$}
+		}
+		\Else{
+			\Let{l}{$m$}
+		}
+	}
+	\Return{$x^*$}
 	}
 \end{algorithm}
 
