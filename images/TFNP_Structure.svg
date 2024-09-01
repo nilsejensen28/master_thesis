@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="246.354mm"
+   width="243.14389mm"
    height="52.726608mm"
-   viewBox="0 0 246.35403 52.726608"
+   viewBox="0 0 243.14392 52.726608"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
@@ -35,7 +35,7 @@
      fit-margin-right="0.2"
      fit-margin-bottom="1"
      inkscape:zoom="1.9704153"
-     inkscape:cx="405.75203"
+     inkscape:cx="233.96083"
      inkscape:cy="172.29871"
      inkscape:window-width="1850"
      inkscape:window-height="1016"
@@ -50,11 +50,11 @@
      inkscape:snap-midpoints="true"
      inkscape:snap-nodes="true">
     <sodipodi:guide
-       position="133.70802,49.388949"
+       position="130.49789,49.388947"
        orientation="0,-1"
        id="guide75892" />
     <sodipodi:guide
-       position="30.144133,25.604331"
+       position="26.934004,25.60433"
        orientation="0,-1"
        id="guide91732" />
   </sodipodi:namedview>
@@ -1092,12 +1092,12 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(3.8964179,-12.5651)" />
+     transform="translate(0.68629071,-12.5651)" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     transform="translate(18.853943,-6.4472234)">
+     transform="translate(15.643816,-6.4472234)">
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
@@ -1115,17 +1115,17 @@
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
-       x="-12.629446"
+       x="-11.15029"
        y="35.372425"
        id="text3011-3"
        inkscape:label="FP"><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
-         x="-12.629446"
+         x="-11.15029"
          y="35.372425"
          id="tspan3013-6"><tspan
            style="font-size:5.66751px;stroke-width:0.354219"
-           id="tspan5357-7">\TFP</tspan></tspan></text>
+           id="tspan5357-7">\FP</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
