@@ -54,11 +54,11 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0.96610153,0.09899937){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\TFNP\end{tabular}}}}%
-    \put(0.01868873,0.09902235){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\FP\end{tabular}}}}%
-    \put(0.12466303,0.09947326){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\UEOPL\\\end{tabular}}}}%
-    \put(0.39711063,0.10052831){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\EOPL = \CLS = \PLS \cap \PPAD$\\\end{tabular}}}}%
+    \put(0.01614945,0.09899084){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\FP\end{tabular}}}}%
+    \put(0.14208675,0.09947326){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\UEOPL\\\end{tabular}}}}%
+    \put(0.3976691,0.09933283){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\EOPL = \CLS = \PLS \cap \PPAD$\\\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{TFNP_Structure.pdf}}%
-    \put(0.53150156,0.19944931){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\SOPL= \PLS \cap \PPADS$\\\end{tabular}}}}%
+    \put(0.53150156,0.19871632){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\SOPL= \PLS \cap \PPADS$\\\end{tabular}}}}%
     \put(0.79381909,0.19839428){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PLS\\\end{tabular}}}}%
     \put(0.53213989,0.00630604){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PPAD\\\end{tabular}}}}%
     \put(0.79381909,0.0061636){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}\PPADS\\\end{tabular}}}}%

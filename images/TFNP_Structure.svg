@@ -25,7 +25,7 @@
      showgrid="false"
      width="210mm"
      inkscape:snap-grids="true"
-     inkscape:snap-bbox="true"
+     inkscape:snap-bbox="false"
      inkscape:bbox-paths="false"
      inkscape:bbox-nodes="false"
      inkscape:snap-bbox-edge-midpoints="false"
@@ -34,9 +34,9 @@
      fit-margin-left="0.2"
      fit-margin-right="0.2"
      fit-margin-bottom="1"
-     inkscape:zoom="0.49260382"
-     inkscape:cx="26.390376"
-     inkscape:cy="366.42022"
+     inkscape:zoom="1.9704153"
+     inkscape:cx="383.42171"
+     inkscape:cy="172.80621"
      inkscape:window-width="1850"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -49,43 +49,13 @@
      inkscape:guide-bbox="true"
      inkscape:snap-midpoints="true">
     <sodipodi:guide
-       position="95.506317,50.025098"
-       orientation="-1,0"
-       id="guide75884"
-       inkscape:label=""
-       inkscape:locked="false"
-       inkscape:color="rgb(0,0,255)" />
-    <sodipodi:guide
-       position="142.50956,51.514744"
-       orientation="1,0"
-       id="guide75886" />
-    <sodipodi:guide
-       position="111.53261,15.501185"
-       orientation="0,-1"
-       id="guide75888" />
-    <sodipodi:guide
-       position="3.3346889,32.264912"
-       orientation="0,-1"
-       id="guide75890" />
-    <sodipodi:guide
-       position="111.5326,50.025098"
+       position="127.7945,49.388947"
        orientation="0,-1"
        id="guide75892" />
     <sodipodi:guide
-       position="49.578712,32.888637"
-       orientation="1,0"
-       id="guide75896" />
-    <sodipodi:guide
-       position="18.601759,32.888638"
-       orientation="-1,0"
-       id="guide75898"
-       inkscape:label=""
-       inkscape:locked="false"
-       inkscape:color="rgb(0,0,255)" />
-    <sodipodi:guide
-       position="173.48651,32.260784"
-       orientation="1,0"
-       id="guide75900" />
+       position="24.230614,25.60433"
+       orientation="0,-1"
+       id="guide91732" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -1046,6 +1016,62 @@
          d="M 5.77,0 -2.88,5 V -5 Z"
          id="path42536-11" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path42536-77" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL-73"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path42536-65" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL-39"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path42536-48" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL-29"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path42536-39" />
+    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -1074,75 +1100,71 @@
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
-       x="-8.4468975"
-       y="35.364849"
+       x="-9.0574427"
+       y="35.372425"
        id="text3011-3"
        inkscape:label="FP"><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
-         x="-8.4468975"
-         y="35.364849"
+         x="-9.0574427"
+         y="35.372425"
          id="tspan3013-6"><tspan
            style="font-size:5.66751px;stroke-width:0.354219"
            id="tspan5357-7">\FP</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
-       x="17.033617"
+       x="21.222984"
        y="35.256432"
        id="text3011-3-5"
        inkscape:label="UEOPL"><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
-         x="17.033617"
+         x="21.222984"
          y="35.256432"
          id="tspan3013-6-3">\UEOPL</tspan><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
-         x="17.033617"
+         x="21.222984"
          y="41.750469"
          id="tspan17793" /></text>
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
-       x="82.541054"
-       y="35.002754"
+       x="82.675331"
+       y="35.290195"
        id="text3011-3-5-6"
        inkscape:label="EOPL"><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
-         x="82.541054"
-         y="35.002754"
+         x="82.675331"
+         y="35.290195"
          id="tspan30458">$\EOPL = \CLS = \PLS \cap \PPAD$</tspan><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
-         x="82.541054"
-         y="41.496792"
+         x="82.675331"
+         y="41.784233"
          id="tspan17793-9" /></text>
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3334px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#TriangleOutL);stop-color:#000000;stop-opacity:1"
-       d="m 27.36443,33.569501 h 8.550174"
+       d="M 31.346611,33.569501 H 45.126777"
        id="path33808" />
-    <path
-       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3334px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#TriangleOutL);stop-color:#000000;stop-opacity:1"
-       d="M -3.785237,33.569501 H 4.3093877"
-       id="path33808-7" />
     <text
        xml:space="preserve"
        style="font-size:5.19523px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;stroke-width:0.354219"
        x="114.85407"
-       y="11.218141"
+       y="11.394381"
        id="text3011-3-5-6-0"
        inkscape:label="EOPL"><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
          x="114.85407"
-         y="11.218141"
+         y="11.394381"
          id="tspan30458-3">$\SOPL= \PLS \cap \PPADS$</tspan><tspan
          sodipodi:role="line"
          style="stroke-width:0.354219"
          x="114.85407"
-         y="17.712177"
+         y="17.888416"
          id="tspan17793-9-6" /></text>
     <text
        xml:space="preserve"
@@ -1220,13 +1242,17 @@
        id="path33808-5-7-7-4"
        sodipodi:nodetypes="cc" />
     <path
-       style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3334px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#TriangleOutL-26);stop-color:#000000"
-       d="m 153.88751,9.784886 h 13.31713"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3334px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#TriangleOutL);stop-color:#000000;stop-opacity:1"
+       d="m 143.56385,9.7848865 h 26.5569"
        id="path33808-9" />
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3334px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#TriangleOutL);stop-color:#000000;stop-opacity:1"
        d="m 126.91198,14.612554 39.11881,34.774321"
        id="path33808-5-7-7-7"
        sodipodi:nodetypes="cc" />
+    <path
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3334px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker-end:url(#TriangleOutL);stop-color:#000000;stop-opacity:1"
+       d="M -4.2835848,33.569502 H 9.4965817"
+       id="path33808-6" />
   </g>
 </svg>
