@@ -229,7 +229,7 @@ An $x \in \bitstr^n$ such that either:
 \begin{figure}[ht]
 	\centering
 	\incfig{PPAD_Example}
-	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=3$ (8 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=7$ and $x=1$, aswell as the sources $x=4$ and $x=6$.}\label{fig:ppad_example}
+	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertice $11$ is also a solution because $P(S(11)) = P(7) = 6 \neq 11$.}\label{fig:ppad_example}
 \end{figure}
 
 These boolean circuits represent a directed graph with maximal in and out-degree of one by having an edge from $x$ to $y$ if and only if $S(x) = y$ and $P(y) =
@@ -265,7 +265,7 @@ An $x \in \bitstr^n$ such that either:
 \begin{figure}[ht]
 	\centering
 	\incfig{EOPL_Solution_Example}
-	\caption[Example of an \EOPL\ Problem]{Example of an \EOPL\ Problem with $n=3$ (8 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sink $x=7$, the violation of potential at $x=5$, and the non-standard source $x=4$.}\label{fig:eopl_example}
+	\caption[Example of an \EOPL\ Problem]{Example of an \textsc{End of Potential Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertice $11$ is also a solution because $P(S(11)) = P(7) = 6 \neq 11$. The vertices $2$ and $15$ are violations of potential.}\label{fig:eopl_example}
 \end{figure}
 
 $S$ and $P$ can be thought of as representing a directed line. Finding another source (a non-standard source) is a violation, as a directed line only has one source. The potential serves as a guarantee of acyclicity. Now, we can define the complexity class \EOPL\@.
