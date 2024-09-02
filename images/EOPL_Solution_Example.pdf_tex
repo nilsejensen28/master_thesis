@@ -57,13 +57,13 @@
     \put(0.91697554,0.51576545){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$5$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{EOPL_Solution_Example.pdf}}%
     \put(0.09333933,0.51576545){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$0$\end{tabular}}}}%
-    \put(0.09368572,0.43916422){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=0\end{tabular}}}}%
-    \put(0.258413,0.43916422){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=1\end{tabular}}}}%
-    \put(0.09368572,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=6\end{tabular}}}}%
-    \put(0.258413,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=10\end{tabular}}}}%
-    \put(0.09368572,0.01221659){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=7\end{tabular}}}}%
-    \put(0.258413,0.01221659){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=8\end{tabular}}}}%
-    \put(0.42314021,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=9\end{tabular}}}}%
+    \put(0.09368572,0.43916422){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=0$\end{tabular}}}}%
+    \put(0.258413,0.43916422){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=1$\end{tabular}}}}%
+    \put(0.09368572,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=6$\end{tabular}}}}%
+    \put(0.258413,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=10$\end{tabular}}}}%
+    \put(0.09368572,0.01221659){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=7$\end{tabular}}}}%
+    \put(0.258413,0.01221659){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=8$\end{tabular}}}}%
+    \put(0.42314021,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=9$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{EOPL_Solution_Example.pdf}}%
     \put(0.09333933,0.26720056){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$6$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{EOPL_Solution_Example.pdf}}%
@@ -93,14 +93,14 @@
     \put(0,0){\includegraphics[width=\unitlength,page=16]{EOPL_Solution_Example.pdf}}%
     \put(0.09333933,0.10121485){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$10$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=17]{EOPL_Solution_Example.pdf}}%
-    \put(0.58786754,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=11\end{tabular}}}}%
-    \put(0.75259475,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=12\end{tabular}}}}%
-    \put(0.75259475,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=4\end{tabular}}}}%
-    \put(0.58786754,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=2\end{tabular}}}}%
-    \put(0.42314021,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=3\end{tabular}}}}%
-    \put(0.91732202,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=5\end{tabular}}}}%
-    \put(0.91732202,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=13\end{tabular}}}}%
-    \put(0.91732202,0.01221663){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=14\end{tabular}}}}%
-    \put(0.75259475,0.01221663){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=15\end{tabular}}}}%
+    \put(0.58786754,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=11$\end{tabular}}}}%
+    \put(0.75259475,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=12$\end{tabular}}}}%
+    \put(0.75259475,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=4$\end{tabular}}}}%
+    \put(0.58786754,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=2$\end{tabular}}}}%
+    \put(0.42314021,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=3$\end{tabular}}}}%
+    \put(0.91732202,0.43916423){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=5$\end{tabular}}}}%
+    \put(0.91732202,0.34756993){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=13$\end{tabular}}}}%
+    \put(0.91732202,0.01221663){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=14$\end{tabular}}}}%
+    \put(0.75259475,0.01221663){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$V=15$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

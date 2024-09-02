@@ -12,4 +12,4 @@ read:
 	evince build/${filename}.pdf &
 
 clean:
-	rm -f build/${filename}.{ps,pdf,log,aux,out,dvi,bbl,blg,nls,nlo,ist,idx}
+	rm -f -r build
