@@ -253,9 +253,9 @@ Two boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$, and a boolean cir
 }{
 An $x \in \bitstr^n$ such that either:
 \begin{itemize}
-	\item $P(S(x)) \neq x$ ($x$ is a sink)
-	\item $S(P(x)) \neq x \neq 0^n$ ($x$ is a \define{non-standard source})
-	\item $S(x) \neq x$, $P(S(x)) = x$ and $V(S(x)) \leq V(x)$ (violation of the monoticity of the potential)
+	\itemspecial{S1} $P(S(x)) \neq x$ ($x$ is a sink)
+	\itemspecial{S2} $S(P(x)) \neq x \neq 0^n$ ($x$ is a \define{non-standard source})
+	\itemspecial{V1} $S(x) \neq x$, $P(S(x)) = x$ and $V(S(x)) \leq V(x)$ (violation of the monoticity of the potential)
 \end{itemize}
 }
 \marginnote[-50mm]{Here, $S$ can be thought of as giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.
@@ -264,7 +264,7 @@ An $x \in \bitstr^n$ such that either:
 \begin{figure}[ht]
 	\centering
 	\incfig{EOPL_Solution_Example}
-	\caption[Example of an \EOPL\ Problem]{Example of an \textsc{End of Potential Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertex 11 is also technically a sink-solution because $P(S(11)) = P(7) = 6 \neq 11$. The vertices $2$ and $15$ are violations of potential.}\label{fig:eopl_example}
+	\caption[Example of an \EOPL\ Problem]{Example of an \textsc{End of Potential Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions \textbf{(S1)} are the sinks $x=5$, $x=9$ and $x=11$. The solutions \textbf{(S2)} are the non-standard sources $x=6$ and $x=10$. The vertices $2$ and $15$ are violations of the potential \textbf{(V1)}.}\label{fig:eopl_example}
 \end{figure}
 
 $S$ and $P$ can be thought of as representing a directed line. Finding another source (a non-standard source) is a violation, as a directed line only has one source. The potential serves as a guarantee of acyclicity. Now, we can define the complexity class \EOPL\@.
