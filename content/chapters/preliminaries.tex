@@ -221,15 +221,15 @@ Boolean circuit $S, P : \bitstr^n \rightarrow \bitstr^n$ such that $P(0^n) = 0^n
 \boxmarginnote{Here, $S$ can be thought of as giving the successor of a vertex, and $P$ as giving the predecessor of a vertex.}
 An $x \in \bitstr^n$ such that either:
 \begin{itemize}
-	\item $P(S(x)) \neq x$ ($x$ is a sink) or
-	\item $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
+	\itemspecial{S1} $P(S(x)) \neq x$ ($x$ is a sink) or
+	\itemspecial{S2} $S(P(x)) \neq x \neq 0^n$ ($x$ is a non non-standard source)
 \end{itemize}
 }
 
 \begin{figure}[ht]
 	\centering
 	\incfig{PPAD_Example}
-	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertex 11 is also technically a sink-solution because $P(S(11)) = P(7) = 6 \neq 11$.}\label{fig:ppad_example}
+	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions \textbf{(S1)} are the sinks $x=5$, $x=9$ and $x=11$. The solutions \textbf{(S2)} are the non-standard sources $x=6$ and $x=10$.}\label{fig:ppad_example}
 \end{figure}
 
 These boolean circuits represent a directed graph with maximal in and out-degree of one by having an edge from $x$ to $y$ if and only if $S(x) = y$ and $P(y) =
