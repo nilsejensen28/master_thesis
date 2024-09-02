@@ -1,21 +1,20 @@
 \setchapterpreamble[u]{\margintoc}
-\chapter{Reducing \Tarski\ to \PPAD}
-\label{ch:ppad_reduction}
+\chapter{Reducing \Tarski\ to \PPAD}\label{ch:ppad_reduction}
 
-This chapter explores the membership of \Tarski\ in the complexity class \PPAD. We begin by presenting a high-level overview of an established proof of the reduction of this problem to \Brouwer~\cite{etessami_tarskis_2020}. We subsequently introduce a novel problem, \Tarskistar, which facilitates a divide-and-conquer approach to solving \Tarski\ by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski's membership in \PPAD\ using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach simplifies the proof and sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
+This chapter explores the membership of \Tarski\ in the complexity class \PPAD\@. We begin by presenting a high-level overview of an established proof of the reduction of this problem to \Brouwer~\cite{etessami_tarskis_2020}. We subsequently introduce a novel problem, \Tarskistar, which facilitates a divide-and-conquer approach to solving \Tarski\ by leveraging the structure of the function $f$. This new formulation allows us to provide an alternative proof of \Tarski's membership in \PPAD\ using \textit{Sperner's Lemma} instead of the traditional \textit{Brouwer's Fixed Point Theorem}. This approach simplifies the proof and sets the stage for further reduction of \Tarskistar\ to \EOPL\ in the subsequent chapter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Presentation of the known reduction of Tarski to PPAD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Presentation of the known reduction of \Tarski\ to \PPAD}[Known reduction to \PPAD]
 
-We want to give a high-level presentation of the proof of \Tarski\ membership in \PPAD\ from \sidecite{etessami_tarskis_2020}, which will help us motivate the introduction of \Tarskistar\ and the subsequent use of \textit{Sperner's Lemma}. The proof given by Etessami et al.\ relies on \textit{Brouwer's fixed point theorem}, which we introduce below.
+We want to give a high-level presentation of the proof of \Tarski\ membership in \PPAD\ from~\sidecite{etessami_tarskis_2020}, which will help us motivate the introduction of \Tarskistar\ and the subsequent use of \textit{Sperner's Lemma}. The proof given by Etessami et al.\ relies on \textit{Brouwer's fixed point theorem}, which we introduce below.
 
 \begin{theorem}[Brouwer's fixed point theorem]
 	Let $K \subset \R^d$ be a compact, convex set. Then every continuous function $f : K \rightarrow K$ has a fixed point $x^*  \in K$, i.e.\ $f(x^*) = x^*$.
 \end{theorem}
 
-The original proof can be found in \sidecite{brouwer_uber_1911}, and a more straightforward proof relying on \textsc{Sperner's Lemma} can be found in \sidecite{aigner_proofs_2018}. This theorem gives rise to a total search problem, which we call \Brouwer:
+The original proof can be found in~\sidecite{brouwer_uber_1911}, and a more straightforward proof relying on \textsc{Sperner's Lemma} can be found in~\sidecite{aigner_proofs_2018}. This theorem gives rise to a total search problem, which we call \Brouwer:
 
 \marginnote{We leave out the technical detail of how this function is given using boolean circuits and how precise the output needs to be, as it is irrelevant for this high-level presentation.}
 \problem{Brouwer}{
@@ -24,21 +23,20 @@ A continuous function $f : K \rightarrow K$.
 A fixed point $x^* \in K$ such that $f(x^*) = x^*$.
 }
 
-The problem \Brouwer\ was first introduced and shown to be \PPAD-complete in \sidecite{papadimitriou_complexity_1994-1}, meaning that it suffices to reduce \Tarski\ to \Brouwer\ in order to show that \Tarski\ is in \PPAD. We will construct a Turing reduction of \Tarski\ to \Brouwer, which suffice as \PPAD\ is closed under Turing reductions \sidecite{buss_propositional_2012}.
+The problem \Brouwer\ was first introduced and shown to be \PPAD-complete in~\sidecite{papadimitriou_complexity_1994}, meaning that it suffices to reduce \Tarski\ to \Brouwer\ in order to show that \Tarski\ is in \PPAD\@. We will construct a Turing reduction of \Tarski\ to \Brouwer, which suffice as \PPAD\ is closed under Turing reductions~\sidecite{buss_propositional_2012}.
 
-The reduction extends the discrete function $f$ to a function $\Tilde{f} : [0, 2^n - 1]^d \rightarrow [0, 2^n - 1]^d$, such that $\Tilde{f}$ interpolates the lattice function $f$, is piecewise linear between lattice points, and hence continuous. The authors achieve this by using a simplicial decomposition of each cell of the lattice. Now we have an instance of \Brouwer, and hence, we can find a fixed point $x^*$ of $\Tilde{f}$. Of course, this fixed point does not need to be \define{integral}\marginnote{We call a point \emph{integral} if it belongs to the original lattice.}.
-The critical insight is that we can use this fixed point to reduce the search area for an integral fixed point by at least half or find a violation of monotonicity. In particular, either there is a fixed point in both $\{x \in [2^n]^d : x \geq x^*\}$ and $\{x \in [2^n]^d : x \leq x^*\}$, or there is a violation of monotonicity in the cell containing $x^*$.
+The reduction extends the discrete function $f$ to a function $\Tilde{f} : {[0, 2^n - 1]}^d \rightarrow {[0, 2^n - 1]}^d$, such that $\Tilde{f}$ interpolates the lattice function $f$, is piecewise linear between lattice points, and hence continuous. The authors achieve this by using a simplicial decomposition of each cell of the lattice. Now we have an instance of \Brouwer, and hence, we can find a fixed point $x^*$ of $\Tilde{f}$. Of course, this fixed point does not need to be \define{integral}\marginnote{We call a point \emph{integral} if it belongs to the original lattice.}.
+The critical insight is that we can use this fixed point to reduce the search area for an integral fixed point by at least half or find a violation of monotonicity. In particular, either there is a fixed point in both $\{x \in {[2^n]}^d : x \geq x^*\}$ and $\{x \in {[2^n]}^d : x \leq x^*\}$, or there is a violation of monotonicity in the cell $x^*$.
 We can repeat this procedure, always halving the search area, which allows us to solve a \Tarski\ instance using at most $\BigO{d \cdot n}$ calls to \Brouwer.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introducing Tarskistar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introducing \Tarskistar}
-\label{sec:introducing_tarskistar}
+\section{Introducing \Tarskistar}\label{sec:introducing_tarskistar}
 
-In the previous section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide-and-conquer} strategy, for instance, used in \sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
+In the previous section, we have seen that \Tarski\ can be reduced to a polynomial number of \Brouwer\ instances. We want to study a single such reduction to give an alternative proof that \Tarski\ is in \PPAD\@. In order to do this, we introduce a new problem, \Tarskistar. This problem can be thought of as a subproblem towards solving \Tarski. A standard strategy to solve \Tarski\ is to use a \emph{divide-and-conquer} strategy, for instance, used in~\sidecite{etessami_tarskis_2020}, and presented previously in \cref{alg:recursive_tarski_solver}, of \cref{sec:tarski_algorithms}. We want to construct a problem that allows us to divide the \Tarski\ problem into two smaller problems, where solving the smaller of the two leads to a solution.
 
-For the sake of generality and in order to achieve more precise proofs in the following, we introduce the problem on the integer lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$ for all $i \in \{1, \dots, d\}$. We propose the following problem:
+For the sake of generality and in order to achieve more precise proofs in the following, we introduce the problem on the integer lattice $L = N_1 \times \cdots \times N_d$, such that $N_i \leq 2^n$ for all $i \in \{1, \dots, d\}$. We propose the following problem:
 \problem{\Tarskistar}{
 A boolean circuit $f: L \rightarrow L$.
 }{
@@ -54,7 +52,7 @@ We want to show that \Tarskistar\ is, in a sense, a subproblem of \Tarski.
 	An instance of \Tarski\ can be solved using $\BigO{d\cdot n}$ calls to \Tarskistar\ and up to $\BigO{d}$ additional function evaluations.
 \end{claim}
 \begin{proof}
-	We will show that we can use a single call of \Tarskistar\ to either find a violation of monotonicity, a fixpoint, or an instance of \Tarski\, which has at most half as many points and must contain a solution. Let $x, y$ be the two points which a Turing machine solving \Tarskistar on a function $f$ outputs. We proceed by case distinction:
+	We will show that we can use a single call of \Tarskistar\ to either find a violation of monotonicity, a fixpoint, or an instance of \Tarski\, which has at most half as many points and must contain a solution. Let $x, y$ be the two points which a Turing machine solving \Tarskistar\ on a function $f$ outputs. We proceed by case distinction:
 	\begin{case}{1}
 		We are done if $f(x) = x$ or $f(y) = y$ because we have found a fixpoint.
 	\end{case}
@@ -79,17 +77,17 @@ We want to show that \Tarskistar\ is, in a sense, a subproblem of \Tarski.
 
 For the sake of completeness we should also note that \Tarskistar\ many-to-one reduces to \Tarski. Indeed, every \Tarskistar\ instance also defines a \Tarski\ instance. Solving this \Tarski-instance immediately yields a solution to the \Tarskistar-instance: if the solution is a violation of monotonicity, then it is also a solution of the \Tarski-instance; if the solution is a fixpoint $x^*$ then $x=y=x^*$ is a solution to the \Tarskistar-instance.
 
-Now that we know that \Tarskistar\ is a good stepping stone towards solving \Tarski, we want to investigate why \Tarskistar\ lies in \PPAD.
+Now that we know that \Tarskistar\ is a good stepping stone towards solving \Tarski, we want to investigate why \Tarskistar\ lies in \PPAD\@.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Sperner's Lemma
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sperner's Lemma}
 
-This section will discuss how one can prove that \Tarskistar\ lies in \PPAD. Rather than employing \textit{Brouwer's fixed point theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analog, \textit{Sperner's Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
+This section will discuss how one can prove that \Tarskistar\ lies in \PPAD\@. Rather than employing \textit{Brouwer's fixed point theorem} --- a cornerstone of continuous topology --- we pivot to its discrete analog, \textit{Sperner's Lemma}, a foundational result in combinatorial topology. This approach is particularly apt for two main reasons:
 \begin{itemize}
 	\item We are working on a discrete lattice, so it seems more natural to use a discrete tool.
-	\item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ to \Sperner\ \sidecite{papadimitriou_complexity_1994-1}. Hence, by reducing to \Brouwer, we introduce continuity into the problem, which is unnecessary, as it gets removed again behind the scenes.
+	\item Papadimitriou proved that \Brouwer\ is \PPAD-complete by reducing \Brouwer\ to \Sperner\ \sidecite{papadimitriou_complexity_1994}. Hence, by reducing to \Brouwer, we introduce continuity into the problem, which is unnecessary, as it gets removed again behind the scenes.
 \end{itemize}
 
 We aim to apply \textit{Sperner's Lemma} on the integer lattice. Using this tool is not directly possible, as \textit{Sperner's Lemma} is defined on a simplicial decomposition of a simplex. Hence, we will first introduce \textit{Sperner's Lemma} for simplices and then show how it can be adapted to work on an integer lattice. We will then formally introduce the total problem \Sperner.
@@ -101,13 +99,12 @@ Before we introduce the Lemma itself, we want to define the setting of the resul
 \begin{figure}[ht]
 	\centering
 	\incfig{Sperner_Setup_Example}
-	\caption[Setup for \textsc{Sperner's Lemma}]{Setup for \textsc{Sperner's Lemma} in the 3-dimensional case. The large simplex spanned by $v_0, v_1, v_2, v_3$ is subdivided into smaller simplices.}
-	\label{fig:sperner_setup_example}
+	\caption[Setup for \textsc{Sperner's Lemma}]{Setup for \textsc{Sperner's Lemma} in the 3-dimensional case. The large simplex spanned by $v_0, v_1, v_2, v_3$ is subdivided into smaller simplices.}\label{fig:sperner_setup_example}
 \end{figure}
 
 Now we introduce a coloring $c$ of the vertices of this subdivision with colors $\{0, 1, \dots, d\}$. We want to enforce that the vertices $v_i$ of the large simplex are colored with color $i$ and that the vertices on a face $\{v_{i_0}, \dots, v_{i_k}\}$ are colored with colors $i_0, \dots, i_k$. We give an example of such a coloring in 2 dimensions in \cref{fig:sperner_lemma_example}.
 
-We now introduce Sperner's Lemma, which was first proven in \sidecite{sperner_neuer_1928}, and for which a more modern proof can be found in \sidecite{aigner_proofs_2018}.
+We now introduce Sperner's Lemma, which was first proven in~\sidecite{sperner_neuer_1928}, and for which a more modern proof can be found in~\sidecite{aigner_proofs_2018}.
 \begin{theorem}[Sperner's Lemma]
 	Suppose a $d$-dimensional simplex with vertices $v_0, \dots, v_d$ is subdivided into smaller simplices. Now color every vertex with a color $\set{0, \dots, d}$ such that $v_i$ is colored $i$, and the vertices on a face $\set{v_{i_0}, \dots, v_{i_k}}$ are colored with colors from the set $\set{i_0, \dots, i_k}$. Then, there is a subsimplex with vertices of every color from the set $\set{0, 1, \dots, d}$.
 \end{theorem}
@@ -117,19 +114,17 @@ We give an example of a 2-dimensional simplex, subdivided into smaller simplices
 \begin{figure}[ht]
 	\centering
 	\incfig{Sperners_Lemma_Example}
-	\caption[Example of \textsc{Sperners Lemma}]{Example of \textsc{Sperners Lemma} in the two-dimensional case, with three colors: orange (0), purple (1), and blue (2). The subsimplex spanned by $v_0$ and $v_1$ only contains blue and purple vertices, the subsimplex spanned by $v_1$ and $v_2$ contains only purple and blue vertices, and the subsimplex spanned by $v_0$ and $v_2$ contains only orange and blue vertices. \textit{Sperner's Lemma} implies that there must be a subsimplex (colored in green) containing all colors.}
-	\label{fig:sperner_lemma_example}
+	\caption[Example of \textsc{Sperners Lemma}]{Example of \textsc{Sperners Lemma} in the two-dimensional case, with three colors: orange (0), purple (1), and blue (2). The subsimplex spanned by $v_0$ and $v_1$ only contains blue and purple vertices, the subsimplex spanned by $v_1$ and $v_2$ contains only purple and blue vertices, and the subsimplex spanned by $v_0$ and $v_2$ contains only orange and blue vertices. \textit{Sperner's Lemma} implies that there must be a subsimplex (colored in green) containing all colors.}\label{fig:sperner_lemma_example}
 \end{figure}
 
 \subsection{Sperner's Lemma for an integer lattice}[on Lattices]
 
 In the previous section, we introduced \textit{Sperner's Lemma} for a large outer simplex. We want to construct a \TFNP\ problem, which captures the finding of the subsimplex containing all colors. The challenge here is that encoding the structure of this simplex is not straightforward, and hence, defining circuits that encode the setting of the problem will be difficult. Furthermore, our final goal is to reduce \Tarskistar\ to the problem of finding a subsimplex containing all colors. In this case, our setting is not a large outer simplex but an integer lattice.
 
-We want to apply \textit{Sperner's Lemma} to an integer lattice for these reasons. We proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \dots \times [N_d]$, we subdivide each cell into simplices\sidenote{How we do this is not relevant in this chapter but will be discussed in the next chapter.}. We need a technical lemma, which states that the simplicial complex we obtain can be deformed into a large outer simplex.
+We want to apply \textit{Sperner's Lemma} to an integer lattice for these reasons. We proceed as follows: We take the $d$-dimensional lattice $L = [N_1] \times \cdots \times [N_d]$, we subdivide each cell into simplices\sidenote{How we do this is not relevant in this chapter but will be discussed in the next chapter.}. We need a technical lemma, which states that the simplicial complex we obtain can be deformed into a large outer simplex.
 
-\begin{lemma}[Simplicial deformation of integer lattice]
-	\label{lem:simplicial_deformation}
-	Let $L = [N_1] \times \dots \times [N_d]$ be a $d$-dimensional lattice. We subdivide each cell into simplices. Then, there is a deformation of the lattice into a large outer simplex.
+\begin{lemma}[Simplicial deformation of integer lattice]\label{lem:simplicial_deformation}
+	Let $L = [N_1] \times \cdots \times [N_d]$ be a $d$-dimensional lattice. We subdivide each cell into simplices. Then, there is a deformation of the lattice into a large outer simplex.
 \end{lemma}
 \begin{proof}
 	We start by choosing the vertices of the lattice which will form the outer simplex. Consider the following $d+1$ vertices:
@@ -140,11 +135,11 @@ We want to apply \textit{Sperner's Lemma} to an integer lattice for these reason
 		    & \vdots                  \\
 		v_d & = (0, \dots, 0, N_d)
 	\end{align*}
-	Now, we need to discuss how we can deform the lattice into this simplex. The idea is the following: Every point on the boundary of the lattices should be moved to the boundary of the simplex. The points in the interior of the lattice should be moved to the interior of the simplex. We can do this by a linear interpolation between the two points. We now give the construction of the deformation function 
-    \begin{align*}
-         D : [0, N_1] \times \cdots \times [0, N_d] \rightarrow [0, N_1] \times \cdots \times [0, N_d]
-    \end{align*}
-    Notice that we define the deformation function for the hypercube $H = [0, N_1] \times \cdots \times [0, N_d]$ for simplicity. The deformation of the lattice then immediately follows by restricting the deformation function to the lattice.
+	Now, we need to discuss how we can deform the lattice into this simplex. The idea is the following: Every point on the boundary of the lattices should be moved to the boundary of the simplex. The points in the interior of the lattice should be moved to the interior of the simplex. We can do this by a linear interpolation between the two points. We now give the construction of the deformation function
+	\begin{align*}
+		D : [0, N_1] \times \cdots \times [0, N_d] \rightarrow [0, N_1] \times \cdots \times [0, N_d]
+	\end{align*}
+	Notice that we define the deformation function for the hypercube $H = [0, N_1] \times \cdots \times [0, N_d]$ for simplicity. The deformation of the lattice then immediately follows by restricting the deformation function to the lattice.
 
 	Let $x = (x_1, \dots, x_d)$ be a point on the boundary of the hypercube $H$, i.e.\ there is a $i \in \set{1, \dots, d}$ such that $x_i = 0$ or $x_i = N_i$. Notice that we can write:
 	\begin{align*}
@@ -154,7 +149,7 @@ We want to apply \textit{Sperner's Lemma} to an integer lattice for these reason
 	\begin{align*}
 		D(x) = \frac{1}{\norm{\lambda}_1} \cdot \sum_{i=1}^{d} \lambda_i \cdot v_i \quad \text{for $x \neq (0, \dots, 0)$}
 	\end{align*}
-    and $D((0, \dots, 0)) = (0, \dots, 0)$. We immediately notice that if $x$ is on the boundary of the hypercube, then $D(x)$ is on the boundary of the simplex. We can now define the deformation function for the interior of the hypercube by linear interpolation. Let $y$ be a point in the interior of the hypercube; then we can write: $y = \gamma \cdot x$, for some $x$ on the boundary of the hypercube and $\gamma \in [0, 1]$. We can now define the deformation function for the interior of the hypercube as follows:
+	and $D((0, \dots, 0)) = (0, \dots, 0)$. We immediately notice that if $x$ is on the boundary of the hypercube, then $D(x)$ is on the boundary of the simplex. We can now define the deformation function for the interior of the hypercube by linear interpolation. Let $y$ be a point in the interior of the hypercube; then we can write: $y = \gamma \cdot x$, for some $x$ on the boundary of the hypercube and $\gamma \in [0, 1]$. We can now define the deformation function for the interior of the hypercube as follows:
 	\begin{align*}
 		D(y) = \gamma \cdot D(x)
 	\end{align*}
@@ -166,39 +161,37 @@ We give an example of such a subdivision in the 3-dimensional case in \cref{fig:
 \begin{figure}
 	\centering
 	\incfig{Sperner_Lattice_Example}
-	\caption[Example of a simplicial decomposition of a lattice]{Example of the simplicial decomposition of a lattice in the three-dimensional case on the left, and the equivalent simplicial decomposition on the right of a simplex $v_0, v_1, v_2, v_3$.}
-	\label{fig:sperner_lattice_example}
+	\caption[Example of a simplicial decomposition of a lattice]{Example of the simplicial decomposition of a lattice in the three-dimensional case on the left, and the equivalent simplicial decomposition on the right of a simplex $v_0, v_1, v_2, v_3$.}\label{fig:sperner_lattice_example}
 \end{figure}
 
-Assuming that we color all vertices of the lattice with colors $\set{0, \dots, d}$, such that $v_i$ is colored $i$, and every vertex $x$ with $x[i] = 0$, is \textit{not} colored $i$ for $i \in \set{1, \dots, d}$. Then, we can apply \textit{Sperner's Lemma} to this simplicial decomposition of the lattice, and we will find a simplex that contains all colors. Of course, because every subsimplex is included in exactly one cell by construction, there must be a cell that contains all colors. This motivates the definition of the total problem \Sperner, which was introduced in \sidecite{papadimitriou_complexity_1994-1}. We introduce the problem for a general lattice $L = N_1 \times \dots \times N_d$, such that $N_i \leq 2^n$, and define distinguished vertices $v_0, \dots, v_d$ given by\marginnote{$\delta_{i, j}$ is the Kronecker delta given by: \begin{align*}
-    \delta_{i, j} = \begin{cases}
-        0 &\text{ if $i \neq j$,}\\
-        1 &\text{ if $i = j$}
-    \end{cases}
-\end{align*}}
+Assuming that we color all vertices of the lattice with colors $\set{0, \dots, d}$, such that $v_i$ is colored $i$, and every vertex $x$ with $x[i] = 0$, is \textit{not} colored $i$ for $i \in \set{1, \dots, d}$. Then, we can apply \textit{Sperner's Lemma} to this simplicial decomposition of the lattice, and we will find a simplex that contains all colors. Of course, because every subsimplex is included in exactly one cell by construction, there must be a cell that contains all colors. This motivates the definition of the total problem \Sperner, which was introduced in~\sidecite{papadimitriou_complexity_1994}. We introduce the problem for a general lattice $L = N_1 \times \cdots \times N_d$, such that $N_i \leq 2^n$, and define distinguished vertices $v_0, \dots, v_d$ given by\marginnote{$\delta_{i, j}$ is the Kronecker delta given by: \begin{align*}
+		\delta_{i, j} = \begin{cases}
+			                0 & \text{ if $i \neq j$,} \\
+			                1 & \text{ if $i = j$}
+		                \end{cases}
+	\end{align*}}
 \begin{align*}
-    v_i[j] &:= \delta_{i, j} \dots N_j
+	v_i[j] & := \delta_{i, j} \dots N_j
 \end{align*}
 which correspond to the outer vertices of the simplex. The \Sperner-problem is then given by:
 
 \problem{\Sperner}{
 A coloring $c : L \rightarrow \set{0, \dots, d}$ of the vertices of $L$, such that:
 \begin{itemize}
-    \item for every $i \in \set{1, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$ and
-    \item for all $i \in \set{0, \dots, d}$ we have $c(v_i) = i$.
+	\item for every $i \in \set{1, \dots, d}$ the the vertices $\set{x \in L : x[i] = 0}$ are not colored $i$ and
+	\item for all $i \in \set{0, \dots, d}$ we have $c(v_i) = i$.
 \end{itemize}
 }{
 Either:
 \begin{itemize}
-    \item A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$, or;
-    \item A violation of the assumptions of the input.
+	\item A cell $C$ such that for all $i \in \set{0, \dots, d}$ there is a vertex $x \in C$ such that $c(x) = i$, or;
+	\item A violation of the assumptions of the input.
 \end{itemize}
 }
 
-\subsection{Reducing \Sperner\ to \EndOfLine}[\Sperner\ to \EndOfLine\ reduction]
-\label{sec:sperner_eol_reduction}
+\subsection{Reducing \Sperner\ to \EndOfLine}[\Sperner\ to \EndOfLine\ reduction]\label{sec:sperner_eol_reduction}
 
-This section will discuss the reduction of \Sperner\ to \EndOfLine. This reduction was first constructed in the three-dimensional case in \sidecite{papadimitriou_complexity_1994-1}. The same paper also gives the idea of the generalization to the $d$-dimensional case. In the following section, we will give the complete construction of the reduction. This is important as we will use this reduction to argue as to why \Tarskistar\ is in \EOPL.
+This section will discuss the reduction of \Sperner\ to \EndOfLine. This reduction was first constructed in the three-dimensional case in~\sidecite{papadimitriou_complexity_1994}. The same paper also gives the idea of the generalization to the $d$-dimensional case. In the following section, we will give the complete construction of the reduction. This is important as we will use this reduction to argue as to why \Tarskistar\ is in \EOPL\@.
 
 \begin{theorem}[\Sperner\ is in \PPAD]
 	\Sperner\ reduces to \EndOfLine.
@@ -212,8 +205,7 @@ Now, there are two problems we need to discuss. First, once again, using a cell 
 \begin{figure}
 	\centering
 	\incfig{Sperner_EoL_Reduction}
-	\caption[Reduction of \Sperner\ to \EndOfLine]{Reduction of two-dimensional \Sperner\ to \EndOfLine. The circuit $S$ is given by the full arrows and $S$ by the dashed arrows. The solutions are colored green. The designated source is colored blue.}
-	\label{fig:sperner_eol_reduction}
+	\caption[Reduction of \Sperner\ to \EndOfLine]{Reduction of two-dimensional \Sperner\ to \EndOfLine. The circuit $S$ is given by the full arrows and $S$ by the dashed arrows. The solutions are colored green. The designated source is colored blue.}\label{fig:sperner_eol_reduction}
 \end{figure}
 
 \begin{proof}
@@ -232,7 +224,7 @@ Now, there are two problems we need to discuss. First, once again, using a cell 
 
 	Now, we are ready to proceed with the induction. Assume the theorem holds for all dimensions $1, \dots, d-1$. We will prove it for dimension $d$.
 
-	Consider the simplicial subdivision of the colored lattice. A given cell is subdivided into $d!$ simplices\marginnote{A more detailed discussion of this is discussed in \cref{sec:freudenthal_simplicial_decomposition}.}. It follows that we have $N = N_1 \cdot \cdots \cdot N_d \cdot d!$ simplices, which we can number from $0$ to $N-1$.
+	Consider the simplicial subdivision of the colored lattice. A given cell is subdivided into ${d!}$ simplices\marginnote{A more detailed discussion of this is discussed in \cref{sec:freudenthal_simplicial_decomposition}.}. It follows that we have $N = N_1 \cdot \cdots \cdot N_d \cdot {d!}$ simplices, which we can number from $0$ to $N-1$.
 
 	We now can define the circuit $S, P : [N] \rightarrow [N]$. For a given $d$-simplex $x \in [N]$, we consider the color of the vertices. We proceed by case distinction:
 	\begin{case}{1}
@@ -247,13 +239,12 @@ Now, there are two problems we need to discuss. First, once again, using a cell 
 	Notice that we can compute $S$ and $P$ in polynomial time with respect to $d$. We still need to define a distinguished source. Finding a distinguished source can be seen as finding a face colored with all colors $\set{0, \dots, d-1}$ on the face spanned by the vertices $v_0, \dots, v_{d-1}$. We can do this by solving a $d-1$ dimensional \Sperner\ instance on this face. By induction hypothesis, this can be reduced to an \EndOfLine\ instance. We can now define the distinguished source as the source of this \EndOfLine\ instance and slightly modify the circuit $S$ and $P$ to combine this \EndOfLine\ instance with the circuits $S$ and $P$ we have constructed above. This concludes the proof.
 \end{proof}
 
-Next, we will use this problem to show that \Tarskistar\ reduces to \Sperner\ and hence lies in \PPAD.
+Next, we will use this problem to show that \Tarskistar\ reduces to \Sperner\ and hence lies in \PPAD\@.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Reducing Tarskistar to Sperner
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Reducing \Tarskistar\ to \Sperner}
-\label{sec:tarskistar_to_sperner}
+\section{Reducing \Tarskistar\ to \Sperner}\label{sec:tarskistar_to_sperner}
 
 For us to be able to use \textsc{Sperner's} Lemma on our \Tarskistar\ instances, we need to define a coloring of the vertices of $L$. We propose the following coloring $c : L \rightarrow \set{0, \dots, d}$:
 \marginnote{A vertex colored 0 indicates that the function points \emph{weakly forwards} in all dimensions, a vertex colored $i$ for $i \geq 1$ indicates that the function points \emph{backwards} in at least the $i$-th dimension.}
@@ -270,16 +261,15 @@ For us to be able to use \textsc{Sperner's} Lemma on our \Tarskistar\ instances,
 \begin{figure}[ht]
 	\centering
 	\incfig{Tarski_Coloring_Example}
-	\caption[Coloring of a \Tarskistar instance]{Coloring of a \Tarskistar\ instance on a 2-dimensional lattice. The vertices colored 0 indicate that the function points weakly forward in all dimensions, the vertices colored 1 indicate that the function points backward in the first dimension, and the vertices colored 2 indicate that the function points backward in the second dimension and not in the first.}
-	\label{fig:tarskistar_coloring}
+	\caption[Coloring of a \Tarskistar-instance]{Coloring of a \Tarskistar\ instance on a 2-dimensional lattice. The vertices colored 0 indicate that the function points weakly forward in all dimensions, the vertices colored 1 indicate that the function points backward in the first dimension, and the vertices colored 2 indicate that the function points backward in the second dimension and not in the first.}\label{fig:tarskistar_coloring}
 \end{figure}
 
-We give an example of the coloring of a \Tarski instance in \cref{fig:tarskistar_coloring}. We now need two results. We will distinguish two cases:
+We give an example of the coloring of a \Tarski-instance in \cref{fig:tarskistar_coloring}. We now need two results. We will distinguish two cases:
 \begin{enumerate}
-    \item when for all $i \in \set{0, \dots, d}$ we have $c(v_i) = i$;
-    \item when there is an $i \in \set{0, \dots, d}$ such that $c(v_i) \neq i$.
+	\item when for all $i \in \set{0, \dots, d}$ we have $c(v_i) = i$;
+	\item when there is an $i \in \set{0, \dots, d}$ such that $c(v_i) \neq i$.
 \end{enumerate}
-We will show that in both cases \Tarskistar\ can be reduced onto \Sperner. We will start by the first case and then discuss why the second case can be reduced onto the first case. Hence, for now assume that the \Tarskistar-instance is such that $c(v_i) = i$ for all $i$. First, we need to show that a cell with all colors always exists, allowing us to show that \Tarskistar\ is a total search problem. Second, we need to show that finding a cell with all colors yields a solution to \Tarskistar in polynomial time.
+We will show that in both cases \Tarskistar\ can be reduced onto \Sperner. We will start by the first case and then discuss why the second case can be reduced onto the first case. Hence, for now assume that the \Tarskistar-instance is such that $c(v_i) = i$ for all $i$. First, we need to show that a cell with all colors always exists, allowing us to show that \Tarskistar\ is a total search problem. Second, we need to show that finding a cell with all colors yields a solution to \Tarskistar\ in polynomial time.
 
 \begin{claim}
 	For any \Tarskistar\ instance with vertices colored as above, there is always a cell with all colors.
@@ -313,20 +303,20 @@ We will show that in both cases \Tarskistar\ can be reduced onto \Sperner. We wi
 	This shows we can solve a \Tarskistar\ instance in $\BigO{d}$ additional steps.
 \end{proof}
 
-This shows that in the first case we can reduce \Tarskistar\ to \Sperner. Now we need to discuss the second case, if for some $i \in \set{0, \dots, d}$ we have $c(v_i) \neq i$, notice that this means that $c(v_i) = 0$, as any other coloring would mean that $f(v_i)$ is no longer in the lattice. But this means that $v_i$ is a forward-point, and hence that $L_{\geq v_i}$ is a valid $d-1$ dimensional \Tarskistar instance, by \cref{rem:progress_points_and_subsinstances}. Now we can repeat the same argument for this $d-1$ dimensional \Tarskistar instance, if we are in the first case we are done, as this can be reduced to \Sperner. If we are in the second case we repeat the argument we just made. Repeating this argument we must obtain an \Tarskistar instance which corresponds to the first case, or a one-dimensional \Tarskistar instance. We must now only show that this one-dimensional instance \emph{always} reduces to \Sperner.
+This shows that in the first case we can reduce \Tarskistar\ to \Sperner. Now we need to discuss the second case, if for some $i \in \set{0, \dots, d}$ we have $c(v_i) \neq i$, notice that this means that $c(v_i) = 0$, as any other coloring would mean that $f(v_i)$ is no longer in the lattice. But this means that $v_i$ is a forward-point, and hence that $L_{\geq v_i}$ is a valid $d-1$ dimensional \Tarskistar-instance, by \cref{rem:progress_points_and_subsinstances}. Now we can repeat the same argument for this $d-1$ dimensional \Tarskistar-instance, if we are in the first case we are done, as this can be reduced to \Sperner. If we are in the second case we repeat the argument we just made. Repeating this argument we must obtain an \Tarskistar-instance which corresponds to the first case, or a one-dimensional \Tarskistar-instance. We must now only show that this one-dimensional instance \emph{always} reduces to \Sperner.
 
-\begin{claim}[One-dimensional \Tarskistar reduces to \Sperner]
-    A one dimensional \Tarskistar instance always reduces to \Sperner.
+\begin{claim}[One-dimensional \Tarskistar\ reduces to \Sperner]
+	A one dimensional \Tarskistar-instance always reduces to \Sperner\@.
 \end{claim}
 \begin{proof}
-    Let $v_0$ and $v_1$ be both ends of the lattice (which is a line). Now color all other vertices as previously discussed, that is:
-    \begin{align*}
-        c(x) =  \begin{cases}
-            0 &\text{ if $f(x) \geq x$} \\
-            1 &\text{ else}
-        \end{cases}
-    \end{align*}
-    Notice that because we only have one dimension, and $f$ stays in the lattice we must have $c(v_0) = 0$ and $c(v_1) = 1$. Now we add a second line of the same length, in parallel, and add edges to form a lattice, as shown in TODO. We color these new vertices with the color $2$. This forms a valid \Sperner\ instance.
+	Let $v_0$ and $v_1$ be both ends of the lattice (which is a line). Now color all other vertices as previously discussed, that is:
+	\begin{align*}
+		c(x) =  \begin{cases}
+			        0 & \text{ if $f(x) \geq x$} \\
+			        1 & \text{ else}
+		        \end{cases}
+	\end{align*}
+	Notice that because we only have one dimension, and $f$ stays in the lattice we must have $c(v_0) = 0$ and $c(v_1) = 1$. Now we add a second line of the same length, in parallel, and add edges to form a lattice, as shown in TODO\@. We color these new vertices with the color $2$. This forms a valid \Sperner\ instance.
 \end{proof}
 
 This shows that in both cases \Tarskistar\ can be reduced to \Sperner. Hence, \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$, we have shown that \Tarski\ lies in \PPAD, without relying on \Brouwer.
