@@ -229,7 +229,7 @@ An $x \in \bitstr^n$ such that either:
 \begin{figure}[ht]
 	\centering
 	\incfig{PPAD_Example}
-	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertice $11$ is also a solution because $P(S(11)) = P(7) = 6 \neq 11$.}\label{fig:ppad_example}
+	\caption[Example of an \textsc{End-of-Line} Problem]{Example of an \textsc{End-of-Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertex 11 is also technically a sink-solution because $P(S(11)) = P(7) = 6 \neq 11$.}\label{fig:ppad_example}
 \end{figure}
 
 These boolean circuits represent a directed graph with maximal in and out-degree of one by having an edge from $x$ to $y$ if and only if $S(x) = y$ and $P(y) =
@@ -249,8 +249,7 @@ Next, we discuss the complexity class \EOPL{} introduced in~\sidecite{EOPL_intro
 Similarly to \PLS, acyclicity will be enforced using a potential.
 
 \problem{End of Potential Line}{
-Two boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$, and a boolean circuit $V : \bitstr^n \rightarrow [2^n - 1]$, such that $0^n$ is a source, (i.e.\
-$P(0^n) = 0^n \neq S(0^n)$).
+Two boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$, and a boolean circuit $V : \bitstr^n \rightarrow [2^n - 1]$, such that $0^n$ is a source, (i.e.\ $P(0^n) = 0^n \neq S(0^n)$).
 }{
 An $x \in \bitstr^n$ such that either:
 \begin{itemize}
@@ -265,7 +264,7 @@ An $x \in \bitstr^n$ such that either:
 \begin{figure}[ht]
 	\centering
 	\incfig{EOPL_Solution_Example}
-	\caption[Example of an \EOPL\ Problem]{Example of an \textsc{End of Potential Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertice $11$ is also a solution because $P(S(11)) = P(7) = 6 \neq 11$. The vertices $2$ and $15$ are violations of potential.}\label{fig:eopl_example}
+	\caption[Example of an \EOPL\ Problem]{Example of an \textsc{End of Potential Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions are the sinks $x=5$, $x=9$, aswell as the sources $x=6$ and $x=10$. The vertex 11 is also technically a sink-solution because $P(S(11)) = P(7) = 6 \neq 11$. The vertices $2$ and $15$ are violations of potential.}\label{fig:eopl_example}
 \end{figure}
 
 $S$ and $P$ can be thought of as representing a directed line. Finding another source (a non-standard source) is a violation, as a directed line only has one source. The potential serves as a guarantee of acyclicity. Now, we can define the complexity class \EOPL\@.
@@ -273,6 +272,42 @@ $S$ and $P$ can be thought of as representing a directed line. Finding another s
 \begin{definition}[\EOPL]
 	The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
 \end{definition}
+
+\subsection{Unique End of Potential Line}[\UEOPL]\label{sec:ueopl}
+
+We introduce a variation of the \EndOfPotentialLine\ problem, where we only allow one line. This problem, called \UniqueEndOfPotentialLine, and first introduced in~\sidecite{fearnley_unique_2020} is constructed like \EndOfPotentialLine, but with an additional constraint which only allows one line:
+
+\problem{Unique End of Potential Line}{
+Two boolean circuits $S, P : \bitstr^n \rightarrow \bitstr^n$, and a boolean circuit $V : \bitstr^n \rightarrow [2^n - 1]$, such that $0^n$ is a source, (i.e.\ $P(0^n) = 0^n \neq S(0^n)$).
+}{
+Either:
+\begin{itemize}
+	\itemspecial{S1} An $x \in \bitstr^n$ such that $P(S(x)) \neq x$ ($x$ is a sink);
+	\itemspecial{V1} An $x \in \bitstr^n$ such that $S(P(x)) \neq x \neq 0^n$ ($x$ is a non-standard source);
+	\itemspecial{V2} An $x \in \bitstr^n$ such that $S(x) \neq x$, $P(S(x)) = x$ and $V(S(x)) \leq V(x)$ (violation of the monotonicity of the potential);
+	\itemspecial{V3} Two points $x, y \in \bitstr^n$ such that $x \neq y$, $x \neq S(x)$, $y \neq S(y)$ and either $V(x) = V(y)$ or $V(x) < V(y) < V(S(x))$. (two lines)
+\end{itemize}
+}
+
+We note that the solutions of type \textbf{(V1)}, which were not violations in the \EndOfPotentialLine\ problem, are now violations in the \UniqueEndOfPotentialLine\ problem, as finding a second (non-standard source), implies that there is a second line. Now, one might ask why the third violation is necessary. We add the third violation to make it easier to show that there are two lines. We might find two points $x, y$ on two different lines that are exponentially far away from the start of their respective lines, making it hard to find the violation. Adding the violation \textbf{(V3)} ensures that all points that are provably on two different lines are a violation. Indeed, we have:
+\begin{itemize}
+	\item If $V(x) = V(y)$, then if $x$ and $y$ are on the same line, they must be the same point, as the potential is strictly increasing along the line.
+	\item If $V(x) < V(y) < V(S(x))$ and $x$ and $y$ are on the same line, then $y$ cannot lie before $x$ on the line, as $V(y) > V(x)$, but it can also not lie after $S(x)$, as $V(y) < V(S(x))$. Hence, $x$ and $y$ must be on different lines.
+\end{itemize}
+
+\begin{figure}[ht]
+	\centering
+	\incfig{UEOPL_Solution_Example}
+	\caption[Example of a \UEOPL\ Problem]{Example of a \UniqueEndOfPotentialLine\@. Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solution is the sink \textbf{(S1)} $x=5$. We have a non-standard source \textbf{(V1)} at $x=6$. We have a violation of monoticity \textbf{(V2)} at $x=2$. We have violations \textbf{(V3)} formed by $x=4$, $y=6$ and by $x=7$, $y=5$}\label{fig:ueopl_example}
+\end{figure}
+
+We give an example of a \UniqueEndOfPotentialLine\ instance in \cref{fig:ueopl_example}. We can now define the complexity class \UEOPL\ analogously as we defined \EOPL\ previously.
+
+\begin{definition}[\UEOPL]
+	The class \UEOPL\ is the set of all \TFNP\ problems that reduce to \textsc{Unique End of Potential Line}.
+\end{definition}
+
+We note that \UEOPL\ is a subclass of \EOPL, as the constraint of having only one line is more restrictive than the constraint of having at most one line. It is conjecture that \UEOPL\ is a strict subclass of \EOPL, but this has yet to be proven \sidecite{fearnley_unique_2020}.
 
 \subsection{The classes \PPADS\ and \SOPL}[\PPADS\ and \SOPL]\label{sec:ppads_and_sopl}
 
@@ -306,6 +341,8 @@ These two classes are not directly relevant for this thesis, but they are a step
 	\PPAD \subseteq \PPADS \quad \text{and} \quad \EOPL \subseteq \SOPL.
 \end{align*}
 This is because finding a sink is more restrictive than finding any end of the line.
+
+Now we have introduced an defined the main subclasses of \TFNP, which are relevant to the work in this thesis. We refer the reader to~\sidecite{hollender_structural_2021} for a complete overview of the subclasses of \TFNP\@. We will discuss some of the known collapse inside the \TFNP\ hierarchy in \cref{ch:location_tarski}. We now move on to the main \TFNP-problem we study in this thesis, the \Tarski\ problem, which we introduce in the following section.
 
 \section{The \Tarski\ Problem}[\Tarski\ Problem]\label{sec:tarski_problem}
 
