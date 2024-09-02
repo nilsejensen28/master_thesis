@@ -1,6 +1,9 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Introduction}\label{ch:introduction}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Total search problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Total Search Problems}\label{sec:intro_total_search_problems}
 
 The study of computational complexity is central to computer science. Its primary goal is to establish lower bounds on the complexity of various problems. Specifically, complexity theory attempts to prove that specific problems cannot be solved faster than a given time as a function of the input size. This endeavor has proven particularly challenging for many problems, with a significant gap between the best-known upper bounds, determined by existing algorithms, and the best-known lower bound.
@@ -13,6 +16,9 @@ However, real-world problems often extend beyond simple decision-making into the
 
 Within this broader category of search problems lies a special subclass known as \emph{total search problems}. These are characterized by the guaranteed existence of a solution, often proven by mathematical theorems. A notable example within this subclass is the problem of identifying a sink in a directed acyclic graph. This is a \textit{total} problem because every such graph has a sink.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The TFNP landscape
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The TFNP landscape}\label{sec:intro_tfnp_landscape}
 
 The class \TFNP\ is the pendant to \NP, in the sense that it is the class of all total search problems, where a solution can be checked for validity in polynomial time. Studying this complexity class has been an active research subject in recent years, giving rise to many exciting results.
@@ -25,6 +31,9 @@ The second class of interest is \PLS, which is the class of total search problem
 
 Finally, the class \EOPL\ is the class of total search problems, which can be expressed as starting at a source of a directed acyclic graph and finding a vertex which is a sink or another source of the graph~\sidecite{EOPL_introduction}. The class \UEOPL\ is a subclass of \EOPL\ where we assume that the directed acyclic graph only has one sink, and one source (the designated source)~\sidecite{fearnley_unique_2020}. It is not known whether \UEOPL\ is a strict subclass of \EOPL\@.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Tarski problem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The \Tarski\ problem}\label{sec:intro_tarski_problem}
 
 The main problem we study in this thesis is the \Tarski\ problem. The namesake of the \Tarski\ problem is \textit{Tarski's fixed point theorem}, which states that every monotone function that maps a complete lattice to itself has a fixed point~\sidecite{tarski_lattice-theoretical_1955}. In this thesis, we will only study the case where the monotonicity is given with respect to the partial order on the coordinate-wise partial order on the integer lattice\marginnote{The choice of another (partial) order on the lattice could lead to different complexity results.}. The \Tarski\ problem is the problem of finding such a fixed point for a given function $f : L \rightarrow L$ on a complete integer lattice $L$, or to find a violation of monotonicity of this function~\sidecite{etessami_tarskis_2020}. According to \textit{Tarski's theorem}, this problem is guaranteed to have a solution, and hence, it is a total search problem.
@@ -33,6 +42,9 @@ The \Tarski-problem has numerous applications in various fields. For example, it
 
 Another application of this problem can be found when studying the \Arrival\ problem. It can be shown that \Arrival\ reduces to \Tarski~\sidecite{gartner_subexponential_2021}; hence, studying the \Tarski\ problem can help understand the complexity of \Arrival.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Current algorithms for solving Tarski
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Current algorithms for solving \Tarski}\label{sec:intro_tarski_algorithms}
 
 We want to give an overview of the different known strategies for solving \Tarski-instances. This is of theoretical interest, as the states of these algorithms often describes graphs, which can be seen as instances of \TFNP-complete problems and hence can help construct reductions.
@@ -43,10 +55,16 @@ A more sophisticated approach involves a binary search technique, where the latt
 
 The latest developments in solving the \Tarski\ problem involve advanced decomposition methods that reduce the search space. These methods decompose the problem into smaller instances that can be more easily managed and solved. The first such method was developed in~\cite{fearnley_faster_2022} and yields a runtime of $\BigO{\log^{2\ceil{\frac{d}{3}}}{N}}$. Furthering these techniques and under the assumption that $d$ is a constant, a runtime of $\BigO{\log^{\ceil{\frac{d+1}{2}}}{N}}$ can be achieved~\sidecite{chen_improved_2022},
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Location of Tarski in TFNP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Location of \Tarski\ in \TFNP}\label{sec:intro_location_tarski}
 
 It is known that the \Tarski\ problem lies in \PPAD\ and in \PLS\@. A recent breakthrough has shown that $\PPAD \cap \PLS = \EOPL$~\sidecite{goos_further_2022}. This result immediately implies that the \Tarski\ problem is in \EOPL, which in turn means that there must be a reduction from \Tarski\ to \EOPL-complete problems, in particular to the \EndOfPotentialLine\ problem. The main goal of this thesis is to understand why \Tarski\ lies in \EOPL\ and to construct a streamlined reduction from \Tarski\ to the \EndOfPotentialLine\ problem, which is \EOPL-complete. Doing this, we aim to determine whether \Tarski\ or specific variants of \Tarski\ lie in \UEOPL\ (unique end of potential line). Another interesting question would be to study whether \Tarski\ is an \EOPL-complete problem, using this reduction as a starting point. Both of these questions are currently unanswered.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis outline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Thesis Outline}\label{sec:intro_outline}
 
 TODO\@: Write this section.
