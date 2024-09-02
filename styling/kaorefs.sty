@@ -230,7 +230,7 @@
 %----------------------------------------------------------------------------------------
 
 % Hyperlink the page reference as well
-\let\oldvpageref\vpageref
+\let\oldvpageref\vpageref{}
 \renewcommand{\vpageref}[1]{\hyperref[#1]{\oldvpageref{#1}}}
 
 % Remove parentheses around equations
