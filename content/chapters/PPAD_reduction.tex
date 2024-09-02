@@ -305,9 +305,16 @@ We will show that in both cases \Tarskistar\ can be reduced onto \Sperner. We wi
 
 This shows that in the first case we can reduce \Tarskistar\ to \Sperner. Now we need to discuss the second case, if for some $i \in \set{0, \dots, d}$ we have $c(v_i) \neq i$, notice that this means that $c(v_i) = 0$, as any other coloring would mean that $f(v_i)$ is no longer in the lattice. But this means that $v_i$ is a forward-point, and hence that $L_{\geq v_i}$ is a valid $d-1$ dimensional \Tarskistar-instance, by \cref{rem:progress_points_and_subsinstances}. Now we can repeat the same argument for this $d-1$ dimensional \Tarskistar-instance, if we are in the first case we are done, as this can be reduced to \Sperner. If we are in the second case we repeat the argument we just made. Repeating this argument we must obtain an \Tarskistar-instance which corresponds to the first case, or a one-dimensional \Tarskistar-instance. We must now only show that this one-dimensional instance \emph{always} reduces to \Sperner.
 
-\begin{claim}[One-dimensional \Tarskistar\ reduces to \Sperner]
+\begin{claim}[One-dimensional \Tarskistar\ reduces to \Sperner]\label{claim:tarski_one_dimensional_reduction}
 	A one dimensional \Tarskistar-instance always reduces to \Sperner\@.
 \end{claim}
+
+\begin{figure}
+	\centering
+	\incfig{1D_Tarskistar_Sperner_Reduction}
+	\caption[Reduction of one-dimensional \Tarskistar\ to \Sperner]{Setting for the proof of \cref{claim:tarski_one_dimensional_reduction}}\label{fig:tarski_one_dimensional_reduction}
+\end{figure}
+
 \begin{proof}
 	Let $v_0$ and $v_1$ be both ends of the lattice (which is a line). Now color all other vertices as previously discussed, that is:
 	\begin{align*}
@@ -316,7 +323,7 @@ This shows that in the first case we can reduce \Tarskistar\ to \Sperner. Now we
 			        1 & \text{ else}
 		        \end{cases}
 	\end{align*}
-	Notice that because we only have one dimension, and $f$ stays in the lattice we must have $c(v_0) = 0$ and $c(v_1) = 1$. Now we add a second line of the same length, in parallel, and add edges to form a lattice, as shown in TODO\@. We color these new vertices with the color $2$. This forms a valid \Sperner\ instance.
+	Notice that because we only have one dimension, and $f$ stays in the lattice we must have $c(v_0) = 0$ and $c(v_1) = 1$. Now we add a second line of the same length, in parallel, and add edges to form a lattice, as shown in \cref{fig:tarski_one_dimensional_reduction}. We color these new vertices with the color $2$. This forms a valid \Sperner\ instance.
 \end{proof}
 
 This shows that in both cases \Tarskistar\ can be reduced to \Sperner. Hence, \Tarskistar\ lies in \PPAD, and by using that $\P^{\PPAD} = \PPAD$, we have shown that \Tarski\ lies in \PPAD, without relying on \Brouwer.
