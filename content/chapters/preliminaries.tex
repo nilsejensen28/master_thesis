@@ -267,7 +267,7 @@ An $x \in \bitstr^n$ such that either:
 	\caption[Example of an \EOPL\ Problem]{Example of an \textsc{End of Potential Line} Problem with $n=4$ (16 vertices). Solid lines represent the circuit $S$, and dashed lines represent the circuit $P$. The solutions \textbf{(S1)} are the sinks $x=5$, $x=9$ and $x=11$. The solutions \textbf{(S2)} are the non-standard sources $x=6$ and $x=10$. The vertices $2$ and $15$ are violations of the potential \textbf{(V1)}.}\label{fig:eopl_example}
 \end{figure}
 
-$S$ and $P$ can be thought of as representing a directed line. Finding another source (a non-standard source) is a violation, as a directed line only has one source. The potential serves as a guarantee of acyclicity. Now, we can define the complexity class \EOPL\@.
+$S$ and $P$ can be thought of as representing a directed line. Finding another source (a non-standard source) is a violation, as a directed line only has one source. The potential serves as a guarantee of acyclicity. We note that this is the main difference between \EndOfLine\ and \EndOfPotentialLine, as cycles can arise in the former, and do not yield solutions (or violations), while a cycle implies a violation of the potential in the latter. Now, we can define the complexity class \EOPL\@.
 
 \begin{definition}[\EOPL]
 	The class \EOPL\ is the set of all \TFNP\ problems that reduce to \textsc{End of Potential Line}.
