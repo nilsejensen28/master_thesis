@@ -102,7 +102,7 @@ Next, we discuss why this forms a partition of the hypercube. Of course, a given
 \end{proof}
 Together, these two Lemmata show that \textit{Freudenthal's simplicial decomposition} is a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
 \begin{lemma}
-    \label{lem:total_order_freudenthal}
+	\label{lem:total_order_freudenthal}
 	Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then, the vertices of $S_{\pi}$ are totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. In particular, we claim that:
 	\begin{align*}
 		v_0 < v_1 < v_2 < \dots < v_d
@@ -147,7 +147,7 @@ We can remark the following about the faces of a simplex.
 		      \end{align*}
 		      Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
 		      \begin{align*}
-			      S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w \\
+			      S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w  \\
 			      S_2: & \quad w' \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
 		      \end{align*}
 		      \label{rem:face_border_cell}
@@ -164,17 +164,17 @@ We discuss what simplices of the decomposition neighbour each other. We claim th
 	Then the following simplices are neighbors of $S_{\pi}$:
 	\begin{itemize}
 		\item for all $i \in \set{1, \dots, d-1}$, with $w_i$ is the vertex obtained by moving one unit in the direction $\pi(i+1)$ from $v_{i-1}$ the simplex:
-        \begin{align*}
-            v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
-        \end{align*}
+		      \begin{align*}
+			      v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
+		      \end{align*}
 		\item for $w_d$ is the vertex obtained by moving one unit in the direction $-\pi(d)$ from $v_{0}$, the simplex:
-        \begin{align*}
-            w_d \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
-        \end{align*}
+		      \begin{align*}
+			      w_d \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
+		      \end{align*}
 		\item for $w_1$ is the vertex obtained by moving one unit in the direction $\pi(1)$ from $v_{d}$, the simplex:
-        \begin{align*}
-            v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_1
-        \end{align*}
+		      \begin{align*}
+			      v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_1
+		      \end{align*}
 	\end{itemize}
 \end{lemma}
 \begin{proof}
@@ -253,7 +253,7 @@ In this section, we discuss how to orient the simplicial decomposition of the la
 Notice that this leaves us with $d!$ possible orientations of a simplex. Our notion of orientability should only lead to two possible classes of orientations, as an orientation of a 1-simplex is simply a choice of direction, and an orientation of a 2-simplex is a choice of a cyclic order of the vertices. Hence, we want to define when two orientations are equivalent.
 
 \begin{definition}[Equivalent orientations]
-    \boxmarginnote{Recall that a permutation $\tau$ has an even number of inversions if and only if $\sgn{\tau}=1$}
+	\boxmarginnote{Recall that a permutation $\tau$ has an even number of inversions if and only if $\sgn{\tau}=1$}
 	Two orientations $\gamma$ and $\sigma$ of a simplex $S$ are \define{equivalent} if they differ by an even permutation. That is, if $\sigma = \gamma \circ \tau$ for some permutation $\tau$ with an even number of inversions.
 \end{definition}
 
@@ -263,19 +263,19 @@ In particular, we give a more explicit definition of the equivalence of orientat
 	Two orientations $\sigma, \tau$ of a simplex $S$ are equivalent if and only if $\sgn{\sigma} = \sgn{\tau}$, with respect to a total order $\preceq$.
 \end{lemma}
 \begin{proof}
-    We have that $\sigma, \tau$ are equivalent if and only if they differ by an even permutation $\gamma$. This is equivalent to:
-    \begin{align*}
-        \sigma = \gamma \circ \tau \quad \text{with $\sgn{\gamma}=1$}
-    \end{align*}
-    We now prove both directions separately:
+	We have that $\sigma, \tau$ are equivalent if and only if they differ by an even permutation $\gamma$. This is equivalent to:
+	\begin{align*}
+		\sigma = \gamma \circ \tau \quad \text{with $\sgn{\gamma}=1$}
+	\end{align*}
+	We now prove both directions separately:
 
-    If $\sigma = \gamma \circ \tau$ then we have:
-    \begin{align*}
-        \sgn{\sigma}= \sgn{\gamma} \cdot \sgn{\tau} = \sgn{\tau}
-    \end{align*}
-    Because $\sgn{\gamma}=1$.
+	If $\sigma = \gamma \circ \tau$ then we have:
+	\begin{align*}
+		\sgn{\sigma}= \sgn{\gamma} \cdot \sgn{\tau} = \sgn{\tau}
+	\end{align*}
+	Because $\sgn{\gamma}=1$.
 
-    In the other direction it is well known that if $\sgn{\sigma}= \sgn{\gamma}$, then they differ by an even permutation.
+	In the other direction it is well known that if $\sgn{\sigma}= \sgn{\gamma}$, then they differ by an even permutation.
 \end{proof}
 
 We want to define the \define{opposite orientation} of a simplex, which should be an orientation that has the opposite sign with respect to the total order $\preceq$. This can be achieved by setting:
@@ -324,8 +324,8 @@ The lattice points we are interested in and Freudenthal's simplicial decompositi
 We now claim that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable. This will be crucial in the next section, where we will argue that the existence of a cycle in the \EndOfLine\ instance would contradict the orientation of the simplicial complex. In particular, this shows that a Möbius strip or the higher dimensional equivalents do not exist in our simplicial complex.
 
 \begin{proposition}[Freudenthal is orientable]
-    \label{prop:orientability_freudenthal}
-    The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
+	\label{prop:orientability_freudenthal}
+	The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
 \end{proposition}
 
 \begin{figure}[ht]
@@ -340,18 +340,18 @@ We will divide the proof into two separate part. First we want to describe the o
 We give an orientation of every $d$ simplex and then show that the induced orientation of the faces of the simplicial complex are opposite.
 Let $\pi \in S^d$ be a permutation of the dimensions, and $v_0 \in L$ a vertex of the lattice. We then obtain a simplex $S_{\pi} \in \mathcal{S}$ as previously described:
 \begin{align*}
-    v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
+	v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
 \end{align*}
 We now orient $S_{\pi}$ using the permutation:
 \begin{align*}
-    \sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
+	\sigma = \sgn{\pi} \cdot [v_0, \dots, v_d]
 \end{align*}
 We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}.
 
 We will now prove two separate claims which together yield a proof of orientability of the complex. We will first proof that all faces between two $d$-simplices are consistently oriented, and then that all lower dimensional faces inside a given simplex are consistently oriented.
 
 \begin{claim}
-    A common face $F$ of two simplices $S_1$ and $S_2$ is given opposite orientation.
+	A common face $F$ of two simplices $S_1$ and $S_2$ is given opposite orientation.
 \end{claim}
 
 \begin{proof}
@@ -389,10 +389,10 @@ We will now prove two separate claims which together yield a proof of orientabil
 	This is the first half of the proposition
 \end{proof}
 
- Now if we consider every $d$ as a simplicial complex of $d-1$-simplices (its faces) oriented with the induced orientations of faces we need to show that we get a consistent orientation. That is, for every $d-2$-simplex $E$, which is a face of two $d-1$-simplices $F_1$ and $F_2$, the induced orientations of $E$ in $F_1$ and $F_2$ are opposite.
+Now if we consider every $d$ as a simplicial complex of $d-1$-simplices (its faces) oriented with the induced orientations of faces we need to show that we get a consistent orientation. That is, for every $d-2$-simplex $E$, which is a face of two $d-1$-simplices $F_1$ and $F_2$, the induced orientations of $E$ in $F_1$ and $F_2$ are opposite.
 
 \begin{claim}
-	\label{claim:opposite_orientations}
+	\label{claim:orientability_inside_simplex}
 	Let $F_1$ and $F_2$ be two $d-1$-simplices in $S$ which share a common face $E$. Then the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
 \end{claim}
 \begin{proof}
@@ -446,6 +446,13 @@ Let us check that our definition is sound. We want the orientation of a face $F$
 	\end{align*}
 	This immediately implies the desired result.
 \end{proof}
+
+\begin{figure}[ht]
+	\centering
+	\incfig{Colored_Orientations}
+	\caption[Orientation of colored faces]{Example of the orientation of a colored face.}
+	\label{fig:orientation_of_colored_faces}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Properties of colored of oriented simplicial sequences
@@ -509,7 +516,7 @@ Now, we want to work with sequences of simplices and show that the coloring of t
 		\orient_{S_i}(F_i) =  \orient_{S_{i+1}}(F_{i+1})
 	\end{align*}
 	Fix $i$, and notice that $F_i$ and $F_{i+1}$ are both faces of $S_{i+1}$. Let us label the vertices of $S_i$ $v_0 < v_1 < \dots < v_d$. Let us denote $k$ and $j$ such that $F_i$ is obtained by removing $v_k$ from $S_{i+1}$ and $F_{i+1}$ is obtained by removing $v_j$ from $S_{i+1}$.
-	By using \cref{claim:opposite_orientations} and noticing that $v_k$ and $v_j$ have the same color  we immediately get:
+	By using \cref{claim:orientability_inside_simplex} and noticing that $v_k$ and $v_j$ have the same color  we immediately get:
 	\begin{align*}
 		- \orient_{S_{i+1}}(F_i) =  \orient_{S_{i+1}}(F_{i+1})
 	\end{align*}
@@ -580,6 +587,29 @@ Now, we are ready to prove our main result. We will start by proving that there 
 	\label{thm:no_cycles_in_three_dimensional_tarskistar}
 	There are no cycles in the \EndOfLine\ instance which we reduce three dimensional \Tarskistar\ instances to.
 \end{theorem}
+
+Before we formally prove this theorem, we want to give the inuition for the proof. Assume we have a cycle of simplices which for three cycles of faces spanned by the vertices colored 0 and 1, 1 and 2, and 2 and 0. The idea is to show that we have too many contraints for this to be possible. In particular we have the following constraints some of which we have already proven, and some of which we will prove shortly.
+\begin{enumerate}
+	\item We must move in all three dimensions.
+	\item The orientation of the faces spanned by the vertices colored 0 and 1 must be consistent.
+	\item The orientation of the faces spanned by the vertices colored 1 and 2 must be consistent.
+	\item The orientation of the faces spanned by the vertices colored 2 and 0 must be consistent.
+	\item The orientation of the transition faces between these faces must be consistent.
+	\item When crossing a hyperplane with fixed dimension 1, the transition faces must have opposite orientations when looking at the hyperplane from any side, and inside these faces:
+	      \begin{enumerate}
+		      \item The vertex colored 0 must be larger than the vertex colored 1;
+		      \item The vertex colored 2 must be larger than the vertex colored 0;
+		      \item The vertex colored 0 must appear after $\xrightarrow{3}$.
+	      \end{enumerate}
+	\item When crossing a hyperplane with fixed dimension 2, the transition faces must have opposite orientations when looking at the hyperplane from any side, and inside these faces:
+	      \begin{enumerate}
+		      \item The vertex colored 0 must be larger than the vertex colored 2;
+		      \item The vertex colored 0 must appear after $\xrightarrow{3}$.
+	      \end{enumerate}
+	\item When crossing a hyperplane with fixed dimension 3, the transition faces must have opposite orientations when looking at the hyperplane from any side.
+\end{enumerate}
+Now the whole idea of the proof is to show that the combination of these constraints is not possible. We will now formally prove this theorem.
+
 \begin{proof}
 	Assume for the sake of contradiction that we have a cycle in the \EndOfLine\ instance. Let $\left(S_i\right)_{i=1}^k$ be a cycle of simplices for colors $C = \set{0, 1, 2}$, and $\left(F_i\right)_{i=1}^k$ be the rainbow transition faces. We will show that this leads to a contradiction. \par
 
@@ -587,7 +617,7 @@ Now, we are ready to prove our main result. We will start by proving that there 
 	\begin{align*}
 		L_i^c & = \set{v \in S_i \mid c(v) \neq c} \quad \text{for $c \in C$}
 	\end{align*}
-	Notice that these $L_i^c$'s and are always either 2-dimensional or 1-dimensional simplices. Now for the sake of simplicity assume that we remove all 1-dimensional edges from these sequences, and only consider the 2-dimensional faces. Notice that this is in itself a valid oriented simplicial sequence, and in particular a cycle.
+	Notice that these $L_i^c$'s and are always either 2-dimensional or 1-dimensional simplices. Now for the sake of simplicity assume that we remove all 1-dimensional edges from these sequences, and only consider the 2-dimensional faces. Notice that this is in itself a valid oriented simplicial sequence, and in particular a cycle, by \cref{claim:orientability_inside_simplex}.
 
 	This means that we have three cycles of faces. Now for each of these face sequences we look at the transion edges $\left(Q_i^c\right)_i$ of $\left(L_i^c \right)_i$\marginnote{Recall that this means that:
 		\begin{align*}
