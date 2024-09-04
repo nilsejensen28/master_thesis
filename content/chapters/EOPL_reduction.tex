@@ -1,6 +1,5 @@
 \setchapterpreamble[u]{\margintoc}
-\chapter{Reducing \Tarski\ to \EOPL}
-\label{ch:eopl_reduction}
+\chapter{Reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
 
 In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner\ and then a reduction from \Sperner\ to \EndOfLine. We want to argue that the \EndOfLine\ instance we obtain when reducing a monotone function $f$ is almost an \EndOfPotentialLine\ instance. In particular, recall from \cref{ch:preliminaries} that the main difference is the absence of cycles in \EndOfPotentialLine\ instances, while such cycles might exist in \EndOfLine\ instances. The absence of cycles in the \EndOfPotentialLine\ instances is guaranteed by a potential. In this chapter, we will argue that the \EndOfLine\ instances that we obtain when reducing monotone functions have no cycles.
 
@@ -13,7 +12,7 @@ First, we will construct a specific simplicial decomposition of the lattice. We 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Warmup: No cycles in two-dimensional \Tarskistar-instances}[No cycles in two dimensions]
 
-This chapter aims to prove that there are no cycles in the \EndOfLine\ instances that result from the reduction of monotone \Tarskistar-instances onto \EndOfLine we presented in \cref{sec:sperner_eol_reduction}. We will do this by studying the \Sperner\ instances and showing that the sequence of simplices that form the lines of the \EndOfLine-instances cannot form a cycle if the underlying function $f$ is monotone.
+This chapter aims to prove that there are no cycles in the \EndOfLine\ instances that result from the reduction of monotone \Tarskistar-instances onto \EndOfLine\ we presented in \cref{sec:sperner_eol_reduction}. We will do this by studying the \Sperner\ instances and showing that the sequence of simplices that form the lines of the \EndOfLine-instances cannot form a cycle if the underlying function $f$ is monotone.
 
 Proving this will be somewhat involved in the general $d$-dimensional case. We want to present proof for the more straightforward two-dimensional case to motivate the definitions and ideas we will use in the following sections.
 
@@ -33,8 +32,7 @@ Proving this will be somewhat involved in the general $d$-dimensional case. We w
 \end{proof}
 \begin{marginfigure}[-30mm]
 	\marginincfig{Sketch_Two_Dimensional_Proof}
-	\caption{Sketch of the setting for the two-dimensional proof}
-	\label{fig:sketch_two_dimensional_proof}
+	\caption{Sketch of the setting for the two-dimensional proof}\label{fig:sketch_two_dimensional_proof}
 \end{marginfigure}
 
 Let us briefly discuss this proof's key ingredients and the steps we will take to generalize them to the $d$-dimensional case.
@@ -46,8 +44,7 @@ In order to do this, we will need to discuss in detail how we subdivide the cell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Freudenthals Simplicial decomposition
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]
-\label{sec:freudenthal_simplicial_decomposition}
+\section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]\label{sec:freudenthal_simplicial_decomposition}
 
 In the previous chapter, we left the choice of a specific simplicial decomposition of the lattice open, as it did not contribute to our reduction. In this chapter, we aim to be more precise in our approach by selecting a specific simplicial decomposition that will enable us to derive structural results. We begin by outlining the desired properties of our simplicial decomposition. The most fundamental property is that every simplex of the decomposition must be contained within a single cell of the lattice. This implies we can limit our inquiry to identifying a simplicial decomposition of a single $d$-dimensional hypercube of side-length $1$.
 
@@ -55,10 +52,8 @@ Additionally, it is essential to note that our objective does not entail the int
 
 Such a decomposition exists, and is known in the literature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it combinatorially here and refer the reader to the original paper for a geometric construction of the same decomposition.
 
-\begin{definition}[Freudenthal's Simplicial Decomposition]
-	\label[definition]{def:freudenthal_simplicial_decomposition}
-	Consider a unit hypercube $[0, 1]^d$ in $\R^d$ and consider $S_d$ the group of all permutations of the dimensions of the hypercube $\{1, \dots, d\}$. For every permutation $\pi \in S_d$, define the simplex $S_{\pi}$ as the convex hull of the vertices:
-	\marginnote[10mm]{Here we will use the notation $e_i$ to denote the $i$-th \define{unit vector} in $\R^d$.}
+\begin{definition}[Freudenthal's Simplicial Decomposition]\label{def:freudenthal_simplicial_decomposition}
+	Consider a unit hypercube ${[0, 1]}^d$ in $\R^d$ and consider $S_d$ the group of all permutations of the dimensions of the hypercube $\{1, \dots, d\}$. For every permutation $\pi \in S_d$, define the simplex $S_{\pi}$ as the convex hull of the vertices:\marginnote[10mm]{Here we will use the notation $e_i$ to denote the $i$-th \define{unit vector} in $\R^d$.}
 	\begin{align*}
 		v_0 & = (0, 0, \dots, 0)                        \\
 		v_1 & = v_0 + e_{\pi(1)}                        \\
@@ -66,12 +61,11 @@ Such a decomposition exists, and is known in the literature as \textit{Freudenth
 		    & \vdots                                    \\
 		v_d & = v_{d-1} + e_{\pi(d)} = (1, 1, \dots, 1)
 	\end{align*}
-	The set of such simplexes $\mathcal{S} = \set{S_{\pi} : \pi \in S_d}$ is Freudenthal's simplicial decomposition of the hypercube $[0, 1]^d$.
+	The set of such simplexes $\mathcal{S} = \set{S_{\pi} : \pi \in S_d}$ is Freudenthal's simplicial decomposition of the hypercube ${[0, 1]}^d$.
 \end{definition}
 We want to argue why this decomposition is well-defined. We begin by showing that every point of the hypercube is contained in at least one simplex of $\mathcal{S}$.
-\begin{lemma}
-	\label{lem:caracterisation_of_simplices}
-	Let $x = (x[1], \dots, x[d]) \in [0, 1]^d$, let $\pi \in S^d$ be the permutation such that $x[\pi(1)] \leq x[\pi(2)] \leq \dots \leq x[\pi(d)]$. Then $x \in S_{\pi}$.
+\begin{lemma}\label{lem:caracterisation_of_simplices}
+	Let $x = (x[1], \dots, x[d]) \in {[0, 1]}^d$, let $\pi \in S^d$ be the permutation such that $x[\pi(1)] \leq x[\pi(2)] \leq \cdots \leq x[\pi(d)]$. Then $x \in S_{\pi}$.
 \end{lemma}
 \begin{proof}
 	We want to show that $x$ is a convex combination of the vertices of $S_{\pi}$. We define the following sequence of real numbers:
@@ -94,26 +88,24 @@ Next, we discuss why this forms a partition of the hypercube. Of course, a given
 \begin{lemma}
 	Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then the \define{interior} of $S_{\pi}$ is:
 	\begin{align*}
-		\interior{S_{\pi}} = \set{x \in [0, 1]^d : 0 < x[\pi(1)] < x[\pi(2)] < \dots < x[\pi(d)] < 1}
+		\interior{S_{\pi}} = \set{x \in {[0, 1]}^d : 0 < x[\pi(1)] < x[\pi(2)] < \cdots < x[\pi(d)] < 1}
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	The same proof as for lemma \ref{lem:caracterisation_of_simplices} holds with the added constraint that all $\lambda_i > 0$, showing that these points are in the interior of the simplex.
+	The same proof as for lemma \cref{lem:caracterisation_of_simplices} holds with the added constraint that all $\lambda_i > 0$, showing that these points are in the interior of the simplex.
 \end{proof}
 Together, these two Lemmata show that \textit{Freudenthal's simplicial decomposition} is a well-defined simplicial decomposition of the hypercube. We can now use this decomposition to prove structural results about the lattice points of a \Tarski\ instance. We start by showing that this simplicial decomposition has the desired properties.
-\begin{lemma}
-	\label{lem:total_order_freudenthal}
+\begin{lemma}\label{lem:total_order_freudenthal}
 	Let $S_{\pi} \in \mathcal{S}$ be a simplex. Then, the vertices of $S_{\pi}$ are totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. In particular, we claim that:
 	\begin{align*}
-		v_0 < v_1 < v_2 < \dots < v_d
+		v_0 < v_1 < v_2 < \cdots < v_d
 	\end{align*}
 \end{lemma}
 \begin{proof}
 	Because this relation is transitive it suffice to show that $v_i < v_{i+1}$ for all $i \in \set{0, \dots, d-1}$. This follows immediately from the construction of the $v_i$ as we have $v_i[j] = v_{i+1}[j]$ for all $j \neq \pi(i+1)$ and $v_i[\pi(i+1)] = v_{i+1}[\pi(i+1)] - 1$.
 \end{proof}
 This lemma directly implies the following corollary.
-\begin{corollary}
-	\label{cor:total_ordering}
+\begin{corollary}\label{cor:total_ordering}
 	For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular, $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
 Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next, we want to introduce a new notation that will allow us to describe these simplices more succinctly. Assume that a permutation $\pi$ of the dimensions, induces a simplex $S_{\pi}$, with vertices $v_0, \dots, v_d$, as defined in \cref{def:freudenthal_simplicial_decomposition}. Then we will denote the $d$-dimensional simplex $S_{\pi}$ as:
@@ -126,10 +118,9 @@ This notation means we obtain $v_i$ by moving by one unit length in the directio
 \end{align*}
 
 We can remark the following about the faces of a simplex.
-\begin{remark}
-	\label[remark]{rem:faces_of_simplex}
+\begin{remark}\label{rem:faces_of_simplex}
 	For a given $d-1$ dimensional simplex $F$ in $\mathcal{S}$ we have that:
-	\marginnote[0mm]{Notice that the case \ref{rem:face_inside_cell} is the case where the face is inside the cell, and the case \ref{rem:face_border_cell} is the case where the face is on the border of the cell.}
+	\marginnote[0mm]{Notice that the case~\ref{rem:face_inside_cell} is the case where the face is inside the cell, and the case~\ref{rem:face_border_cell} is the case where the face is on the border of the cell.}
 	\begin{enumerate}
 		\item If $F$ is of the form:
 		      \begin{align*}
@@ -139,8 +130,7 @@ We can remark the following about the faces of a simplex.
 		      \begin{align*}
 			      S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w \xrightarrow{\pi(i)} v_{i + 1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
 			      S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w' \xrightarrow{\pi(i+1)} v_{i + 1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
-		      \end{align*}
-		      \label{rem:face_inside_cell}
+		      \end{align*}\label{rem:face_inside_cell}
 		\item If $F$ is of the form:
 		      \begin{align*}
 			      F: \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
@@ -149,8 +139,7 @@ We can remark the following about the faces of a simplex.
 		      \begin{align*}
 			      S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w  \\
 			      S_2: & \quad w' \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
-		      \end{align*}
-		      \label{rem:face_border_cell}
+		      \end{align*}\label{rem:face_border_cell}
 	\end{enumerate}
 \end{remark}
 
@@ -178,7 +167,7 @@ We discuss what simplices of the decomposition neighbour each other. We claim th
 	\end{itemize}
 \end{lemma}
 \begin{proof}
-	The proof follows directly by enumerating the faces of $S_{\pi}$ and using remark \ref{rem:faces_of_simplex}.
+	The proof follows directly by enumerating the faces of $S_{\pi}$ and using remark \cref{rem:faces_of_simplex}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,9 +177,8 @@ We discuss what simplices of the decomposition neighbour each other. We claim th
 
 This section introduces and studies \emph{sequences of simplices}.  They will be helpful as we argue that paths in the \EndOfLine\ instance are sequences of simplices, and the colored orientation of the simplicial decomposition will prevent these paths from forming cycles. We start by defining what we mean by a sequence of simplices.
 
-\begin{definition}[Sequence of simplices]
-	\label{def:sequence_of_simplices}
-	A \emph{sequence of simplices}, or \define{simplicial sequence} is a sequence $\left(S_i\right)_{i=1}^{k}$ of $d$-dimensional simplices $S_i \in \mathcal{S}$ such that:
+\begin{definition}[Sequence of simplices]\label{def:sequence_of_simplices}
+	A \emph{sequence of simplices}, or \define{simplicial sequence} is a sequence ${\left(S_i\right)}_{i=1}^{k}$ of $d$-dimensional simplices $S_i \in \mathcal{S}$ such that:
 	\begin{enumerate}
 		\item $S_{i+1} \not\subset \set{S_1, \dots, S_i}$ for all $i \in \set{1, \dots, k-1}$.
 		\item $S_i$ and $S_{i+1}$ share a $d-1$-dimensional face $F_i$ for all $i \in \set{1, \dots, k-1}$.
@@ -199,9 +187,8 @@ This section introduces and studies \emph{sequences of simplices}.  They will be
 
 We also want to introduce formally the notion of \emph{transition faces}, which will represent the face we are \emph{walking through}.
 
-\begin{definition}[Transition faces]
-	\label{def:transition_faces}
-	Let $\left(S_i\right)_{i=1}^{k}$ be a simplicial sequence. We call the sequence $\left(F_i\right)_{i=1}^{k-1}$, of $d-1$-dimensional faces given by $F_i = S_i \cap S_{i+1}$, the \define{transition sequence}. We call the individual $F_i$ \emph{transition faces}.
+\begin{definition}[Transition faces]\label{def:transition_faces}
+	Let ${\left(S_i\right)}_{i=1}^{k}$ be a simplicial sequence. We call the sequence ${\left(F_i\right)}_{i=1}^{k-1}$, of $d-1$-dimensional faces given by $F_i = S_i \cap S_{i+1}$, the \define{transition sequence}. We call the individual $F_i$ \emph{transition faces}.
 \end{definition}
 
 Of course, we need to discuss how to add colors. In the following $C \subset \set{0, \dots, d}$, will be a subset of colors. We will use this subset of colors to define restrictions on how sequences of simplices we study should be colored.
@@ -214,27 +201,27 @@ Now, let us restrict these general definitions to the context we will be studyin
 
 \begin{definition}[Maximal sequence]
 	\boxmarginnote{Inuitively, we say that a sequence is maximal if we cannot make it longer by adding simplices at the beginning or end.}
-	A \emph{maximal sequence of simplices for colors $C$} is a valid sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that:
+	A \emph{maximal sequence of simplices for colors $C$} is a valid sequence ${\left(S_i\right)}_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that:
 	\begin{enumerate}
-		\item There is no simplex $S_{k+1} \in \mathcal{S}$ such that $\left(S_i\right)_{i=1}^{k+1}$ is a valid sequence.
-		\item There is no simplex $S_{0} \in \mathcal{S}$ such that $\left(S_i\right)_{i=0}^{k}$ is a valid sequence.
+		\item There is no simplex $S_{k+1} \in \mathcal{S}$ such that ${\left(S_i\right)}_{i=1}^{k+1}$ is a valid sequence.
+		\item There is no simplex $S_{0} \in \mathcal{S}$ such that ${\left(S_i\right)}_{i=0}^{k}$ is a valid sequence.
 	\end{enumerate}
 \end{definition}
 
 Notice that maximal rainbow simplicial sequences are precisely the sequences of simplices that yield the lines in the \EndOfLine\ instance, which we reduce \Sperner\ instances to. We will discuss how we can orient these sequences simplices in the next section. Before we do this though, we introduce a special type of maximal rainbow simplicial sequence which can arise. Recall that a particular type of line that we can obtain in the \EndOfLine\ instances are cycles. These cycles result from reducing a particular class of simplicial sequences, which we will also call \emph{cycles}.
 
 \begin{definition}[Cycle]
-	A \emph{cycle of simplices for colors $C$} is a valid maximal sequence $\left(S_i\right)_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that $S_1 \cap S_k$ is a $d-1$ dimensional rainbow face for colors $C$.
+	A \emph{cycle of simplices for colors $C$} is a valid maximal sequence ${\left(S_i\right)}_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that $S_1 \cap S_k$ is a $d-1$ dimensional rainbow face for colors $C$.
 \end{definition}
 
-As previously discussed intuitively the main difference between an \EndOfLine instance and a \EndOfPotentialLine instance is the possibility for cycles to exist in the \EndOfLine instance. Hence, our goal is to show that when given a monotone \Tarskistar instance, which we reduce to \Sperner the resulting lattice of colored points does not have any cycles, as defined above
+As previously discussed intuitively the main difference between an \EndOfLine-instance and a \EndOfPotentialLine-instance is the possibility for cycles to exist in the \EndOfLine-instance. Hence, our goal is to show that when given a monotone \Tarskistar-instance, which we reduce to \Sperner\ the resulting lattice of colored points does not have any cycles, as defined above.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %A side note on super-unique Tarski
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A side note on super-unique \Tarski\ instances}[Super-unique \Tarski\ instances]
 
-TODO.
+TODO\@.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Orientation of Simplices
@@ -243,14 +230,13 @@ TODO.
 
 In this section, we discuss how to orient the simplicial decomposition of the lattice, which we defined in the previous section. This will be important as we will argue in the next section that the existence of a cycle would contradict the orientation of the simplicial decomposition. We start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
 
-\subsection{Orientation of a simplex}[Orienting a simplex]
-\label{sec:orientation_of_simplex}
+\subsection{Orientation of a simplex}[Orienting a simplex]\label{sec:orientation_of_simplex}
 
 \begin{definition}[Orientation of a simplex]
 	An \define{orientation} of a simplex $S$ spanned by the vertices $v_0, \dots, v_d$ is a choice of a permutation of the vertices $[v_{\pi(0)}, \dots, v_{\pi(d)}]$.
 \end{definition}
 
-Notice that this leaves us with $d!$ possible orientations of a simplex. Our notion of orientability should only lead to two possible classes of orientations, as an orientation of a 1-simplex is simply a choice of direction, and an orientation of a 2-simplex is a choice of a cyclic order of the vertices. Hence, we want to define when two orientations are equivalent.
+Notice that this leaves us with ${d!}$ possible orientations of a simplex. Our notion of orientability should only lead to two possible classes of orientations, as an orientation of a 1-simplex is simply a choice of direction, and an orientation of a 2-simplex is a choice of a cyclic order of the vertices. Hence, we want to define when two orientations are equivalent.
 
 \begin{definition}[Equivalent orientations]
 	\boxmarginnote{Recall that a permutation $\tau$ has an even number of inversions if and only if $\sgn{\tau}=1$}
@@ -289,15 +275,14 @@ We now have two equivalence classes of orientations for any simplex. We want to 
 \begin{definition}[Induced orientation of a face]
 	Let $\sigma = [v_0, \dots, v_{d}]$ be an orientation of a simplex $S$. The \emph{induced orientation} of a face $F$ of $S$, which is obtained by removing the vertex $v_j$ from the simplex, is the orientation:
 	\begin{align*}
-		\sigma_j = (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
+		\sigma_j = {(-1)}^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
 	\end{align*}
 \end{definition}
 
 \begin{figure}[ht]
 	\centering
 	\incfig{Orientation_of_Simplex}
-	\caption[Orientation of a simplex]{Example of the orientation of a 3-simplex on the left and the induced orientation of the faces on the right.}
-	\label{fig:orientation_of_simplex}
+	\caption[Orientation of a simplex]{Example of the orientation of a 3-simplex on the left and the induced orientation of the faces on the right.}\label{fig:orientation_of_simplex}
 \end{figure}
 
 We give an example of the orientation of a 3-simplex and its faces in \cref{fig:orientation_of_simplex}. We will show later that this the notion of induced orientation has nice properties when we work with multiple simplices. In order to do so we need to introduce the notion of simplicial complex, and discuss how we orient it, which we will do in the following subsection.
@@ -323,16 +308,14 @@ The lattice points we are interested in and Freudenthal's simplicial decompositi
 
 We now claim that the simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable. This will be crucial in the next section, where we will argue that the existence of a cycle in the \EndOfLine\ instance would contradict the orientation of the simplicial complex. In particular, this shows that a Möbius strip or the higher dimensional equivalents do not exist in our simplicial complex.
 
-\begin{proposition}[Freudenthal is orientable]
-	\label{prop:orientability_freudenthal}
+\begin{proposition}[Freudenthal is orientable]\label{prop:orientability_freudenthal}
 	The simplicial complex formed by the lattice points and Freudenthal's simplicial decomposition is orientable.
 \end{proposition}
 
 \begin{figure}[ht]
 	\centering
 	\incfig{Orientation_of_Freudenthal_Example}
-	\caption[Orientation of a simplicial complex]{Example of the orientation of a Freundenthals simplicial complex in 2 dimensions.}
-	\label{fig:orientation_of_simplicial_complex}
+	\caption[Orientation of a simplicial complex]{Example of the orientation of a Freundenthals simplicial complex in 2 dimensions.}\label{fig:orientation_of_simplicial_complex}
 \end{figure}
 
 We will divide the proof into two separate part. First we want to describe the orientation we give to every simplex in the complex.
@@ -380,10 +363,10 @@ We will now prove two separate claims which together yield a proof of orientabil
 		\end{align*}
 		Once again, we must proceed by case distinction.
 		\begin{case}{2.1}
-			If $d$ is even, then: $\sgn{S_1} = - \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = (-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
+			If $d$ is even, then: $\sgn{S_1} = - \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have ${(-1)}^d = {(-1)}^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
 		\end{case}
 		\begin{case}{2.2}
-			If $d$ is odd, then $\sgn{S_1} = \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have $(-1)^d = -1$ and $(-1)^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
+			If $d$ is odd, then $\sgn{S_1} = \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have ${(-1)}^d = -1$ and ${(-1)}^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
 		\end{case}
 	\end{case}
 	This is the first half of the proposition
@@ -391,20 +374,19 @@ We will now prove two separate claims which together yield a proof of orientabil
 
 Now if we consider every $d$ as a simplicial complex of $d-1$-simplices (its faces) oriented with the induced orientations of faces we need to show that we get a consistent orientation. That is, for every $d-2$-simplex $E$, which is a face of two $d-1$-simplices $F_1$ and $F_2$, the induced orientations of $E$ in $F_1$ and $F_2$ are opposite.
 
-\begin{claim}
-	\label{claim:orientability_inside_simplex}
+\begin{claim}\label{claim:orientability_inside_simplex}
 	Let $F_1$ and $F_2$ be two $d-1$-simplices in $S$ which share a common face $E$. Then the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
 \end{claim}
 \begin{proof}
 	Let $[v_0, \dots, v_{d}]$ be an orientation of $S$. The face $E$ is obtained by removing two vertices $v_i, v_j$ from $S$. Without loss of generality, assume that $F_1$ is obtained by removing $v_i$ from $S$ and $F_2$ is obtained by removing $v_j$ from $S$. Then the induced orientations $S_1$ and $S_2$ are:
 	\begin{align*}
-		S_1: \quad & (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, v_{d}] \\
-		S_2: \quad & (-1)^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
+		S_1: \quad & {(-1)}^i \cdot [v_0, \dots, \hat{v_i}, \dots, v_{d}] \\
+		S_2: \quad & {(-1)}^j \cdot [v_0, \dots, \hat{v_j}, \dots, v_{d}]
 	\end{align*}
 	Now without loss of generality assume that $i < j$, then we have that the induced orientations of $E$ in $F_1$ and $F_2$ are:
 	\begin{align*}
-		\text{$E$ in $S_1$ }: \quad & (-1)^i \cdot (-1)^{j-1} \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}] \\
-		\text{$E$ in $S_2$ }: \quad & (-1)^j \cdot (-1)^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}]
+		\text{$E$ in $S_1$ }: \quad & {(-1)}^i \cdot {(-1)}^{j-1} \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}] \\
+		\text{$E$ in $S_2$ }: \quad & {(-1)}^j \cdot {(-1)}^i \cdot [v_0, \dots, \hat{v_i}, \dots, \hat{v_j}, \dots, v_{d-1}]
 	\end{align*}
 	This shows that the induced orientations of $E$ in $S_1$ and $S_2$ are opposite.
 \end{proof}
@@ -432,8 +414,7 @@ In the previous sections, we discussed how one could orient simplices. We now wa
 
 Let us check that our definition is sound. We want the orientation of a face $F$ to be opposite when traversing it from opposite sides. This is the content of the following lemma.
 
-\begin{lemma}[Colored orientations are well-defined]
-	\label{lem:soundness_of_colored_orientability}
+\begin{lemma}[Colored orientations are well-defined]\label{lem:soundness_of_colored_orientability}
 	Let $S_1$ and $S_2$ be two $d$-dimensional simplices that share a $d-1$-dimensional rainbow face $F$. Then:
 	\begin{align*}
 		\orient_{S_1}(F) = - \orient_{S_2}(F).
@@ -450,8 +431,7 @@ Let us check that our definition is sound. We want the orientation of a face $F$
 \begin{figure}[ht]
 	\centering
 	\incfig{Colored_Orientations}
-	\caption[Orientation of colored faces]{Example of the orientation of a colored face.}
-	\label{fig:orientation_of_colored_faces}
+	\caption[Orientation of colored faces]{Example of the orientation of a colored face.}\label{fig:orientation_of_colored_faces}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -472,8 +452,7 @@ Let us check that our definition is sound. We want the orientation of a face $F$
 	\end{align*}}
 For this section, we assume that we are working on an integer lattice $L$, and that for a function $f: L \rightarrow L$, the points have been colored $c : L \rightarrow \set{0, \dots, d}$ as in \cref{sec:tarskistar_to_sperner}. We are ready to present a first observation, which will be a helpful stepping stone for more advanced results.
 
-\begin{lemma}
-	\label{lem:monotone_coloring}
+\begin{lemma}\label{lem:monotone_coloring}
 	Assume that $f$ is monotone and that we have $x_i, x_j \in L$, $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ and $x_i[i] = x_j[i]$, then either:
 	\begin{enumerate}
 		\item $i \geq j$ or
@@ -486,8 +465,7 @@ For this section, we assume that we are working on an integer lattice $L$, and t
 
 For vertices of a given simplex, we get the following corollary.
 \marginnote[10mm]{Notice that if we assume that $x_i$ and $x_j$ are in the same simplex of the simplicial decomposition, then the condition $x_i \not\geq x_j$ is equivalent to $x_i \leq x_j$.}
-\begin{corollary}
-	\label{cor:monotone_coloring}
+\begin{corollary}\label{cor:monotone_coloring}
 	Assume that $f$ is monotone and that we have $x_i, x_j \in S$, for some simplex $S\in \mathcal{S}$. Further assume that $c(x_i) = i$ and $c(x_j) = j$ for $i, j \in \set{1, \dots, d}$ with $i < j$ and that $x_i[i] = x_j[i]$, then $x_i < x_j$.
 \end{corollary}
 \begin{proof}
@@ -496,7 +474,7 @@ For vertices of a given simplex, we get the following corollary.
 
 \subsection{Properties of sequences of simplices}
 
-Now, we want to work with sequences of simplices and show that the coloring of the vertices of these simplices has some nice properties. We start by defining what we mean by a sequence of simplices. Let $C = \{0, \dots, d-1\}$ be the subset of colors, and let $\left(S_i\right)_{i=1}^k$ be a valid simplicial sequence.
+Now, we want to work with sequences of simplices and show that the coloring of the vertices of these simplices has some nice properties. We start by defining what we mean by a sequence of simplices. Let $C = \{0, \dots, d-1\}$ be the subset of colors, and let ${\left(S_i\right)}_{i=1}^k$ be a valid simplicial sequence.
 \begin{lemma}
 	Let $S_i$, $F_i$, and $x_j$ be as above. For any $i \in \set{1, \dots, k-1}$ there is exactly one $j \in C$ such that we have $x_i^j \neq x_{i+1}^j$.
 \end{lemma}
@@ -504,10 +482,9 @@ Now, we want to work with sequences of simplices and show that the coloring of t
 	$F_i$ and $F_{i+1}$ are two faces of the same $d$ dimensional simplex, and thus they share exactly $d-1$ vertices. This means that there is exactly one vertex $x$ which is in $F_i$ but not in $F_{i+1}$, and exactly one vertex $y$ which is in $F_{i+1}$ but not in $F_i$. This means that there is exactly one $j$ such that $x_i^j = x$ and $x_{i+1}^j = y$.
 \end{proof}
 
-\begin{lemma}[Orientation of transition faces]
-	\label{lem:consistent_orientation_of_transition_faces}
+\begin{lemma}[Orientation of transition faces]\label{lem:consistent_orientation_of_transition_faces}
 	\boxmarginnote{This means that our definition of the orientation of colored faces makes sense: when we walk through these faces, we always walk through faces that are oriented in the same way.}
-	Let $\left(S_i\right)_{i=1}^{k}$ be a valid rainbow simplicial sequence. Then $\left(\orient_{S_i}(F_i)\right)_{i=1}^{k-1}$ is constant.
+	Let ${\left(S_i\right)}_{i=1}^{k}$ be a valid rainbow simplicial sequence. Then ${\left(\orient_{S_i}(F_i)\right)}_{i=1}^{k-1}$ is constant.
 \end{lemma}
 
 \begin{proof}
@@ -515,7 +492,7 @@ Now, we want to work with sequences of simplices and show that the coloring of t
 	\begin{align*}
 		\orient_{S_i}(F_i) =  \orient_{S_{i+1}}(F_{i+1})
 	\end{align*}
-	Fix $i$, and notice that $F_i$ and $F_{i+1}$ are both faces of $S_{i+1}$. Let us label the vertices of $S_i$ $v_0 < v_1 < \dots < v_d$. Let us denote $k$ and $j$ such that $F_i$ is obtained by removing $v_k$ from $S_{i+1}$ and $F_{i+1}$ is obtained by removing $v_j$ from $S_{i+1}$.
+	Fix $i$, and notice that $F_i$ and $F_{i+1}$ are both faces of $S_{i+1}$. Let us label the vertices of $S_i$ $v_0 < v_1 < \cdots < v_d$. Let us denote $k$ and $j$ such that $F_i$ is obtained by removing $v_k$ from $S_{i+1}$ and $F_{i+1}$ is obtained by removing $v_j$ from $S_{i+1}$.
 	By using \cref{claim:orientability_inside_simplex} and noticing that $v_k$ and $v_j$ have the same color  we immediately get:
 	\begin{align*}
 		- \orient_{S_{i+1}}(F_i) =  \orient_{S_{i+1}}(F_{i+1})
@@ -528,8 +505,7 @@ Now, we want to work with sequences of simplices and show that the coloring of t
 \end{proof}
 
 Before we start, we want to make an observation about the interplay of the $d$ dimension and the orientation of the simplex.
-\begin{lemma}
-	\label{lem:position_of_d_in_simplex}
+\begin{lemma}\label{lem:position_of_d_in_simplex}
 	Let $l \in \set{1, \dots, d-1}$ be a dimension. Let $S$ be a $d$-simplex with colors $C = \set{0, \dots, d-1}$ in the colored simplicial complex, such that $S$ is of the form:
 	\begin{align*}
 		(S): \quad v_0 \xrightarrow{l} v_1 \xrightarrow{} \cdots \xrightarrow{} v_d
@@ -555,9 +531,8 @@ Before we start, we want to make an observation about the interplay of the $d$ d
 	This shows the lemma.
 \end{proof}
 
-\begin{lemma}[Ordering of the vertices in transition faces]
-	\label{lem:ordering_of_vertices_in_transition_faces}
-	Let $\left(S_i\right)_{i=1}^k$ be a valid rainbow simplicial sequence. For all $i$ such that $F_i$ is a face between cells\boxmarginnote{A face between cells is a face of type (2) in \cref{rem:faces_of_simplex}.} then assume that we are moving in dimension $l \in \set{1, \dots, d-1}$, that is $l$ is not a dimension of $F_i$. Then for all colors $c \in \set{k+1, \dots, d-1} \cup \set{0}$, we have that $c$ appears after $l$ in $F_i$. This means that $F_i$ is of the form:
+\begin{lemma}[Ordering of the vertices in transition faces]\label{lem:ordering_of_vertices_in_transition_faces}
+	Let ${\left(S_i\right)}_{i=1}^k$ be a valid rainbow simplicial sequence. For all $i$ such that $F_i$ is a face between cells\boxmarginnote{A face between cells is a face of type (2) in \cref{rem:faces_of_simplex}.} then assume that we are moving in dimension $l \in \set{1, \dots, d-1}$, that is $l$ is not a dimension of $F_i$. Then for all colors $c \in \set{k+1, \dots, d-1} \cup \set{0}$, we have that $c$ appears after $l$ in $F_i$. This means that $F_i$ is of the form:
 	\begin{align*}
 		(F_i): \quad c(v_1) \xrightarrow{} \cdots \xrightarrow{} l \xrightarrow{} \cdots \xrightarrow{} c \xrightarrow{} \cdots \xrightarrow{} c(v_d)
 	\end{align*}
@@ -583,8 +558,7 @@ Before we start, we want to make an observation about the interplay of the $d$ d
 
 Now, we are ready to prove our main result. We will start by proving that there are no cycles in the three-dimensional case and then extend this to the general case.
 
-\begin{theorem}[No cycles in three-dimensional \Tarskistar]
-	\label{thm:no_cycles_in_three_dimensional_tarskistar}
+\begin{theorem}[No cycles in three-dimensional \Tarskistar]\label{thm:no_cycles_in_three_dimensional_tarskistar}
 	There are no cycles in the \EndOfLine\ instance which we reduce three dimensional \Tarskistar\ instances to.
 \end{theorem}
 
@@ -611,7 +585,7 @@ Before we formally prove this theorem, we want to give the inuition for the proo
 Now the whole idea of the proof is to show that the combination of these constraints is not possible. We will now formally prove this theorem.
 
 \begin{proof}
-	Assume for the sake of contradiction that we have a cycle in the \EndOfLine\ instance. Let $\left(S_i\right)_{i=1}^k$ be a cycle of simplices for colors $C = \set{0, 1, 2}$, and $\left(F_i\right)_{i=1}^k$ be the rainbow transition faces. We will show that this leads to a contradiction. \par
+	Assume for the sake of contradiction that we have a cycle in the \EndOfLine\ instance. Let ${\left(S_i\right)}_{i=1}^k$ be a cycle of simplices for colors $C = \set{0, 1, 2}$, and ${\left(F_i\right)}_{i=1}^k$ be the rainbow transition faces. We will show that this leads to a contradiction. \par
 
 	Consider the faces $L_i^{c}$ which are the faces spanned by vertices colored not $c$ in $S_i$. Formally:
 	\begin{align*}
@@ -619,20 +593,20 @@ Now the whole idea of the proof is to show that the combination of these constra
 	\end{align*}
 	Notice that these $L_i^c$'s and are always either 2-dimensional or 1-dimensional simplices. Now for the sake of simplicity assume that we remove all 1-dimensional edges from these sequences, and only consider the 2-dimensional faces. Notice that this is in itself a valid oriented simplicial sequence, and in particular a cycle, by \cref{claim:orientability_inside_simplex}.
 
-	This means that we have three cycles of faces. Now for each of these face sequences we look at the transion edges $\left(Q_i^c\right)_i$ of $\left(L_i^c \right)_i$\marginnote{Recall that this means that:
+	This means that we have three cycles of faces. Now for each of these face sequences we look at the transion edges ${\left(Q_i^c\right)}_i$ of ${\left(L_i^c \right)}_i$\marginnote{Recall that this means that:
 		\begin{align*}
 			Q_i^c = L_i^c \cap L_{i+1}^c
 		\end{align*}}.
-	We then have that by \cref{lem:consistent_orientation_of_transition_faces} that the orientations of the sequence $\left(Q_i^c\right)_i$ is constant.
+	We then have that by \cref{lem:consistent_orientation_of_transition_faces} that the orientations of the sequence ${\left(Q_i^c\right)}_i$ is constant.
 
-	We will first argue that $\left(S_i\right)_{i=1}^k$ cannot only move in two dimensions. Assume for the sake of contradiction that this is the case. TODO: Write this argument, maybe as a seperate Lemma.
+	We will first argue that ${\left(S_i\right)}_{i=1}^k$ cannot only move in two dimensions. Assume for the sake of contradiction that this is the case. TODO\@: Write this argument, maybe as a seperate Lemma.
 
 	This means that any cycle must move in all 3 dimensions and in particular cross a hyperplane $H_1$ obtained by fixing dimension 1, and a hyperplane $H_2$ obtained by fixing dimension 2 at least twice. Let $F_i$ and $F_j$ be the transition faces which cross the hyperplane $H_1$ and $M_i$ and $M_j$ be the transition faces which cross the hyperplane $H_2$. Then by the remark above we have that:
 	\begin{align*}
 		\orient_{S_i}(F_i) = - \orient_{S_{j+1}}(F_j) \quad \text{and} \quad \orient_{S_i}(M_i) = - \orient_{S_{j+1}}(M_j)
 	\end{align*}
 	\marginnote{This means that when looking at these hyperplanes from any side, the transition faces have opposite orientations.}
-	Now first notice, that because we have fixed dimension 1, in both $F_i$ and $F_j$, we must have that the vertex colored 0 is larger than the vertex colored 1, by \cref{cor:monotone_coloring}. Now of course these two eges are on the cycle $(L_i^2)_i$,
+	Now first notice, that because we have fixed dimension 1, in both $F_i$ and $F_j$, we must have that the vertex colored 0 is larger than the vertex colored 1, by \cref{cor:monotone_coloring}. Now of course these two eges are on the cycle ${(L_i^2)}_i$.
 
 	\begin{case}{1}
 		If we move in dimension 1 then, let $H$ be a hyperplane obtained by fixing dimension 1 which we cross twice. Then let $Q_i$ and $Q_j$ be the transition faces which cross the hyperplane. Then by the remark above we have that: $\orient_{S_i}(Q_i) = \orient_{S_j}(Q_j)$, which means that for either $Q_i$ or $Q_j$, we have that the vertex colored $1$ is larger than the vertex colored $2$. This is not possible because we do not move in dimension 1 between these two vertices. This contradicts monotonicity by \cref{cor:monotone_coloring}.
