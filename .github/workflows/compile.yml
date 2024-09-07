@@ -58,7 +58,7 @@ jobs:
       - name: Install Latex
         run: sudo apt-get install texlive-full texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk texlive-xetex
       - name: Compile
-        run: make
+        run: make pdf
       - uses: actions/upload-artifact@v3
         with:
           name: Download Artifacts
