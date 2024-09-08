@@ -1,113 +1,15 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
 
-In the previous chapter, we demonstrated how one can prove the membership of \Tarski\ in \PPAD\ through a reduction to \Sperner\ and then a reduction from \Sperner\ to \EndOfLine. We want to argue that the \EndOfLine\ instance we obtain when reducing a monotone function $f$ is almost an \EndOfPotentialLine\ instance. In particular, recall from \cref{ch:preliminaries} that the main difference is the absence of cycles in \EndOfPotentialLine\ instances, while such cycles might exist in \EndOfLine\ instances. The absence of cycles in the \EndOfPotentialLine\ instances is guaranteed by a potential. In this chapter, we will argue that the \EndOfLine\ instances that we obtain when reducing monotone functions have no cycles.
+Until now we have reduced \Tarski\ to \EndOfLine\ using:
+\begin{itemize}
+	\item A turing reduction from \Tarski\ to \Tarskistar,
+	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
+	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
+\end{itemize}
+In the previous chapter we discussed some limitations as to the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient as to not allow the \EndOfLine\ instance to have cycles. In this chapter we will show that we can add a potential to these \EndOfLine\ instances, which will make them \EndOfPotentialLine\ instances. This will allow us to reduce \Tarski\ to \EndOfPotentialLine\ and show that \Tarski\ lies in \EOPL\@.
 
-In order to argue this result, we will need a more meticulous examination of the structure of a \Tarski\ instance and the induced coloring of the lattice points. We will start by arguing that there are no cycles in the two-dimensional case. Doing this will motivate the following steps to generalize the results to higher dimensions.
-
-First, we will construct a specific simplicial decomposition of the lattice. We do this to obtain specific valuable properties. Then, we will discuss how we orient simplices, their faces, and ultimately, the colored faces we traverse when reducing \Sperner\ to \EndOfLine. Finally, we will discuss how these elements interplay to guarantee the absence of cycles in three dimensions and how this can be generalized.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%No cycles in End of Line instances
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{No cycles in the \EndOfLine\ instance}[No cycles in the \EndOfLine\ instance]
-
-\begin{remark}
-	Assume that we have a valid colored simplicial sequence that crosses a hyperplane obtained by fixing one dimension $H = L_{k = K}$, for a dimension $k \in \set{1, \dots, d}$ and $K \in [N]$, twice. Let $F_i$ and $F_j$ be the transition faces which cross the hyperplane. Then: \boxmarginnote{This means that when looking at the hyperplane from any side, $F_i$ and $F_j$ have opposite orientations.}
-	\begin{align*}
-		\orient_{S_i}(F_i) = - \orient_{S_{j+1}}(F_j)
-	\end{align*}
-\end{remark}
-\begin{proof}
-	This is a reformulation of the more general \cref{lem:consistent_orientation_of_transition_faces}.
-\end{proof}
-
-Now, we are ready to prove our main result. We will start by proving that there are no cycles in the three-dimensional case and then extend this to the general case.
-
-\begin{theorem}[No cycles in three-dimensional \Tarskistar]\label{thm:no_cycles_in_three_dimensional_tarskistar}
-	There are no cycles in the \EndOfLine\ instance which we reduce three dimensional \Tarskistar\ instances to.
-\end{theorem}
-
-Before we formally prove this theorem, we want to give the inuition for the proof. Assume we have a cycle of simplices which for three cycles of faces spanned by the vertices colored 0 and 1, 1 and 2, and 2 and 0. The idea is to show that we have too many contraints for this to be possible. In particular we have the following constraints some of which we have already proven, and some of which we will prove shortly.
-\begin{enumerate}
-	\item We must move in all three dimensions.
-	\item The orientation of the faces spanned by the vertices colored 0 and 1 must be consistent.
-	\item The orientation of the faces spanned by the vertices colored 1 and 2 must be consistent.
-	\item The orientation of the faces spanned by the vertices colored 2 and 0 must be consistent.
-	\item The orientation of the transition faces between these faces must be consistent.
-	\item When crossing a hyperplane with fixed dimension 1, the transition faces must have opposite orientations when looking at the hyperplane from any side, and inside these faces:
-	      \begin{enumerate}
-		      \item The vertex colored 0 must be larger than the vertex colored 1;
-		      \item The vertex colored 2 must be larger than the vertex colored 0;
-		      \item The vertex colored 0 must appear after $\xrightarrow{3}$.
-	      \end{enumerate}
-	\item When crossing a hyperplane with fixed dimension 2, the transition faces must have opposite orientations when looking at the hyperplane from any side, and inside these faces:
-	      \begin{enumerate}
-		      \item The vertex colored 0 must be larger than the vertex colored 2;
-		      \item The vertex colored 0 must appear after $\xrightarrow{3}$.
-	      \end{enumerate}
-	\item When crossing a hyperplane with fixed dimension 3, the transition faces must have opposite orientations when looking at the hyperplane from any side.
-\end{enumerate}
-Now the whole idea of the proof is to show that the combination of these constraints is not possible. In particular, if you picture the \emph{tube} formed by these simplices, it cannot \emph{twist} completely because of these constraints, in particular because the vertex colored $0$ must be on the upper side in dimension 3, of every cell.
-
-We are ready for the formal proof, which we will divide into smaller claims. We start with an easier case, in which a hypothetical cycle only moves in two dimensions. First we want to shortly discuss what we mean by moving in a dimension.
-
-\begin{definition}[Moving in a dimension]
-	We say that a sequences of simplices ${\left(S_i\right)}_{i=1}^k$ moves in a dimension $l$ if it passes through two cells, which differ in dimension $l$.
-\end{definition}
-
-This is equivalent to saying that the transition faces $F_i$ is missing dimension $l$ for some $i$. Now let us show that a cycle must move in at least three dimensions.
-
-\begin{claim}[No simple cycles in $d$-dimensional \Tarskistar-instances]\label{claim:no_simple_cycles}
-	Assume that ${\left(S_i\right)}_{i=1}^k$ is a cycle of simplices for colors $C = \set{0, 1, \dots, d-1}$. Then this cycle must move in at least three dimensions.
-\end{claim}
-\begin{proof}
-	A cycle most move in at least one dimension, because otherwise it would not be a cycle. Assume for the sake of contradiction that the cycle only moves in two dimensions. Then we must have that the cycle moves in dimension $q$ and $l$. At least $q$ or $l$ must be in $C$. Assume without loss of generality that $q \in C$. Then the cycle must cross a hyperplane $H$ obtained by fixing dimension $q$ at least twice. Let $F_i$ and $F_j$ be the transition faces which cross the hyperplane $H$.
-
-	The $d-1$ dimensional cells of $H$ which contain $F_i$ and $F_j$ differ only in dimension $l$. Assume without loss of generality that $F_i$ is smaller than $F_j$ in dimension $l$. Now look at the two faces $F_i$ and $F_j$:
-	\begin{align*}
-		F_i: \quad & c(v_0) \xrightarrow{m_1} c(v_1) \xrightarrow{m_2}  \cdots \xrightarrow{m_{d-1}} c(v_{d-1}) \\
-		F_j: \quad & c(w_0) \xrightarrow{p_1} c(w_1) \xrightarrow{w_2}  \cdots \xrightarrow{p_{d-1}} c(w_{d-1})
-	\end{align*}
-	Now by the remark above we have that the orientation of these faces is opposite.
-\end{proof}
-
-
-
-\begin{proof}
-	Assume for the sake of contradiction that we have a cycle in the \EndOfLine\ instance. Let ${\left(S_i\right)}_{i=1}^k$ be a cycle of simplices for colors $C = \set{0, 1, 2}$, and ${\left(F_i\right)}_{i=1}^k$ be the rainbow transition faces. We will show that this leads to a contradiction. \par
-	Consider the faces $L_i^{c}$ which are the faces spanned by vertices colored not $c$ in $S_i$. Formally:
-	\begin{align*}
-		L_i^c & = \set{v \in S_i \mid c(v) \neq c} \quad \text{for $c \in C$}
-	\end{align*}
-	Notice that these $L_i^c$'s and are always either 2-dimensional or 1-dimensional simplices. Now for the sake of simplicity assume that we remove all 1-dimensional edges from these sequences, and only consider the 2-dimensional faces. Notice that this is in itself a valid oriented simplicial sequence, and in particular a cycle, by \cref{claim:orientability_inside_simplex}.
-
-	This means that we have three cycles of faces. Now for each of these face sequences we look at the transion edges ${\left(Q_i^c\right)}_i$ of ${\left(L_i^c \right)}_i$\marginnote{Recall that this means that:
-		\begin{align*}
-			Q_i^c = L_i^c \cap L_{i+1}^c
-		\end{align*}}.
-	We then have that by \cref{lem:consistent_orientation_of_transition_faces} that the orientations of the sequence ${\left(Q_i^c\right)}_i$ is constant.
-
-	Now we argue that on one of the cycles ${\left(L_i^c\right)_i}$ we must have a violation of the constraints we previously enumerate. First notice that because the cycle moves in at least two dimensions there is a $c \in \set{1, 2}$ such that the cycle moves in dimension $c$. This means that there is a hyperplane $H$ obtained by fixing dimension $c$ which is crossed twice by the cycle. Let $F_i$ and $F_j$ be the transition faces which cross the hyperplane $H$.
-
-	Now by \cref{lem:ordering_of_vertices_in_transition_faces} we must have that the vertex colored $0$ must be larger than the vertex colored $c$ in the transition faces $F_i, F_j$. We now proceed by case distinction according to the color of $c$. Recall that by construction $c \in \set{1, 2}$.
-
-	\begin{case}{1}
-		We have $c=1$. Then we must have that the vertex colored $0$ is larger than the vertex colored $1$, and the vertex colored $2$ is larger than the vertex colored $1$ in the transition faces $F_i, F_j$, by \cref{lem:ordering_of_vertices_in_transition_faces}. This means that the vertex colored $0$ must appear after $\xrightarrow{3}$ in the transition faces $F_i, F_j$.
-
-		Now we have that the orientation of the transition faces $F_i, F_j$ is opposite by \cref{lem:orientation_of_transition_faces}. This strongly restricts the possible orientations of $F_i, F_j$. The valid orientations of faces are:
-		\begin{align*}
-			(1): \quad & 1 \xrightarrow{2} 2 \xrightarrow{3} 0 \\
-			(2): \quad & 1 \xrightarrow{3} 2 \xrightarrow{2} 0 \\
-			(3): \quad & 1 \xrightarrow{3} 0 \xrightarrow{2} 2
-		\end{align*}
-		Among these orientations the faces of type $(2)$ have negative orientation and the faces of type $(1)$ and $(3)$ have positive orientation. Because they must have opposite orientations, this means that without loss of generality we can assume that $F_j$ is of the form:
-		\begin{align*}
-			F_j: \quad & 1 \xrightarrow{3} 2 \xrightarrow{2} 0
-		\end{align*}
-		This means that the face $F_i$ has the form $(1)$ or $(3)$. Notice that in both cases the vertex colored $2$ comes after the edge $\xrightarrow{2}$, whereas in $F_j$ the vertex colored $2$ comes before the edge $\xrightarrow{2}$. This means that we must also move in dimension 2. Now consider the face
-	\end{case}
-\end{proof}
+Of course because cycles can exist as we previously discussed, we need to make good use of the violations we obtain when we solve the \EndOfPotentialLine\ instances. We will show that these violations can be used to significantly reduce the search space for the \Tarskistar\ instances. This will allow us to complete a Turing reduction of \Tarskistar\ to \EndOfPotentialLine\@. Finally we will discuss what consequences this has on \UniqueTarski\ and \SuperUniqueTarski\@.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Discussing the EOPL Reduction
@@ -168,12 +70,31 @@ Now using this potential we obtain $d$ \EndOfPotentialLine\ instances. Solving t
 	\item A solution to the \Tarskistar\ instance,
 	\item $d$ violations of the potential, which can be used to find forward points $x_1, x_2, \dots, x_d$ and almost backward points $y_1, y_2, \dots, y_d$, such that $f(y_i)[j] \leq y_i[j]$ for $j \neq i$.
 \end{itemize}
-Now notice that we remind the reader of the join and meet operations of points, which we will use shortly.
+
+We remind the reader of the join and meet operations of points, which we will use shortly.
 \begin{definition}[Join and meet of points]
 	Let $x, y$ be two points. We define the join of $x$ and $y$ as the point $z$ such that $z[i] = \max(x[i], y[i])$ for all $i$. We define the meet of $x$ and $y$ as the point $z$ such that $z[i] = \min(x[i], y[i])$ for all $i$.
 \end{definition}
-To conclude simply notice that the join $x$ of the forward points $x_1, x_2, \dots, x_d$ is a forward point, and the meet $y$ of the almost backward points $y_1, y_2, \dots, y_d$ is a backward point. This shows that we can find a solution to the \Tarskistar\ in either $L_{\geq x}$ or $L_{\leq y}$, reducing the search area by at least half. Repeating this at most $\BigO{d\log{N}}$ times yields a solution.
+To conclude simply notice that the join $x$ of the forward points $x_1, x_2, \dots, x_d$ is a forward point, and the meet $y$ of the almost backward points $y_1, y_2, \dots, y_d$ is a backward point. This shows that we can find a solution to the \Tarskistar\ in either $L_{\geq x}$ or $L_{\leq y}$, reducing the search area by at least half. Repeating this at most $\BigO{d\log{N}}$ times yields a solution. In sum we obtain:
+
+\begin{theorem}[\Tarskistar\ is in \EOPL]
+	\Tarskistar\ Turing reduces to \EndOfPotentialLine\@.
+\end{theorem}
+And because \Tarski\ Turing reduces to \Tarskistar\ we obtain the following corollary:
+\begin{corollary}[\Tarski\ is in \EOPL]
+	\Tarski\ Turing reduces to \EndOfPotentialLine\@.
+\end{corollary}
 
 \section{Consequences}
 
-Notably 
+The exact same reduction immediately yields two important novel results:
+
+\begin{corollary}[\UniqueTarski\ is in \UEOPL]
+	\UniqueTarski\ Turing reduces to \UniqueEndOfPotentialLine\@.
+\end{corollary}
+
+\begin{corollary}[\SuperUniqueTarski\ is in \UEOPL]
+	\SuperUniqueTarski\ Turing reduces to \UniqueEndOfPotentialLine\@.
+\end{corollary}
+
+Both of these results follow from the fact that there is always only one valid sink in the \EndOfPotentialLine\ instance, which is the unique solution to the \Tarskistar\ instance. This concludes our discussion of the reduction of \Tarskistar\ to \EndOfPotentialLine\ and the consequences of this reduction.
