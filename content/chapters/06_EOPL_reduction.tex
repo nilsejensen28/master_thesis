@@ -1,15 +1,15 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
 
-Until now we have reduced \Tarski\ to \EndOfLine\ using:
+Until now, we have reduced \Tarski\ to \EndOfLine\ using:
 \begin{itemize}
-	\item A turing reduction from \Tarski\ to \Tarskistar,
+	\item A Turing reduction from \Tarski\ to \Tarskistar,
 	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
 	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
 \end{itemize}
 In the previous chapter we discussed some limitations as to the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient as to not allow the \EndOfLine\ instance to have cycles. In this chapter we will show that we can add a potential to these \EndOfLine\ instances, which will make them \EndOfPotentialLine\ instances. This will allow us to reduce \Tarski\ to \EndOfPotentialLine\ and show that \Tarski\ lies in \EOPL\@.
 
-Of course because cycles can exist as we previously discussed, we need to make good use of the violations we obtain when we solve the \EndOfPotentialLine\ instances. We will show that these violations can be used to significantly reduce the search space for the \Tarskistar\ instances. This will allow us to complete a Turing reduction of \Tarskistar\ to \EndOfPotentialLine\@. Finally we will discuss what consequences this has on \UniqueTarski\ and \SuperUniqueTarski\@.
+Of course because cycles can exist as we previously discussed, we need to make good use of the violations we obtain when we solve the \EndOfPotentialLine\ instances. We will show that these violations can be used to significantly reduce the search space for the \Tarskistar\ instances. This will allow us to complete a Turing reduction of \Tarskistar\ to \EndOfPotentialLine\@. Finally, we will discuss what consequences this has on \UniqueTarski\ and \SuperUniqueTarski\@.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Discussing the EOPL Reduction
