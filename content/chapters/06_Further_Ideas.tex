@@ -1,5 +1,5 @@
 \setchapterpreamble[u]{\margintoc}
-\chapter{Reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
+\chapter{Furher ideas on reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
 
 Until now we have reduced \Tarski\ to \EndOfLine\ using:
 \begin{itemize}
@@ -7,9 +7,7 @@ Until now we have reduced \Tarski\ to \EndOfLine\ using:
 	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
 	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
 \end{itemize}
-In the previous chapter we discussed some limitations as to the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient as to not allow the \EndOfLine\ instance to have cycles. In this chapter we will show that we can add a potential to these \EndOfLine\ instances, which will make them \EndOfPotentialLine\ instances. This will allow us to reduce \Tarski\ to \EndOfPotentialLine\ and show that \Tarski\ lies in \EOPL\@.
-
-Of course because cycles can exist as we previously discussed, we need to make good use of the violations we obtain when we solve the \EndOfPotentialLine\ instances. We will show that these violations can be used to significantly reduce the search space for the \Tarskistar\ instances. This will allow us to complete a Turing reduction of \Tarskistar\ to \EndOfPotentialLine\@. Finally we will discuss what consequences this has on \UniqueTarski\ and \SuperUniqueTarski\@.
+In the previous chapter we discussed some limitations as to the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient as to not allow the \EndOfLine\ instance to have cycles. In this chapter we will discuss ideas on how to overcome these limitations and show that we can reduce \Tarski\ to \EndOfPotentialLine\@. We will ultimately not be able to show that \Tarski\ lies in \EOPL, but hope that the ideas we discuss give some intuition as to the difficulties of the task, and that inuition for the problem can be gained from the ideas we discuss.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Discussing the EOPL Reduction
