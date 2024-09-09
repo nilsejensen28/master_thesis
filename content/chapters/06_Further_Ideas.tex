@@ -1,0 +1,34 @@
+\setchapterpreamble[u]{\margintoc}
+\chapter{Furher ideas on reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
+
+Until now we have reduced \Tarski\ to \EndOfLine\ using:
+\begin{itemize}
+	\item A turing reduction from \Tarski\ to \Tarskistar,
+	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
+	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
+\end{itemize}
+In the previous chapter, we discussed some limitations regarding the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient not to allow the \EndOfLine\ instance to have cycles. In this chapter, we will discuss ideas on how to overcome these limitations and show that we can reduce \Tarski\ to \EndOfPotentialLine\@. We will not be able to show that \Tarski\ lies in \EOPL, but we hope that the ideas we discuss give some intuition as to the difficulties of the task and that intuition for the problem can be gained from the ideas we discuss.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Vertex set of an EOPL instance
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Vertex set of an \EOPL\ instance}[Vertex set of an \EOPL\ instance]
+
+In this section, we question the question of what vertex set of a potential \EOPL\ instance obtained by reducing \Tarskistar\ to \EndOfPotentialLine\ would have. Before we do this, we should discuss why this question even arises. Göös et.\ al.\ showed that $\EOPL = \PLS \cap \PPAD$, by constructing a product space of the vertices of both given instances and defining an \EndOfPotentialLine\ instance on this cartesian product of vertices~\sidecite{goos_further_2022}. We have an \Localopt\ instance given by the states of \cref{alg:iterative_tarski_solver}, whose vertices are basically the nodes of the lattice. We also have an \EndOfLine\ instance given by the vertices of the \Sperner\ instance we obtain when reducing \Tarskistar\ to \Sperner, as discussed in \cref{ch:ppad_reduction}. Here, the vertex set is all the simplices of a simplicial lattice decomposition. What is the vertex set of the \EndOfPotentialLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\@?
+
+The main underlying question is: do we need a vertex set of the size of the cartesian product of the two previous vertex sets, or can we get away with a smaller vertex set? If we cannot use a smaller vertex set, this would make modifying the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ to an \EndOfPotentialLine\ instance much more difficult, as discussed in the next section.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Modifying the EndOfLine instance
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modifying the \EndOfLine\ instance}[Modifying the \EndOfLine\ instance]
+
+In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. The author of this thesis hoped to show that these structural limitations were strong enough to prevent cycles from existing. This was not the case as discussed in \cref{sec:existence_of_cycles}. Still, the question arises if we can still add a potential to the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\@. Of course, we need to be able to handle violations. In particular, we need to use violations of potential to make progress toward finding a solution. We will discuss how to handle this in the next section.
+
+Another big challenge when attempting to define a potential on the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ is that the vertex set of the \EndOfLine\ instance is a set of simplices. Defining a potential not on a set of cells, which could be similar to the one we defined on the lattice with the \Localopt\ instance, but on a set of simplices, is much more difficult. We want the violations of the potential to happen at the boundaries of cells, as these are much easier to work with, and the faces we obtain have nice properties, as discussed in the next section. Hence, we want to have potential that allows freedom within a cell. This is a challenge that would need to be addressed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Forward and backward points
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Forward and Backward points}[Forward and Backward points]
+
