@@ -1,0 +1,100 @@
+\setchapterpreamble[u]{\margintoc}
+\chapter{Reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
+
+Until now, we have reduced \Tarski\ to \EndOfLine\ using:
+\begin{itemize}
+	\item A Turing reduction from \Tarski\ to \Tarskistar,
+	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
+	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
+\end{itemize}
+In the previous chapter we discussed some limitations as to the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient as to not allow the \EndOfLine\ instance to have cycles. In this chapter we will show that we can add a potential to these \EndOfLine\ instances, which will make them \EndOfPotentialLine\ instances. This will allow us to reduce \Tarski\ to \EndOfPotentialLine\ and show that \Tarski\ lies in \EOPL\@.
+
+Of course because cycles can exist as we previously discussed, we need to make good use of the violations we obtain when we solve the \EndOfPotentialLine\ instances. We will show that these violations can be used to significantly reduce the search space for the \Tarskistar\ instances. This will allow us to complete a Turing reduction of \Tarskistar\ to \EndOfPotentialLine\@. Finally, we will discuss what consequences this has on \UniqueTarski\ and \SuperUniqueTarski\@.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Discussing the EOPL Reduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussing the reduction of \Tarskistar\ to \EndOfPotentialLine}[Discussing the reduction to \EOPL]
+
+We have now shown that there are no cycles in the \EndOfLine\ instance which arise from monotone \Tarskistar\ instances. This does not directly imply a direction onto \EndOfPotentialLine. Inuitively an \EndOfLine\ instance without cycles should be equivalent to an \EndOfPotentialLine\ instance. But in \EndOfPotentialLine\ the non-existence of a cycle is given by a potential which grows monotonically along the lines.
+
+The challenge in our case is to define such a potential. We briefly want to give some inuition for why this is not easy. A first naive attempt, would be to define the potential as something similar to the sum of the coordinates of a vertex of the simplex\marginnote{Recall that this is exactly the same potential as we used to reduce \Tarski\ onto \Localopt.}. This will not work in our case though, because it can very well happen that the path though the simplicial complex is not monotone with respect to the sum of the coordinates, in particular we can cross a hyperplane multiple times, which would not be possible if the sum of the coordinates was a valid potential.
+
+This means that we need to be more creative in our definition of the potential. The idea is to decide on how we orient our potential locally. We start by giving every cell of the simplicial complex coordinates, these will be the coordinates of the smallest vertex of cell. Now look at the colors of the vertices of the cell.
+
+\section{Reducing \Tarskistar\ to \EndOfPotentialLine}[Reducing \Tarskistar\ to \EndOfPotentialLine]
+
+We will now present the reduction from \Tarskistar\ to \EndOfPotentialLine. Before we start let us make a few useful remarks. Recall that the main difference between \EndOfLine\ and \EndOfPotentialLine\ is that in the latter we have a potential which grows monotonically along the lines, which makes the existence of cycles impossible. As we have discussed the \EndOfLine\ instance which arise from \Tarskistar\ instances can have cycles. We will show that finding a cycle also helps us make progress towards finding a solution to the \Tarskistar\ instance.
+
+\begin{lemma}[Cycles almost yield \Tarskistar\ solutions]\label{lem:cycles_almost_yield_solutions}
+	Assume that we have a cycle in the \EndOfLine\ instance which arises from a monotone \Tarskistar\ instance where we walked through faces colored $C$, where $C$ is only missing one color $c \in \set{1, \dots, d}$. Then we easily obtain two points $x, y$ such that $x \leq y$ and:
+	\begin{itemize}
+		\item $x$ is a forward point, i.e.~$c(x) = 0$ or equivalently $x \leq f(x)$;
+		\item $y$ is \emph{almost} a backward point in the following sence: $f(y)[i] \leq y[i]$ for all $i \in C \setminus \set{0}$.
+	\end{itemize}
+\end{lemma}
+
+This lemma means that we almost obtain a solution to the \Tarskistar\ instance. The only thing that is missing is that $y$ is not a backward point in dimension $c$. We will discuss how we can remedy this issue in the following, once we have proven the lemma.
+
+\begin{proof}
+	Assume that we have a cycle in the \EndOfLine\ instance which arises from a monotone \Tarskistar\ instance where we walked through faces colored $C$, where $C$ is only missing one color $c \in \set{1, \dots, d}$. This means that we have a valid sequence of simplices ${\left(S_i\right)}_{i=1}^k$ and a valid sequence of faces ${\left(F_i\right)}_{i=1}^k$, such that for two dimensions $l, q$ we have that the cycle moves forward in dimension $l$, and then backwards in dimension $q$. Now this means that we have two orthogonal faces $F_a, F_b$ that are faces of the same cell, and such that $F_a$ is missing dimension $l$ and $F_b$ is missing dimension $q$.
+
+	Set $x$ to be the vertex of $F_a$ which is colored $0$ and set $y$ to be the smallest vertex of the cell. Now by definition $x$ is a forward point. Now we want to show that $y$ is almost a backward point. Let $i$ be any dimension in $C \setminus \set{}$, and consider the following cases:
+	\begin{case}{1}
+		If $i \neq l$ then we have that that there is a vertex $z$ colored $i$ in $F_a$ such that:
+		\begin{align*}
+			z[i] - 1 \leq y[i] \leq z[i]
+		\end{align*}
+		Because $z$ shows strictly backwards in dimension $i$ we have that $f(y)[i] \leq y[i]$. This shows the claim in this case.
+	\end{case}
+	\begin{case}{2}
+		If $i = l$ then we have that there is a vertex $z$ colored $i$ in $F_b$ such that:
+		\begin{align*}
+			z[i] - 1 \leq y[i] \leq z[i]
+		\end{align*}
+		Because $z$ shows strictly backwards in dimension $i$ we have that $f(y)[i] \leq y[i]$. This shows the claim in this case.
+	\end{case}
+	This shows the lemma in all cases.
+\end{proof}
+
+Now as we already remarked this is almost a solution to the \Tarskistar\ instance. The only thing that is missing is that $y$ is not a backward point in dimension $c$. We will now show how we can remedy this issue. The key idea is to use the fact that we have some freedom in how we can choose the color set $C$, in particular how to choose the missing color $c$.
+
+Now we are ready for the reduction of \Tarskistar\ to \EndOfPotentialLine. We will construct $d$ \Tarskistar\ instances, which we reduce to \EndOfLine\ instances, but each of them using an individual color set $C$. For each choice of $c \in \set{1, \dots, d}$, we construct one instance where $c$ is the missing color in $C$. We want these to be \EndOfPotentialLine\ instances, which means we need to define a potential. The obvious choice of a potential is to use the sum of the coordinates of the cell. This is not quite sufficient, as we need to make sure that the potential is defined for every \emph{simplex} and not simply for every \emph{cell}. Hence we need to add a component taking into account the simplices themselves. We propose the following potential $\phi$ for a simplex $S$, with permutation $\pi \in S_d$ of the dimensions. Sort all the permutation in lexicographic order, and let $\phi(\pi)$ be the rank of $\pi$ in this order. Now we can define the potential of a simplex $S$ with smallest vertex $x$:
+\begin{align*}
+	\phi(S) = \sum_{i=0}^{d-1} x[i] + \phi(\pi)
+\end{align*}
+Now notice that if the potential decreases at any point, this indicates that we were moving forwards in some direction and are now moving backward, putting us in the situation of \cref{lem:cycles_almost_yield_solutions}.
+
+Now using this potential we obtain $d$ \EndOfPotentialLine\ instances. Solving them yields yields either:
+\begin{itemize}
+	\item A solution to the \Tarskistar\ instance,
+	\item $d$ violations of the potential, which can be used to find forward points $x_1, x_2, \dots, x_d$ and almost backward points $y_1, y_2, \dots, y_d$, such that $f(y_i)[j] \leq y_i[j]$ for $j \neq i$.
+\end{itemize}
+
+We remind the reader of the join and meet operations of points, which we will use shortly.
+\begin{definition}[Join and meet of points]
+	Let $x, y$ be two points. We define the join of $x$ and $y$ as the point $z$ such that $z[i] = \max(x[i], y[i])$ for all $i$. We define the meet of $x$ and $y$ as the point $z$ such that $z[i] = \min(x[i], y[i])$ for all $i$.
+\end{definition}
+To conclude simply notice that the join $x$ of the forward points $x_1, x_2, \dots, x_d$ is a forward point, and the meet $y$ of the almost backward points $y_1, y_2, \dots, y_d$ is a backward point. This shows that we can find a solution to the \Tarskistar\ in either $L_{\geq x}$ or $L_{\leq y}$, reducing the search area by at least half. Repeating this at most $\BigO{d\log{N}}$ times yields a solution. In sum we obtain:
+
+\begin{theorem}[\Tarskistar\ is in \EOPL]
+	\Tarskistar\ Turing reduces to \EndOfPotentialLine\@.
+\end{theorem}
+And because \Tarski\ Turing reduces to \Tarskistar\ we obtain the following corollary:
+\begin{corollary}[\Tarski\ is in \EOPL]
+	\Tarski\ Turing reduces to \EndOfPotentialLine\@.
+\end{corollary}
+
+\section{Consequences}
+
+The exact same reduction immediately yields two important novel results:
+
+\begin{corollary}[\UniqueTarski\ is in \UEOPL]
+	\UniqueTarski\ Turing reduces to \UniqueEndOfPotentialLine\@.
+\end{corollary}
+
+\begin{corollary}[\SuperUniqueTarski\ is in \UEOPL]
+	\SuperUniqueTarski\ Turing reduces to \UniqueEndOfPotentialLine\@.
+\end{corollary}
+
+Both of these results follow from the fact that there is always only one valid sink in the \EndOfPotentialLine\ instance, which is the unique solution to the \Tarskistar\ instance. This concludes our discussion of the reduction of \Tarskistar\ to \EndOfPotentialLine\ and the consequences of this reduction.
