@@ -32,13 +32,13 @@ Another big challenge when attempting to define a potential on the \EndOfLine\ i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Forward and Backward points}[Forward and Backward points]
 
-In this section we want to discuss the idea of forward and backward points, which are a key tool when solving \Tarski-instances, as we will discuss later. Both algorithms we presented in \cref{ch:preliminaries} relied on finding so called \emph{progress points}, we remind the reader of the definition of a progress point, and introduce the concept of forward and backward points.
+In this section, we want to discuss the idea of forward and backward points, which are a key tool when solving \Tarski-instances, as we will discuss later. Both algorithms we presented in \cref{ch:preliminaries} relied on finding so-called \emph{progress points}; we remind the reader of the definition of a progress point and introduce the concept of forward and backward points.
 
 \begin{definition}[Progress point]
-	Let $f: L \rightarrow L$ be a \Tarski-instance. A point $x \in L$ is called a \define{forward point} if $f(x) \geq x$\boxmarginnote{Beeing a progress point is equivalent the beeing colored $0$}. A point $x \in L$ is called a \define{backward point} if $f(x) \leq x$. Finally a point $x \in L$ is called a \define{progress point} if it is either a forward or a backward point.
+	Let $f: L \rightarrow L$ be a \Tarski-instance. A point $x \in L$ is called a \define{forward point} if $f(x) \geq x$\boxmarginnote{Beeing a progress point is equivalent to the being colored $0$}. A point $x \in L$ is called a \define{backward point} if $f(x) \leq x$. Finally, a point $x \in L$ is called a \define{progress point} if it is either a forward or a backward point.
 \end{definition}
 
-Now the reader might remember that the objective of \Tarskistar\ was to find two points $x, y$ in the lattice which are near to each other (i.e. $\norminf{x-y}\leq 1$), such that $x$ is a forward point and $y$ is a backward point. This always enables us to either find a fixed point of $f$ immediately or the reduce the search area by at least half as we discussed in \cref{sec:introducing_tarskistar}.
+Now the reader might remember that the objective of \Tarskistar\ was to find two points $x, y$ in the lattice which are near to each other (i.e., $\norminf{x-y}\leq 1$), such that $x$ is a forward point and $y$ is a backward point. This always enables us to find a fixed point of $f$ immediately or reduce the search area by at least half, as discussed in \cref{sec:introducing_tarskistar}.
 
 We now want to discuss how forward and backward points play together with the coloring of \Tarski-instances we previously defined. Let $C$ be a subset of $\set{0, \dots, d}$, such that exactly one color $c \in \set{1, \dots, d}$ is missing. Now consider a rainbow face $F$ for colors $C$ of the simplicial decomposition, which lies on the boundary between two cells. Then the following holds:
 
@@ -54,13 +54,13 @@ We now want to discuss how forward and backward points play together with the co
 	\begin{align*}
 		z[i] - 1 \leq y[i] \leq z[i]
 	\end{align*}
-	Because $z$ shows strictly backwards in dimension $i$ we have that $f(y)[i] \leq y[i]$.
+	Because $z$ shows strictly backward in dimension $i$, we have that $f(y)[i] \leq y[i]$.
 \end{proof}
 
-This means that we almost have a solution to the \Tarskistar-instance. Now by modifying what set of colors $C$ we use, in particular what color $c$ we leave out we get an almost backward point with a different missing dimension. If we can find a way to combine these almost backward points, we can find a backward point, which is a key tool in solving \Tarski-instances. The following lemma can be used to combine almost backward points.
+This means that we almost have a solution to the \Tarskistar-instance. By modifying what set of colors $C$ we use, particularly what color $c$ we leave out, we get an almost backward point with a different missing dimension. If we can find a way to combine these almost backward points, we can find a backward point, which is a key tool in solving \Tarski-instances. The following lemma can be used to combine almost backward points.
 
 \begin{lemma}[Combining almost backward points]\label{lem:combining_almost_backward_points}
-	Let $x$ be an almost backwards point with missing dimension $c_1$ and $y$ be an almost backward point with missing dimension $c_2$, such that $c_1 \neq c_2$. Futher assume that $x[c_1] \geq y[c_1]$ and that $y[c_2] \geq x[c_2]$ and for all other colors $i$ we have $x[i]=y[i]$. Then the point $z$ such that $z[i] = x[i]$ for all $i \neq c_1, c_2$ and $z[c_1] = y[c_1]$ and $z[c_2] = x[c_2]$ is a backward point.
+	Let $x$ be an almost backward point with missing dimension $c_1$ and $y$ be an almost backward point with missing dimension $c_2$, such that $c_1 \neq c_2$. Futher assume that $x[c_1] \geq y[c_1]$ and that $y[c_2] \geq x[c_2]$ and for all other colors $i$ we have $x[i]=y[i]$. Then the point $z$ such that $z[i] = x[i]$ for all $i \neq c_1, c_2$ and $z[c_1] = y[c_1]$ and $z[c_2] = x[c_2]$ is a backward point.
 \end{lemma}
 \begin{proof}
 	For $i \neq c_1, c_2$, we have:
@@ -76,6 +76,6 @@ This means that we almost have a solution to the \Tarskistar-instance. Now by mo
 		f(z)[c_2] \leq f(x)[c_2] \leq x[c_2] = z[c_2]
 	\end{align*}
 \end{proof}
-This shows that under the right conditions we can combine almost backward points to find a backward point, and we can find almost backwards points with different missing dimensions by choosing a different missing color $c$.
+This shows that under the right conditions, we can combine almost backward points to find a backward point, and we can find almost backward points with different missing dimensions by choosing a different missing color $c$.
 
-An idea one could attempt is to use different missing colors $c$ to find almost backward points by modifying the \EndOfLine\ instance obtained in the reduction from \Tarskistar\ by adding a potential to obtain a violation when we move from one cell to another in a predefined subset of directions. This immediately yields a face such as in \cref{lem:almost_backward_point}. By choosing this subset of directions carefully we might be able to ensure that we can combine almost backward points to find a backward point, as discussed in \cref{lem:combining_almost_backward_points}. This would be a key step in constructing a Turing-reduction from \Tarskistar\ to \EndOfPotentialLine\@.
+An idea one could attempt is to use different missing colors $c$ to find almost backward points by modifying the \EndOfLine\ instance obtained in the reduction from \Tarskistar\ by adding a potential to obtain a violation when we move from one cell to another in a predefined subset of directions. This immediately yields a face like in \cref{lem:almost_backward_point}. By choosing this subset of directions carefully, we might be able to ensure that we can combine almost backward points to find a backward point, as discussed in \cref{lem:combining_almost_backward_points}. This would be a key step in constructing a Turing-reduction from \Tarskistar\ to \EndOfPotentialLine\@.
