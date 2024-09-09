@@ -1,9 +1,9 @@
 \setchapterpreamble[u]{\margintoc}
-\chapter{Further ideas on reducing \Tarski\ to \EOPL}\label{ch:eopl_reduction}
+\chapter{Further ideas on reducing \Tarski\ to \EOPL}\label{ch:further_ideas}
 
 Until now we have reduced \Tarski\ to \EndOfLine\ using:
 \begin{itemize}
-	\item A turing reduction from \Tarski\ to \Tarskistar,
+	\item A Turing reduction from \Tarski\ to \Tarskistar,
 	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
 	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
 \end{itemize}
@@ -79,3 +79,4 @@ This means that we almost have a solution to the \Tarskistar-instance. By modify
 This shows that under the right conditions, we can combine almost backward points to find a backward point, and we can find almost backward points with different missing dimensions by choosing a different missing color $c$.
 
 An idea one could attempt is to use different missing colors $c$ to find almost backward points by modifying the \EndOfLine\ instance obtained in the reduction from \Tarskistar\ by adding a potential to obtain a violation when we move from one cell to another in a predefined subset of directions. This immediately yields a face like in \cref{lem:almost_backward_point}. By choosing this subset of directions carefully, we might be able to ensure that we can combine almost backward points to find a backward point, as discussed in \cref{lem:combining_almost_backward_points}. This would be a key step in constructing a Turing-reduction from \Tarskistar\ to \EndOfPotentialLine\@.
+
