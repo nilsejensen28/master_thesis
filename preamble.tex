@@ -124,7 +124,7 @@
 			\marginnote[-\baselineskip]{#1}
 			\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
 			\marginparsep=\marginparseptemp
-			\hspace{\marginparseptemp}
+			\hspace{-\marginparseptemp}\hspace{\characterlength}
 		}
 	}{
 		\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
@@ -133,7 +133,7 @@
 		\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
 		\marginparsep=\marginparseptemp
 		\hspace{-\marginparseptemp}
-	}
+	}\ignorespaces
 }
 
 %Settings for the justification of the text
