@@ -206,8 +206,8 @@ Now, there are two problems we need to discuss. First, once again, using a cell 
 
 \begin{figure}
 	\centering
-	\incfig{Sperner_EoL_Reduction}
-	\caption[Reduction of \Sperner\ to \EndOfLine]{Reduction of two-dimensional \Sperner\ to \EndOfLine. The circuit $S$ is given by the full arrows and $S$ by the dashed arrows. The solutions are colored green. The designated source is colored blue.}\label{fig:sperner_eol_reduction}
+	\incfig{1D_Sperner_to_EoL}
+	\caption[Base case of the reduction of \Sperner\ to \EndOfLine]{Base case (i.e.~one dimensional case) of the reduction of \Sperner\ to \EndOfLine. The circuit $S$ is given by the full arrows and $S$ by the dashed arrows. The solutions are colored green. The designated source is colored blue.}\label{fig:sperner_eol_base_case}
 \end{figure}
 
 \begin{proof}
@@ -222,7 +222,9 @@ Now, there are two problems we need to discuss. First, once again, using a cell 
 			                [x, x+1]   & \text{else}
 		                \end{cases}
 	\end{align*}
-	Furthermore set $P([0, 1]) = \xtilde$ and $S([N-2, N-1]) = [N-2, N-1]$. By adding a designated source $\xtilde$ outside of the lattice and setting $P(\xtilde) = \xtilde$ and $S(\xtilde) = 0$, we obtain an \EndOfLine-instance. The solutions are the:
+	Furthermore set $P([0, 1]) = \xtilde$ and $S([N-2, N-1]) = [N-2, N-1]$. By adding a designated source $\xtilde$ outside of the lattice and setting $P(\xtilde) = \xtilde$ and $S(\xtilde) = 0$, we obtain an \EndOfLine-instance. We give an example of this construction in \cref{fig:sperner_eol_base_case}.
+
+	The solutions of this instance are the:
 	\begin{itemize}
 		\item non-standard sources given by intervals [x, x+1] such that $c(x) = 1$ and $c(x+1) = 0$,
 		\item the sinks given by intervals [x, x+1] such that $c(x) = 0$ and $c(x+1) = 1$.
@@ -243,6 +245,11 @@ Now, there are two problems we need to discuss. First, once again, using a cell 
 	\end{case}
 	Notice that we can compute $S$ and $P$ in polynomial time with respect to $d$. We still need to define a distinguished source. Finding a distinguished source can be seen as finding a face colored with all colors $\set{0, \dots, d-1}$ on the face spanned by the vertices $v_0, \dots, v_{d-1}$. We can do this by solving a $d-1$ dimensional \Sperner\ instance on this face. By induction hypothesis, this can be reduced to an \EndOfLine\ instance. We can now define the distinguished source as the source of this \EndOfLine\ instance and slightly modify the circuit $S$ and $P$ to combine this \EndOfLine\ instance with the circuits $S$ and $P$ we have constructed above. This concludes the proof.
 \end{proof}
+\begin{figure}
+	\centering
+	\incfig{Sperner_EoL_Reduction}
+	\caption[Reduction of \Sperner\ to \EndOfLine]{Reduction of two-dimensional \Sperner\ to \EndOfLine. The circuit $S$ is given by the full arrows and $S$ by the dashed arrows. The solutions are colored green. The designated source is colored blue.}\label{fig:sperner_eol_reduction}
+\end{figure}
 
 Next, we will use this problem to show that \Tarskistar\ reduces to \Sperner\ and hence lies in \PPAD\@.
 
