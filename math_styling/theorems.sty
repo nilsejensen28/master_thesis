@@ -25,11 +25,23 @@
 {\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
 	\thmnote{\bfseries---~#3.\hspace{0.25em}}\index{#3}\newline\ignorespaces} % Optional theorem note
 
+\newtheoremstyle{blacknumboxnoindex} % Theorem style name
+{0pt} % Space above
+{0pt} % Space below
+{\normalfont} % Body font
+{} % Indent amount
+{} % Theorem head font
+{} % Punctuation after theorem head
+{0.25em} % Space after theorem head
+{\bfseries\thmname{#1}~\thmnumber{\@ifnotempty{#1}{}\@upn{#2}} % Theorem text (e.g. Theorem 2.1)
+	\thmnote{\bfseries---~#3.\hspace{0.25em}}\newline\ignorespaces} % Optional theorem note
+
 %------------------------------------------------
 
 % Black theorem number and optional black title with padding above and below
 \theoremstyle{blacknumbox}
 \newtheorem{definitionT}{Definition}[chapter]%}{Definition}[chapter] % Definitions, the first argument is the theorem name, the second the theorem title used before the number and the third optional argument is whether to number under chapters (e.g. 2.1) or sections (e.g. 2.1.1)
+\theoremstyle{blacknumboxnoindex}
 \newtheorem{theoremT}[definitionT]{Theorem}
 \newtheorem{claimT}[definitionT]{Claim}
 \newtheorem{lemmaT}[definitionT]{Lemma}
@@ -89,7 +101,7 @@
 
 
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
-\newenvironment{theorem}{\begin{dBox}\begin{theoremT}}{\end{theoremT}\end{dBox}}
+\newenvironment{theorem}{\begin{cBox}\begin{theoremT}}{\end{theoremT}\end{cBox}}
 \newenvironment{claim}{\begin{cBox}\begin{claimT}}{\end{claimT}\end{cBox}}
 \newenvironment{lemma}{\begin{cBox}\begin{lemmaT}}{\end{lemmaT}\end{cBox}}
 \newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}
