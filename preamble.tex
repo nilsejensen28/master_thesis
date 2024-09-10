@@ -105,7 +105,7 @@
 %Special marginnote for inside tcolorboxes
 \newlength{\marginparseptemp}
 \newlength{\characterlength}
-\settowidth{\characterlength}{\ }
+\settowidth{\characterlength}{a}
 \newcommand{\boxmarginnote}[1]{
 	\leavevmode
 	%Check if we are in twosided mode
@@ -124,7 +124,7 @@
 			\marginnote[-\baselineskip]{#1}
 			\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
 			\marginparsep=\marginparseptemp
-			\hspace{-\marginparseptemp}\hspace{\characterlength}
+			\hspace{-\marginparseptemp}
 		}
 	}{
 		\setlength{\marginparseptemp}{\marginparsep-\theoremboxmargin}
@@ -133,7 +133,7 @@
 		\setlength{\marginparseptemp}{\marginparsep+\theoremboxmargin}
 		\marginparsep=\marginparseptemp
 		\hspace{-\marginparseptemp}
-	}\ignorespaces
+	}\hspace{\characterlength}\ignorespaces
 }
 
 %Settings for the justification of the text
