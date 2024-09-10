@@ -504,6 +504,22 @@ A simple analysis shows that this algorithm runs with query complexity $\BigO{\l
 
 A further advance using more advanced methods and assuming that the number of dimensions $d$ is constant were made in~\sidecite{chen_improved_2022}. They achieve a query complexity of $\BigO{\log^{\ceil{\frac{d+1}{2}}}{N}}$ for $L = {[N]}^d$. This is to date the best known bound for solving \Tarski\ instances.
 
+\begin{table}
+	\centering
+	\begin{tabular}{@{}l r@{}}
+		\toprule
+		\textbf{Algorithm}                 & \textbf{Query complexity}               \\
+		\midrule
+		\cref{alg:iterative_tarski_solver} & $\BigO{d \cdot N}$                      \\
+		\cref{alg:recursive_tarski_solver} & $\BigO{\log^{d}{N}}$                    \\
+		\textcite{fearnley_faster_2022}    & $\BigO{\log^{\ceil{\frac{2d}{3}}}{N}}$  \\
+		\textcite{chen_improved_2022}      & $\BigO{\log^{\ceil{\frac{d+1}{2}}}{N}}$ \\
+		\bottomrule
+	\end{tabular}
+	\caption[Known algorithms for solving \Tarski]{Known algorithms for solving \Tarski\ instances and their query complexity.}\label{tab:tarski_algorithms}
+\end{table}
+
+
 \subsection{Lower bounds for \Tarski}
 
 The best-known lower bounds for \Tarski\ are given by~\sidecite{etessami_tarskis_2020}. They showed that in the black-box model, where the only way to access the function $f$ is by querying it, solving a $d$-dimensional \Tarski\ requires solving at least $\Omega(\log{N})$ one-dimensional \Tarski\ instances, which are as difficult as binary search, hence this means that solving a $d$-dimensional \Tarski\ instance requires at least $\Omega(\log^{2}{N})$ queries. This means that the upper and lower bounds are equal in the two- and three-dimensional cases, but in all other cases, there remains a gap. In particular, the best-known lower bound for solving \Tarski\ does not depend on the dimension $d$, which seems somewhat unexpected.
