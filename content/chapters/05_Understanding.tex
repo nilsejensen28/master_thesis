@@ -1,7 +1,7 @@
 \setchapterpreamble[u]{\margintoc}
 \chapter{Understanding the Problem}\label{ch:understanding_the_problem}
 
-The main aim of this thesis is to reduce \Tarski\ to \EndOfPotentialLine\@. In the previous chapter, we saw how \Tarski-instances could be Turing-reduces to \Tarskistar\ and how \Tarskistar\ could, in turn, be many-to-one reduced to \Sperner, which could be reduced to \EndOfLine. The main object of interest in this, and the next chapter, is this reduction from \Tarski\ to \EndOfLine. We want to understand the structure of the instances better and, in particular, discuss if the studied reduction can be extended to a reduction to \EndOfPotentialLine\@.
+The main aim of this thesis is to reduce \Tarski\ to \EndOfPotentialLine\@. In the previous chapter, we saw how \Tarski-instances could be Turing-reduced to \Tarskistar\ and how \Tarskistar\ could, in turn, be many-to-one reduced to \Sperner, which could be reduced to \EndOfLine. The main object of interest in this, and the next chapter, is this reduction from \Tarski\ to \EndOfLine. We want to understand the structure of the instances better and, in particular, discuss if the studied reduction can be extended to a reduction to \EndOfPotentialLine\@.
 
 The main difference between \EndOfLine\ and \EndOfPotentialLine\ instances is the absence of cycles in the latter, which is guaranteed by a potential. A first question is whether there can be cycles in the \EndOfLine\ instances we obtain when reducing monotone \Tarskistar-instances to \EndOfLine-instances. Without cycles, we would be close to a reduction to \EndOfPotentialLine\@. We will start this chapter by arguing that in the two-dimensional case, there are no cycles and discuss ideas on how to extend this to higher dimensions. Ultimately, we will \emph{not} be able to show this and will actually show that there can be cycles in the \EndOfLine\ instances we obtain when reducing monotone \Tarskistar\ to \EndOfLine\@. We still decided to present our ideas because they are valuable in understanding the underlying structure and will be used in the next chapter when developing further ideas.
 
@@ -36,7 +36,7 @@ As previously discussed we will start by discussing the two-dimensional case. We
 
 Let us briefly discuss this proof's key ingredients and the steps we will take to attempt to generalize them to the $d$-dimensional case.
 
-On a high level, we want to show that one cannot cross a given hyperplane of the lattice more than once when going through rainbow faces colored $\set{0, \dots, d-1}$. In two dimensions, we did this by showing that when we traverse such a hyperplane, we had restrictions on how the edges could be oriented. We will generalize this notion of \emph{orientation} for the colored faces we work with.  We will show that these faces must be oriented the same way if they are part of a path of simplices that form a line in the \EndOfLine\ reduction and obtain some structural limitations to the shape of cycles from this.
+On a high level, we would like to show that one cannot cross a given hyperplane of the lattice more than once when going through rainbow faces colored $\set{0, \dots, d-1}$. In two dimensions, we did this by showing that when we traverse such a hyperplane, we had restrictions on how the edges could be oriented. We will generalize this notion of \emph{orientation} for the colored faces we work with.  We will show that these faces must be oriented the same way if they are part of a path of simplices that form a line in the \EndOfLine\ reduction and obtain some structural limitations to the shape of cycles from this.
 
 In order to do this, we will need to discuss in detail how we subdivide the cells of the lattice into simplices; we will do this by introducing \emph{Freudenthal's simplicial decomposition}. Once we have the simplices, we will discuss \emph{sequences of simplices}, which are the objects that will turn into the lines of the \EndOfLine\ instances. Then, we define the notion of \emph{orientation} for colored simplices. We will then need to show that the monotonicity of $f$ prohibits certain simplices from existing.
 
@@ -45,9 +45,9 @@ In order to do this, we will need to discuss in detail how we subdivide the cell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Choosing a simplicial decomposition of the lattice --- Freudenthal's Simplical Decomposition}[Freudenthal's Simplical Decomposition]\label{sec:freudenthal_simplicial_decomposition}
 
-In the previous chapter, we left the choice of a specific simplicial decomposition of the lattice open, as it did not contribute to our reduction. In this chapter, we aim to be more precise in our approach by selecting a specific simplicial decomposition that will enable us to derive structural results. We begin by outlining the desired properties of our simplicial decomposition. The most fundamental property is that every simplex of the decomposition must be contained within a single cell of the lattice. This implies we can limit our inquiry to identifying a simplicial decomposition of a single $d$-dimensional hypercube of side-length $1$.
+In the previous chapter, we left the choice of a specific simplicial decomposition of the lattice open, as it did not contribute to our reduction. In this chapter, we aim to be more precise in our approach by selecting a specific simplicial decomposition that will enable us to derive structural results. We begin by outlining the desired properties of our simplicial decomposition. The most fundamental property is that every simplex of the decomposition should be contained within a single cell of the lattice. This implies we can limit our inquiry to identifying a simplicial decomposition of a single $d$-dimensional hypercube of side-length $1$.
 
-Additionally, it is essential to note that our objective does not entail the introduction of any new vertices; instead, we seek a decomposition of the hypercube that can be expressed as a set of subsets of the hypercube's vertices. Finally, we which for the vertices of a given simplex be totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. This will allow us to argue that two vertices inside a given simplex are always comparable, and thus, their images through $f$ must also be comparable, which will be useful.
+Additionally, it is essential to note that our objective does not entail the introduction of any new vertices; instead, we seek a decomposition of the hypercube that can be expressed as a set of subsets of the hypercube's vertices. Finally, we wish for the vertices of a given simplex be totally ordered with respect to the partial order defined in \cref{sec:tarski_problem}. This will allow us to argue that two vertices inside a given simplex are always comparable, and thus, their images through $f$ must also be comparable, which will be useful.
 
 Such a decomposition exists, and is known in the literature as \textit{Freudenthal's simplical decomposition} \sidecite{freudenthal_simplizialzerlegungen_1942}. We will introduce it combinatorially here and refer the reader to the original paper for a geometric construction of the same decomposition.
 
@@ -107,7 +107,7 @@ This lemma directly implies the following corollary.
 \begin{corollary}\label{cor:total_ordering}
 	For two vertices $x,y$ of any simplex $S \in \mathcal{S}$, if for any $i \in \set{1, \dots, d}$ we have $x[i] < y[i]$, then $x < y$. In particular, $x \not\leq y$ is equivalent to $x > y$.
 \end{corollary}
-Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next, we want to introduce a new notation that will allow us to describe these simplices more succinctly. Assume that a permutation $\pi$ of the dimensions, induces a simplex $S_{\pi}$, with vertices $v_0, \dots, v_d$, as defined in \cref{def:freudenthal_simplicial_decomposition}. Then we will denote the $d$-dimensional simplex $S_{\pi}$ as:
+Notice that this is not the case for any two points in the hypercube, as the partial order is not a total order. This is why choosing a simplicial decomposition with this property will be crucial in the following sections. Next, we introduce a new notation that will allow us to describe these simplices more succinctly. Assume that a permutation $\pi$ of the dimensions, induces a simplex $S_{\pi}$, with vertices $v_0, \dots, v_d$, as defined in \cref{def:freudenthal_simplicial_decomposition}. Then we will denote the $d$-dimensional simplex $S_{\pi}$ as:
 \begin{align*}
 	v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d)} v_d
 \end{align*}
@@ -119,13 +119,13 @@ This notation means we obtain $v_i$ by moving by one unit length in the directio
 We can remark the following about the faces of a simplex.
 \begin{remark}\label{rem:faces_of_simplex}
 	For a given $d-1$ dimensional simplex $F$ in $\mathcal{S}$ we have that:
-	\marginnote[0mm]{Notice that the case~\ref{rem:face_inside_cell} is the case where the face is inside the cell, and the case~\ref{rem:face_border_cell} is the case where the face is on the border of the cell.}
+	\marginnote[0mm]{Notice that~\ref{rem:face_inside_cell} is the case where the face is inside the cell, and~\ref{rem:face_border_cell} is the case where the face is on the border of the cell.}
 	\begin{enumerate}
 		\item If $F$ is of the form:
 		      \begin{align*}
 			      F: \quad v_0 \xrightarrow{\pi(1)}  \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 		      \end{align*}
-		      Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
+		      Then $F$ is a face of exactly two $d$-dimensional simplices $S_1$ and $S_2$:
 		      \begin{align*}
 			      S_1: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w \xrightarrow{\pi(i)} v_{i + 1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d  \\
 			      S_2: \quad & v_0 \xrightarrow{\pi(1)} \cdots v_{i-1} \xrightarrow{\pi(i)} w' \xrightarrow{\pi(i+1)} v_{i + 1} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
@@ -134,7 +134,7 @@ We can remark the following about the faces of a simplex.
 		      \begin{align*}
 			      F: \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
 		      \end{align*}
-		      Then $F$ is a face of exactly two simplices $S_1$ and $S_2$:
+		      Then $F$ is a face of exactly two $d$-dimensional simplices $S_1$ and $S_2$:
 		      \begin{align*}
 			      S_1: & \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} w  \\
 			      S_2: & \quad w' \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \\
@@ -174,7 +174,7 @@ We discuss what simplices of the decomposition neighbour each other. We claim th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sequences of simplices}[Sequences of simplices]
 
-This section introduces and studies \emph{sequences of simplices}.  They will be helpful as we argue that paths in the \EndOfLine\ instance are sequences of simplices, and the colored orientation of the simplicial decomposition will prevent these paths from forming cycles. We start by defining what we mean by a sequence of simplices.
+This section introduces and studies \emph{sequences of simplices}.  They will be helpful as we argue that paths in the \EndOfLine\ instance are reduced from sequences of simplices in the \Tarskistar-instance. We start by defining what we mean by a sequence of simplices.
 
 \begin{definition}[Sequence of simplices]\label{def:sequence_of_simplices}
 	A \emph{sequence of simplices}, or \define{simplicial sequence} is a sequence ${\left(S_i\right)}_{i=1}^{k}$ of $d$-dimensional simplices $S_i \in \mathcal{S}$ such that:
@@ -184,7 +184,7 @@ This section introduces and studies \emph{sequences of simplices}.  They will be
 	\end{enumerate}
 \end{definition}
 
-We also want to introduce formally the notion of \emph{transition faces}, which will represent the face we are \emph{walking through}.
+We also want to introduce formally the notion of \emph{transition faces}, which will represent the face we are \emph{walking through}, when reducing a \Sperner\ instance to an \EndOfLine\ instance.
 
 \begin{definition}[Transition faces]\label{def:transition_faces}
 	Let ${\left(S_i\right)}_{i=1}^{k}$ be a simplicial sequence. We call the sequence ${\left(F_i\right)}_{i=1}^{k-1}$, of $d-1$-dimensional faces given by $F_i = S_i \cap S_{i+1}$, the \define{transition sequence}. We call the individual $F_i$ \emph{transition faces}.
@@ -196,7 +196,7 @@ Of course, we need to discuss how to add colors. In the following $C \subset \se
 	Let $C \subset \set{0, \dots, d}$ be a subset of colors, and $F$ a face of a simplicial complex $\mathcal{S}$. We say that $F$ is a \emph{rainbow face} for colors $C$ if all vertices of $F$ are colored with colors from $C$ and all colors in $C$ appear in $F$.
 \end{definition}
 
-Now, let us restrict these general definitions to the context we will be studying. We will fix $C = \set{0, \dots, d-1}$.  We will only study sequences where the $F_i$'s are rainbow faces, i.e.~faces colored with exactly the colors $C = \set{0, \dots, d-1}$. We will call a sequence of simplices with this property a \define{rainbow simplicial sequence}. We will only study valid sequences of simplices with this property, as these are the sequences of simplices that become lines in the \EndOfLine\ instances. One property is still missing: the sequences of simplices that reduce to the lines in the \EndOfLine\ instances are \emph{maximal} because they can not be prolonged, motivating the following definition:
+Now, let us restrict these general definitions to the context we will be studying. We will fix $C \subset \set{0, \dots, d}$, such that $C$ is only missing one color $c \in \set{1, \dots, d}$\marginnote{In the reduction from \Sperner\ to \EndOfLine\ we set $c=d$.}. We will only study sequences where the $F_i$'s are rainbow faces, i.e.~faces colored with exactly the colors in $C$. We will call a sequence of simplices with this property a \define{rainbow simplicial sequence}. We will only study valid sequences of simplices with this property, as these are the sequences of simplices that become lines in the \EndOfLine\ instances. One property is still missing: the sequences of simplices that reduce to the lines in the \EndOfLine\ instances are \emph{maximal} because they can not be prolonged, motivating the following definition:
 
 \begin{definition}[Maximal sequence]
 	\boxmarginnote{Inuitively, we say that a sequence is maximal if we cannot make it longer by adding simplices at the beginning or end.}
@@ -213,14 +213,12 @@ Notice that maximal rainbow simplicial sequences are precisely the sequences of 
 	A \emph{cycle of simplices for colors $C$} is a valid maximal sequence ${\left(S_i\right)}_{i=1}^{k}$ of simplices $S_i \in \mathcal{S}$ for colors $C$ such that $S_1 \cap S_k$ is a $d-1$ dimensional rainbow face for colors $C$.
 \end{definition}
 
-As previously discussed intuitively the main difference between an \EndOfLine-instance and a \EndOfPotentialLine-instance is the possibility for cycles to exist in the \EndOfLine-instance. Hence, our goal is to show that when given a monotone \Tarskistar-instance, which we reduce to \Sperner\ the resulting lattice of colored points does not have any cycles, as defined above.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Orientation of Simplices
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Orientation of the simplicial decomposition}[Orientating the simplices]
 
-In this section, we discuss how to orient the simplicial decomposition of the lattice, which we defined in the previous section. This will be important as we will argue in the next section that the existence of a cycle would contradict the orientation of the simplicial decomposition. We start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex.
+In this section, we discuss how to orient the simplicial decomposition of the lattice, which we defined in the previous section. Recall that we used these orientations implicitly when defining the reduction from \Sperner\ to \EndOfLine\ in the previous chapter. We oriented the lines to go through positively oriented faces. We will now formally define how to do this. We start by defining what we mean by an orientation of a simplex and then discuss how to extend this to a general simplicial complex. We note that the notion of orientation of a simplicial complex is well-known in algebraic topology~\sidecite{munkres_elements_2018}. Our contribution in this section is to show that Freudenthals simplicial decomposition of the lattice is orientable and to introduce how to orient colored faces.
 
 \subsection{Orientation of a simplex}[Orienting a simplex]\label{sec:orientation_of_simplex}
 
@@ -241,19 +239,7 @@ In particular, we give a more explicit definition of the equivalence of orientat
 	Two orientations $\sigma, \tau$ of a simplex $S$ are equivalent if and only if $\sgn{\sigma} = \sgn{\tau}$, with respect to a total order $\preceq$.
 \end{lemma}
 \begin{proof}
-	We have that $\sigma, \tau$ are equivalent if and only if they differ by an even permutation $\gamma$. This is equivalent to:
-	\begin{align*}
-		\sigma = \gamma \circ \tau \quad \text{with $\sgn{\gamma}=1$}
-	\end{align*}
-	We now prove both directions separately:
-
-	If $\sigma = \gamma \circ \tau$ then we have:
-	\begin{align*}
-		\sgn{\sigma}= \sgn{\gamma} \cdot \sgn{\tau} = \sgn{\tau}
-	\end{align*}
-	Because $\sgn{\gamma}=1$.
-
-	In the other direction it is well known that if $\sgn{\sigma}= \sgn{\gamma}$, then they differ by an even permutation.
+	It is well-known that the sign of a permutation is the parity of the number of inversions of the permutation. A proof of this can be found in~\sidecite{waerden_algebra_2003} for example.
 \end{proof}
 
 We want to define the \define{opposite orientation} of a simplex, which should be an orientation that has the opposite sign with respect to the total order $\preceq$. This can be achieved by setting:
@@ -281,7 +267,7 @@ We give an example of the orientation of a 3-simplex and its faces in \cref{fig:
 
 \subsection{Orientation of a simplicial complex}[Orienting a simplicial complex]
 
-A simplicial complex can be considered a collection of simplices glued together on their face. Our goal is to extend this orientation notion to these simplicial complexes. Formally, we define a simplicial complex as in \sidecite{munkres_elements_2018}:
+A simplicial complex can be considered a collection of simplices glued together on their face. Our goal is to extend this orientation notion to these simplicial complexes. Formally, we define a simplicial complex as in~\sidecite{munkres_elements_2018}:
 
 \begin{definition}[Simplicial complex]
 	A \define{simplicial complex} $\mathcal{K}$ in $\R^d$ is a collection of simplices such that:
@@ -323,16 +309,16 @@ We now orient $S_{\pi}$ using the permutation:
 \end{align*}
 We give an example of such an orientation in \cref{fig:orientation_of_simplicial_complex}.
 
-We will now prove two separate claims which together yield a proof of orientability of the complex. We will first proof that all faces between two $d$-simplices are consistently oriented, and then that all lower dimensional faces inside a given simplex are consistently oriented.
+We will now prove two separate claims which together yield a proof of orientability of the complex. We will first prove that all faces between two $d$-simplices are consistently oriented, and then that all lower dimensional faces inside a given simplex are consistently oriented.
 
-\begin{claim}
+\begin{lemma}\label{lem:orientation_faces_between_simplices}
 	A common face $F$ of two simplices $S_1$ and $S_2$ is given opposite orientation.
-\end{claim}
+\end{lemma}
 
 \begin{proof}
 	Let us look at a common face $F$ of two $d$-simplices $S_1$ and $S_2$. We proceed by case distinction:
 	\begin{case}{1}
-		Assume that $S_1$ and $S_2$ are in the same cell, then $F$ is of the form:
+		Assume that $S_1$ and $S_2$ are in the same cell, then by \cref{rem:faces_of_simplex}, $F$ is of the form:
 		\begin{align*}
 			F: \quad v_0 \xrightarrow{\pi(1)}  \cdots v_{i-1} \xrightarrow{\pi(i), \pi(i+1)} v_{i+1} \xrightarrow{\pi(i+1)} v_{i+2} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 		\end{align*}
@@ -344,7 +330,7 @@ We will now prove two separate claims which together yield a proof of orientabil
 		We immediately notice that $\sgn{S_1} = - \sgn{S_2}$\marginnote{By abuse of notation we will denote by $\sgn{S_1}$ the sign of the permutation inducing $S_1$.}. We remove a vertex $w_i, w_i'$ of the same rank in $S_1$ and $S_2$ to obtain $F$. Hence, the induced orientation of $F$ in $S_1$ and $S_2$ is the opposite.
 	\end{case}
 	\begin{case}{2}
-		Next assume that $S_1$ and $S_2$ are in neighboring cells, then as discussed in \cref{rem:faces_of_simplex} $F$ is of the form:
+		Next assume that $S_1$ and $S_2$ are in neighboring cells, then as discussed in \cref{rem:faces_of_simplex}, $F$ is of the form:
 		\begin{align*}
 			F: \quad v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
 		\end{align*}
@@ -361,7 +347,7 @@ We will now prove two separate claims which together yield a proof of orientabil
 			If $d$ is odd, then $\sgn{S_1} = \sgn{S_2}$, and we remove a vertex of rank $d$ in $S_1$ and of rank $0$ in $S_2$ to obtain $F$. We have ${(-1)}^d = -1$ and ${(-1)}^0 = 1$ and hence the induced orientation of $F$ in $S_1$ and $S_2$ are opposite.
 		\end{case}
 	\end{case}
-	This is the first half of the proposition
+	This shows the first half of the proposition
 \end{proof}
 
 Now if we consider every $d$ as a simplicial complex of $d-1$-simplices (its faces) oriented with the induced orientations of faces we need to show that we get a consistent orientation. That is, for every $d-2$-simplex $E$, which is a face of two $d-1$-simplices $F_1$ and $F_2$, the induced orientations of $E$ in $F_1$ and $F_2$ are opposite.
@@ -391,7 +377,7 @@ Now that we have shown that the Freudenthal decomposition is orientable, we want
 
 \subsection{Orienting colored simplices}[Colored orientations]
 
-In the previous sections, we discussed how one could orient simplices. We now want to discuss the orientation of colored faces. We are only interested in rainbow faces, i.e.~$d-1$-dimensional faces, colored with all colors $\set{0, \dots, d-1}$, as these are the faces that we traverse when reducing \Sperner\ to \EndOfLine. We should obtain two orientations for every face, depending on the direction in which we traverse it.
+In the previous sections, we discussed how one could orient simplices. We now want to discuss the orientation of colored faces. We are only interested in rainbow faces, i.e.~$d-1$-dimensional faces, colored with all colors $\set{0, \dots, d}$ except for one color $c \in \set{1, \dots, d}$, as these are the faces that we traverse when reducing \Sperner\ to \EndOfLine. We should obtain two orientations for every face, depending on the direction in which we traverse it.
 
 \begin{definition}[Orientation of colored faces]
 	Let $F$ be a face of a simplex $S$. Let the vertices of $F$ be labelled $v_1, \dots, v_d$, such that $v_1 < \cdots < v_d$. Then there is a permutation $\gamma \in S_d$ such that:
@@ -413,7 +399,7 @@ Let us check that our definition is sound. We want the orientation of a face $F$
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	Because the simplicial complex we work with is orientable, for $\indorient_{S_1}(F)$ the induced orientation of $F$ in $S_1$ and \boxmarginnote{The induced orientation $\indorient$, is the same as the induced orientation of faces we previously discussed instead that we work with colors and not individual vertices, this allows us to compare the induced orientations of faces which dont contain the same vertices, but the same colors.}$\indorient_{S_2}(F)$ the induced orientation of $F$ in $S_2$, we have:
+	Because the simplicial complex we work with is orientable, for $\indorient_{S_1}(F)$ the induced orientation of $F$ in $S_1$ and \boxmarginnote{The induced orientation $\indorient$, is the same as the induced orientation of faces we previously discussed instead that we work with colors and not individual vertices, this allows us to compare the induced orientations of faces which dont contain the same vertices, but the same colors.}$\indorient_{S_2}(F)$ the induced orientation of $F$ in $S_2$, we have by using \cref{lem:orientation_faces_between_simplices}:
 	\begin{align*}
 		\sgn{\indorient_{S_1}(F)} = - \sgn{\indorient_{S_2}(F)}
 	\end{align*}
@@ -425,6 +411,8 @@ Let us check that our definition is sound. We want the orientation of a face $F$
 	\incfig{Colored_Orientations}
 	\caption[Orientation of colored faces]{Example of the orientation of a colored face.}\label{fig:orientation_of_colored_faces}
 \end{figure}
+
+We give an example of colored orientation of faces in \cref{fig:orientation_of_colored_faces}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Properties of colored of oriented simplicial sequences
@@ -466,7 +454,7 @@ For vertices of a given simplex, we get the following corollary.
 
 \subsection{Properties of sequences of simplices}
 
-Now, we want to work with sequences of simplices and show that the coloring of the vertices of these simplices has some nice properties. We start by defining what we mean by a sequence of simplices. Let $C = \{0, \dots, d-1\}$ be the subset of colors, and let ${\left(S_i\right)}_{i=1}^k$ be a valid simplicial sequence.
+Now, we want to work with sequences of simplices and show that the coloring of the vertices of these simplices has some nice properties. We start by defining what we mean by a sequence of simplices. Let $C \subset \{0, \dots, d-1\}$ be the subset of colors with exactly one color $c \in \set{1, \dots, d}$ missing, and let ${\left(S_i\right)}_{i=1}^k$ be a valid simplicial sequence.
 \begin{lemma}
 	Let $S_i$, $F_i$, and $x_j$ be as above. For any $i \in \set{1, \dots, k-1}$ there is exactly one $j \in C$ such that we have $x_i^j \neq x_{i+1}^j$.
 \end{lemma}
@@ -498,39 +486,39 @@ Now, we want to work with sequences of simplices and show that the coloring of t
 
 Before we start, we want to make an observation about the interplay of the $d$ dimension and the orientation of the simplex.
 \begin{lemma}\label{lem:position_of_d_in_simplex}
-	Let $l \in \set{1, \dots, d-1}$ be a dimension. Let $S$ be a $d$-simplex with colors $C = \set{0, \dots, d-1}$ in the colored simplicial complex, such that $S$ is of the form:
+	Let $l \in \set{1, \dots, d-1}$ be a dimension. Let $S$ be a $d$-simplex with colors $C \subset \set{0, \dots, d}$ with exactly one color $c \in \set{1, \dots, d}$ missing, such that $S$ is of the form:
 	\begin{align*}
 		(S): \quad v_0 \xrightarrow{l} v_1 \xrightarrow{} \cdots \xrightarrow{} v_d
 	\end{align*}
 	and assume that the face $F$ spanned by $v_1, \dots, v_d$ is a rainbow face. Then the following must hold for the colors:
 	\begin{align*}
-		(F): \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d)
+		(F): \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{c} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d)
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	Every color $c \in \set{0, \dots, d-1}$ appears exactly once in the face $F$. If the color $c \neq 0$ appears after $0$, then by \cref{cor:monotone_coloring} we must have that we move in dimension $c$ between $0$ and $c$:
+	Every color $l \in \set{0, \dots, d-1}$ appears exactly once in the face $F$. If the color $c \neq 0$ appears after $0$, then by \cref{cor:monotone_coloring} we must have that we move in dimension $l$ between $0$ and $l$:
 	\begin{align*}
-		(F): \quad c(v_1) \xrightarrow{} \cdots  0 \xrightarrow{} \cdots \xrightarrow{c} \cdots \xrightarrow{} c
+		(F): \quad c(v_1) \xrightarrow{} \cdots  0 \xrightarrow{} \cdots \xrightarrow{l} \cdots \xrightarrow{} l
 	\end{align*}
 	Because we have this for every color $c_i \neq 0$, which appears after $0$ in $F$ we must have:
 	\begin{align*}
 		(F): \quad c(v_1) \xrightarrow{} \cdots  0 \xrightarrow{c_1} c_1 \xrightarrow{c_2} c_2 \cdots \xrightarrow{c_k} c_k
 	\end{align*}
-	Now, it is clear that because no vertex is colored with $d$, we must have that the change in dimension $d$ occurs before the vertex colored $0$ appears. This shows that we must have:
+	Now, it is clear that because no vertex is colored with $c$, we must have that the change in dimension $c$ occurs before the vertex colored $0$ appears. This shows that we must have:
 	\begin{align*}
-		(F): \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{d} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d)
+		(F): \quad c(v_1) \xrightarrow{}  \cdots \xrightarrow{c} \cdots  0 \xrightarrow{} \cdots \xrightarrow{} c(v_d)
 	\end{align*}
 	This shows the lemma.
 \end{proof}
 
 \begin{lemma}[Ordering of the vertices in transition faces]\label{lem:ordering_of_vertices_in_transition_faces}
-	Let ${\left(S_i\right)}_{i=1}^k$ be a valid rainbow simplicial sequence. For all $i$ such that $F_i$ is a face between cells\boxmarginnote{A face between cells is a face of type (2) in \cref{rem:faces_of_simplex}.} then assume that we are moving in dimension $l \in \set{1, \dots, d-1}$, that is $l$ is not a dimension of $F_i$. Then for all colors $c \in \set{k+1, \dots, d-1} \cup \set{0}$, we have that $c$ appears after $l$ in $F_i$. This means that $F_i$ is of the form:
+	Let ${\left(S_i\right)}_{i=1}^k$ be a valid rainbow simplicial sequence. For all $i$ such that $F_i$ is a face between cells\boxmarginnote{A face between cells is a face of type (2) in \cref{rem:faces_of_simplex}.} then assume that we are moving in dimension $l \neq c$, that is $l$ is not a dimension of $F_i$. Then for all colors $b \in \set{l+1, \dots, d} \cup \set{0}$, we have that $b$ appears after $l$ in $F_i$. This means that $F_i$ is of the form:
 	\begin{align*}
-		(F_i): \quad c(v_1) \xrightarrow{} \cdots \xrightarrow{} l \xrightarrow{} \cdots \xrightarrow{} c \xrightarrow{} \cdots \xrightarrow{} c(v_d)
+		(F_i): \quad c(v_1) \xrightarrow{} \cdots \xrightarrow{} l \xrightarrow{} \cdots \xrightarrow{} b \xrightarrow{} \cdots \xrightarrow{} c(v_d)
 	\end{align*}
 \end{lemma}
 \begin{proof}
-	Assume for the sake of contradiction that for $c \in \set{k+1, \dots, d-1} \cup \set{0}$ we have that $c$ appears before $l$ in $F_i$. Then, by \cref{cor:monotone_coloring}, we must move in dimension $l$ between $l$ and $c$. However, the dimension $l$ is not a dimension of $F_i$. This is a contradiction and shows the lemma.
+	Assume for the sake of contradiction that for some ${b \in \set{l+1, \dots, d} \cup \set{0}}$ we have that $b$ appears before $l$ in $F_i$. Then, by \cref{cor:monotone_coloring}, we must move in dimension $l$ between $l$ and $b$. However, the dimension $l$ is not a dimension of $F_i$. This is a contradiction and shows the lemma.
 \end{proof}
 
 \section{Existence of cycles}\label{sec:existence_of_cycles}
@@ -541,5 +529,7 @@ Before we start, we want to make an observation about the interplay of the $d$ d
 	\caption[Example of a 3D cycle]{Example of a cycle in a 3-dimensional \Tarskistar\ instance.}\label{fig:cycle_example}
 \end{figure}
 
-As the reader will have noticed, the previous sections slowly build up a framework, which limits the structure a monotone \Tarski\ instance can have. To the surprise of the author of this thesis, this is not sufficient to show that no cycles exist, as cycles can exist for $d \geq 3$. We give an example of such a cycle in \cref{fig:cycle_example}. Our work in this chapter is preserved, as it has helped us understand the underlying questions and structure. We further these ideas in the next chapter, and discuss ideas on how to use these colored \Tarskistar-instances to obtain a reduction to \EndOfPotentialLine\@.
+The previous sections slowly build up a framework, which limits the structure a monotone \Tarski\ instance can have. To the surprise of the author of this thesis, this is not sufficient to show that no cycles exist, as cycles can exist for $d \geq 3$. We give an example of such a cycle in \cref{fig:cycle_example}. This cycle was found by combining all the constraints we collected in this chapter.
+
+Our work in this chapter is preserved, as it has helped us understand the underlying questions and structure. We further these ideas in the next chapter, and discuss ideas on how to use these colored \Tarskistar-instances to obtain a reduction to \EndOfPotentialLine\@.
 
