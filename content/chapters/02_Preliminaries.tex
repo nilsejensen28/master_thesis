@@ -7,11 +7,16 @@ This chapter aims to establish the complexity framework used throughout this the
 % Total search problems
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Total search problems}
-Subclasses of TFNP
+
 \begin{definition}[Search Problem]
-	\boxmarginnote{The ``No'' case can be encoded as some special binary string.}
-	A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$, the computational problem is to find a \define{solution} $s \in \binstr$ that satisfies $(I, s) \in R$, or output ``No'' if no such $s$ exists.
+	A \define{search problem} is given by a relation $R\subset \binstr \times \binstr$. For a given \define{instance} $I\in \binstr$, the computational problem is to find a \define{solution} $s \in \binstr$ that satisfies $(I, s) \in R$, or output ``No'' if no such $s$ exists.\boxmarginnote{The ``No'' case can be encoded as some special binary string.}
 \end{definition}
+
+For example the relation $R$ could be:
+\begin{align*}
+	R = \{(G, C) |\ \text{$C$ is a $k$-clique in the graph $G$}\}
+\end{align*}
+The associated search problem is then to find a $k$-clique in a given graph $G$, or output ``No'' if no such clique exists.
 
 We can view these search problems as decision problems by looking at the corresponding decision problem given by the language:
 \marginnote[10mm]{Here, we have rephrased the valid language as the pair of a problem instance and a valid solution.}
