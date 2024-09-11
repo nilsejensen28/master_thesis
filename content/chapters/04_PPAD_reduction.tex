@@ -157,14 +157,12 @@ We want to apply \textit{Sperner's Lemma} to an integer lattice for these reason
 	This construction has some fundamental properties. Most importantly, segments (edges of the simplicial decomposition) are mapped to segments, and simplices are mapped to simplices. This means that the simplicial decomposition of the lattice is mapped to a simplicial decomposition of the simplex. It follows that we can apply \textit{Sperner's Lemma} to the simplicial decomposition of the lattice. This concludes the proof.
 \end{proof}
 
-Notice that this Lemma, also allows the reverse operation, i.e.\ we can deform the lattice to a simplex. This is important because we will need to argue that the deformation of the lattice into a simplex does not change the structure of the subsimplex structure, and hence, we can apply \textit{Sperner's Lemma} to the lattice.
-
-We give an example of such a subdivision in the 3-dimensional case in \cref{fig:sperner_lattice_example}. Notice that we can deform the lattice and obtain an equivalent simplex and a simplicial decomposition of this simplex.
+Notice that this Lemma, also allows the reverse operation, i.e.\ we can deform the lattice to a simplex. This is important because we will need to argue that the deformation of the lattice into a simplex does not change the structure of the subsimplex structure, and hence, we can apply \textit{Sperner's Lemma} to the lattice. We give an example of such a deformation in \cref{fig:sperner_lattice_example}.
 
 \begin{figure}
 	\centering
-	\incfig{Sperner_Lattice_Example}
-	\caption[Example of a simplicial decomposition of a lattice]{Example of the simplicial decomposition of a lattice in the three-dimensional case on the left, and the equivalent simplicial decomposition on the right of a simplex $v_0, v_1, v_2, v_3$.}\label{fig:sperner_lattice_example}
+	{\Large\incfig{Sperner_Lattice_Example}}
+	\caption[Example the deformation of a lattice to a simplex]{Example the deformation of a lattice to a simplex. The vertices colored violet, get mapped to the violet face, the vertices colored green to the green face and the vertices colored orange to the orange face. The remaining vertices get mapped to the none drawn face, spanned by $v_1, v_2, v_3$}\label{fig:sperner_lattice_example}
 \end{figure}
 
 Assuming that we color all vertices of the lattice with colors $\set{0, \dots, d}$, such that $v_i$ is colored $i$, and every vertex $x$ with $x[i] = 0$, is \textit{not} colored $i$ for $i \in \set{1, \dots, d}$. Then, we can apply \textit{Sperner's Lemma} to this simplicial decomposition of the lattice, and we will find a simplex that contains all colors. Of course, because every subsimplex is included in exactly one cell by construction, there must be a cell that contains all colors. This motivates the definition of the total problem \Sperner, which was introduced in~\sidecite{papadimitriou_complexity_1994}. We introduce the problem for a general lattice $L = N_1 \times \cdots \times N_d$, such that $N_i \leq 2^n$, and define distinguished vertices $v_0, \dots, v_d$ given by\marginnote{$\delta_{i, j}$ is the Kronecker delta given by: \begin{align*}
