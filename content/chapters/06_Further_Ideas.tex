@@ -14,7 +14,7 @@ In the previous chapter, we discussed some limitations regarding the structure o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Vertex set of an \EOPL\ instance}[Vertex set of an \EOPL\ instance]
 
-In this section, we question the question of what vertex set a potential \EOPL-instance obtained by reducing \Tarskistar\ to \EndOfPotentialLine\ would have. Before we do this, we should discuss why this question even arises. Göös et.\ al.\~\sidecite{goos_further_2022} showed that $\EOPL = \PLS \cap \PPAD$, by constructing a product space of the vertices of both given instances and defining an \EndOfPotentialLine\ instance on this Cartesian product of vertices. We have a \Localopt\ instance given by the states of \cref{alg:iterative_tarski_solver}, whose vertices are basically the nodes of the lattice. We also have an \EndOfLine\ instance given by the vertices of the \Sperner\ instance we obtain when reducing \Tarskistar\ to \Sperner, as discussed in \cref{ch:ppad_reduction}. Here, the vertex set is all the simplices of a simplicial lattice decomposition. What could the vertex set of the \EndOfPotentialLine-instance we obtain when reducing \Tarskistar\ to \EndOfLine\ be?
+In this section, we question the question of what vertex set a potential \EOPL-instance obtained by reducing \Tarskistar\ to \EndOfPotentialLine\ would have. Before we do this, we should discuss why this question even arises. Göös et.\ al.~\sidecite{goos_further_2022} showed that $\EOPL = \PLS \cap \PPAD$, by constructing a product space of the vertices of both given instances and defining an \EndOfPotentialLine\ instance on this Cartesian product of vertices. We have a \Localopt\ instance given by the states of \cref{alg:iterative_tarski_solver}, whose vertices are basically the nodes of the lattice. We also have an \EndOfLine\ instance given by the vertices of the \Sperner\ instance we obtain when reducing \Tarskistar\ to \Sperner, as discussed in \cref{ch:ppad_reduction}. Here, the vertex set is all the simplices of a simplicial lattice decomposition. What could the vertex set of the \EndOfPotentialLine-instance we obtain when reducing \Tarskistar\ to \EndOfLine\ be?
 
 The main underlying question is: do we need a vertex set of the size of the Cartesian product of the two previous vertex sets, or can we get away with a smaller vertex set? If we cannot use a smaller vertex set, this would make modifying the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ to an \EndOfPotentialLine\ instance much more difficult, as we will see in the next section.
 
@@ -60,22 +60,18 @@ We now want to discuss how forward and backward points play together with the co
 \end{proof}
 
 This means that we almost have a solution to the \Tarskistar-instance. By modifying what set of colors $C$ we use, particularly what color $c$ we leave out, we get an almost backward point with a different missing dimension. If we can find a way to combine these almost backward points, in order to find a backward point, which is a key tool in solving \Tarski-instances. The following lemma can be used to combine almost backward points.
-
 \begin{lemma}[Combining almost backward points]\label{lem:combining_almost_backward_points}
-	Let $x$ be an almost backward point with missing dimension $c_1$ and $y$ be an almost backward point with missing dimension $c_2$, such that $c_1 \neq c_2$. Further assume that $x[c_1] \geq y[c_1]$ and that $y[c_2] \geq x[c_2]$ and for all other colors $i$ we have $x[i]=y[i]$. Then the point $z$ such that $z[i] = x[i]$ for all $i \neq c_1, c_2$ and $z[c_1] = y[c_1]$ and $z[c_2] = x[c_2]$ is a backward point.
+	\boxmarginnote{We also call such a point $z$ the \define{meet} of $x$ and $y$.}Let $x$ be an almost backward point with missing dimension $c_1$ and $y$ be an almost backward point with missing dimension $c_2$, such that $c_1 \neq c_2$. Further assume that $x[c_1] \geq y[c_1]$ and that $y[c_2] \geq x[c_2]$. Then the point $z$ such that $z[i] = \min(x[i], y[i])$ for all $i$ is a backward point.
 \end{lemma}
+\begin{marginfigure}[-25mm]
+	\centering
+	\marginincfig{Example_Almost_Backwards}
+	\caption{Illustration of the meet of two almost backward points $x$ and $y$.}\label{fig:example_almost_backwards}
+\end{marginfigure}
 \begin{proof}
-	For $i \neq c_1, c_2$, we have:
+	For $i$, we have:
 	\begin{align*}
-		f(z)[i] \leq f(x)[i] \leq x[i] = z[i]
-	\end{align*}
-	For $i = c_1$ we have:
-	\begin{align*}
-		f(z)[c_1] \leq f(y)[c_1] \leq y[c_1] = z[c_1]
-	\end{align*}
-	For $i = c_2$ we have:
-	\begin{align*}
-		f(z)[c_2] \leq f(x)[c_2] \leq x[c_2] = z[c_2]
+		f(z)[i] \leq \min(f(x)[i], f(y)[i]) \leq \min(x[i], y[i]) = z[i]
 	\end{align*}
 \end{proof}
 This shows that under the right conditions, we can combine almost backward points to find a backward point, and we can find almost backward points with different missing dimensions by choosing a different missing color $c$.
@@ -89,4 +85,4 @@ An idea one could attempt is to use different missing colors $c$ to find almost 
 
 In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing a monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. We also showed that these limitations were not sufficient to prevent cycles from existing. However, we also showed that the \EndOfLine\ instance we obtain when reducing a monotone \Tarskistar-instance does not have cycles in two dimensions as shown in \cref{prop:no_cycles_two_dimensional}.
 
-This in turn implies that we can easily reduce \Tarskistar\ to an \EndOfPotentialLine\ instance in two dimensions. We can then use the ideas discussed in the previous section to modify the \EndOfLine\ instance to an \EndOfPotentialLine\ instance. One could attempt to reduce the \Tarski-instance to the problem of repeatedly solving two-dimensional \Tarski-instances, which in turn could be reduced to \EndOfPotentialLine\ instances. We note that this approach has been used in~\sidecite{fearnley_faster_2022} for finding a fast \Tarski-solver, by repeatedly solving three-dimensional \Tarski-instances.
+This in turn implies that we can easily reduce \Tarskistar\ to an \EndOfPotentialLine\ instance in two dimensions. We can then use the ideas discussed in the previous section to modify the \EndOfLine\ instance to an \EndOfPotentialLine\ instance, by defining a potential which grows in the first dimension. In the second dimension we decide if the potential grows or shrinks depending on the direction the positively oriented face points in. One could attempt to reduce the \Tarski-instance to the problem of repeatedly solving two-dimensional \Tarski-instances, which in turn could be reduced to \EndOfPotentialLine\ instances. We note that this approach has been used in~\sidecite{fearnley_faster_2022} for finding a fast \Tarski-solver, by repeatedly solving three-dimensional \Tarski-instances.
