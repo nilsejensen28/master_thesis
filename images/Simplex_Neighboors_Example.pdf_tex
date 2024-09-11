@@ -1,0 +1,74 @@
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Simplex_Neighboors_Example.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{327.80683623bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.87194716)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0.82237831,0.16331342){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}3\end{tabular}}}}%
+    \put(0.96442929,0.07598436){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
+    \put(0.93478186,0.14026294){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Simplex_Neighboors_Example.pdf}}%
+    \put(0.04928679,0.33355034){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0$\end{tabular}}}}%
+    \put(0.465248,0.3309233){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\end{tabular}}}}%
+    \put(0.53762468,0.51224844){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_2$\end{tabular}}}}%
+    \put(0.53987992,0.83780486){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_3$\end{tabular}}}}%
+    \put(0.12971574,0.6096164){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0 \xrightarrow{1} w_1 \xrightarrow{2} v_2 \xrightarrow{3} v_3$\end{tabular}}}}%
+    \put(0.465248,0.3309233){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1$\end{tabular}}}}%
+    \put(0.88142626,0.7945303){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$w_3$\end{tabular}}}}%
+    \put(0.19307198,0.0233679){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$w_0$\end{tabular}}}}%
+    \put(0.13278481,0.4909995){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$w_1$\end{tabular}}}}%
+    \put(0.47877346,0.64019226){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$w_2$\end{tabular}}}}%
+    \put(0.7935301,0.53336027){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_1 \xrightarrow{1} v_2 \xrightarrow{3} v_3 \xrightarrow{2} w_3$\end{tabular}}}}%
+    \put(0.45417657,0.10489813){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$w_0 \xrightarrow{3} v_0 \xrightarrow{2} v_1 \xrightarrow{1} w_2$\end{tabular}}}}%
+    \put(0.6660951,0.38974701){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$v_0 \xrightarrow{2} v_1 \xrightarrow{3} w_2 \xrightarrow{1} v_3$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

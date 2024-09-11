@@ -162,19 +162,26 @@ We discuss what simplices of the decomposition neighbour each other. We claim th
 		      \begin{align*}
 			      v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} \cdots v_{i-1} \xrightarrow{\pi(i+1)} w_i \xrightarrow{\pi(i)} v_{i} \xrightarrow{\pi(i+2)} \cdots \xrightarrow{\pi(d)} v_d
 		      \end{align*}
-		\item for $w_d$ is the vertex obtained by moving one unit in the direction $-\pi(d)$ from $v_{0}$, the simplex:
+		\item for $w_0$ is the vertex obtained by moving one unit in the direction $-\pi(d)$ from $v_{0}$, the simplex:
 		      \begin{align*}
-			      w_d \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
+			      w_0 \xrightarrow{\pi(d)} v_0 \xrightarrow{\pi(1)} v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1}
 		      \end{align*}
-		\item for $w_1$ is the vertex obtained by moving one unit in the direction $\pi(1)$ from $v_{d}$, the simplex:
+		\item for $w_d$ is the vertex obtained by moving one unit in the direction $\pi(1)$ from $v_{d}$, the simplex:
 		      \begin{align*}
-			      v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_1
+			      v_1 \xrightarrow{\pi(2)} v_2 \xrightarrow{\pi(3)} \cdots \xrightarrow{\pi(d-1)} v_{d-1} \xrightarrow{\pi(d)} v_d \xrightarrow{\pi(1)} w_d
 		      \end{align*}
 	\end{itemize}
 \end{lemma}
 \begin{proof}
 	The proof follows directly by enumerating the faces of $S_{\pi}$ and using remark \cref{rem:faces_of_simplex}.
 \end{proof}
+We give an example of the neighbours of a three-dimensional simplex in \cref{fig:neighbours_of_simplex}.
+
+\begin{figure}
+	\centering
+	{\large\incfig{Simplex_Neighboors_Example}}
+	\caption[Neighbours of a Simplex]{Neighbours of a three-dimensional gray simplex ${v_0 \xrightarrow{2} v_1 \xrightarrow{1} v_2 \xrightarrow{3} v_3} $.}\label{fig:neighbours_of_simplex}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Sequences of Simplices
