@@ -4,8 +4,8 @@
 Until now we have reduced \Tarski\ to \EndOfLine\ using:
 \begin{itemize}
 	\item A Turing reduction from \Tarski\ to \Tarskistar,
-	\item A one-to-many reduction from \Tarskistar\ to \Sperner,
-	\item A one-to-many reduction from \Sperner\ to \EndOfLine.
+	\item A many-to-one reduction from \Tarskistar\ to \Sperner,
+	\item A many-to-one reduction from \Sperner\ to \EndOfLine.
 \end{itemize}
 In the previous chapter, we discussed some limitations regarding the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient not to allow the \EndOfLine\ instance to have cycles. In this chapter, we will discuss ideas on how to overcome these limitations and show that we can reduce \Tarski\ to \EndOfPotentialLine\@. We will not be able to show that \Tarski\ lies in \EOPL, but we hope that the ideas we discuss give some intuition as to the difficulties of the task and that intuition for the problem can be gained from the ideas we discuss.
 
@@ -23,16 +23,18 @@ The main underlying question is: do we need a vertex set of the size of the cart
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modifying the \EndOfLine\ instance}[Modifying the \EndOfLine\ instance]
 
-In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. The author of this thesis hoped to show that these structural limitations were strong enough to prevent cycles from existing. This was not the case as discussed in \cref{sec:existence_of_cycles}. Still, the question arises if we can still add a potential to the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\@. Of course, we need to be able to handle violations. In particular, we need to use violations of potential to make progress toward finding a solution. We will discuss how to handle this in the next section.
+In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. The author of this thesis hoped to show that these structural limitations were strong enough to prevent cycles from existing. This was not the case as discussed in \cref{sec:existence_of_cycles}. Still, the question arises if we can still add a potential to the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\@. Of course, we need to be able to handle violations. In particular, we need to use violations of potential to make progress toward finding a solution. We will discuss how one could handle this in the next section.
 
-Another big challenge when attempting to define a potential on the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ is that the vertex set of the \EndOfLine\ instance is a set of simplices. Defining a potential not on a set of cells, which could be similar to the one we defined on the lattice with the \Localopt\ instance, but on a set of simplices, is much more difficult. We want the violations of the potential to happen at the boundaries of cells, as these are much easier to work with, and the faces we obtain have nice properties, as discussed in the next section. Hence, we want to have potential that allows freedom within a cell. This is a challenge that would need to be addressed.
+Another big challenge when attempting to define a potential on the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ is that the vertex set of the \EndOfLine\ instance is a set of simplices. Defining a potential a set of cells, which could be similar to the one we defined on the lattice with the \Localopt\ instance, seems much easier then on a set of simplices inside a given cell.
+
+The reason for this is that it seems difficult to handle violations which occur inside a cell, and much easier to handle those that occur on the boundaries of cells as discussed in the next section. Also there does not seem to be a canonical way to order the simplices within a cell. This is a challenge that would need to be addressed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Forward and backward points
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Forward and Backward points}[Forward and Backward points]
 
-In this section, we want to discuss the idea of forward and backward points, which are a key tool when solving \Tarski-instances, as we will discuss later. Both algorithms we presented in \cref{ch:preliminaries} relied on finding so-called \emph{progress points}; we remind the reader of the definition of a progress point and introduce the concept of forward and backward points.
+In this section, we want to discuss the idea of forward and backward points, which are a key tool when solving \Tarski-instances, as we will discuss later. Both algorithms we presented in \cref{ch:preliminaries} relied on finding so-called \emph{progress points}; we remind the reader of the definition of forward, backward and progress points, which we first introduced in \cref{sec:tarski_problem}.
 
 \begin{definition}[Progress point]
 	Let $f: L \rightarrow L$ be a \Tarski-instance. A point $x \in L$ is called a \define{forward point} if $f(x) \geq x$\boxmarginnote{Beeing a progress point is equivalent to the being colored $0$}. A point $x \in L$ is called a \define{backward point} if $f(x) \leq x$. Finally, a point $x \in L$ is called a \define{progress point} if it is either a forward or a backward point.
