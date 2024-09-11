@@ -82,3 +82,11 @@ This shows that under the right conditions, we can combine almost backward point
 
 An idea one could attempt is to use different missing colors $c$ to find almost backward points by modifying the \EndOfLine\ instance obtained in the reduction from \Tarskistar\ by adding a potential to obtain a violation when we move from one cell to another in a predefined subset of directions. This immediately yields a face like in \cref{lem:almost_backward_point}. By choosing this subset of directions carefully, we might be able to ensure that we can combine almost backward points to find a backward point, as discussed in \cref{lem:combining_almost_backward_points}. This would be a key step in constructing a Turing-reduction from \Tarskistar\ to \EndOfPotentialLine\@.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Leveraging the absence of cycles in two dimensions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Leveraging the absence of cycles in two dimensions}[Leveraging the absence of cycles in two dimensions]
+
+In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. We also showed that these limitations were not sufficient to prevent cycles from existing. However, we also showed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance does not have cycles in two dimensions as shown in \cref{prop:no_cycles_two_dimensional}.
+
+This in turn implies that we can easily reduce \Tarskistar\ to an \EndOfPotentialLine\ instance in two dimensions. We can then use the ideas discussed in the previous section to modify the \EndOfLine\ instance to an \EndOfPotentialLine\ instance. One could attempt to reduce the \Tarski-instance to the problem of repeatedly solving two-dimensional \Tarski-instances, which in turn could be reduced to \EndOfPotentialLine\ instances. We note that this approach has been used in~\sidecite{fearnley_faster_2022} for finding a fast \Tarski-solver, by repeatedly solving three-dimensional \Tarski-instances.
