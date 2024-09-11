@@ -63,5 +63,13 @@
     \put(0.50076158,0.18221254){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}-1\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{Colored_Orientations.pdf}}%
     \put(0.49799668,0.52740531){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}+1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Colored_Orientations.pdf}}%
+    \put(0.10623769,0.85650665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Colored_Orientations.pdf}}%
+    \put(0.75536448,0.85061024){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Colored_Orientations.pdf}}%
+    \put(0.88871559,0.1054267){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}4\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Colored_Orientations.pdf}}%
+    \put(0.24279665,0.10880178){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}3\end{tabular}}}}%
   \end{picture}%
 \endgroup%
