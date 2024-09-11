@@ -7,16 +7,16 @@ Until now we have reduced \Tarski\ to \EndOfLine\ using:
 	\item A many-to-one reduction from \Tarskistar\ to \Sperner,
 	\item A many-to-one reduction from \Sperner\ to \EndOfLine.
 \end{itemize}
-In the previous chapter, we discussed some limitations regarding the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient not to allow the \EndOfLine\ instance to have cycles. In this chapter, we will discuss ideas on how to overcome these limitations and show that we can reduce \Tarski\ to \EndOfPotentialLine\@. We will not be able to show that \Tarski\ lies in \EOPL, but we hope that the ideas we discuss give some intuition as to the difficulties of the task and that intuition for the problem can be gained from the ideas we discuss.
+In the previous chapter, we discussed some limitations regarding the structure of the \Sperner\ instance we obtain when reducing monotone \Tarskistar\ to \Sperner. We also showed that these limitations were \emph{not} sufficient not to allow the \EndOfLine\ instance to have cycles. In this chapter, we will discuss ideas on how to overcome these limitations. We will not be able to construct a streamline reduction that \Tarski\ lies in \EOPL, but we hope that the ideas we discuss give some intuition as to the difficulties of the task and that intuition for the problem can be gained from the ideas we discuss.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Vertex set of an EOPL instance
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Vertex set of an \EOPL\ instance}[Vertex set of an \EOPL\ instance]
 
-In this section, we question the question of what vertex set of a potential \EOPL\ instance obtained by reducing \Tarskistar\ to \EndOfPotentialLine\ would have. Before we do this, we should discuss why this question even arises. Göös et.\ al.\ showed that $\EOPL = \PLS \cap \PPAD$, by constructing a product space of the vertices of both given instances and defining an \EndOfPotentialLine\ instance on this cartesian product of vertices~\sidecite{goos_further_2022}. We have a \Localopt\ instance given by the states of \cref{alg:iterative_tarski_solver}, whose vertices are basically the nodes of the lattice. We also have an \EndOfLine\ instance given by the vertices of the \Sperner\ instance we obtain when reducing \Tarskistar\ to \Sperner, as discussed in \cref{ch:ppad_reduction}. Here, the vertex set is all the simplices of a simplicial lattice decomposition. What is the vertex set of the \EndOfPotentialLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\@?
+In this section, we question the question of what vertex set a potential \EOPL-instance obtained by reducing \Tarskistar\ to \EndOfPotentialLine\ would have. Before we do this, we should discuss why this question even arises. Göös et.\ al.\~\sidecite{goos_further_2022} showed that $\EOPL = \PLS \cap \PPAD$, by constructing a product space of the vertices of both given instances and defining an \EndOfPotentialLine\ instance on this Cartesian product of vertices. We have a \Localopt\ instance given by the states of \cref{alg:iterative_tarski_solver}, whose vertices are basically the nodes of the lattice. We also have an \EndOfLine\ instance given by the vertices of the \Sperner\ instance we obtain when reducing \Tarskistar\ to \Sperner, as discussed in \cref{ch:ppad_reduction}. Here, the vertex set is all the simplices of a simplicial lattice decomposition. What could the vertex set of the \EndOfPotentialLine-instance we obtain when reducing \Tarskistar\ to \EndOfLine\ be?
 
-The main underlying question is: do we need a vertex set of the size of the cartesian product of the two previous vertex sets, or can we get away with a smaller vertex set? If we cannot use a smaller vertex set, this would make modifying the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ to an \EndOfPotentialLine\ instance much more difficult, as we will see in the next section.
+The main underlying question is: do we need a vertex set of the size of the Cartesian product of the two previous vertex sets, or can we get away with a smaller vertex set? If we cannot use a smaller vertex set, this would make modifying the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ to an \EndOfPotentialLine\ instance much more difficult, as we will see in the next section.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Modifying the EndOfLine instance
@@ -27,7 +27,7 @@ In the previous chapter, we discussed that the \EndOfLine\ instance we obtain wh
 
 Another big challenge when attempting to define a potential on the \EndOfLine\ instance we obtain when reducing \Tarskistar\ to \EndOfLine\ is that the vertex set of the \EndOfLine\ instance is a set of simplices. Defining a potential on a set of cells, which could be similar to the one we defined on the lattice with the \Localopt\ instance, seems much easier than on a set of simplices inside a given cell.
 
-The reason for this is that it seems difficult to handle violations which occur inside a cell, and much easier to handle those that occur on the boundaries of cells as discussed in the next section. Also there does not seem to be a canonical way to order the simplices within a cell. This is a challenge that would need to be addressed.
+The reason for this is that it seems difficult to handle violations which occur inside a cell, and much easier to handle those that occur on the boundaries of cells as discussed in the next section. Also, there does not seem to be a canonical way to order the simplices within a cell. This is a challenge that would need to be addressed.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Forward and backward points
@@ -42,7 +42,7 @@ In this section, we want to discuss the idea of forward and backward points, whi
 
 Now the reader might remember that the objective of \Tarskistar\ was to find two points $x, y$ in the lattice which are near to each other (i.e., $\norminf{x-y}\leq 1$), such that $x$ is a forward point and $y$ is a backward point. This always enables us to find a fixed point of $f$ immediately or reduce the search area by at least half, as discussed in \cref{sec:introducing_tarskistar}.
 
-We now want to discuss how forward and backward points play together with the coloring of \Tarski-instances we previously defined. Let $C$ be a subset of $\set{0, \dots, d}$, such that exactly one color $c \in \set{1, \dots, d}$ is missing. Now consider a rainbow face $F$ for colors $C$ of the simplicial decomposition, which lies on the boundary between two cells. Then the following holds:
+We now want to discuss how forward and backward points play together with the coloring of \Tarski-instances we previously defined. The dream would be to have a forward and a backwards points close to each other. The following lemma shows that this is \emph{almost} possible.
 
 \begin{lemma}[Almost backward point]\label{lem:almost_backward_point}
 	Let $f: L \rightarrow L$ be a \Tarski-instance and $C$ be a subset of $\set{0, \dots, d}$, such that exactly one color $c \in \set{1, \dots, d}$ is missing. Let $F$ be a rainbow face for colors $C$ of the simplicial decomposition, which lies on the boundary between two cells.
@@ -52,17 +52,17 @@ We now want to discuss how forward and backward points play together with the co
 	\end{itemize}
 \end{lemma}
 \begin{proof}
-	If $i \neq c$ then we have that that there is a vertex $z$ colored $i$ in $F$ such that:
+	If $i \neq c$ then we have that there is a vertex $z$ colored $i$ in $F$ such that:
 	\begin{align*}
 		z[i] - 1 \leq y[i] \leq z[i]
 	\end{align*}
-	Because $z$ shows strictly backward in dimension $i$, we have that $f(y)[i] \leq y[i]$.
+	Because $z$ points strictly backward in dimension $i$, we have that $f(y)[i] \leq y[i]$.
 \end{proof}
 
-This means that we almost have a solution to the \Tarskistar-instance. By modifying what set of colors $C$ we use, particularly what color $c$ we leave out, we get an almost backward point with a different missing dimension. If we can find a way to combine these almost backward points, we can find a backward point, which is a key tool in solving \Tarski-instances. The following lemma can be used to combine almost backward points.
+This means that we almost have a solution to the \Tarskistar-instance. By modifying what set of colors $C$ we use, particularly what color $c$ we leave out, we get an almost backward point with a different missing dimension. If we can find a way to combine these almost backward points, in order to find a backward point, which is a key tool in solving \Tarski-instances. The following lemma can be used to combine almost backward points.
 
 \begin{lemma}[Combining almost backward points]\label{lem:combining_almost_backward_points}
-	Let $x$ be an almost backward point with missing dimension $c_1$ and $y$ be an almost backward point with missing dimension $c_2$, such that $c_1 \neq c_2$. Futher assume that $x[c_1] \geq y[c_1]$ and that $y[c_2] \geq x[c_2]$ and for all other colors $i$ we have $x[i]=y[i]$. Then the point $z$ such that $z[i] = x[i]$ for all $i \neq c_1, c_2$ and $z[c_1] = y[c_1]$ and $z[c_2] = x[c_2]$ is a backward point.
+	Let $x$ be an almost backward point with missing dimension $c_1$ and $y$ be an almost backward point with missing dimension $c_2$, such that $c_1 \neq c_2$. Further assume that $x[c_1] \geq y[c_1]$ and that $y[c_2] \geq x[c_2]$ and for all other colors $i$ we have $x[i]=y[i]$. Then the point $z$ such that $z[i] = x[i]$ for all $i \neq c_1, c_2$ and $z[c_1] = y[c_1]$ and $z[c_2] = x[c_2]$ is a backward point.
 \end{lemma}
 \begin{proof}
 	For $i \neq c_1, c_2$, we have:
@@ -87,6 +87,6 @@ An idea one could attempt is to use different missing colors $c$ to find almost 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Leveraging the absence of cycles in two dimensions}[Leveraging the absence of cycles in two dimensions]
 
-In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. We also showed that these limitations were not sufficient to prevent cycles from existing. However, we also showed that the \EndOfLine\ instance we obtain when reducing monotone \Tarskistar-instance does not have cycles in two dimensions as shown in \cref{prop:no_cycles_two_dimensional}.
+In the previous chapter, we discussed that the \EndOfLine\ instance we obtain when reducing a monotone \Tarskistar-instance has structural limitations induced by the monotonicity of the function $f$. We also showed that these limitations were not sufficient to prevent cycles from existing. However, we also showed that the \EndOfLine\ instance we obtain when reducing a monotone \Tarskistar-instance does not have cycles in two dimensions as shown in \cref{prop:no_cycles_two_dimensional}.
 
 This in turn implies that we can easily reduce \Tarskistar\ to an \EndOfPotentialLine\ instance in two dimensions. We can then use the ideas discussed in the previous section to modify the \EndOfLine\ instance to an \EndOfPotentialLine\ instance. One could attempt to reduce the \Tarski-instance to the problem of repeatedly solving two-dimensional \Tarski-instances, which in turn could be reduced to \EndOfPotentialLine\ instances. We note that this approach has been used in~\sidecite{fearnley_faster_2022} for finding a fast \Tarski-solver, by repeatedly solving three-dimensional \Tarski-instances.
